@@ -1,0 +1,32 @@
+metric,value,run_id
+scenario_schema_version,1.3.0,scenario_catalogue_009r2_20260811
+scenario_algorithm_version,1.0.2,scenario_catalogue_009r2_20260811
+scenario_semantics,SCENARIO_SNAPSHOT_GAMEPLAY_AUTHORITATIVE,scenario_catalogue_009r2_20260811
+scenario_id,seven_years_war_1756_08_01,scenario_catalogue_009r2_20260811
+snapshot_date,1756-08-01,scenario_catalogue_009r2_20260811
+data_status,FOUNDATION_ONLY,scenario_catalogue_009r2_20260811
+europe_polity_catalogue_status,PARTIAL,scenario_catalogue_009r2_20260811
+political_geography_complete,False,scenario_catalogue_009r2_20260811
+polities_global,66,scenario_catalogue_009r2_20260811
+scenario_polities,66,scenario_catalogue_009r2_20260811
+europe_scenario_polities,65,scenario_catalogue_009r2_20260811
+polity_kind_counts,"{""KINGDOM"": 12, ""ELECTORATE"": 8, ""DUCHY"": 8, ""REPUBLIC"": 6, ""PRINCE_BISHOPRIC"": 5, ""PRINCIPALITY"": 4, ""COMPOSITE_MONARCHY"": 3, ""LANDGRAVIATE"": 2, ""EMPIRE"": 2, ""MARGRAVIATE"": 2, ""FREE_IMPERIAL_CITY"": 2, ""HEREDITARY_MILITARY_GOVERNMENT"": 1, ""CONFEDERAL_REPUBLIC"": 1, ""COMPOSITE_TERRITORY"": 1, ""GRAND_DUCHY"": 1, ""ECCLESIASTICAL_MONARCHY"": 1, ""IMPERIAL_LEGAL_STRUCTURE"": 1, ""ARCHDUCHY"": 1, ""ELECTIVE_MONARCHY"": 1, ""KHANATE"": 1, ""CONFEDERATION"": 1, ""MILITARY_RELIGIOUS_ORDER"": 1, ""CO_PRINCIPALITY"": 1}",scenario_catalogue_009r2_20260811
+territorial_authority_role_counts,"{""DIRECT_TERRITORIAL_ACTOR"": 49, ""DEPENDENT_TERRITORIAL_ACTOR"": 13, ""STRUCTURAL_CONTAINER"": 2, ""COMPOSITE_TERRITORIAL_ACTOR"": 2}",scenario_catalogue_009r2_20260811
+relationships,46,scenario_catalogue_009r2_20260811
+relationship_type_counts,"{""IMPERIAL_MEMBER_OF"": 29, ""COMPOSITE_MEMBER_OF"": 7, ""PERSONAL_UNION"": 4, ""TRIBUTARY_OF"": 3, ""DEPENDENCY_OF"": 2, ""SUBJECT_OF"": 1}",scenario_catalogue_009r2_20260811
+audit_rows_total,81,scenario_catalogue_009r2_20260811
+audit_rows_active,80,scenario_catalogue_009r2_20260811
+audit_rows_superseded,1,scenario_catalogue_009r2_20260811
+inclusion_status_counts_active,"{""INCLUDED"": 63, ""AGGREGATION_CANDIDATE"": 11, ""UNRESOLVED"": 3, ""STRUCTURAL_ONLY"": 2, ""EXCLUDED_WITH_REASON"": 1}",scenario_catalogue_009r2_20260811
+six_km_risk_counts_active,"{""NONE"": 38, ""UNKNOWN"": 17, ""MULTIPART"": 13, ""ENCLAVE_COMPLEX"": 11, ""SUBHEX_REQUIRED"": 1}",scenario_catalogue_009r2_20260811
+active_unresolved_candidates,Duchy of Holstein-Gottorp (ducal share; duke = the Russian heir Peter); Principality of Monaco; Schleswig and Holstein: royal shares (Danish crown),scenario_catalogue_009r2_20260811
+territorial_control_rows,3,scenario_catalogue_009r2_20260811
+territorial_claims_rows,1,scenario_catalogue_009r2_20260811
+sources,10,scenario_catalogue_009r2_20260811
+evidence_rows,68,scenario_catalogue_009r2_20260811
+evidence_pinpoint_locators,4,scenario_catalogue_009r2_20260811
+hex_plane_area_km2_machine_computed,31.176915,scenario_catalogue_009r2_20260811
+representability_corrections,4,scenario_catalogue_009r2_20260811
+hre_individual_audit_rows,17,scenario_catalogue_009r2_20260811
+contested_polity_cases,3,scenario_catalogue_009r2_20260811
+validation_pass,57/57,scenario_catalogue_009r2_20260811

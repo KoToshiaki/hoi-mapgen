@@ -1,0 +1,67 @@
+{
+  "run_id": "scenario_catalogue_20260811",
+  "stage": "MAPGEN-009",
+  "generated_utc": "2026-08-10T17:47:44.606517+00:00",
+  "scenario_schema_version": "1.1.0",
+  "scenario_algorithm_version": "1.0.1",
+  "version_reasons": {
+    "schema_1.1.0": "additive: relationship + inclusion-audit tables; authority-role/playability/ja-name columns; evidence locator precision columns",
+    "algorithm_1.0.1": "one new rule: symmetric relationship ids canonicalise participant order before hashing; all 1.0.0 rules unchanged"
+  },
+  "scenario_semantics": "SCENARIO_SNAPSHOT_GAMEPLAY_AUTHORITATIVE",
+  "scenario_id": "seven_years_war_1756_08_01",
+  "data_status": "FOUNDATION_ONLY",
+  "europe_polity_catalogue_status": "PARTIAL",
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\island_components.parquet": "4138dbc1a0ba97f9144bd4058cbef0e50f30fd88283a76dbe4a4b7e4facac8ad",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin0.parquet": "8d2b031e297ae68e9bf226616f1a61da2a037535055439905ea9323f1471bfcf",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin0_hierarchy.parquet": "4ab293533f4e0c8d80c2ec27761db1a1de8c73eec7fc7373563ca662d7d65252",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin1.parquet": "a37a3108fb573a427fd3f26c47ee3b2b352d157b877a112b2ec253bdfee8500f",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_disputed_areas.parquet": "e0b3b78f3f637e0411e8717c2971b903930d8e4d2659cd100250575befac06e8",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin_hex_membership.parquet": "bc7fec182ca6c4a1da0eddb12b888a5078138fe12cc8d7af49694814a17e2350",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\island_component_reference_admin.parquet": "ff2006b13aee652b0b0b717aaf8fd85215df765ff3630ed7ab3b313d0db6b9fa",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_settlements.parquet": "c2a5fdb153f61900fd7525f0f6f67cfdaffc9cc7c76eebcb77b3d5b4e526354f",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_ports.parquet": "e3504b8a8811e8124a5025e8a3a5b7d678a0aa9560aec4985f6b161ce1c12cd7",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e"
+  },
+  "scenario_input_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\scenario_registry.csv": "d8cdeb4abd7280e2f683b15dfb68b16739184e5dd856a69ace6dbdcfd7f04c00",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\polities.csv": "20e23c6a93604f6e2bedb01ac43b9028df387fdd772bbc27c6c8e9ad8a918335",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\scenario_polities.csv": "9b849e772a1b29b5a9e8e9b3cf7fc603ee6724acddd61bde4472385771ecdd9e",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\scenario_polity_relationships.csv": "684826a08ea3a353e606d892c71ea80570904bad9b145d54dd828ca4b66e4a5d",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\scenario_polity_inclusion_audit.csv": "cf10eb4c22e48367556afb22fab736bfa097004a9871e49a8e0afc305eb21666",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\sources.csv": "f2e0e2988fe9311b18b28645ab7ab31f657e2a38f881c6e77a0b3ec3d77932e2",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\evidence.csv": "96ab64129a228ff0dd157a6a835aa6247c9009f1ba44d75dff58547a23f9863b"
+  },
+  "id_rules": {
+    "scenario_id": "permanent handle, assigned once",
+    "polity_id": "permanent curated slug (pol_...)",
+    "scenario_polity_id": "sp_ + sha1(scenario_id|polity_id)[:12]",
+    "source_id": "src_ + sha1(scenario_id|citation_key)[:12]",
+    "evidence_id": "ev_ + sha1(scenario|source|type|target)[:12]",
+    "relationship_id": "rel_ + sha1(scenario|type|from|to)[:12]; SYMMETRIC types sort participants first",
+    "version_semantics": "changing a defining key IS a data version change; display fields are freely editable"
+  },
+  "timings_s": {
+    "upstream_load_s": 0.1,
+    "render_s": 1.4
+  },
+  "peak_memory_mb": 304.3,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

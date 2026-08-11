@@ -1,0 +1,6 @@
+run_id,candidate,present_in_source,reference_settlement_id,in_kanto_region,land_binding_kind,terrestrial_hex_id,population_max
+human_geography_v1_1_20260811,Tokyo,True,setl_1159151609,True,TERRESTRIAL_HEX,h6000_q+002183_r+000819,35676000.0
+human_geography_v1_1_20260811,Yokohama,True,setl_1159147167,True,TERRESTRIAL_HEX,h6000_q+002184_r+000813,3697894.0
+human_geography_v1_1_20260811,Kawasaki,True,setl_1159130361,True,TERRESTRIAL_HEX,h6000_q+002184_r+000815,1437266.0
+human_geography_v1_1_20260811,Chiba,False,,,,,
+human_geography_v1_1_20260811,Saitama,False,,,,,

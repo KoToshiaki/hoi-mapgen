@@ -1,0 +1,9 @@
+run_id,case,component_a_lon,component_b_lon,projected_raw_separation_km,ground_geodesic_separation_km,candidate_found,same_group_expected,same_group_actual,pass
+geography_v1_3_islands_006r_20260809,synthetic_close_pair,179.97,-179.97,40067.1,5.378,True,True,True,True
+geography_v1_3_islands_006r_20260809,synthetic_far_pair,179.6,-179.6,39984.7,86.511,False,False,False,True
+geography_v1_3_islands_006r_20260809,synthetic_control_no_seam,10.0,10.06,5.5,5.378,True,True,True,True
+geography_v1_3_islands_006r_20260809,real_fiji_dateline,-179.9281,179.9568,40043.1,0.0,True,False,False,True
+geography_v1_3_islands_006r_20260809,real_fiji_dateline,-179.9993,179.9995,40074.7,0.0,True,True,True,True
+geography_v1_3_islands_006r_20260809,real_fiji_dateline,-179.9637,179.9883,40062.0,0.0,True,False,False,True
+geography_v1_3_islands_006r_20260809,real_fiji_dateline,-179.9715,179.9883,40068.6,3.175,True,True,True,True
+geography_v1_3_islands_006r_20260809,real_fiji_dateline,-179.9239,179.9883,40063.3,8.218,True,True,True,True

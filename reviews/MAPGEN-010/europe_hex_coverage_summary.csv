@@ -1,0 +1,11 @@
+metric,value,run_id
+europe_extent,"lon -25.0..45.0, lat 34.0..71.5",europe_foundation_20260811
+chunks,50,europe_foundation_20260811
+total_hexes,1885422,europe_foundation_20260811
+terrestrial_hexes,862795,europe_foundation_20260811
+ocean_hexes,1022627,europe_foundation_20260811
+duplicate_hexes,0,europe_foundation_20260811
+seam_missing,0,europe_foundation_20260811
+coverage_status,GEOMETRY_COVERAGE_ONLY,europe_foundation_20260811
+water_authority_status,OSM_COAST_ONLY,europe_foundation_20260811
+per_chunk_max_runtime_s,138.5,europe_foundation_20260811

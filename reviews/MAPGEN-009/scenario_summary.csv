@@ -1,0 +1,25 @@
+metric,value,run_id
+scenario_schema_version,1.1.0,scenario_catalogue_20260811
+scenario_algorithm_version,1.0.1,scenario_catalogue_20260811
+scenario_semantics,SCENARIO_SNAPSHOT_GAMEPLAY_AUTHORITATIVE,scenario_catalogue_20260811
+scenario_id,seven_years_war_1756_08_01,scenario_catalogue_20260811
+snapshot_date,1756-08-01,scenario_catalogue_20260811
+data_status,FOUNDATION_ONLY,scenario_catalogue_20260811
+europe_polity_catalogue_status,PARTIAL,scenario_catalogue_20260811
+political_geography_complete,False,scenario_catalogue_20260811
+polities_global,51,scenario_catalogue_20260811
+scenario_polities,51,scenario_catalogue_20260811
+europe_scenario_polities,50,scenario_catalogue_20260811
+polity_kind_counts,"{""KINGDOM"": 12, ""ELECTORATE"": 8, ""DUCHY"": 7, ""REPUBLIC"": 3, ""COMPOSITE_MONARCHY"": 3, ""PRINCIPALITY"": 3, ""EMPIRE"": 2, ""HEREDITARY_MILITARY_GOVERNMENT"": 1, ""CONFEDERAL_REPUBLIC"": 1, ""COMPOSITE_TERRITORY"": 1, ""PRINCE_BISHOPRIC"": 1, ""GRAND_DUCHY"": 1, ""ECCLESIASTICAL_MONARCHY"": 1, ""IMPERIAL_LEGAL_STRUCTURE"": 1, ""ARCHDUCHY"": 1, ""LANDGRAVIATE"": 1, ""ELECTIVE_MONARCHY"": 1, ""KHANATE"": 1, ""CONFEDERATION"": 1, ""MILITARY_RELIGIOUS_ORDER"": 1}",scenario_catalogue_20260811
+territorial_authority_role_counts,"{""DIRECT_TERRITORIAL_ACTOR"": 36, ""DEPENDENT_TERRITORIAL_ACTOR"": 13, ""STRUCTURAL_CONTAINER"": 2}",scenario_catalogue_20260811
+relationships,35,scenario_catalogue_20260811
+relationship_type_counts,"{""IMPERIAL_MEMBER_OF"": 18, ""COMPOSITE_MEMBER_OF"": 7, ""PERSONAL_UNION"": 4, ""TRIBUTARY_OF"": 3, ""DEPENDENCY_OF"": 2, ""SUBJECT_OF"": 1}",scenario_catalogue_20260811
+inclusion_audit_rows,62,scenario_catalogue_20260811
+inclusion_status_counts,"{""INCLUDED"": 48, ""AGGREGATION_CANDIDATE"": 4, ""SUBHEX_REQUIRED"": 4, ""UNRESOLVED"": 3, ""STRUCTURAL_ONLY"": 2, ""EXCLUDED_WITH_REASON"": 1}",scenario_catalogue_20260811
+six_km_risk_counts,"{""NONE"": 29, ""MULTIPART"": 12, ""ENCLAVE_COMPLEX"": 8, ""SUBHEX_REQUIRED"": 7, ""UNKNOWN"": 3, ""SUBHEX_LIKELY"": 3}",scenario_catalogue_20260811
+territorial_control_rows,3,scenario_catalogue_20260811
+territorial_claims_rows,1,scenario_catalogue_20260811
+sources,8,scenario_catalogue_20260811
+evidence_rows,53,scenario_catalogue_20260811
+evidence_pinpoint_locators,1,scenario_catalogue_20260811
+validation_pass,33/33,scenario_catalogue_20260811

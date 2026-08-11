@@ -1,0 +1,6 @@
+term,correct_1756_meaning,misuse_risk,action_taken,source_id
+Royal Prussia (Polish Prussia),West-Prussian territory of the POLISH-LITHUANIAN COMMONWEALTH (until 1772),conflation with the Hohenzollern Kingdom of Prussia,term banned as a synonym for Hohenzollern East Prussia; validation gate V17 checks no polity name uses it,src_d756921e5f15
+Ducal Prussia / East Prussia,"former Duchy of Prussia, Hohenzollern since 1618, kingdom seat from 1701, OUTSIDE the Holy Roman Empire",being labelled 'Royal Prussia',canonical_name set to 'Kingdom of Prussia (Ducal/East Prussia)'; notes clarified; polity_id unchanged,src_d756921e5f15
+Brandenburg,"electorate INSIDE the Empire, ruled by the same monarch",merging with the kingdom into one legal entity,kept as separate COMPOSITE_MEMBER_OF constituent,src_d756921e5f15
+King in Prussia vs King of Prussia,1756 royal style was 'King IN Prussia' (since 1701); 'King OF Prussia' dates from 1772,anachronistic title,"historical_title_at_snapshot records 'Friedrich II, King in Prussia and Elector of Brandenburg'",src_d756921e5f15
+Prussian Monarchy (Hohenzollern lands),modeling construct for the composite of Hohenzollern territories acting as one monarchy (interpretation DERIVED),being read as a single unitary legal state,role refined to COMPOSITE_TERRITORIAL_ACTOR; binding contract: territory binds to constituents,src_d756921e5f15

@@ -1,0 +1,69 @@
+{
+  "stage": "MAPGEN-006R - Review Contract Hardening",
+  "run_id": "geography_v1_3_islands_006r_20260809",
+  "timestamp": "2026-08-08T23:42:33.452791+00:00",
+  "hex_size_m": 6000,
+  "grid_origin": [
+    0.0,
+    0.0
+  ],
+  "geography_schema_version": "1.3.0",
+  "geography_schema_previous": "1.2.0",
+  "island_schema_version": "3.0.0",
+  "island_algorithm_version": "1.2.1",
+  "upstream_geography_run": {
+    "run_id": "geography_v1_20260808",
+    "path": "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_20260808",
+    "geography_hexes_sha256": "e6a15a954f4b9246452c0e8974661b0b145ad460848386034c860d131a9e380a",
+    "game_river_edges_sha256": "7f9a042f5c0c6d99c395a70cd92e653be8eaa89ef1a776b1e878127e75e30e89"
+  },
+  "osm_land_polygons": {
+    "source_name": "OSM land polygons (split, EPSG:3857)",
+    "source_url": "https://osmdata.openstreetmap.de/download/land-polygons-split-3857.zip",
+    "dataset_version": "daily build (see download_date)",
+    "licence": "ODbL 1.0",
+    "attribution": "(c) OpenStreetMap contributors"
+  },
+  "config_snapshot_sha256": "edeee9675d459abc4dc7fbd3fc6a581962e5dc7dabf78b3cd2bb135f11157951",
+  "island_parameters": {
+    "minimum_auto_preserve_area_km2": 0.5,
+    "island_group_max_distance_km": 10,
+    "island_group_max_diameter_km": 20.0,
+    "force_preserve_ids": [],
+    "force_ignore_ids": [],
+    "minimum_significant_component_area_km2": 0.05,
+    "minimum_largest_component_share": 0.2,
+    "dispersed_group_max_land_hull_ratio": 0.45,
+    "metric_semantics": "all thresholds/distances are GROUND (WGS84 geodesic); projected values audit-only"
+  },
+  "id_determinism_scope": "within one OSM source snapshot only; IDs are geometry hashes and may change when the OSM build changes",
+  "timings_s": {
+    "input_load_s": 0.03,
+    "osm_load_s": 3.79,
+    "kanto_islands_s": 19.26,
+    "patches_s": 61.87,
+    "assemble_s": 0.07,
+    "validation_s": 0.08,
+    "catalogue_dateline_s": 0.43,
+    "parameter_sweep_s": 51.51,
+    "output_s": 52.81,
+    "render_s": 9.93
+  },
+  "total_duration_s": 147.89,
+  "peak_memory_mb": 514.9,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": [
+    "no MAPGEN-005 baseline islands run for before/after"
+  ]
+}

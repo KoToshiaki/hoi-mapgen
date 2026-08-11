@@ -1,0 +1,23 @@
+run_id,check_id,pass,detail
+europe_foundation_20260811,E01_hex_ids_canonical_grid,True,"1,885,422 hexes on the existing global grid (h6000_q..._r... ids, world-fixed origin)"
+europe_foundation_20260811,E02_chunk_duplicates_zero,True,duplicate hex ids across all 50 chunks = 0
+europe_foundation_20260811,E03_seam_missing_zero,True,"39,121 seam-strip hexes across all internal chunk boundaries; missing from coverage = 0"
+europe_foundation_20260811,E04_chunked_equals_monolithic,True,"monolithic sub-extent {'min_lon': 1.0, 'min_lat': 47.0, 'max_lon': 5.0, 'max_lat': 51.0} vs chunk union: 9,694 hexes, id+geometry equal=True, max land_fraction diff=0.00e+00 (chunk-order independent by construction; also unit-tested)"
+europe_foundation_20260811,E05_existing_grid_identity,True,"border_benelux: 224/224 interior hexes present, geometry equal=True, max land_fraction diff=6.66e-15; malta: 132/132 interior hexes present, geometry equal=True, max land_fraction diff=4.95e-07"
+europe_foundation_20260811,E06_hsrc_registry,True,14 global sources; deterministic hsrc_ ids; publication vs represented date are separate columns; authority levels within enum
+europe_foundation_20260811,E07_source_authority_discipline,True,ETH 16th-century dataset = METHODOLOGY_REFERENCE (never 1756 authority); Wikimedia reconstruction = VISUAL_QA_ONLY
+europe_foundation_20260811,E08_boundary_features_provenance_schema,True,boundary features: 0 production rows (schema only); catalogue 3 items all SOURCE_GAP/GEOMETRY_PENDING with resolving sources — no polygon invented without authority
+europe_foundation_20260811,E09_src_ids_unchanged_with_crosswalk,True,all 10 scenario src_ ids unchanged; additive global_source_id crosswalk resolves into the hsrc registry
+europe_foundation_20260811,E10_snapshot_selector_contract,True,snapshot selector operates on temporal validity only (UNKNOWN never silently matches); returns 0 of 0 features — control generation for Europe is deliberately NOT run
+europe_foundation_20260811,E11_coverage_contract_units,True,51 coverage units cover all 50 Europe chunks + the Kanto pilot region; statuses within enum
+europe_foundation_20260811,E12_no_complete_without_conditions,True,COMPLETE coverage count=0 at foundation stage — COMPLETE requires explicit completeness conditions (contract in README/manifest)
+europe_foundation_20260811,E13_missing_is_not_neutral,True,missing control row under incomplete coverage = UNKNOWN (strict consumers raise); UNCONTROLLED exists ONLY under COMPLETE coverage
+europe_foundation_20260811,E14_no_modern_admin_leakage,True,AST scan of historical_geometry.py + europe_coverage.py: forbidden reference-layer tokens=0
+europe_foundation_20260811,E15_no_relationship_or_container_control,True,controllers=['sp_5cbc14bfb67b'] — 46 relationships created zero territorial rows; containers/composite roots hold zero control
+europe_foundation_20260811,E16_active_superseded_preserved,True,009R2 ACTIVE/SUPERSEDED audit semantics intact
+europe_foundation_20260811,E17_009r2_content_unchanged,True,polities + relationships byte-content equal to the 009R2 baseline (66 polities / 46 relationships)
+europe_foundation_20260811,E18_control_claims_bytes_unchanged,True,territorial_control/claims byte-identical to MAPGEN-008 (and therefore 009R2)
+europe_foundation_20260811,E19_tokugawa_and_toshima_unchanged,True,Tokugawa pilot intact; Toshima underlying hex water_type=OCEAN
+europe_foundation_20260811,E20_namespace_versions,True,historical_political_geometry 1.0.0/1.0.0; scenario schema 1.4.0 (additive coverage contract); europe coverage schema 1.0.0
+europe_foundation_20260811,E21_renders,True,"4 renders, aspects={'europe_hex_coverage_overview.png': 0.993, 'europe_chunk_seam_zoom.png': 0.956, 'temporal_architecture_diagram.png': 1.31, 'political_coverage_semantics.png': 1.566} (no aspect collapse)"
+europe_foundation_20260811,E22_upstream_immutable,True,9 upstream files byte-identical before/after

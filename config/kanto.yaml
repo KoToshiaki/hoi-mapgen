@@ -1,0 +1,576 @@
+﻿# mapgen configuration 窶・Kanto test region
+region_name: kanto
+
+# Test-region bounding box in WGS84 (EPSG:4326).
+bbox_wgs84:
+  min_lon: 138.5
+  min_lat: 34.5
+  max_lon: 141.5
+  max_lat: 37.5
+
+# Hex sizes to generate. Each value is the FLAT-TO-FLAT distance in metres,
+# measured on the EPSG:3857 (Web Mercator) plane.
+hex_sizes_m:
+  - 5000
+  - 6000
+  - 8000
+  - 10000
+
+# "pointy" = pointy-top hexes (vertex up, flat-to-flat is horizontal).
+# See README for the rationale.
+hex_orientation: pointy
+
+# World-common fixed grid origin on the EPSG:3857 plane.
+# Hex (q=0, r=0) is centred exactly here for every hex size and every region,
+# so hex IDs are globally stable.
+grid_origin_x: 0.0
+grid_origin_y: 0.0
+
+# Binary land/water classification threshold on land_fraction.
+land_threshold: 0.5
+
+# Spacing of source-coastline sample points (metres, on the 3857 plane)
+# used for coastline reproduction error measurement.
+coast_sample_interval_m: 1000
+
+# Extra margin (metres, 3857 plane) around the bbox when generating hexes,
+# so that edge hexes and the generated coastline are correct at the bbox edge.
+margin_m: 15000
+
+# Cities with population >= this value get a text label on preview PNGs.
+label_min_population: 200000
+
+# Population thresholds for the per-threshold city-collision statistics.
+population_thresholds:
+  - 50000
+  - 100000
+  - 500000
+
+# Fixed zoom windows (WGS84) rendered identically for every hex size.
+zooms:
+  tokyo_bay:
+    min_lon: 139.6
+    min_lat: 35.15
+    max_lon: 140.3
+    max_lat: 35.80
+  miura_boso:
+    min_lon: 139.5
+    min_lat: 34.85
+    max_lon: 140.35
+    max_lat: 35.45
+
+# Directories (relative to the mapgen project root).
+data_dir: data
+output_dir: output
+
+# ============================================================================
+# MAPGEN-002: terrain integration (6000 m reference hex only)
+# ============================================================================
+terrain:
+  hex_size_m: 6000
+
+  # Land cover is sampled from ESA WorldCover 10 m at a decimated resolution:
+  # effective pixel = 10 m * landcover_decimation (COG overviews, nearest).
+  landcover_decimation: 8
+
+  # Kﾃｶppen-Geiger (Beck et al. 2023): which period / resolution GeoTIFF to use.
+  climate_period: "1991_2020"
+  climate_resolution: "0p00833333"
+
+  # --------------------------------------------------------------------------
+  # Terrain face scoring. ALL values here are PROVISIONAL initial settings 窶・  # they are intentionally config-only so they can be tuned after ChatGPT
+  # review without touching code.
+  #
+  # ramp(x, low, high) = 0 below low, 1 above high, linear between.
+  # relief_damp = 1 - veg_suppression_max * ramp(slope_mean, lo, hi)
+  #   (vegetation/open faces are suppressed on steep relief so MOUNTAIN can
+  #    win a 60%-forest steep hex 窶・the "mountain overrides forest" rule)
+  # --------------------------------------------------------------------------
+  relief:
+    hills_slope_low_deg: 2.5      # hills score ramps up over this slope range
+    hills_slope_high_deg: 7.0
+    hills_fade_low_deg: 12.0      # ...and fades out again as mountain takes over
+    hills_fade_high_deg: 20.0
+    hills_weight: 0.9
+    mountain_slope_low_deg: 10.0
+    mountain_slope_high_deg: 22.0
+    mountain_slope_weight: 1.0
+    mountain_roughness_low_m: 8.0
+    mountain_roughness_high_m: 25.0
+    mountain_roughness_weight: 0.4
+    mountain_relief_low_m: 500.0   # elevation_range_m ramp
+    mountain_relief_high_m: 1200.0
+    mountain_relief_weight: 0.4
+    mountain_weight: 1.15
+    veg_suppression_slope_low_deg: 8.0
+    veg_suppression_slope_high_deg: 20.0
+    veg_suppression_max: 0.65
+
+  faces:
+    plains:
+      open_weight: 1.0            # grassland + cropland
+      shrub_weight: 0.6
+      moss_weight: 0.4
+    forest:
+      tree_weight: 1.0
+    rainforest:
+      tree_weight: 1.25           # > forest weight, applies only when tropical
+    tundra:
+      cover_weight: 1.2           # moss/lichen + low vegetation, tundra climate only
+      base_bonus: 0.2
+    desert:
+      bare_weight: 1.1
+      arid_factor: 1.0
+      non_arid_factor: 0.35
+    wetland:
+      wetland_weight: 2.0
+    urban:
+      urban_weight: 2.2           # URBAN wins from ~45% built-up fraction
+    permanent_snow_ice:
+      snow_weight: 2.0
+      icecap_bonus: 0.4           # Kﾃｶppen EF
+
+  # Hexes with confidence below this go to terrain_transition_cases.csv.
+  transition_confidence_threshold: 0.25
+
+  # --------------------------------------------------------------------------
+  # MAPGEN-002A: layered classification (terrain schema 3.0.0).
+  # All thresholds provisional; tune after review.
+  # --------------------------------------------------------------------------
+  layers:
+    water:
+      # LAKE needs an inland-water majority AFTER subtracting the expected
+      # sea share (1 - land_fraction), so coastal sea pixels never create
+      # false lakes.
+      lake_majority_threshold: 0.50
+    surface:
+      snow_ice_threshold: 0.40        # snow fraction for PERMANENT_SNOW_ICE
+      icecap_snow_threshold: 0.20     # lower bar when Koeppen EF
+      wetland_threshold: 0.35
+      desert_bare_threshold: 0.50     # DESERT additionally REQUIRES is_arid
+    relief:
+      rolling_slope_deg: 2.5          # FLAT below this
+      hills_slope_deg: 6.0            # ROLLING below this
+      mountain_slope_deg: 15.0        # HILLS below this
+      # Alternative mountain entry: moderately steep but huge local relief.
+      mountain_alt_slope_deg: 11.0
+      mountain_alt_relief_m: 900.0
+    vegetation:
+      forest_tree_threshold: 0.40     # FOREST / RAINFOREST above this
+      # RAINFOREST additionally requires is_tropical.
+    development:
+      settled_threshold: 0.10
+      urban_threshold: 0.35
+      dense_urban_threshold: 0.65
+    dominant:
+      # Display face becomes URBAN only from this development class up.
+      urban_face_min_class: DENSE_URBAN
+      # HILLS wins the display face over vegetation only at this mean slope.
+      hills_dominant_slope_deg: 8.0
+
+  # --------------------------------------------------------------------------
+  # Military derived metrics (structure only 窶・simple provisional formulas,
+  # raw data is always preserved so the model can be replaced later).
+  # --------------------------------------------------------------------------
+  military:
+    enabled: true
+
+  # --------------------------------------------------------------------------
+  # Known-place validation. Each region is generated as an independent small
+  # hex patch; each point must land in a hex whose face is in acceptable.
+  # --------------------------------------------------------------------------
+  validation_regions:
+    amazon:      {min_lon: -61.5, min_lat: -4.0,  max_lon: -60.5, max_lat: -3.1}
+    sahara:      {min_lon: 25.0,  min_lat: 20.0,  max_lon: 26.0,  max_lat: 21.0}
+    netherlands: {min_lon: 4.5,   min_lat: 52.0,  max_lon: 5.5,   max_lat: 52.8}
+    alps:        {min_lon: 7.5,   min_lat: 45.8,  max_lon: 8.5,   max_lat: 46.6}
+    # Northern Taymyr: Beck V2 1991-2020 maps ET here (72-73N is already Dfc).
+    siberia:     {min_lon: 98.5,  min_lat: 74.0,  max_lon: 100.5, max_lat: 74.7}
+    greenland:   {min_lon: -41.0, min_lat: 72.0,  max_lon: -39.2, max_lat: 73.0}
+    biwa:        {min_lon: 135.8, min_lat: 35.0,  max_lon: 136.4, max_lat: 35.5}
+
+  validation_points:
+    - {id: tokyo_center,   region: kanto,       lon: 139.76,  lat: 35.68,
+       place: "Central Tokyo",        expected: URBAN,    acceptable: [URBAN],
+       layers: {development: [DENSE_URBAN, URBAN]},
+       natural_acceptable: [PLAINS, HILLS, FOREST, WETLAND]}
+    - {id: boso_inland,    region: kanto,       lon: 140.15,  lat: 35.20,
+       place: "Inland Boso peninsula", expected: HILLS,   acceptable: [HILLS, FOREST],
+       layers: {relief: [HILLS, ROLLING], vegetation: [FOREST]}}
+    - {id: kanto_plain,    region: kanto,       lon: 139.45,  lat: 36.05,
+       place: "Kanto plain farmland", expected: PLAINS,   acceptable: [PLAINS, URBAN],
+       layers: {surface: [NORMAL], relief: [FLAT, ROLLING]}}
+    - {id: fuji,           region: kanto,       lon: 138.73,  lat: 35.36,
+       place: "Mount Fuji summit",    expected: MOUNTAIN, acceptable: [MOUNTAIN],
+       layers: {relief: [MOUNTAIN]}}
+    - {id: kasumigaura,    region: kanto,       lon: 140.41,  lat: 36.01,
+       place: "Lake Kasumigaura",     expected: WATER,    acceptable: [WATER],
+       layers: {water_type: [LAKE]}}
+    - {id: amazon,         region: amazon,      lon: -61.0,   lat: -3.5,
+       place: "Amazon rainforest",    expected: RAINFOREST, acceptable: [RAINFOREST, FOREST, WETLAND],
+       layers: {vegetation: [RAINFOREST]}}
+    - {id: sahara,         region: sahara,      lon: 25.5,    lat: 20.5,
+       place: "Libyan desert",        expected: DESERT,   acceptable: [DESERT],
+       layers: {surface: [DESERT]}}
+    - {id: netherlands,    region: netherlands, lon: 5.0,     lat: 52.4,
+       place: "Dutch polders",        expected: PLAINS,   acceptable: [PLAINS, WETLAND, URBAN],
+       layers: {surface: [NORMAL, WETLAND]}}
+    # The point hex is a glaciated high-Alps hex (snow fraction > 0.4), so the
+    # display face may legitimately be PERMANENT_SNOW_ICE; the strict check is
+    # the relief layer, which must be MOUNTAIN.
+    - {id: alps,           region: alps,        lon: 7.65,    lat: 46.0,
+       place: "Valais Alps",          expected: MOUNTAIN,
+       acceptable: [MOUNTAIN, PERMANENT_SNOW_ICE],
+       layers: {relief: [MOUNTAIN]}}
+    - {id: siberia,        region: siberia,     lon: 98.80,   lat: 74.65,
+       place: "Northern Taymyr tundra", expected: TUNDRA, acceptable: [TUNDRA, WETLAND],
+       layers: {surface: [TUNDRA, WETLAND]}}
+    - {id: greenland,      region: greenland,   lon: -40.0,   lat: 72.5,
+       place: "Greenland ice sheet",  expected: PERMANENT_SNOW_ICE, acceptable: [PERMANENT_SNOW_ICE],
+       layers: {surface: [PERMANENT_SNOW_ICE]}}
+    - {id: biwa,           region: biwa,        lon: 136.10,  lat: 35.25,
+       place: "Lake Biwa",            expected: WATER,    acceptable: [WATER],
+       layers: {water_type: [LAKE]}}
+
+  # Region-level assertions checked alongside point validation.
+  validation_checks:
+    - {id: netherlands_desert_zero, region: netherlands,
+       layer: surface_class, value: DESERT, max_count: 0}
+
+  # Zoom renders (WGS84) for terrain faces.
+  zooms:
+    tokyo: {min_lon: 139.3, min_lat: 35.35, max_lon: 140.2, max_lat: 36.0}
+    fuji:  {min_lon: 138.5, min_lat: 35.05, max_lon: 139.2, max_lat: 35.65}
+    boso:  {min_lon: 139.85, min_lat: 34.95, max_lon: 140.5, max_lat: 35.5}
+
+
+# ============================================================================
+# MAPGEN-003: high-resolution coastline + hydrography + river edge snapping.
+# All thresholds PROVISIONAL - river class and water-hex-river cutoffs are
+# explicitly NOT final; this stage validates the conversion algorithms.
+# ============================================================================
+hydro:
+  hex_size_m: 6000
+  margin_m: 9000
+
+  # River class by HydroRIVERS mean discharge (m3/s); below MINOR -> ignored.
+  river_class_thresholds:
+    MINOR: 10
+    MEDIUM: 50
+    MAJOR: 300
+    GREAT: 8000
+
+  # Empirical hydraulic-geometry width estimate: w = coefficient * Q^exponent.
+  # (HydroRIVERS has no usable width; GRWL/OSM widths can replace this later.)
+  width:
+    coefficient: 7.2
+    exponent: 0.5
+    exaggeration: 1.0        # game exaggeration policy, kept separate
+
+  water_hex_river:
+    min_class: GREAT
+    min_width_m: 2500        # estimated width from which a river occupies hexes
+
+  snapping:
+    corridor_m: 15000        # search corridor around the source polyline
+    distance_cost_scale_m: 2000
+    water_edge_penalty: 25.0 # edges fully between ocean/lake hexes
+    # MAPGEN-003A stateful cost: alignment with the LOCAL source tangent
+    # (keeps the path moving along the river, kills corridor wander) and a
+    # penalty for two consecutive same-sign turns (the hex-lattice detour
+    # signal; alternating +-60deg zigzag is the natural straight line).
+    direction_weight: 1.2
+    same_turn_penalty: 0.6
+    # Optional pre-matching simplification of the source line (0 = off).
+    # Kept as a mechanism; with lengths unit-fixed the raw line matches best.
+    simplify_tolerance_m: 0
+    mouth_extension_max_m: 20000
+
+  # MAPGEN-003A validation targets (not final world standards).
+  quality:
+    min_length_for_ratio_km: 30
+    length_ratio_warn: 1.55
+    length_ratio_fail: 1.65
+    p95_offset_max_m: 3000
+    coast_outlier_top_n: 100
+    coast_outlier_audit_m: 10000
+
+  lake:
+    majority_threshold: 0.50 # HydroLAKES-fraction majority for water_type LAKE
+    min_lake_area_km2: 1.0   # ignore smaller polygons for per-hex attribution
+
+  coast_sample_interval_m: 1000
+
+  # Regions: kanto/biwa reuse their MAPGEN-002 bboxes automatically.
+  regions:
+    kanto:  {continent: as}
+    biwa:   {continent: as}
+    rhine:  {continent: eu, min_lon: 4.0,   min_lat: 51.0, max_lon: 7.2,   max_lat: 52.3}
+    nile:   {continent: af, min_lon: 29.7,  min_lat: 29.0, max_lon: 32.6,  max_lat: 31.7}
+    # Extends past the Amazon mouth so the terminal reaches the Atlantic.
+    amazon_mouth: {continent: sa, min_lon: -53.5, min_lat: -2.5, max_lon: -49.0, max_lat: 1.2}
+
+  # Human names come from seed points (HydroRIVERS carries no names).
+  named_rivers:
+    - {name: Tone,    region: kanto, lon: 140.50, lat: 35.88,
+       expected_min_class: MEDIUM, must_reach_water: true}
+    - {name: Arakawa, region: kanto, lon: 139.68, lat: 35.79,
+       expected_min_class: MINOR, must_reach_water: true}
+    - {name: Edogawa, region: kanto, lon: 139.90, lat: 35.78,
+       expected_min_class: MINOR, must_reach_water: true}
+    - {name: Tama,    region: kanto, lon: 139.63, lat: 35.61,
+       expected_min_class: MINOR, must_reach_water: true}
+    - {name: Rhine,   region: rhine, lon: 6.40,  lat: 51.84,
+       expected_min_class: MAJOR, must_reach_water: true}
+    - {name: Nile,    region: nile,  lon: 31.23, lat: 30.05,
+       expected_min_class: MAJOR, must_reach_water: true}
+    - {name: Amazon,  region: amazon_mouth, lon: -52.0, lat: -1.85,
+       expected_min_class: GREAT, must_reach_water: true,
+       expect_water_hex_river: true}
+
+  # Lake validation renders/checks.
+  lake_checks:
+    - {id: kasumigaura, region: kanto, lon: 140.41, lat: 36.01,
+       zoom: {min_lon: 140.1, min_lat: 35.85, max_lon: 140.75, max_lat: 36.25}}
+    - {id: biwa, region: biwa, lon: 136.10, lat: 35.25,
+       zoom: {min_lon: 135.8, min_lat: 34.95, max_lon: 136.45, max_lat: 35.55}}
+
+# ============================================================================
+# MAPGEN-004: authoritative geography integration.
+# Joins MAPGEN-001 grid + MAPGEN-002A terrain + MAPGEN-003A hydro into the
+# single canonical game dataset. No re-generation of upstream pipelines.
+# ============================================================================
+geography:
+  # Upstream authoritative runs (inputs, never modified).
+  mapgen001_run: kanto_20260807
+  terrain_run: kanto_terrain_v3_20260808
+  hydro_run: kanto_hydro_v2_20260808
+
+  # Hexes whose OSM-vs-NE land_fraction differs by more than this are listed
+  # in integration_changed_hexes.csv.
+  land_fraction_change_threshold: 0.2
+
+  # Newly-land hexes with landcover nodata above this are re-sampled
+  # incrementally (never a full terrain re-run).
+  resample_landcover_nodata_threshold: 0.5
+
+  # Confluence offset QA (regression only; no re-calibration this stage).
+  confluence_offset_review_m: 3000
+  confluence_offset_fail_m: 6000
+
+  # MAPGEN-003A regression baseline (integration must not change these).
+  regression_baseline:
+    total_confluences: 401
+    preserved_confluences: 401
+    confluence_exceptions: 0
+    canonical_game_edges: 3920
+    canonical_duplicates: 0
+    amazon_corridor_hexes: 43
+    amazon_corridor_components: 1
+    amazon_source_containment: 1.0
+    amazon_confluences: 12
+
+# ============================================================================
+# MAPGEN-005: strategic island preservation.
+# Sub-hex islands live as OVERLAYS on OCEAN/LAKE hexes; the hex grid, water
+# authority and geography semantics are never modified for them.
+# All thresholds are PROVISIONAL pre-world-calibration values.
+# ============================================================================
+islands:
+  # MAPGEN-005A: ALL areas/distances below are GROUND values (WGS84
+  # geodesic). EPSG:3857 remains the hex-grid authority only; projected
+  # metrics are audit columns and never thresholds.
+  upstream_geography_run: geography_v1_20260808
+  baseline_islands_run: geography_v1_1_islands_20260809
+
+  # Minimum island-unit GROUND land area that is auto-preserved.
+  minimum_auto_preserve_area_km2: 0.5
+  # Micro-islet aggregation guard: a multi-component group preserves as one
+  # unit only if its largest component is significant and holds a minimum
+  # share of the group area (provisional values).
+  minimum_significant_component_area_km2: 0.05
+  minimum_largest_component_share: 0.20
+  # Land/hull ratio at or below which a preserved multi-component unit is
+  # labelled DISPERSED_MULTI_COMPONENT_GROUP (a geometry-only dispersion
+  # label; no atoll geomorphology is asserted). Renamed in MAPGEN-006R from
+  # atoll_candidate_max_land_hull_ratio (deprecated alias still accepted).
+  dispersed_group_max_land_hull_ratio: 0.45
+  # Lost components closer than this are clustered into one island group
+  # (atolls / tight archipelagos split across polygons).
+  island_group_max_distance_km: 10
+  # HARD cap on group diameter during clustering: merges that would exceed
+  # this bbox diagonal are rejected (prevents coastal rock strings from
+  # daisy-chaining into mega-"islands"); also flagged in the audit if ever
+  # exceeded. Provisional pre-world-calibration value.
+  island_group_max_diameter_km: 20
+  # Reserved manual overrides (kept empty this stage; no hand-curated lists).
+  force_preserve_ids: []
+  force_ignore_ids: []
+
+  # Validation patches. Coordinates/bboxes live here, never in code.
+  # kanto points are checked inside the main region.
+  validation_points:
+    - {id: toshima, region: kanto, lon: 139.28, lat: 34.52,
+       expect: overlay, note: "Toshima, Izu islands (~4 km2, SMALL_ISLAND_LOST in MAPGEN-003A)"}
+  validation_patches:
+    wake:   {min_lon: 166.40, min_lat: 19.10, max_lon: 166.90, max_lat: 19.50,
+             lon: 166.64, lat: 19.29, expect: overlay}
+    midway: {min_lon: -177.60, min_lat: 28.00, max_lon: -177.10, max_lat: 28.45,
+             lon: -177.37, lat: 28.21, expect: overlay}
+    # Negative control: large island fully represented by terrestrial hexes.
+    malta:  {min_lon: 14.10, min_lat: 35.70, max_lon: 14.75, max_lat: 36.20,
+             lon: 14.44, lat: 35.90, expect: no_overlay_terrestrial}
+    # High-latitude (>60N) ground-semantics validation: Litla Dimun, Faroe
+    # Islands (~0.8 km2 ground, uninhabited sub-hex islet).
+    litla_dimun: {min_lon: -6.95, min_lat: 61.50, max_lon: -6.45, max_lat: 61.78,
+                  lon: -6.708, lat: 61.632, expect: overlay}
+    # ---- MAPGEN-006 world calibration regions ----
+    # Pacific atoll belt (Bikini Atoll rim islets).
+    bikini:      {min_lon: 165.15, min_lat: 11.45, max_lon: 165.70, max_lat: 11.80,
+                  lon: 165.56, lat: 11.62, expect: any}
+    # Aegean high-density small/medium islands (Delos / Rineia by Mykonos).
+    aegean:      {min_lon: 24.85, min_lat: 37.25, max_lon: 25.45, max_lat: 37.65,
+                  lon: 25.267, lat: 37.393, expect: any}
+    # Caribbean broad size distribution (St. Croix + Buck Island).
+    caribbean:   {min_lon: -65.10, min_lat: 17.60, max_lon: -64.40, max_lat: 18.45,
+                  lon: -64.620, lat: 17.787, expect: any}
+    # Norwegian skerry belt (Solund): micro-islet negative-control terrain.
+    norway_skerries: {min_lon: 4.40, min_lat: 60.95, max_lon: 5.10, max_lat: 61.35,
+                      lon: 4.66, lat: 61.05, expect: any}
+    # Dateline crossing region (Fiji: Rabi 179.98E / Taveuni 179.97W;
+    # min_lon > max_lon marks the +-180 crossing).
+    fiji_dateline: {min_lon: 179.50, min_lat: -17.30, max_lon: -179.40, max_lat: -16.40,
+                    lon: -179.90, lat: -16.75, expect: any}
+
+  # Representative catalogue (expected representation per known place).
+  validation_catalogue:
+    - {id: toshima, region: kanto, lon: 139.28, lat: 34.52,
+       expected: OVERLAY, acceptable: [OVERLAY]}
+    - {id: wake, region: wake, lon: 166.64, lat: 19.29,
+       expected: OVERLAY, acceptable: [OVERLAY]}
+    - {id: midway, region: midway, lon: -177.37, lat: 28.21,
+       expected: OVERLAY, acceptable: [OVERLAY]}
+    - {id: malta_main, region: malta, lon: 14.44, lat: 35.90,
+       expected: TERRESTRIAL_HEX, acceptable: [TERRESTRIAL_HEX]}
+    - {id: litla_dimun, region: litla_dimun, lon: -6.708, lat: 61.632,
+       expected: OVERLAY, acceptable: [OVERLAY]}
+    - {id: bikini_rim, region: bikini, lon: 165.56, lat: 11.62,
+       expected: OVERLAY, acceptable: [OVERLAY]}
+    - {id: delos, region: aegean, lon: 25.267, lat: 37.393,
+       expected: OVERLAY, acceptable: [OVERLAY, TERRESTRIAL_HEX]}
+    - {id: buck_island, region: caribbean, lon: -64.620, lat: 17.787,
+       expected: OVERLAY, acceptable: [OVERLAY, TERRESTRIAL_HEX]}
+    - {id: solund_skerries, region: norway_skerries, lon: 4.579, lat: 61.016,
+       expected: EXCLUDED_MICRO, acceptable: [EXCLUDED_MICRO, ABSENT,
+                                              EXCLUDED_BELOW_MIN, OVERLAY]}
+    - {id: taveuni_seam, region: fiji_dateline, lon: -179.967, lat: -16.85,
+       expected: TERRESTRIAL_HEX, acceptable: [TERRESTRIAL_HEX, OVERLAY]}
+
+  # Staged parameter sweep around the provisional defaults (never the full
+  # cartesian product). Values are GROUND units.
+  parameter_sweep:
+    minimum_auto_preserve_area_km2: [0.25, 1.0]
+    island_group_max_distance_km: [3, 5]
+    island_group_max_diameter_km: [10]
+    minimum_significant_component_area_km2: [0.02, 0.1]
+    minimum_largest_component_share: [0.1, 0.3]
+
+  # Toshima zoom for review images (WGS84).
+  toshima_zoom: {min_lon: 139.18, min_lat: 34.44, max_lon: 139.38, max_lat: 34.60}
+
+
+  # MAPGEN-006 geographic regression baseline (006R must not change these).
+  regression_baseline_006:
+    kanto:           {overlay_units: 6,  preserved_ground_km2: 13.3783}
+    wake:            {overlay_units: 1,  preserved_ground_km2: 7.2484}
+    midway:          {overlay_units: 1,  preserved_ground_km2: 5.9081}
+    malta:           {overlay_units: 1,  preserved_ground_km2: 3.0068}
+    litla_dimun:     {overlay_units: 1,  preserved_ground_km2: 13.6935}
+    bikini:          {overlay_units: 3,  preserved_ground_km2: 6.8277}
+    aegean:          {overlay_units: 3,  preserved_ground_km2: 20.0419}
+    caribbean:       {overlay_units: 9,  preserved_ground_km2: 60.3405}
+    norway_skerries: {overlay_units: 18, preserved_ground_km2: 49.7260}
+    fiji_dateline:   {overlay_units: 4,  preserved_ground_km2: 72.2038}
+
+# ============================================================================
+# MAPGEN-007: reference human geography foundation.
+# REFERENCE ADMINISTRATION IS NOT GAMEPLAY OWNERSHIP: every table in this
+# stage carries CONTEMPORARY_DE_FACTO_REFERENCE semantics and
+# gameplay_authoritative = false. Historical/gameplay political geography is
+# a LATER stage.
+# ============================================================================
+# MAPGEN-010: Europe canonical hex coverage on the EXISTING global grid.
+# Extent rationale (never a magic bbox): covers the European territory of
+# every polity in the 1756 catalogue — Iceland (Denmark-Norway) ~-24 lon,
+# Portugal, Malta/Crete >=34N, North Cape ~71.2N, Moscow/Crimea <=45E.
+# Explicitly OUT of this coverage stage (documented, not forgotten):
+# Russian lands east of 45E, Atlantic islands (Azores/Madeira), Ottoman
+# non-European lands (already outside the catalogue scope).
+europe_coverage:
+  min_lon: -25.0
+  min_lat: 34.0
+  max_lon: 45.0
+  max_lat: 71.5
+  chunk_deg_lon: 7.0     # 10 columns
+  chunk_deg_lat: 7.5     # 5 rows -> 50 deterministic chunks
+  # Machine gate: this sub-extent is regenerated monolithically and must
+  # equal the union of its four covering chunks (seam/order proof).
+  monolithic_check: {min_lon: 1.0, min_lat: 47.0, max_lon: 5.0, max_lat: 51.0}
+
+# MAPGEN-008: scenario political geography foundation. Scenario data
+# lives in data/scenarios/ (curated CSVs, one dir per scenario).
+scenarios:
+  active_scenario: seven_years_war_1756_08_01
+  upstream_human_geography_run: human_geography_v1_1_20260811
+  # MAPGEN-009: control/claims must stay byte-identical to the approved
+  # MAPGEN-008 review copies (the Europe catalogue adds NO territory).
+  mapgen008_baseline_run: scenario_foundation_20260811
+  # MAPGEN-009R: before/after comparison baseline for the granularity
+  # and representability corrections.
+  mapgen009_baseline_run: scenario_catalogue_20260811
+  # MAPGEN-009R2: the 009R run whose historical content must remain
+  # unchanged by the review-contract fixes.
+  mapgen009r_baseline_run: scenario_catalogue_009r_20260811
+
+human_geography:
+  upstream_run: geography_v1_3_islands_006r_20260809
+  # MAPGEN-007R: canonical geography/admin/binding tables of this run must
+  # stay identical to the approved MAPGEN-007 run (audit-only change).
+  regression_baseline_run: human_geography_v1_20260809
+
+  # MAPGEN-007R bidirectional coast/admin audit tolerances (NOT gates on
+  # membership — pure audit-classification noise floors, recorded in
+  # run_manifest). A mismatch side is significant when it exceeds
+  # max(abs_km2, rel * coast_land_ground_km2).
+  audit:
+    match_abs_tolerance_km2: 0.01      # 1 ha absolute noise floor
+    match_rel_tolerance: 0.005         # 0.5% of hex coast land
+    # Float/sliver noise floor for the conservation identities. Measured
+    # error distribution (kanto run): p95 1e-6, p99 1.3e-4, max 1.03e-3
+    # km2 on complex BIDIRECTIONAL coastline hexes — GEOS difference
+    # slivers + separate geodesic evaluations, relative ~6e-5 of a hex.
+    conservation_abs_tolerance_km2: 0.002
+    alias_equivalence_tolerance: 0.02  # old est-based ratio vs geometry ratio
+
+  # Point/land snapping (ground km). Deliberately small; outliers become
+  # UNRESOLVED and are audited, never silently snapped from afar.
+  settlement_land_snap_max_km: 3.0
+  port_land_snap_max_km: 5.0
+  port_water_snap_max_km: 5.0
+  point_admin_fallback_max_km: 25.0
+  component_admin_fallback_max_km: 30.0
+
+  # Regions with hex/water coverage for bindings. kanto uses the upstream
+  # geography_hexes; patch regions are re-derived exactly as in MAPGEN-006R.
+  regions:
+    kanto: {source: geography}
+    # International land border (Belgium / Netherlands): guarantees real
+    # many-to-many admin0 hex membership.
+    border_benelux: {min_lon: 4.60, min_lat: 51.20, max_lon: 5.40, max_lat: 51.70}
+    malta: {source: islands_patch}
+    fiji_dateline: {source: islands_patch}
+
+  # Kanto settlement validation candidates: only those actually present in
+  # the Natural Earth source are validated (checked at runtime, never
+  # assumed).
+  kanto_settlement_candidates: [Tokyo, Yokohama, Kawasaki, Chiba, Saitama]

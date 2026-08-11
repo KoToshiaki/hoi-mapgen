@@ -1,0 +1,28 @@
+run_id,check_id,pass,detail
+scenario_foundation_20260811,V01_upstream_007r_sha_immutable,True,10 upstream files (006R geography + 007R human geography) and 7 scenario input CSVs byte-identical before/after (SHA-256) — this pipeline GENERATED no political data
+scenario_foundation_20260811,V02_geography_hexes_immutable,True,"geography_hexes rows=5350, water counts unchanged"
+scenario_foundation_20260811,V03_island_components_immutable,True,island_components rows=8912
+scenario_foundation_20260811,V04_human_geography_tables_immutable,True,reference_admin_hex_membership rows=7863 (full SHA equality covered by V01)
+scenario_foundation_20260811,V05_registry_has_scenario,True,"registry rows for seven_years_war_1756_08_01=1, snapshot_date=1756-08-01, historicity=HISTORICAL"
+scenario_foundation_20260811,V06_scenario_id_unique,True,registry ids unique over 1 rows
+scenario_foundation_20260811,V07_loader_loads_snapshot,True,snapshot tables: polities=1 sp=1 control=3 claims=1 sources=2 evidence=3
+scenario_foundation_20260811,V08_unknown_scenario_errors,True,unknown scenario_id raises ScenarioNotFoundError (no default fallback)
+scenario_foundation_20260811,V09_scenario_polity_integrity,True,1 scenario polities -> polities/parents resolve; subject_status values=['UNEVALUATED']
+scenario_foundation_20260811,V10_control_target_integrity,True,"3 control targets resolve (hex->terrestrial geography, component->island_components); bad=0"
+scenario_foundation_20260811,V11_claim_target_integrity,True,1 claim targets resolve; bad=0
+scenario_foundation_20260811,V12_control_polity_integrity,True,controllers/claimants resolve to scenario polities; null controller only on UNRESOLVED/UNCONTROLLED rows
+scenario_foundation_20260811,V13_claims_many_to_many_allowed,True,two claims on one target pass the same integrity path (no uniqueness constraint on target); production multi-claim cases proven additionally by unit test
+scenario_foundation_20260811,V14_control_and_claim_separate,True,control and claims are separate tables with distinct role columns — never merged into one column
+scenario_foundation_20260811,V15_terrestrial_hex_target_positive,True,real CONTROLLED terrestrial hex targets=1 e.g. ['h6000_q+002183_r+000819']
+scenario_foundation_20260811,V16_island_component_target_positive,True,real CONTROLLED island component targets=1 e.g. ['isl_c_1859af1e4767']
+scenario_foundation_20260811,V17_no_ocean_hex_as_land_target,True,hex land targets on water hexes=0; component targets sit on hexes {'h6000_q+002190_r+000789': 'OCEAN'} whose water authority stays OCEAN (never flipped)
+scenario_foundation_20260811,V18_no_overlay_unit_political,True,no territorial target references an overlay unit id; OVERLAY UNIT != GAMEPLAY LAND ENTITY upheld (components individually addressable)
+scenario_foundation_20260811,V19_no_reference_admin_code_path,True,scenario data layer imports no reference layer (forbidden tokens found=0); no controller id is a reference admin id; scenario CSVs proved read-only below
+scenario_foundation_20260811,V20_unresolved_formal_state,True,"UNRESOLVED rows=1, controller null, reason documented — never auto-filled from reference admin or proximity"
+scenario_foundation_20260811,V21_source_provenance_integrity,True,2 sources; every CONTROLLED row and evidence row traces to a registered source; evidence targets resolve (bad=0)
+scenario_foundation_20260811,V22_completion_state_incomplete,True,"data_status=FOUNDATION_ONLY, political_geography_complete=False — registry presence != completion"
+scenario_foundation_20260811,V23_no_second_scenario,True,"registry scenarios=1, scenario dirs=['seven_years_war_1756_08_01'] — only seven_years_war_1756_08_01 exists"
+scenario_foundation_20260811,V24_scenario_gameplay_authoritative,True,scenario layer gameplay_authoritative=True scoped by semantics=SCENARIO_SNAPSHOT_GAMEPLAY_AUTHORITATIVE
+scenario_foundation_20260811,V25_reference_layer_not_gameplay,True,reference human geography gameplay_authoritative=false maintained on admin0/settlements/ports
+scenario_foundation_20260811,V26_deterministic_ids,True,scenario_polity/source/evidence ids reproduce exactly from the documented deterministic rules (run-level determinism proved by second run)
+scenario_foundation_20260811,V27_renders,True,"3 renders, aspects={'scenario_political_foundation_overview.png': 0.791, 'reference_vs_scenario_semantics.png': 1.68, 'island_component_control_target.png': 1.147}"

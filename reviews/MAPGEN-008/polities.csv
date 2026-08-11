@@ -1,0 +1,2 @@
+polity_id,canonical_name,polity_kind,notes
+pol_tokugawa_shogunate,Tokugawa Shogunate (徳川幕府),HEREDITARY_MILITARY_GOVERNMENT,"De-facto central government of Japan in the Edo period (1603-1868). Registered as the MAPGEN-008 real-data pilot polity. polity_id is a permanent curated slug, never regenerated from display names."

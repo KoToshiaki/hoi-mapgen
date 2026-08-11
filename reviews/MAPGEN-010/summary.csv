@@ -1,0 +1,17 @@
+metric,value,run_id
+stage,MAPGEN-010,europe_foundation_20260811
+historical_political_geometry_schema_version,1.0.0,europe_foundation_20260811
+historical_political_geometry_algorithm_version,1.0.0,europe_foundation_20260811
+scenario_schema_version,1.4.0,europe_foundation_20260811
+europe_coverage_schema_version,1.0.0,europe_foundation_20260811
+europe_total_hexes,1885422,europe_foundation_20260811
+europe_terrestrial_hexes,862795,europe_foundation_20260811
+europe_ocean_hexes,1022627,europe_foundation_20260811
+global_historical_sources,14,europe_foundation_20260811
+boundary_features_production_rows,0,europe_foundation_20260811
+geometry_catalogue_items,3,europe_foundation_20260811
+pilot_performed,False,europe_foundation_20260811
+pilot_state,SOURCE_GAP (Low Countries candidate GIS not yet acquired/date-verified; no polygons invented),europe_foundation_20260811
+coverage_units,51,europe_foundation_20260811
+coverage_complete_units,0,europe_foundation_20260811
+validation_pass,22/22,europe_foundation_20260811

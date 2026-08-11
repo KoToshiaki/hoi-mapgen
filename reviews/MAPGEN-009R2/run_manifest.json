@@ -1,0 +1,111 @@
+{
+  "run_id": "scenario_catalogue_009r2_20260811",
+  "stage": "MAPGEN-009R2",
+  "stage_family": "MAPGEN-009",
+  "revision": "R2",
+  "inclusion_policy": {
+    "active": "inclusion_policy_v2.md",
+    "superseded": [
+      {
+        "file": "inclusion_policy_v1.md",
+        "policy_status": "SUPERSEDED",
+        "superseded_by": "inclusion_policy_v2.md"
+      }
+    ]
+  },
+  "audit_record_contract": {
+    "statuses": [
+      "ACTIVE",
+      "SUPERSEDED"
+    ],
+    "superseded_by_format": "candidate ids joined with '|'",
+    "rules": "SUPERSEDED rows are permanent history: excluded from active counts, never a polity registration or control source; deletion is forbidden"
+  },
+  "generated_utc": "2026-08-11T09:08:10.790005+00:00",
+  "scenario_schema_version": "1.3.0",
+  "scenario_algorithm_version": "1.0.2",
+  "version_reasons": {
+    "schema_1.1.0": "additive: relationship + inclusion-audit tables; authority-role/playability/ja-name columns; evidence locator precision columns",
+    "algorithm_1.0.1": "one new rule: symmetric relationship ids canonicalise participant order before hashing; all 1.0.0 rules unchanged",
+    "schema_1.2.0": "additive (MAPGEN-009R): COMPOSITE_TERRITORIAL_ACTOR role value, historical_title_at_snapshot column, representability_basis column; no existing semantics changed — data corrections alone did NOT drive the bump",
+    "algorithm_1.0.2": "representability audit anchored to the machine-computed hex area instead of political-size labels; id rules unchanged",
+    "schema_1.3.0": "additive (MAPGEN-009R2): audit_record_status + superseded_by_candidate_ids — history-preserving supersession, active counts exclude superseded rows; algorithm stays 1.0.2 (no political judgment changed)"
+  },
+  "hex_plane_area_km2": 31.176915,
+  "territorial_binding_contract": [
+    "control binds to the MOST SPECIFIC registered scenario polity with territorial identity",
+    "COMPOSITE_MEMBER_OF expresses upward structure only",
+    "no automatic control from any relationship",
+    "STRUCTURAL_CONTAINER holds zero control (hard gate)",
+    "COMPOSITE_TERRITORIAL_ACTOR roots hold control only where no registered constituent covers the territory",
+    "root+member duplicate control on one target is forbidden",
+    "gameplay faction grouping/aggregation is a future separate layer, never historical ownership authority"
+  ],
+  "explicitly_revised_scenario_inputs_MAPGEN_009R": [
+    "polities.csv",
+    "scenario_polities.csv",
+    "scenario_polity_relationships.csv",
+    "scenario_polity_inclusion_audit.csv",
+    "sources.csv",
+    "evidence.csv",
+    "scenario_registry.csv",
+    "review/*.csv",
+    "review/inclusion_policy_v2.md"
+  ],
+  "scenario_semantics": "SCENARIO_SNAPSHOT_GAMEPLAY_AUTHORITATIVE",
+  "scenario_id": "seven_years_war_1756_08_01",
+  "data_status": "FOUNDATION_ONLY",
+  "europe_polity_catalogue_status": "PARTIAL",
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\island_components.parquet": "4138dbc1a0ba97f9144bd4058cbef0e50f30fd88283a76dbe4a4b7e4facac8ad",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin0.parquet": "8d2b031e297ae68e9bf226616f1a61da2a037535055439905ea9323f1471bfcf",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin0_hierarchy.parquet": "4ab293533f4e0c8d80c2ec27761db1a1de8c73eec7fc7373563ca662d7d65252",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin1.parquet": "a37a3108fb573a427fd3f26c47ee3b2b352d157b877a112b2ec253bdfee8500f",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_disputed_areas.parquet": "e0b3b78f3f637e0411e8717c2971b903930d8e4d2659cd100250575befac06e8",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin_hex_membership.parquet": "bc7fec182ca6c4a1da0eddb12b888a5078138fe12cc8d7af49694814a17e2350",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\island_component_reference_admin.parquet": "ff2006b13aee652b0b0b717aaf8fd85215df765ff3630ed7ab3b313d0db6b9fa",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_settlements.parquet": "c2a5fdb153f61900fd7525f0f6f67cfdaffc9cc7c76eebcb77b3d5b4e526354f",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_ports.parquet": "e3504b8a8811e8124a5025e8a3a5b7d678a0aa9560aec4985f6b161ce1c12cd7",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e"
+  },
+  "scenario_input_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\scenario_registry.csv": "2b152db396225b1135510fecc3659456af03a28d9b1cdc365660c79b287be902",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\polities.csv": "fbd08cf86a17b89e722850db472a425bc974bdc456cd8dccbaa3719a18bcea87",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\scenario_polities.csv": "a6cbc0de869404fa282fb42080a205a1dea5313fb38cc7311b35a4d9057bb88f",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\scenario_polity_relationships.csv": "3e0a4b3d9094f0576c2a9040c932b60ea9094fc6821f89bebf1a15b088f1ddfe",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\scenario_polity_inclusion_audit.csv": "65cd660cbcf84132169f5110788e136bc3604e6e587acafc9b7ce5e918e9e477",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\sources.csv": "9fe096cb0e7a9c9751c940ddf46f9690b6ae1d5b95bae87a3b13a49655a62911",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\evidence.csv": "4adf5f744a559538443a59c9e2e5cafebde07ed30f4bfa8eb8b383c9bd697791"
+  },
+  "id_rules": {
+    "scenario_id": "permanent handle, assigned once",
+    "polity_id": "permanent curated slug (pol_...)",
+    "scenario_polity_id": "sp_ + sha1(scenario_id|polity_id)[:12]",
+    "source_id": "src_ + sha1(scenario_id|citation_key)[:12]",
+    "evidence_id": "ev_ + sha1(scenario|source|type|target)[:12]",
+    "relationship_id": "rel_ + sha1(scenario|type|from|to)[:12]; SYMMETRIC types sort participants first",
+    "version_semantics": "changing a defining key IS a data version change; display fields are freely editable"
+  },
+  "timings_s": {
+    "upstream_load_s": 0.1,
+    "render_s": 1.9
+  },
+  "peak_memory_mb": 302.2,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

@@ -1,0 +1,4 @@
+evidence_id,scenario_id,source_id,evidence_type,target_type,target_id,confidence,interpretation_notes
+ev_38c8fa28a727,seven_years_war_1756_08_01,src_69e8dfc1b435,SEAT_OF_GOVERNMENT,TERRESTRIAL_HEX,h6000_q+002183_r+000819,HIGH,Edo castle honmaru (139.7528E 35.6877N) geocoded onto the MAPGEN-001 grid; hex containment computed deterministically from the world-fixed grid.
+ev_5f72fd892aa9,seven_years_war_1756_08_01,src_60da4f268df7,TERRITORIAL_ADMINISTRATION,ISLAND_COMPONENT,isl_c_1859af1e4767,MEDIUM,Island-level source statement (Izu Islands = shogunal territory) mapped to the MAPGEN-006R component representing Toshima. Interpretation: island identity <-> component geometry.
+ev_78266da88724,seven_years_war_1756_08_01,src_69e8dfc1b435,POLITY_EXISTENCE,POLITY,pol_tokugawa_shogunate,HIGH,Existence and government form of the Tokugawa shogunate at 1756-08-01.

@@ -1,0 +1,33 @@
+run_id,check_id,pass,detail
+human_geography_v1_20260809,V01_upstream_hex_count,True,hexes=5350
+human_geography_v1_20260809,V02_upstream_water_authority,True,"water_type counts={'NONE': 2908, 'OCEAN': 2428, 'LAKE': 14}"
+human_geography_v1_20260809,V03_upstream_river_edges,True,edges=3920 dup=0
+human_geography_v1_20260809,V04_upstream_kanto_overlays,True,kanto overlays=6 ground_km2=13.3783
+human_geography_v1_20260809,V05_upstream_component_count,True,components=8912
+human_geography_v1_20260809,V06_no_admin_in_geography,True,admin-like columns in geography_hexes: []
+human_geography_v1_20260809,V07_admin0_canonical,True,admin0 rows=258 unique_ids=True
+human_geography_v1_20260809,V08_admin0_iso_nulls_audited,True,"iso_a3 null (source -99, kept null, audited)=14"
+human_geography_v1_20260809,V09_hierarchy_integrity,True,map_units=298 linked=298 all links resolve=True unlinked=0
+human_geography_v1_20260809,V10_admin1_integrity,True,admin1=4596 parents_resolve=True parent_null=0 all_null_reasoned=True
+human_geography_v1_20260809,V11_disputed_canonical,True,disputed rows=99
+human_geography_v1_20260809,V12_geometry_validity,True,"post-repair all valid=True, repaired=3 (audited in run_manifest)"
+human_geography_v1_20260809,V13_inland_share_sum,True,kanto inland hexes=2758 share-sum min=0.996403 max=1.000000
+human_geography_v1_20260809,V14_share_never_exceeds_hex,True,max admin0 share-sum per hex=1.000009
+human_geography_v1_20260809,V15_border_many_to_many,True,border_benelux hexes with >=2 admin0 memberships=37 of 378
+human_geography_v1_20260809,V16_dominant_unique,True,hexes with admin0=3619 dominant-marked=3619 max-per-hex=1
+human_geography_v1_20260809,V17_coverage_audited_not_gated,True,"terrestrial hexes audited=3377 quality={'FULL': 3337, 'PARTIAL': 40}"
+human_geography_v1_20260809,V18_component_binding_complete,True,"components bound=8912 methods={'NEAREST_REFERENCE_POLYGON': 6002, 'GROUND_INTERSECTION': 2485, 'UNRESOLVED': 425} refs_resolve=True unresolved=425"
+human_geography_v1_20260809,V19_component_fallback_distances,True,"nearest-fallback n=6002 max_ground_m=27557 (all recorded, <=30km by construction)"
+human_geography_v1_20260809,V20_kanto_overlay_components_jpn,True,kanto IN_OVERLAY_UNIT components=573 bound to JPN share=1.0000
+human_geography_v1_20260809,V21_settlements_canonical,True,"settlements=7342 unique ids, semantics constant, gameplay_authoritative all False"
+human_geography_v1_20260809,V22_settlement_admin_binding,True,"admin0 methods={'POINT_IN_POLYGON': 7324, 'NEAREST_REFERENCE_POLYGON': 18} refs_resolve=True unresolved=0"
+human_geography_v1_20260809,V23_ports_canonical,True,ports=1081 unique ids; port_type/activity absent in NE 5.0.0 source -> all null (documented)
+human_geography_v1_20260809,V24_kanto_settlement_catalogue,True,"candidates=5 present_in_source=3 bound TERRESTRIAL_HEX in kanto=3 absent=['Chiba', 'Saitama']"
+human_geography_v1_20260809,V25_port_dual_access_positive,True,"kanto ports in region=5 with land+water access=5 e.g. ['Kawasaki', 'Shimizu', 'Yokosuka']"
+human_geography_v1_20260809,V26_unresolved_is_formal_state,True,"UNRESOLVED land bindings kanto settlements=0, out-of-coverage settlements=7327 (formal states, never silently snapped)"
+human_geography_v1_20260809,V27_dateline_membership_both_sides,True,"fiji membership hexes east(+x)=112 west(-x)=29, dominant admin0 all FJI=True"
+human_geography_v1_20260809,V28_dateline_component_binding,True,"fiji components=124 bound FJI share=1.0000 max fallback dist=27557m (no 40,000km dateline artifacts)"
+human_geography_v1_20260809,V29_renders,True,"6 renders, aspect ratios={'human_geography_kanto.png': 0.819, 'human_geography_tokyo_bay.png': 0.981, 'human_geography_border_hex.png': 0.946, 'human_geography_malta.png': 1.009, 'human_geography_fiji_dateline.png': 1.115, 'human_geography_island_component_admin_binding.png': 0.892} (fiji wrap-displayed, not a world-wide strip)"
+human_geography_v1_20260809,V30_upstream_immutable,True,006R inputs byte-identical before/after (SHA-256) and geography_hexes NOT rewritten by this stage
+human_geography_v1_20260809,V31_namespace_versions,True,human_geography_schema=1.0.0 algorithm=1.0.0 semantics=CONTEMPORARY_DE_FACTO_REFERENCE
+human_geography_v1_20260809,V32_referential_integrity,True,"broken cross-table references=0 (membership hex ids, admin refs, component ids, overlay unit ids, settlement/port hex+component refs, admin1 parents)"

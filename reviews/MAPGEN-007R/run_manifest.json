@@ -1,0 +1,186 @@
+{
+  "run_id": "human_geography_v1_1_20260811",
+  "stage": "MAPGEN-007",
+  "generated_utc": "2026-08-10T16:08:35.102629+00:00",
+  "human_geography_schema_version": "1.1.0",
+  "human_geography_algorithm_version": "1.0.1",
+  "reference_semantics": "CONTEMPORARY_DE_FACTO_REFERENCE",
+  "gameplay_authoritative": false,
+  "upstream_run": "geography_v1_3_islands_006r_20260809",
+  "upstream_sha256": {
+    "geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "island_components.parquet": "4138dbc1a0ba97f9144bd4058cbef0e50f30fd88283a76dbe4a4b7e4facac8ad",
+    "island_overlays.parquet": "38fc7a7ceccfc8aea6b0a5bafd97d32cb50ac92d882b96cb72ce066006e50a48",
+    "game_river_edges.csv": "c0e4952386bb9e8d8b5ad2e21dbfaf12b72a2f5ee65919c3c117a83957c9291b"
+  },
+  "datasets": {
+    "ne_10m_admin_0_countries": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 0 Countries",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_countries.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+      "local_filename": "data/raw/ne_10m_admin_0_countries.zip"
+    },
+    "ne_10m_admin_0_map_units": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 0 Map Units",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_map_units.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "45bebe2aaf8bf42b9daf4428594925bcb11eabd32fe9dc6e0acf681438053eb5",
+      "local_filename": "data/raw/ne_10m_admin_0_map_units.zip"
+    },
+    "ne_10m_admin_1_states_provinces": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 1 States and Provinces",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "efc59726337323058f9446210adc96673179cd344e053666ee3d28cb58ba2b05",
+      "local_filename": "data/raw/ne_10m_admin_1_states_provinces.zip"
+    },
+    "ne_10m_admin_0_disputed_areas": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 0 Breakaway, Disputed Areas",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_disputed_areas.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "a250c1cf8ab68898399928a1fa1d5c242eb4de6335cb51a7f7a7f12a9f3c8438",
+      "local_filename": "data/raw/ne_10m_admin_0_disputed_areas.zip"
+    },
+    "ne_10m_populated_places": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Populated Places",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_populated_places.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-07",
+      "sha256": "cd149186f03d2603e0410da399b980a4357d0ac32d3a2305a49ed3dffcc41d7b",
+      "local_filename": "data/raw/ne_10m_populated_places.zip"
+    },
+    "ne_10m_ports": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Ports",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_ports.zip",
+      "dataset_version": "5.0.0",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "1824cccd897a6c2ad546abbaf1f3545d51cff4bddfbda40244a1ad1ab1e4371d",
+      "local_filename": "data/raw/ne_10m_ports.zip"
+    }
+  },
+  "geometry_repair_audits": [
+    {
+      "dataset": "ne_10m_admin_0_countries",
+      "invalid_count": 1,
+      "repairs": [
+        {
+          "index": 161,
+          "area_projected_before": 1258411709217.5073,
+          "area_projected_after": 1258411709217.5076,
+          "method": "shapely.make_valid"
+        }
+      ]
+    },
+    {
+      "dataset": "ne_10m_admin_0_map_units",
+      "invalid_count": 1,
+      "repairs": [
+        {
+          "index": 172,
+          "area_projected_before": 1258411709217.5073,
+          "area_projected_after": 1258411709217.5076,
+          "method": "shapely.make_valid"
+        }
+      ]
+    },
+    {
+      "dataset": "ne_10m_admin_1_states_provinces",
+      "invalid_count": 1,
+      "repairs": [
+        {
+          "index": 3813,
+          "area_projected_before": 371847788759.0877,
+          "area_projected_after": 371847788759.0876,
+          "method": "shapely.make_valid"
+        }
+      ]
+    },
+    {
+      "dataset": "ne_10m_admin_0_disputed_areas",
+      "invalid_count": 0,
+      "repairs": []
+    }
+  ],
+  "parameters": {
+    "settlement_land_snap_max_km": 3.0,
+    "port_land_snap_max_km": 5.0,
+    "port_water_snap_max_km": 5.0,
+    "point_admin_fallback_max_km": 25.0,
+    "component_admin_fallback_max_km": 30.0
+  },
+  "audit_tolerances": {
+    "match_abs_tolerance_km2": 0.01,
+    "match_rel_tolerance": 0.005,
+    "conservation_abs_tolerance_km2": 0.002,
+    "alias_equivalence_tolerance": 0.02,
+    "coverage_fraction_float_noise_clamp": 1e-06
+  },
+  "deprecated_columns": {
+    "admin_coverage_audit.csv": [
+      "land_ground_km2_est",
+      "admin0_coverage_ground_km2",
+      "admin0_coverage_ratio_of_land",
+      "coverage_quality"
+    ],
+    "note": "original MAPGEN-007 formulas kept unchanged as aliases; official values are the bidirectional audit columns; removal planned for a future schema major bump"
+  },
+  "coast_authority": {
+    "source": "OSM land-polygons-split-3857 (same file as MAPGEN-003..006R)",
+    "reconstruction": "load_osm_land(osm_land_shp, bbox_to_mercator(cfg.bbox), margin+10km) — identical to islands/geography pipelines",
+    "proof": "V43 land_fraction reproduction gate"
+  },
+  "id_determinism_scope": "reference ids derive from Natural Earth stable ids (NE_ID / adm1_code); stable across runs for a fixed NE version, NOT across NE version upgrades",
+  "regions": {
+    "kanto": {
+      "hexes": 5350,
+      "crosses_dateline": false
+    },
+    "border_benelux": {
+      "hexes": 378,
+      "crosses_dateline": false
+    },
+    "malta": {
+      "hexes": 255,
+      "crosses_dateline": false
+    },
+    "fiji_dateline": {
+      "hexes": 648,
+      "crosses_dateline": true
+    }
+  },
+  "timings_s": {
+    "upstream_load_s": 0.1,
+    "canonical_tables_s": 6.3,
+    "regions_s": 16.1,
+    "hex_membership_s": 2.5,
+    "bidirectional_audit_s": 95.6,
+    "component_binding_s": 21.3,
+    "points_s": 1.5,
+    "render_s": 1.7
+  },
+  "peak_memory_mb": 612.0,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

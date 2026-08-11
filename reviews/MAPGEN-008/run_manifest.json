@@ -1,0 +1,58 @@
+{
+  "run_id": "scenario_foundation_20260811",
+  "stage": "MAPGEN-008",
+  "generated_utc": "2026-08-10T17:17:44.213989+00:00",
+  "scenario_schema_version": "1.0.0",
+  "scenario_algorithm_version": "1.0.0",
+  "scenario_semantics": "SCENARIO_SNAPSHOT_GAMEPLAY_AUTHORITATIVE",
+  "scenario_id": "seven_years_war_1756_08_01",
+  "data_status": "FOUNDATION_ONLY",
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\island_components.parquet": "4138dbc1a0ba97f9144bd4058cbef0e50f30fd88283a76dbe4a4b7e4facac8ad",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin0.parquet": "8d2b031e297ae68e9bf226616f1a61da2a037535055439905ea9323f1471bfcf",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin0_hierarchy.parquet": "4ab293533f4e0c8d80c2ec27761db1a1de8c73eec7fc7373563ca662d7d65252",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin1.parquet": "a37a3108fb573a427fd3f26c47ee3b2b352d157b877a112b2ec253bdfee8500f",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_disputed_areas.parquet": "e0b3b78f3f637e0411e8717c2971b903930d8e4d2659cd100250575befac06e8",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin_hex_membership.parquet": "bc7fec182ca6c4a1da0eddb12b888a5078138fe12cc8d7af49694814a17e2350",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\island_component_reference_admin.parquet": "ff2006b13aee652b0b0b717aaf8fd85215df765ff3630ed7ab3b313d0db6b9fa",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_settlements.parquet": "c2a5fdb153f61900fd7525f0f6f67cfdaffc9cc7c76eebcb77b3d5b4e526354f",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_ports.parquet": "e3504b8a8811e8124a5025e8a3a5b7d678a0aa9560aec4985f6b161ce1c12cd7"
+  },
+  "scenario_input_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\scenario_registry.csv": "321db014b8dffebbfbb715541fc4924a624bf69174a372e02b8c9201c810fbff",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\polities.csv": "240b931008f306e373888088e4caf94c774128e029a774d5c331d274c4ef416f",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\scenario_polities.csv": "b0674b7fc1ae56dd21fc411ed76fe4555aa0bb15ee96b04bebc8ad056ef05500",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\sources.csv": "ec2c6c20116d1af1194678fc13d879bbbb5ae207e0a4ad3f6455d1a4c0cc578c",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\evidence.csv": "feb5f0673b4d7c8f2165e9cf3a6fccaa6687b9e653c1e46d21d5beb7fc3444be"
+  },
+  "id_rules": {
+    "scenario_id": "permanent handle, assigned once, never from display names",
+    "polity_id": "permanent curated slug (pol_...), never regenerated from display fields",
+    "scenario_polity_id": "sp_ + sha1(scenario_id|polity_id)[:12]",
+    "source_id": "src_ + sha1(scenario_id|citation_key)[:12]",
+    "evidence_id": "ev_ + sha1(scenario_id|source_id|evidence_type|target_type|target_id)[:12]",
+    "version_semantics": "changing a defining key IS a data version change; display fields are freely editable"
+  },
+  "timings_s": {
+    "upstream_load_s": 0.1,
+    "scenario_load_s": 0.0,
+    "render_s": 0.7
+  },
+  "peak_memory_mb": 271.3,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

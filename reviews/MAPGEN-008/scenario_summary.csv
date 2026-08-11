@@ -1,0 +1,18 @@
+metric,value,run_id
+scenario_schema_version,1.0.0,scenario_foundation_20260811
+scenario_algorithm_version,1.0.0,scenario_foundation_20260811
+scenario_semantics,SCENARIO_SNAPSHOT_GAMEPLAY_AUTHORITATIVE,scenario_foundation_20260811
+scenario_id,seven_years_war_1756_08_01,scenario_foundation_20260811
+snapshot_date,1756-08-01,scenario_foundation_20260811
+data_status,FOUNDATION_ONLY,scenario_foundation_20260811
+political_geography_complete,False,scenario_foundation_20260811
+polities,1,scenario_foundation_20260811
+scenario_polities,1,scenario_foundation_20260811
+territorial_control_rows,3,scenario_foundation_20260811
+territorial_claims_rows,1,scenario_foundation_20260811
+control_status_counts,"{""CONTROLLED"": 2, ""UNRESOLVED"": 1}",scenario_foundation_20260811
+territorial_target_type_counts,"{""TERRESTRIAL_HEX"": 2, ""ISLAND_COMPONENT"": 1}",scenario_foundation_20260811
+unresolved_rows,1,scenario_foundation_20260811
+sources,2,scenario_foundation_20260811
+evidence_rows,3,scenario_foundation_20260811
+validation_pass,27/27,scenario_foundation_20260811

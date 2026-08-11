@@ -1,0 +1,23 @@
+scenario_id,candidate_or_polity,decision_area,before,after,rationale,source_id
+seven_years_war_1756_08_01,cand_san_marino,REPRESENTABILITY,SUBHEX_REQUIRED,INCLUDED/NONE,geometry-anchored re-audit,src_a6ba3ebaf1a7
+seven_years_war_1756_08_01,cand_monaco,REPRESENTABILITY,SUBHEX_REQUIRED,UNRESOLVED/UNKNOWN,1756 extent differs from modern; geometry review needed,src_a6ba3ebaf1a7
+seven_years_war_1756_08_01,cand_andorra,REPRESENTABILITY,SUBHEX_REQUIRED,INCLUDED/NONE,geometry-anchored re-audit,src_a6ba3ebaf1a7
+seven_years_war_1756_08_01,cand_liechtenstein,REPRESENTABILITY,SUBHEX_REQUIRED,INCLUDED/NONE,geometry-anchored re-audit,src_a6ba3ebaf1a7
+seven_years_war_1756_08_01,cand_muenster,GRANULARITY,hidden in class,INCLUDED,major non-electoral state individually audited,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_wuerzburg,GRANULARITY,hidden in class,INCLUDED,major non-electoral state individually audited,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_bamberg,GRANULARITY,hidden in class,INCLUDED,major non-electoral state individually audited,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_salzburg,GRANULARITY,hidden in class,INCLUDED,major non-electoral state individually audited,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_hesse_darmstadt,GRANULARITY,not listed,INCLUDED,substantial landgraviate added,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_mecklenburg_strelitz,GRANULARITY,not listed,INCLUDED,distinct duchy added,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_baden_durlach,GRANULARITY,not listed,INCLUDED,two Baden margraviates kept separate (union only 1771),src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_baden_baden,GRANULARITY,not listed,INCLUDED,two Baden margraviates kept separate (union only 1771),src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_hamburg,GRANULARITY,hidden in city class,INCLUDED,per-city audit replaces blanket judgment,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_nuremberg,GRANULARITY,hidden in city class,INCLUDED,per-city audit replaces blanket judgment,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_frankfurt/augsburg/bremen/luebeck/ulm,GRANULARITY,hidden in city class,AGGREGATION_CANDIDATE (individual rows),evaluated individually; inclusion deferred pending footprints,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_nassau_lines,GRANULARITY,not listed,AGGREGATION_CANDIDATE,family of small lines; identities preserved,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_anhalt_lines,GRANULARITY,not listed,AGGREGATION_CANDIDATE,family of small lines; identities preserved,src_2a22eae2a6c2
+seven_years_war_1756_08_01,cand_corsica,CONTESTED,UNRESOLVED,INCLUDED (Corsican Republic) + Genoa de-jure claim,Paoli government registered as de-facto polity,src_555d04093a36
+seven_years_war_1756_08_01,cand_lucca,CONTESTED,UNRESOLVED,INCLUDED,resolved via registered atlas,src_7a1c441d3e91
+seven_years_war_1756_08_01,cand_schleswig_holstein_complex,CONTESTED,UNRESOLVED,UNRESOLVED (split into royal / Gottorp sub-candidates),"refined, not fake-resolved",src_497229e79aa1
+seven_years_war_1756_08_01,pol_prussia_kingdom_proper,TERMINOLOGY,'Kingdom of Prussia (East Prussia)','Kingdom of Prussia (Ducal/East Prussia)' + Royal-Prussia distinction in notes,id unchanged; names/notes only,src_d756921e5f15
+seven_years_war_1756_08_01,pol_habsburg_monarchy/pol_prussia_monarchy,BINDING_CONTRACT,DIRECT_TERRITORIAL_ACTOR,COMPOSITE_TERRITORIAL_ACTOR,territory binds to most specific registered constituent; roots hold control only where no constituent covers it,src_d756921e5f15

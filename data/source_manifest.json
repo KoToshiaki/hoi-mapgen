@@ -1,0 +1,493 @@
+{
+  "datasets": {
+    "ne_10m_land": {
+      "source_name": "Natural Earth 1:10m Physical Vectors - Land",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_physical/ne_10m_land.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-07",
+      "sha256": "e547d749445eaa0964aba76738090ec88f5e63c4585122170f98c67a7ea922dc",
+      "local_filename": "data/raw/ne_10m_land.zip"
+    },
+    "ne_10m_populated_places": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Populated Places",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_populated_places.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-07",
+      "sha256": "cd149186f03d2603e0410da399b980a4357d0ac32d3a2305a49ed3dffcc41d7b",
+      "local_filename": "data/raw/ne_10m_populated_places.zip"
+    },
+    "geonames_cities15000": {
+      "source_name": "GeoNames cities15000 (all cities with population >= 15000)",
+      "source_url": "https://download.geonames.org/export/dump/cities15000.zip",
+      "dataset_version": "daily dump (see download_date)",
+      "licence": "CC BY 4.0 (https://www.geonames.org/about.html)",
+      "download_date": "2026-08-07",
+      "sha256": "7593c0476acdf36d1a3d3e88dec59ba0b11ce9aa67491634a7b108b256b80ccd",
+      "local_filename": "data/raw/cities15000.zip"
+    },
+    "copernicus_dem_glo90": {
+      "source_name": "Copernicus DEM GLO-90 (90 m global DSM)",
+      "source_url": "https://copernicus-dem-90m.s3.amazonaws.com/ (AWS Open Data)",
+      "dataset_version": "2022_1",
+      "licence": "Copernicus DEM Licence (free use with attribution: ESA / Airbus)",
+      "files": [
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N19_00_E024_00_DEM.tif",
+          "sha256": "adf1b4f08a67b140217d2a90b31a9244bd49c400fec8ea50d96e116575100a6d",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N19_00_E025_00_DEM.tif",
+          "sha256": "423bba75e89976ba302324f6877b65bec7a69e96beebde2cda91997dbc0d8b52",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N19_00_E026_00_DEM.tif",
+          "sha256": "e10229fdbeecc0d10dc0d2d5bb67955bf89bc8ced45165f0597f525c27c9263e",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N20_00_E024_00_DEM.tif",
+          "sha256": "ae07207ccf21ea325269404c49bb1446ec7e054afc0264b949f7e50beb2ca48a",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N20_00_E025_00_DEM.tif",
+          "sha256": "248d6fc6854cc8ad627ce476ba56ad776522772e8bd906c6a6c0370f2cb1d13b",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N20_00_E026_00_DEM.tif",
+          "sha256": "dfb413d9aa01e7e214bd1c8a2748761f4267b4cb2a796cf574b07d608561c8c8",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N21_00_E024_00_DEM.tif",
+          "sha256": "3a8dd9e22c4fb0162c24c0b7d6d98de81310ea2629e337f07dbbba1e4c4dec2a",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N21_00_E025_00_DEM.tif",
+          "sha256": "2d801c24db118030ab93057b0d5770c77ec53d9eb7e0a7bcc031bde22b9448cc",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N21_00_E026_00_DEM.tif",
+          "sha256": "668308bfa5e71e3becb67915e7f8b3881d78603626a6f7d6ec1eeb7580c7fb28",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N34_00_E138_00_DEM.tif",
+          "sha256": "8213cd8500c72cf103cf0940f591c0019e3a1430addfebf3f6641e8505b8ed2c",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N34_00_E139_00_DEM.tif",
+          "sha256": "6aa983c264cba2530888bc31a51f8aadf83bbc6c3cc924e64aa77f9d31e8704a",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N35_00_E138_00_DEM.tif",
+          "sha256": "28397903e323701dbd541ebde95c19a227cb9eaf1d520cde2379abf6d83b2aac",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N35_00_E139_00_DEM.tif",
+          "sha256": "9bc9107eb2ae331b30c4acfef0d88fe65b1fa0282ddc54ad49fd4a97bc21dbcc",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N35_00_E140_00_DEM.tif",
+          "sha256": "1e02461fe84dd2cd9e22c5ab4c0ee67fac072268b6e05524258254242ee51413",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N36_00_E138_00_DEM.tif",
+          "sha256": "c707a3f5b794a2fd045821803d17a0387cd3d8665965a69ffdf40a39be1dd912",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N36_00_E139_00_DEM.tif",
+          "sha256": "b079b6a1be00f2f2db57e21a7400593440a6f68fd57a5f3802ef00fe0ffd278a",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N36_00_E140_00_DEM.tif",
+          "sha256": "23c6a19f3115285d5357c538c7c91eb08d7e70193687f07b9cf11c28dd34d48c",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N37_00_E138_00_DEM.tif",
+          "sha256": "99923d04879f7e6605aceac60128d5df1a9c59e0d766277918e91961b99d988b",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N37_00_E139_00_DEM.tif",
+          "sha256": "60dc3bd5ac2c8bea85176a530b842d3e593a4c68cf58f133d6c7cfa3ec6b2982",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N37_00_E140_00_DEM.tif",
+          "sha256": "e55de2c50606d025eabd59815ab98b4240ae9316ca7a85d5735f795d7d27adcb",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N37_00_E141_00_DEM.tif",
+          "sha256": "881eeec1a84fff2458ee48f51fca7f97aba14520e24d6b277fa37c984a032907",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N45_00_E007_00_DEM.tif",
+          "sha256": "a581f2d9539b30e64dce807b9105752689fba3261e0c7ae62602d7f24f1f0d43",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N45_00_E008_00_DEM.tif",
+          "sha256": "17ef05156ba29d063dfdfc75f015417099cf515e1d1cd0c14fa39c5aa5dfda55",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N46_00_E007_00_DEM.tif",
+          "sha256": "3528ab5ba11ec63b6fd3dff91736911e69a0af0d87e50c7b61bc259deab9e732",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N46_00_E008_00_DEM.tif",
+          "sha256": "27f1c6555357b4933eaeda91b39bdfab79a2d4688c6562ca26af374f6e3ab4fc",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N51_00_E004_00_DEM.tif",
+          "sha256": "027580d05d1e455d7d950fba4ac444315ff09d352f9ff014a133022e5a5e63a8",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N51_00_E005_00_DEM.tif",
+          "sha256": "57108d8f54ccf7af137cd36611baa14550f3a10908c25bd3836e8010a55fe95d",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N52_00_E004_00_DEM.tif",
+          "sha256": "9a7bff2e790fe47e47784984e129a2d2116bbd3c08e4a41eb769acc55ede5ed2",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N52_00_E005_00_DEM.tif",
+          "sha256": "90155d4f8b01522d16580465f544805c5a1e1a96004ea18d99920e76eb39d350",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N71_00_E099_00_DEM.tif",
+          "sha256": "2ed51d228e82e612bece54d90746706d67ec8e5024d5ede94d2c5b5eb4e3737b",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N71_00_E100_00_DEM.tif",
+          "sha256": "6d9f65906fe06ac5dadd2fd0d527abd57653dd020b657ad07b7dd8e8d70984e9",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N71_00_E101_00_DEM.tif",
+          "sha256": "502aa9cbdd27bcd78acd31f78469f830276851902935ab4a5ad43cef439b53db",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N71_00_W040_00_DEM.tif",
+          "sha256": "d91aa053932f53f444445c395a0dadf2ae1e619b6ba60f726591d4413e5d9258",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N71_00_W041_00_DEM.tif",
+          "sha256": "c9c353ee0442ad05f0c1c72a25091439cbd96ab9236a88a5ce4ba0bbdd81dca3",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N71_00_W042_00_DEM.tif",
+          "sha256": "78f22170144d98a68898f2543645472fd4b71f499a7ff16da83c773fc65d3370",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N72_00_E099_00_DEM.tif",
+          "sha256": "e6b52325f977dba8df5c89975898db7a55c3a68843fc9ebbe2f65e18f0da375f",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N72_00_E100_00_DEM.tif",
+          "sha256": "9466d00ace31d982dc916c8fa7773b01047364118495e1e6d760617c2c9134d5",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N72_00_E101_00_DEM.tif",
+          "sha256": "c0eb546a1c621445861047c07ec8a69e7b70b33d85df56ecced4dca603d88372",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N72_00_W040_00_DEM.tif",
+          "sha256": "e712030520fb846d1cdef536e5b8fae7407041b9b73d18cc56d07da861c6d13c",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N72_00_W041_00_DEM.tif",
+          "sha256": "294fef1041be291580858860972705d869d84b31ad1445b16975fc1b85a373ba",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N72_00_W042_00_DEM.tif",
+          "sha256": "0ca630064be82fb8669e075b9f06d788e2d79f1871216da37b6df76e3815dbb2",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N73_00_E099_00_DEM.tif",
+          "sha256": "1ad8abd0903850d2215cfff48d7f0cdd4c66d5e8a2e82a9a4bcfa257243a00de",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N73_00_E100_00_DEM.tif",
+          "sha256": "7c6c8765a7901971127f8810cdf5df949c25a14d2b3912ea43a0506a1bfbefec",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N73_00_E101_00_DEM.tif",
+          "sha256": "a407bd7b4a0bf4493ee9c79c3c7b557f91cd778ae6ce9ef0a899ea4c67b41103",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N73_00_W040_00_DEM.tif",
+          "sha256": "c995c3f20ea5fdee17894fecea4d8d20b7bf71fa6a822f53aee0088f415839ad",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N73_00_W041_00_DEM.tif",
+          "sha256": "81fbd562615ec1d54114c768d1e3443f9208b8359513e81e17e1456252ddf51b",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_N73_00_W042_00_DEM.tif",
+          "sha256": "5b19162d18f6fb88d70acaa1c57751602ef65918c941824e61c108479726ddf3",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_S03_00_W061_00_DEM.tif",
+          "sha256": "702b516bdd2f94db3d92d978d0517a67fc5f901d111fec6b96e440ed38d135da",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_S03_00_W062_00_DEM.tif",
+          "sha256": "4f3aea26218c6268e7a3535c22674b6d7cba051643fc17d6f2966056d2d52bd0",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_S04_00_W061_00_DEM.tif",
+          "sha256": "eb8fdeb792ec4bc2c9fdc6104d60d397230d8c63df7627499b0bc50199f5aa6a",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_S04_00_W062_00_DEM.tif",
+          "sha256": "80a2b7d23947a537e10e69852fd6c5b3df0abc8a9330ec40e76cc47e8409de89",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_S05_00_W061_00_DEM.tif",
+          "sha256": "1bc8c1a1095ae93a8d95c20c2e8c569e6a8aacb058d53034d3bcde7fd1734685",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/copernicus_dem_glo90/Copernicus_DSM_COG_30_S05_00_W062_00_DEM.tif",
+          "sha256": "766061a98c0225b68dcf70f645cb4daacca03933daadd3b01417d24881f64b11",
+          "download_date": "2026-08-07"
+        }
+      ]
+    },
+    "esa_worldcover_2021_v200": {
+      "source_name": "ESA WorldCover 10 m 2021 v200",
+      "source_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/",
+      "dataset_version": "v200 (2021)",
+      "licence": "CC BY 4.0 (ESA WorldCover project)",
+      "files": [
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N18E024_Map.tif",
+          "sha256": "60ee77726309ea41f9a8be21a5f419c2422a5f3836af5316ae44033b46a846e1",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N21E024_Map.tif",
+          "sha256": "73772c2d70dba17e54f3b7e50695acef29bed86a8d895c29af06bd5b0a119d89",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N33E138_Map.tif",
+          "sha256": "7620d61ccb858e552d077daafc9ce8edf04839c31adab322bae48aeebfbd369e",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N36E138_Map.tif",
+          "sha256": "73cbc027db3397746990e9c95be3ae45e1b461a33add4a29a04252700add9115",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N36E141_Map.tif",
+          "sha256": "23bad12003c19332397a3e7788769bb5bbcce6ad34e32858b683a0748ab57996",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N45E006_Map.tif",
+          "sha256": "9d4d371430b1aaec777228df59616cb503a9b62fe192c1de855036c43b07e75d",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N51E003_Map.tif",
+          "sha256": "33190aed23427fede8bcb6b99d70aa423ba718644cf2c07453cb6ce09ff08464",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N69E099_Map.tif",
+          "sha256": "0905daf19471b562f2e79906b2e792b5211d6c3258c0dfc6101d81919bce10b1",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N69W042_Map.tif",
+          "sha256": "9baaea80f13ee1117cbaa77e54cc5d61853e53a879602889a704998a1150941b",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N72E099_Map.tif",
+          "sha256": "6d9a57c019651131f157fc23cf9e69446f9e6e3a842dbabdee944940f6f6c558",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_N72W042_Map.tif",
+          "sha256": "449b07f84faba1b519f24061d1300fd19655c3de3112c1a8f371466e17076183",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_S03W063_Map.tif",
+          "sha256": "b0ef75c44e7d1a5a5ae7ac54af784c8ea06c0023ee6714bee6e63167c07ffe51",
+          "download_date": "2026-08-07"
+        },
+        {
+          "local_filename": "data/raw/esa_worldcover_2021_v200/ESA_WorldCover_10m_2021_v200_S06W063_Map.tif",
+          "sha256": "f6984eb71a8948d513ddcdcbe90903396497237e32eb340cdaa30866dc19de1c",
+          "download_date": "2026-08-07"
+        }
+      ]
+    },
+    "koppen_geiger_v2": {
+      "source_name": "Koeppen-Geiger climate classification V2 (Beck et al. 2023)",
+      "source_url": "https://ndownloader.figshare.com/files/61012822",
+      "dataset_version": "V2 (figshare article 21789074)",
+      "licence": "CC BY 4.0",
+      "files": [
+        {
+          "local_filename": "data/raw/koppen_geiger_v2/koppen_geiger_tif.zip",
+          "sha256": "bb84453d4541f1a0bc5a804ead83f483c19ce70f16a5197f6d3a7b6a63e65562",
+          "download_date": "2026-08-07"
+        }
+      ]
+    },
+    "osm_land_polygons": {
+      "source_name": "OSM land polygons (split, EPSG:3857)",
+      "source_url": "https://osmdata.openstreetmap.de/download/land-polygons-split-3857.zip",
+      "dataset_version": "daily build (see download_date)",
+      "licence": "ODbL 1.0",
+      "attribution": "(c) OpenStreetMap contributors",
+      "odbl": true,
+      "files": [
+        {
+          "local_filename": "data/raw/osm_land_polygons/land-polygons-split-3857.zip",
+          "sha256": "5b8b098f2723ed7d10f89a094083ffe52abe231066c03f0f83f38d4279579a6f",
+          "download_date": "2026-08-08"
+        }
+      ]
+    },
+    "hydrolakes": {
+      "source_name": "HydroLAKES v1.0 polygons",
+      "source_url": "https://data.hydrosheds.org/file/hydrolakes/HydroLAKES_polys_v10_shp.zip",
+      "dataset_version": "v1.0",
+      "licence": "HydroSHEDS Licence Agreement v1 (attribution: Messager et al. 2016)",
+      "odbl": false,
+      "files": [
+        {
+          "local_filename": "data/raw/hydrolakes/HydroLAKES_polys_v10_shp.zip",
+          "sha256": "9ef63498569dd7ccd0b8d8852da026e009a75f42d293f00e483f3b9fcfe8e1f9",
+          "download_date": "2026-08-08"
+        }
+      ]
+    },
+    "hydrorivers": {
+      "source_name": "HydroRIVERS v1.0 (per continent)",
+      "source_url": "https://data.hydrosheds.org/file/HydroRIVERS/HydroRIVERS_v10_{cont}_shp.zip",
+      "dataset_version": "v1.0",
+      "licence": "HydroSHEDS Licence Agreement v1 (attribution: Lehner & Grill 2013)",
+      "odbl": false,
+      "files": [
+        {
+          "local_filename": "data/raw/hydrorivers/HydroRIVERS_v10_af_shp.zip",
+          "sha256": "63cc615134d8812b73f27ee9dfd9d790c520af96bc609dfc97bcd47811fec125",
+          "download_date": "2026-08-08"
+        },
+        {
+          "local_filename": "data/raw/hydrorivers/HydroRIVERS_v10_as_shp.zip",
+          "sha256": "29780b0a75f90024f22e7e2029e5e3045f7325cda0528db65c5cc4c864b98525",
+          "download_date": "2026-08-08"
+        },
+        {
+          "local_filename": "data/raw/hydrorivers/HydroRIVERS_v10_eu_shp.zip",
+          "sha256": "500da7d36ceee0aa4c82dd625f5c53d80ba2f7ac14ad022cd3a6601bf55068e5",
+          "download_date": "2026-08-08"
+        },
+        {
+          "local_filename": "data/raw/hydrorivers/HydroRIVERS_v10_sa_shp.zip",
+          "sha256": "38bfdcdfcc0698b1b37c1700434bcd65e792244d704153f055969f356d5cc7d5",
+          "download_date": "2026-08-08"
+        }
+      ]
+    },
+    "ne_10m_admin_0_countries": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 0 Countries",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_countries.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "ce1ac7036499a0edd641fbc093cd209a98f96a49d2eca8480aaacad35138a7f6",
+      "local_filename": "data/raw/ne_10m_admin_0_countries.zip"
+    },
+    "ne_10m_admin_0_map_units": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 0 Map Units",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_map_units.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "45bebe2aaf8bf42b9daf4428594925bcb11eabd32fe9dc6e0acf681438053eb5",
+      "local_filename": "data/raw/ne_10m_admin_0_map_units.zip"
+    },
+    "ne_10m_admin_1_states_provinces": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 1 States and Provinces",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_1_states_provinces.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "efc59726337323058f9446210adc96673179cd344e053666ee3d28cb58ba2b05",
+      "local_filename": "data/raw/ne_10m_admin_1_states_provinces.zip"
+    },
+    "ne_10m_admin_0_disputed_areas": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Admin 0 Breakaway, Disputed Areas",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_admin_0_disputed_areas.zip",
+      "dataset_version": "5.1.1",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "a250c1cf8ab68898399928a1fa1d5c242eb4de6335cb51a7f7a7f12a9f3c8438",
+      "local_filename": "data/raw/ne_10m_admin_0_disputed_areas.zip"
+    },
+    "ne_10m_ports": {
+      "source_name": "Natural Earth 1:10m Cultural Vectors - Ports",
+      "source_url": "https://naturalearth.s3.amazonaws.com/10m_cultural/ne_10m_ports.zip",
+      "dataset_version": "5.0.0",
+      "licence": "Public Domain (Natural Earth terms of use)",
+      "download_date": "2026-08-09",
+      "sha256": "1824cccd897a6c2ad546abbaf1f3545d51cff4bddfbda40244a1ad1ab1e4371d",
+      "local_filename": "data/raw/ne_10m_ports.zip"
+    }
+  }
+}

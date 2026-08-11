@@ -1,0 +1,59 @@
+run_id,check_id,pass,detail
+geography_v1_3_islands_006r_20260809,is_land_is_deprecated_alias,True,is_land == coast_land_mask everywhere
+geography_v1_3_islands_006r_20260809,terrestrial_semantics,True,is_terrestrial_hex/is_water_hex consistent with water_type
+geography_v1_3_islands_006r_20260809,water_type_unchanged,True,water_type identical to MAPGEN-004
+geography_v1_3_islands_006r_20260809,terrain_layers_unchanged,True,layer columns identical to MAPGEN-004
+geography_v1_3_islands_006r_20260809,overlay_hexes_water_semantics_intact,True,"26 overlay hexes, all non-terrestrial"
+geography_v1_3_islands_006r_20260809,geography_count_5350,True,5350 rows
+geography_v1_3_islands_006r_20260809,hex_id_set_unchanged,True,identical ids
+geography_v1_3_islands_006r_20260809,water_type_counts_unchanged,True,"{'NONE': 2908, 'OCEAN': 2428, 'LAKE': 14}"
+geography_v1_3_islands_006r_20260809,canonical_edges_baseline,True,3920 edges
+geography_v1_3_islands_006r_20260809,island_primary_hex_valid,True,kanto primary hexes exist
+geography_v1_3_islands_006r_20260809,island_ids_unique,True,47 islands
+geography_v1_3_islands_006r_20260809,no_duplicate_overlay_for_large_islands,True,0 overlays contain terrestrial-represented large components
+geography_v1_3_islands_006r_20260809,island_point_toshima,True,"overlay=yes, hex h6000_q+002190_r+000789 ocean_kept=True, ground_area=4.5726 km2 (projected 6.7517)"
+geography_v1_3_islands_006r_20260809,island_patch_wake,True,"overlay=yes, ground=7.2484 km2 (projected 8.1795), components=3, largest_share=0.8645, anchor=h6000_q+002881_r+000421"
+geography_v1_3_islands_006r_20260809,island_patch_midway,True,"overlay=yes, ground=5.9081 km2 (projected 7.6363), components=3, largest_share=0.7638, anchor=h6000_q-003606_r+000630"
+geography_v1_3_islands_006r_20260809,island_patch_malta,True,"component_ground_area=246.606092 km2, overlay_at_point=none"
+geography_v1_3_islands_006r_20260809,island_patch_litla_dimun,True,"overlay=yes, ground=13.6935 km2 (projected 60.8737), components=7, largest_share=0.7427, anchor=h6000_q-000974_r+001694"
+geography_v1_3_islands_006r_20260809,area_conservation_ground,True,"{'kanto': (15.5129, 13.3783, 2.1346), 'wake': (7.2484, 7.2484, 0.0), 'midway': (5.9081, 5.9081, 0.0), 'malta': (3.0489, 3.0068, 0.0421), 'litla_dimun': (13.7943, 13.6935, 0.1008), 'bikini': (7.2478, 6.8277, 0.4201), 'aegean': (20.1515, 20.0419, 0.1096), 'caribbean': (60.8097, 60.3405, 0.4692), 'norway_skerries': (63.7289, 49.726, 14.0029), 'fiji_dateline': (72.939, 72.2038, 0.7352)}"
+geography_v1_3_islands_006r_20260809,latitude_invariance,True,"[{'latitude_deg': 0.0, 'ground_area_km2': 1.123, 'projected_area_km2': 1.1305}, {'latitude_deg': 35.0, 'ground_area_km2': 1.1279, 'projected_area_km2': 1.6848}, {'latitude_deg': 60.0, 'ground_area_km2': 1.1343, 'projected_area_km2': 4.5221}, {'latitude_deg': 75.0, 'ground_area_km2': 1.1371, 'projected_area_km2': 16.8766}]"
+geography_v1_3_islands_006r_20260809,catalogue_toshima,True,"expected OVERLAY, actual OVERLAY (unit=isl_u_67b0fe21a344 ground=4.5726 km2 comps=24)"
+geography_v1_3_islands_006r_20260809,catalogue_wake,True,"expected OVERLAY, actual OVERLAY (unit=isl_u_3c53868a4ba5 ground=7.2484 km2 comps=3)"
+geography_v1_3_islands_006r_20260809,catalogue_midway,True,"expected OVERLAY, actual OVERLAY (unit=isl_u_533f3771eb94 ground=5.9081 km2 comps=3)"
+geography_v1_3_islands_006r_20260809,catalogue_malta_main,True,"expected TERRESTRIAL_HEX, actual TERRESTRIAL_HEX (component=isl_c_4b468cf567ad ground=246.606092 km2)"
+geography_v1_3_islands_006r_20260809,catalogue_litla_dimun,True,"expected OVERLAY, actual OVERLAY (unit=isl_u_9b40909e69f8 ground=13.6935 km2 comps=7)"
+geography_v1_3_islands_006r_20260809,catalogue_bikini_rim,True,"expected OVERLAY, actual OVERLAY (unit=isl_u_3a56830d9ac7 ground=3.9093 km2 comps=9)"
+geography_v1_3_islands_006r_20260809,catalogue_delos,True,"expected OVERLAY, actual OVERLAY (unit=isl_u_e1e9127a6dd2 ground=17.9594 km2 comps=168)"
+geography_v1_3_islands_006r_20260809,catalogue_buck_island,True,"expected OVERLAY, actual OVERLAY (unit=isl_u_8ab971ec78cc ground=0.7759 km2 comps=5)"
+geography_v1_3_islands_006r_20260809,catalogue_solund_skerries,True,"expected EXCLUDED_MICRO, actual EXCLUDED_MICRO (component=isl_c_e5202dcbceda ground=0.000994 km2)"
+geography_v1_3_islands_006r_20260809,catalogue_taveuni_seam,True,"expected TERRESTRIAL_HEX, actual TERRESTRIAL_HEX (component=isl_c_9437f488792a ground=289.546915 km2)"
+geography_v1_3_islands_006r_20260809,catalogue_required_overlay_recall,True,7/7 required-overlay places overlaid
+geography_v1_3_islands_006r_20260809,catalogue_exact_accuracy,True,10/10 exact expected==actual matches
+geography_v1_3_islands_006r_20260809,catalogue_false_overlay_zero,True,0 places overlaid against a non-OVERLAY expectation
+geography_v1_3_islands_006r_20260809,components_unique_per_region,True,"8912 rows, 0 duplicate ids"
+geography_v1_3_islands_006r_20260809,component_primary_hex_valid,True,all non-null component anchors exist in their region hex set
+geography_v1_3_islands_006r_20260809,component_overlay_reference_integrity,True,"0 components reference unknown overlay units; 6344 components have no overlay (nullable, auditable)"
+geography_v1_3_islands_006r_20260809,component_group_reference_integrity,True,0 bad group references
+geography_v1_3_islands_006r_20260809,litla_dimun_components_individually_addressable,True,"7 components share overlay unit isl_u_9b40909e69f8, 4 distinct anchors"
+geography_v1_3_islands_006r_20260809,regression006_kanto,True,"units 6 vs 6, preserved 13.3783 vs 13.3783"
+geography_v1_3_islands_006r_20260809,regression006_wake,True,"units 1 vs 1, preserved 7.2484 vs 7.2484"
+geography_v1_3_islands_006r_20260809,regression006_midway,True,"units 1 vs 1, preserved 5.9081 vs 5.9081"
+geography_v1_3_islands_006r_20260809,regression006_malta,True,"units 1 vs 1, preserved 3.0068 vs 3.0068"
+geography_v1_3_islands_006r_20260809,regression006_litla_dimun,True,"units 1 vs 1, preserved 13.6935 vs 13.6935"
+geography_v1_3_islands_006r_20260809,regression006_bikini,True,"units 3 vs 3, preserved 6.8277 vs 6.8277"
+geography_v1_3_islands_006r_20260809,regression006_aegean,True,"units 3 vs 3, preserved 20.0419 vs 20.0419"
+geography_v1_3_islands_006r_20260809,regression006_caribbean,True,"units 9 vs 9, preserved 60.3405 vs 60.3405"
+geography_v1_3_islands_006r_20260809,regression006_norway_skerries,True,"units 18 vs 18, preserved 49.726 vs 49.726"
+geography_v1_3_islands_006r_20260809,regression006_fiji_dateline,True,"units 4 vs 4, preserved 72.2038 vs 72.2038"
+geography_v1_3_islands_006r_20260809,dateline_validation,True,"[{'case': 'synthetic_close_pair', 'ground_geodesic_separation_km': 5.378, 'same_group_actual': True, 'pass': True}, {'case': 'synthetic_far_pair', 'ground_geodesic_separation_km': 86.511, 'same_group_actual': False, 'pass': True}, {'case': 'synthetic_control_no_seam', 'ground_geodesic_separation_km': 5.378, 'same_group_actual': True, 'pass': True}, {'case': 'real_fiji_dateline', 'ground_geodesic_separation_km': 0.0, 'same_group_actual': False, 'pass': True}, {'case': 'real_fiji_dateline', 'ground_geodesic_separation_km': 0.0, 'same_group_actual': True, 'pass': True}, {'case': 'real_fiji_dateline', 'ground_geodesic_separation_km': 0.0, 'same_group_actual': False, 'pass': True}, {'case': 'real_fiji_dateline', 'ground_geodesic_separation_km': 3.175, 'same_group_actual': True, 'pass': True}, {'case': 'real_fiji_dateline', 'ground_geodesic_separation_km': 8.218, 'same_group_actual': True, 'pass': True}]"
+geography_v1_3_islands_006r_20260809,micro_islet_real_world_audit,True,2 real-world AGGREGATED_MICRO_ISLETS groups (positive case found)
+geography_v1_3_islands_006r_20260809,render_aspect_wake,True,1853x1608 px (aspect 1.15)
+geography_v1_3_islands_006r_20260809,render_aspect_midway,True,1783x1853 px (aspect 0.96)
+geography_v1_3_islands_006r_20260809,render_aspect_malta,True,1853x1794 px (aspect 1.03)
+geography_v1_3_islands_006r_20260809,render_aspect_litla_dimun,True,1549x1853 px (aspect 0.84)
+geography_v1_3_islands_006r_20260809,render_aspect_bikini,True,1853x1247 px (aspect 1.49)
+geography_v1_3_islands_006r_20260809,render_aspect_aegean,True,1853x1593 px (aspect 1.16)
+geography_v1_3_islands_006r_20260809,render_aspect_caribbean,True,1433x1853 px (aspect 0.77)
+geography_v1_3_islands_006r_20260809,render_aspect_norway_skerries,True,1542x1853 px (aspect 0.83)
+geography_v1_3_islands_006r_20260809,render_aspect_fiji_dateline,True,1853x1652 px (aspect 1.12)

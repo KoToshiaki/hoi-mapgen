@@ -1,0 +1,5 @@
+run_id,latitude_deg,ground_area_km2,projected_area_km2,projected_over_ground_ratio,expected_ratio_1_over_cos2,ground_gap_km,area_invariant_ok,gap_invariant_ok,preserved_decision_ok
+geography_v1_3_islands_006r_20260809,0.0,1.123,1.1305,1.007,1.0,8.0,True,True,True
+geography_v1_3_islands_006r_20260809,35.0,1.1279,1.6848,1.494,1.49,8.009,True,True,True
+geography_v1_3_islands_006r_20260809,60.0,1.1343,4.5221,3.987,4.0,8.02,True,True,True
+geography_v1_3_islands_006r_20260809,75.0,1.1371,16.8766,14.842,14.928,8.025,True,True,True

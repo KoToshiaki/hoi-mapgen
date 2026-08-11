@@ -1,0 +1,11 @@
+run_id,catalogue_id,region,lon,lat,expected_representation,acceptable,actual_representation,pass,detail
+geography_v1_3_islands_006r_20260809,toshima,kanto,139.28,34.52,OVERLAY,OVERLAY,OVERLAY,True,unit=isl_u_67b0fe21a344 ground=4.5726 km2 comps=24
+geography_v1_3_islands_006r_20260809,wake,wake,166.64,19.29,OVERLAY,OVERLAY,OVERLAY,True,unit=isl_u_3c53868a4ba5 ground=7.2484 km2 comps=3
+geography_v1_3_islands_006r_20260809,midway,midway,-177.37,28.21,OVERLAY,OVERLAY,OVERLAY,True,unit=isl_u_533f3771eb94 ground=5.9081 km2 comps=3
+geography_v1_3_islands_006r_20260809,malta_main,malta,14.44,35.9,TERRESTRIAL_HEX,TERRESTRIAL_HEX,TERRESTRIAL_HEX,True,component=isl_c_4b468cf567ad ground=246.606092 km2
+geography_v1_3_islands_006r_20260809,litla_dimun,litla_dimun,-6.708,61.632,OVERLAY,OVERLAY,OVERLAY,True,unit=isl_u_9b40909e69f8 ground=13.6935 km2 comps=7
+geography_v1_3_islands_006r_20260809,bikini_rim,bikini,165.56,11.62,OVERLAY,OVERLAY,OVERLAY,True,unit=isl_u_3a56830d9ac7 ground=3.9093 km2 comps=9
+geography_v1_3_islands_006r_20260809,delos,aegean,25.267,37.393,OVERLAY,OVERLAY|TERRESTRIAL_HEX,OVERLAY,True,unit=isl_u_e1e9127a6dd2 ground=17.9594 km2 comps=168
+geography_v1_3_islands_006r_20260809,buck_island,caribbean,-64.62,17.787,OVERLAY,OVERLAY|TERRESTRIAL_HEX,OVERLAY,True,unit=isl_u_8ab971ec78cc ground=0.7759 km2 comps=5
+geography_v1_3_islands_006r_20260809,solund_skerries,norway_skerries,4.579,61.016,EXCLUDED_MICRO,EXCLUDED_MICRO|ABSENT|EXCLUDED_BELOW_MIN|OVERLAY,EXCLUDED_MICRO,True,component=isl_c_e5202dcbceda ground=0.000994 km2
+geography_v1_3_islands_006r_20260809,taveuni_seam,fiji_dateline,-179.967,-16.85,TERRESTRIAL_HEX,TERRESTRIAL_HEX|OVERLAY,TERRESTRIAL_HEX,True,component=isl_c_9437f488792a ground=289.546915 km2

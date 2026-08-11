@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# Secrets / credentials — never committed to this PUBLIC repository
+.env
+.env.*
+*.key
+*.pem
+credentials*
+token*
+secret*
+
+# OS / IDE noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
+
+# Large geodata is never committed; only the manifest is tracked.
+data/raw/
+data/cache/
+
+# Generated run outputs (review copies are tracked in reviews/ instead).
+# reviews/ must NEVER be ignored.
+output/

@@ -1,0 +1,60 @@
+{
+  "run_id": "europe_foundation_20260811",
+  "stage": "MAPGEN-010",
+  "stage_family": "MAPGEN-009",
+  "generated_utc": "2026-08-11T10:07:58.930289+00:00",
+  "historical_political_geometry_schema_version": "1.0.0",
+  "historical_political_geometry_algorithm_version": "1.0.0",
+  "scenario_schema_version": "1.4.0",
+  "version_reasons": {
+    "scenario_schema_1.4.0": "additive political_coverage table (missing != neutral contract); nothing existing changed meaning",
+    "hpg_1.0.0": "new namespace: temporal historical political geometry, independent of any scenario"
+  },
+  "europe_extent": {
+    "min_lon": -25.0,
+    "min_lat": 34.0,
+    "max_lon": 45.0,
+    "max_lat": 71.5
+  },
+  "chunk_strategy": "50 deterministic lon/lat tiles (7.0x7.5 deg), membership by hex centre in half-open 3857 box",
+  "osm_source_sha256": "31136cca40958608de182fcabc4e178196b4325c0fef9391458253f38ec31dd8",
+  "coverage_completeness_conditions": [
+    "a coverage unit may become COMPLETE only when control, claims, island-component and overlay layers are each explicitly resolved for every terrestrial hex/component in the unit, with sources",
+    "until then, absent control rows mean UNKNOWN — never neutral/unowned"
+  ],
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\island_components.parquet": "4138dbc1a0ba97f9144bd4058cbef0e50f30fd88283a76dbe4a4b7e4facac8ad",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin0.parquet": "8d2b031e297ae68e9bf226616f1a61da2a037535055439905ea9323f1471bfcf",
+    "D:\\VScode\\hoi\\mapgen\\output\\human_geography_v1_1_20260811\\reference_admin_hex_membership.parquet": "bc7fec182ca6c4a1da0eddb12b888a5078138fe12cc8d7af49694814a17e2350",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_catalogue_009r_20260811\\chatgpt_review\\polities.csv": "fbd08cf86a17b89e722850db472a425bc974bdc456cd8dccbaa3719a18bcea87",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_catalogue_009r_20260811\\chatgpt_review\\scenario_polities.csv": "a6cbc0de869404fa282fb42080a205a1dea5313fb38cc7311b35a4d9057bb88f",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_catalogue_009r_20260811\\chatgpt_review\\scenario_polity_relationships.csv": "3e0a4b3d9094f0576c2a9040c932b60ea9094fc6821f89bebf1a15b088f1ddfe"
+  },
+  "timings_s": {
+    "sha_s": 0.0,
+    "land_cache_s": 0.0,
+    "chunk_generation_s": 175.9,
+    "assembly_s": 3.2,
+    "seam_s": 0.1,
+    "monolithic_s": 4.9,
+    "patch_identity_s": 5.7,
+    "render_s": 1.2
+  },
+  "peak_memory_mb": 2280.3,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

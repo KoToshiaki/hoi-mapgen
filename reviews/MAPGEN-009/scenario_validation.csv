@@ -1,0 +1,34 @@
+run_id,check_id,pass,detail
+scenario_catalogue_20260811,V01_upstream_immutable,True,"12 upstream files (006R geography, 007R human geography, 008 control/claims baselines) and 9 scenario input CSVs byte-identical before/after — this pipeline generated no political data"
+scenario_catalogue_20260811,V02_single_scenario_registry,True,"registry rows=1, snapshot_date=1756-08-01"
+scenario_catalogue_20260811,V03_no_second_scenario_registered,True,scenario data dirs=['seven_years_war_1756_08_01']
+scenario_catalogue_20260811,V04_polity_id_unique,True,"51 global polities, ids unique"
+scenario_catalogue_20260811,V05_scenario_polity_id_deterministic,True,51 scenario polities; ids unique and reproduce from sha1(scenario|polity)
+scenario_catalogue_20260811,V06_scenario_polity_resolves,True,every scenario polity resolves to a global polity
+scenario_catalogue_20260811,V07_every_polity_has_existence_evidence,True,POLITY_EXISTENCE evidence rows=51; polities without evidence=0
+scenario_catalogue_20260811,V08_relationship_polities_resolve,True,35 relationships reference valid scenario polities
+scenario_catalogue_20260811,V09_relationship_provenance,True,"every relationship carries a resolving source_id and an explicit evidence_locator (UNKNOWN allowed, reason in notes)"
+scenario_catalogue_20260811,V10_no_self_loop,True,no relationship self-loops (none are permitted)
+scenario_catalogue_20260811,V11_symmetric_canonicalisation,True,4 symmetric relationships stored in canonical order; ids reproduce order-invariantly (algorithm 1.0.1)
+scenario_catalogue_20260811,V12_personal_union_no_ownership_merge,True,4 personal unions; every participant remains a distinct scenario polity and none gained territorial control from the union
+scenario_catalogue_20260811,V13_imperial_membership_creates_no_control,True,18 imperial members; neither the Empire nor any member holds territorial control derived from membership (controllers=['sp_5cbc14bfb67b'])
+scenario_catalogue_20260811,V14_composite_membership_no_duplicate_control,True,7 composite memberships; no territorial target has more than one controller and no composite container/member gained control from the relation
+scenario_catalogue_20260811,V15_hre_structural_not_owner,True,Holy Roman Empire registered as STRUCTURAL_CONTAINER with zero territorial control rows
+scenario_catalogue_20260811,V16_no_modern_admin_generator,True,scenario data layer AST scan clean (hits=0); no Natural Earth entry in the historical source registry
+scenario_catalogue_20260811,V17_no_iso_country_import_path,True,no ISO-code columns anywhere in scenario tables (found=0)
+scenario_catalogue_20260811,V18_inclusion_audit_exhaustive,True,62 audit rows cover all 50 Europe scenario polities (missing=0); all included_polity_id resolve (bad=0)
+scenario_catalogue_20260811,V19_inclusion_status_enum,True,"statuses={'INCLUDED': 48, 'AGGREGATION_CANDIDATE': 4, 'SUBHEX_REQUIRED': 4, 'UNRESOLVED': 3, 'STRUCTURAL_ONLY': 2, 'EXCLUDED_WITH_REASON': 1}"
+scenario_catalogue_20260811,V20_representation_risk_populated,True,"risk={'NONE': 29, 'MULTIPART': 12, 'ENCLAVE_COMPLEX': 8, 'SUBHEX_REQUIRED': 7, 'UNKNOWN': 3, 'SUBHEX_LIKELY': 3} (UNKNOWN is an explicit value, never a blank)"
+scenario_catalogue_20260811,V21_evidence_locator_or_reasoned_unknown,True,"evidence rows=53, locator UNKNOWN=52 (all with reason; no fabricated page numbers), pinpoint locators=1"
+scenario_catalogue_20260811,V22_tokugawa_pilot_unchanged,True,MAPGEN-008 Tokugawa scenario polity intact (additive columns only)
+scenario_catalogue_20260811,V23_toshima_component_control_intact,True,Toshima remains an ISLAND_COMPONENT control target of the Tokugawa scenario polity
+scenario_catalogue_20260811,V24_toshima_hex_still_ocean,True,underlying hex h6000_q+002190_r+000789 water_type=OCEAN
+scenario_catalogue_20260811,V25_control_claims_unchanged_from_008,True,territorial_control/claims byte-identical to the MAPGEN-008 review copies — the Europe catalogue added NO territory
+scenario_catalogue_20260811,V26_catalogue_status_separate,True,europe_polity_catalogue_status=PARTIAL reported separately from scenario data_status
+scenario_catalogue_20260811,V27_scenario_still_foundation_only,True,data_status=FOUNDATION_ONLY
+scenario_catalogue_20260811,V28_reference_layer_not_gameplay,True,reference human geography gameplay_authoritative=false maintained
+scenario_catalogue_20260811,V29_no_second_scenario_directory,True,"registry=1 scenario, dirs=['seven_years_war_1756_08_01']"
+scenario_catalogue_20260811,V30_referential_integrity,True,broken cross-table references=0
+scenario_catalogue_20260811,V31_deterministic_ids,True,source/evidence/scenario-polity/relationship ids all reproduce from the documented rules (run-level determinism proved by second run)
+scenario_catalogue_20260811,V32_renders,True,"7 renders, aspects={'scenario_political_foundation_overview.png': 0.791, 'reference_vs_scenario_semantics.png': 1.68, 'island_component_control_target.png': 1.147, 'europe_1756_polity_catalogue_overview.png': 2.889, 'constitutional_relationship_diagram.png': 1.308, 'six_km_representability_risk_summary.png': 2.207, 'reference_vs_scenario_ontology.png': 1.685}"
+scenario_catalogue_20260811,V33_unknown_scenario_errors,True,unknown scenario_id raises ScenarioNotFoundError (no default fallback)

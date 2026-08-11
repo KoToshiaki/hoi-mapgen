@@ -1,0 +1,26 @@
+metric,value,run_id
+human_geography_schema_version,1.0.0,human_geography_v1_20260809
+human_geography_algorithm_version,1.0.0,human_geography_v1_20260809
+reference_semantics,CONTEMPORARY_DE_FACTO_REFERENCE,human_geography_v1_20260809
+upstream_run,geography_v1_3_islands_006r_20260809,human_geography_v1_20260809
+admin0_features,258,human_geography_v1_20260809
+admin0_map_units,298,human_geography_v1_20260809
+admin1_features,4596,human_geography_v1_20260809
+disputed_features,99,human_geography_v1_20260809
+geometry_repairs_audited,3,human_geography_v1_20260809
+regions,"kanto,border_benelux,malta,fiji_dateline",human_geography_v1_20260809
+membership_rows_total,7863,human_geography_v1_20260809
+membership_rows_admin0,3656,human_geography_v1_20260809
+membership_rows_admin1,4207,human_geography_v1_20260809
+border_multi_admin0_hexes,37,human_geography_v1_20260809
+terrestrial_hexes_coverage_audited,3377,human_geography_v1_20260809
+coverage_quality_counts,"{""FULL"": 3337, ""PARTIAL"": 40}",human_geography_v1_20260809
+island_components_bound,8912,human_geography_v1_20260809
+component_binding_methods,"{""NEAREST_REFERENCE_POLYGON"": 6002, ""GROUND_INTERSECTION"": 2485, ""UNRESOLVED"": 425}",human_geography_v1_20260809
+settlements_canonical,7342,human_geography_v1_20260809
+settlements_admin0_pip,7324,human_geography_v1_20260809
+settlements_in_covered_regions,15,human_geography_v1_20260809
+kanto_settlement_candidates_present,3,human_geography_v1_20260809
+ports_canonical,1081,human_geography_v1_20260809
+kanto_ports_dual_access,5,human_geography_v1_20260809
+validation_pass,32/32,human_geography_v1_20260809
