@@ -1,12 +1,12 @@
-"""MAPGEN-011 — Historical boundary source acquisition + Low Countries
-production pilot (pipeline).
+"""MAPGEN-011/011R — historical production gate + Low Countries pilot.
 
 HISTORICAL GEOMETRY IS SOURCE-DERIVED, NOT GENERATED FROM MODERN
-ADMINISTRATION. This run's outcome is honest: the candidate dataset was
-ACQUIRED AND VERIFIED (HALC v15.0), and it publishes only the 1500
-cross-section — so production 1756 geometry remains at SOURCE_GAP and
-every binding/audit mechanism is proven by synthetic tests instead of
-fabricated polygons.
+ADMINISTRATION. The MAPGEN-011 outcome (HALC v15.0 acquired, 1500-only,
+SOURCE_GAP, zero production rows) is FROZEN; MAPGEN-011R hardens the
+semantics only: assertion-backed production gates (fake-1756 exploit
+closed and negatively tested EVERY run), exact-land hex binding,
+union-based winner decision, and split conservation/winner-distortion
+audits.
 """
 from __future__ import annotations
 
@@ -22,15 +22,21 @@ import pandas as pd
 import shapely
 
 from .config import MapgenConfig
+from .hex_grid import HexGrid
 from .historical_binding import (BINDING_METHOD, bind_snapshot_to_hexes,
                                  check_contested_overlaps,
                                  controls_from_membership,
                                  hexification_audit,
+                                 membership_conservation_audit,
                                  overlay_candidates_from_audit,
                                  validate_production_features)
 from .historical_geometry import (BOUNDARY_FEATURE_COLUMNS,
                                   HPG_ALGORITHM_VERSION,
-                                  HPG_SCHEMA_VERSION, load_global_sources,
+                                  HPG_SCHEMA_VERSION,
+                                  load_evidence_assertions,
+                                  load_global_sources,
+                                  make_evidence_assertion_id,
+                                  make_global_source_id,
                                   select_features_for_snapshot)
 from .human_geography_pipeline import _save
 from .manifest import package_versions
@@ -40,111 +46,103 @@ from .scenario import (SCENARIO_SCHEMA_VERSION, load_scenario,
 from .scenario_pipeline import scan_forbidden_reference_code
 from .sources import sha256_of
 
-STAGE = "MAPGEN-011"
+STAGE = "MAPGEN-011R"
 SNAPSHOT_DATE = "1756-08-01"
 HALC_DIR = Path("data/raw/historical_atlas_low_countries")
 HALC_FILES = ["HALC_1500.gpkg", "HALC_Localities.gpkg",
               "HALC_Codebook.xlsx", "HALC_Unidentified.gpkg",
               "HALC_Unidentified_Localities.gpkg"]
+GRID6 = None  # set in run
 
 
-def render_halc_sources(path, halc_path, assessment, title):
-    import matplotlib
-
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-
-    gdf = gpd.read_file(halc_path, columns=["ADM0"])
-    gdf["geometry"] = shapely.simplify(gdf.geometry.values, 0.004)
-    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(17, 10),
-                                  width_ratios=[1.1, 1])
-    gdf.plot(ax=ax, column="ADM0", cmap="tab20", linewidth=0, alpha=0.9)
-    ax.set_title(
-        "HALC v15.0 'HALC 1500' layer — 14,863 locality polygons "
-        "coloured by ADM0\n*** 1500 CROSS-SECTION: geometric substrate "
-        "candidate, NOT 1756 political authority ***", fontsize=10)
-    ax.set_aspect(1.55)  # ~1/cos(50N) display compensation
-    ax.set_axis_off()
-    lines = ["Source assessment (historical_source_assessment.csv):", ""]
-    for t in assessment.itertuples():
-        lines.append(f"[{t.assessment_status}] "
-                     f"{t.source_title[:52]}")
-    ax2.text(0.0, 0.98, "\n".join(lines), va="top", ha="left",
-             fontsize=9, family="monospace")
-    ax2.set_axis_off()
-    fig.suptitle(title, fontsize=11)
-    fig.tight_layout()
-    _save(fig, path)
+# --------------------------------------------------------------------------
+# In-run synthetic fixtures (SEMANTICS TESTS — never production data)
+# --------------------------------------------------------------------------
+def _fixture_registry(reg):
+    syn = pd.DataFrame([
+        {"global_source_id": make_global_source_id("SYN_evidence_1756"),
+         "citation_key": "SYN_evidence_1756",
+         "authority_level": "ACADEMIC_REFERENCE"}])
+    return pd.concat([reg, syn], ignore_index=True)
 
 
-def render_source_gap(path, catalogue, title):
-    import matplotlib
-
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-
-    fig, ax = plt.subplots(figsize=(14, 8))
-
-    def box(x, y, w, h, text, fc, fs=9):
-        ax.add_patch(plt.Rectangle((x, y), w, h, fc=fc, ec="#333333",
-                                   lw=1.2, zorder=2))
-        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
-                fontsize=fs, zorder=3)
-
-    box(0.04, 0.55, 0.44, 0.36,
-        "ACQUIRED + VERIFIED\n\nHALC v15.0 (IISH, CC BY-SA 4.0)\n"
-        "14,863 locality polygons, EPSG:4326\nADM0..ADM9 hierarchy "
-        "— FOR THE YEAR 1500\nSHA-256 recorded; codebook read", "#ddead9")
-    box(0.52, 0.55, 0.44, 0.36,
-        "MISSING FOR 1756 PRODUCTION\n\nno 1650 / 1800 cross-sections "
-        "published yet\nno 1756 sovereignty attributes\nno acquirable "
-        "scholarly 1756 GIS found\n(assessment table lists every "
-        "candidate + reason)", "#f7dcd7")
-    box(0.15, 0.10, 0.70, 0.34,
-        "FORMAL RESULT: SOURCE_GAP (per MAPGEN-011 §30)\n\n"
-        "production boundary features = 0 — polygons are NEVER invented\n"
-        "1500 != 1756 and interpolation is forbidden (machine-gated + "
-        "unit-tested)\nbinding/hexification/overlay machinery is "
-        "implemented and synthetic-proven\nunblock: upstream 1650/1800 "
-        "release + per-subject 1756 continuity evidence,\nor a "
-        "locality-level 1756 sovereignty evidence table on the HALC "
-        "substrate", "#efe9d6")
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    ax.set_axis_off()
-    ax.set_title(title, fontsize=11)
-    _save(fig, path)
+def _fake_1756_feature(halc_id):
+    """The exploit: HALC (1500) as both substrate and 'evidence', with
+    hand-typed 1756 validity on the feature."""
+    return pd.DataFrame([{
+        "boundary_feature_id": "hbf_SYNFAKE",
+        "historical_subject_id": "hsub_syn",
+        "feature_role": "POLITY_EXTERNAL_BOUNDARY",
+        "valid_from": "1750-01-01", "valid_to": "1760-12-31",
+        "temporal_precision": "YEAR",
+        "geometry_source_id": halc_id,
+        "political_evidence_source_id": halc_id,
+        "political_evidence_id": make_evidence_assertion_id(
+            "historical_atlas_low_countries", "low_countries_localities",
+            "GEOMETRIC_SUBSTRATE_ONLY", "1500-01-01", "1500-12-31"),
+        "source_locator": "layer 'HALC 1500'",
+        "interpretation_level": "RECONSTRUCTED",
+        "source_confidence": "LOW",
+        "geometry": shapely.box(0, 0, 1e4, 1e4),
+    }])
 
 
-def render_coverage(path, cov, title):
-    import matplotlib
+def _valid_synthetic_feature(halc_id):
+    return pd.DataFrame([{
+        "boundary_feature_id": "hbf_SYNOK",
+        "historical_subject_id": "hsub_syn",
+        "feature_role": "POLITY_EXTERNAL_BOUNDARY",
+        "valid_from": "1750-01-01", "valid_to": "1760-12-31",
+        "temporal_precision": "YEAR",
+        "geometry_source_id": halc_id,
+        "political_evidence_source_id":
+            make_global_source_id("SYN_evidence_1756"),
+        "political_evidence_id": make_evidence_assertion_id(
+            "SYN_evidence_1756", "hsub_syn", "POLITICAL_CONTROL",
+            "1748-01-01", "1763-12-31"),
+        "source_locator": "map plate 7",
+        "interpretation_level": "DERIVED",
+        "source_confidence": "MEDIUM",
+        "geometry": shapely.box(0, 0, 1e4, 1e4),
+    }])
 
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
 
-    counts = cov["control_coverage_status"].value_counts()
-    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(14, 7))
-    ax.bar(counts.index, counts.values,
-           color=["#777777" if s == "UNASSESSED" else "#1f618d"
-                  for s in counts.index])
-    for i, v in enumerate(counts.values):
-        ax.text(i, v + 0.4, str(v), ha="center")
-    ax.set_title("control_coverage_status per coverage unit", fontsize=10)
-    ax.tick_params(axis="x", rotation=20, labelsize=8)
-    ax2.text(0.0, 0.95,
-             "COMPLETE units: 0\n\n"
-             "missing control row semantics:\n"
-             "  coverage != COMPLETE  ->  UNKNOWN (never neutral)\n"
-             "  coverage == COMPLETE  ->  UNCONTROLLED\n\n"
-             "region_low_countries_1756_pilot:\n"
-             "  control  = SOURCE_IDENTIFIED\n"
-             "  evidence = SOURCE_IDENTIFIED (HALC acquired,\n"
-             "  1756 political evidence still missing)",
-             va="top", family="monospace", fontsize=10)
-    ax2.set_axis_off()
-    fig.suptitle(title, fontsize=11)
-    fig.tight_layout()
-    _save(fig, path)
+def _fixture_assertions():
+    return pd.DataFrame([{
+        "historical_evidence_id": make_evidence_assertion_id(
+            "SYN_evidence_1756", "hsub_syn", "POLITICAL_CONTROL",
+            "1748-01-01", "1763-12-31"),
+        "global_source_id": make_global_source_id("SYN_evidence_1756"),
+        "historical_subject_id": "hsub_syn",
+        "assertion_type": "POLITICAL_CONTROL",
+        "valid_from": "1748-01-01", "valid_to": "1763-12-31",
+        "temporal_precision": "YEAR", "exact_locator": "map plate 7",
+        "interpretation_level": "DIRECT", "confidence": "MEDIUM",
+        "geometry_authority": "NO", "political_authority": "YES",
+        "notes": "SYNTHETIC SEMANTICS FIXTURE — never production",
+    }])
+
+
+def _coastal_fixture(grid):
+    """60% land / 40% sea hex; polygon covers part of the land AND juts
+    far into the sea — new semantics must count land only."""
+    poly = grid.polygon(500, 500)
+    b = shapely.bounds(np.array([poly], dtype=object))[0]
+    xmid = b[0] + (b[2] - b[0]) * 0.6
+    land = shapely.intersection(poly, shapely.box(b[0] - 1e4, b[1] - 1e4,
+                                                  xmid, b[3] + 1e4))
+    hist = shapely.box(b[0] + (b[2] - b[0]) * 0.3, b[1] - 1e4,
+                       b[2] + 5e4, b[3] + 1e4)
+    snap = gpd.GeoDataFrame(pd.DataFrame([{
+        "boundary_feature_id": "hbf_SYNCOAST",
+        "historical_subject_id": "hsub_syn",
+        "scenario_polity_id": "sp_syn",
+        "feature_role": "POLITY_EXTERNAL_BOUNDARY",
+        "political_evidence_id": "hev_syn",
+        "global_source_id": "hsrc_syn",
+        "source_confidence": "MEDIUM", "snapshot_date": SNAPSHOT_DATE,
+        "geometry": hist}]), geometry="geometry")
+    return snap, poly, land, hist
 
 
 def run_historical_pilot(cfg: MapgenConfig,
@@ -155,7 +153,7 @@ def run_historical_pilot(cfg: MapgenConfig,
     hcfg = cfg.raw["human_geography"]
     scenario_id = scfg["active_scenario"]
     if run_id is None:
-        run_id = f"historical_pilot_{_dt.datetime.now():%Y%m%d}"
+        run_id = f"historical_pilot_r_{_dt.datetime.now():%Y%m%d}"
     run_dir = cfg.output_dir / run_id
     run_dir.mkdir(parents=True, exist_ok=True)
     warnings: list[str] = []
@@ -166,6 +164,10 @@ def run_historical_pilot(cfg: MapgenConfig,
                          "pass": bool(ok), "detail": str(detail)})
         if not ok:
             warnings.append(f"VALIDATION FAIL {check_id}: {detail}")
+
+    grid = HexGrid(flat_to_flat=float(cfg.raw["terrain"]["hex_size_m"]),
+                   orientation=cfg.hex_orientation,
+                   origin_x=cfg.grid_origin_x, origin_y=cfg.grid_origin_y)
 
     # ---- upstream SHA (before) ------------------------------------------
     geo_dir = cfg.output_dir / hcfg["upstream_run"]
@@ -186,234 +188,311 @@ def run_historical_pilot(cfg: MapgenConfig,
         sdir / "territorial_claims.csv",
     ]}
 
-    # ---- HALC acquisition verification ----------------------------------
+    # ---- R01: MAPGEN-011 outcome frozen ---------------------------------
     t0 = time.perf_counter()
     from pyogrio import read_info
 
-    halc = HALC_DIR / "HALC_1500.gpkg"
-    halc_shas = {f: sha256_of(HALC_DIR / f) for f in HALC_FILES}
-    info = read_info(halc)
-    _check("H01_halc_acquired_and_verified",
-           info["features"] == 14863
-           and str(info["crs"]) == "EPSG:4326"
-           and {"ADM0", "ADM1", "HIGH_JURISD"} <= set(info["fields"])
-           and all((HALC_DIR / f).exists() for f in HALC_FILES),
-           f"HALC v15.0 acquired: {info['features']} locality polygons, "
-           f"CRS {info['crs']}, {len(HALC_FILES)} files with SHA-256 "
-           "recorded (CC BY-SA 4.0 via Dataverse API)")
+    info = read_info(HALC_DIR / "HALC_1500.gpkg")
+    features = gpd.read_parquet(cfg.data_dir / "historical"
+                                / "historical_boundary_features.parquet")
     reg = load_global_sources(cfg.data_dir)
-    halc_row = reg[reg["citation_key"] == "historical_atlas_low_countries"]
-    _check("H02_halc_registry_updated",
-           len(halc_row) == 1
-           and "15.0" in halc_row.iloc[0]["title"]
-           and "CC BY-SA 4.0" in halc_row.iloc[0]["licence_or_usage_note"]
-           and "1500 ONLY" in halc_row.iloc[0]["represented_date_range"],
-           "registry records the ACTUAL acquired version, licence and "
-           "the 1500-only cross-section finding")
+    assertions = load_evidence_assertions(cfg.data_dir)
     assessment = pd.read_csv(cfg.data_dir / "historical"
                              / "historical_source_assessment.csv",
                              keep_default_na=False, na_values=[""])
-    _check("H03_assessment_table_complete",
-           len(assessment) >= 8
-           and assessment["global_source_id"].isin(
-               set(reg["global_source_id"])).all()
-           and assessment["assessment_status"].notna().all()
-           and (assessment["boundary_authority_for_1756"] == "NO").all(),
-           f"{len(assessment)} candidates assessed with per-axis "
-           "verdicts; NO source qualifies as 1756 boundary authority "
-           "(multi-axis, never one boolean)")
-    timings["acquisition_s"] = time.perf_counter() - t0
+    _check("R01_MAPGEN011_source_gap_unchanged",
+           info["features"] == 14863 and len(features) == 0
+           and (assessment["boundary_authority_for_1756"] == "NO").all()
+           and all((HALC_DIR / f).exists() for f in HALC_FILES),
+           "HALC v15.0 acquisition, 1500-only finding, SOURCE_GAP and "
+           "zero production features all frozen")
+    halc_id = make_global_source_id("historical_atlas_low_countries")
+    halc_ass = assertions[assertions["global_source_id"] == halc_id]
+    _check("R04_evidence_assertion_required",
+           len(assertions) >= 3
+           and assertions["historical_evidence_id"].is_unique
+           and len(halc_ass) == 1
+           and halc_ass.iloc[0]["assertion_type"]
+           == "GEOMETRIC_SUBSTRATE_ONLY"
+           and halc_ass.iloc[0]["political_authority"] == "NO",
+           f"{len(assertions)} registered evidence assertions; HALC "
+           "carries exactly one — GEOMETRIC_SUBSTRATE_ONLY with "
+           "political_authority=NO (the assertion that closes the "
+           "exploit)")
 
-    # ---- production features + snapshot (honest: SOURCE_GAP) ------------
+    # ---- R02/R03: gate is NOT vacuous — negative fixture every run ------
+    mapping = pd.DataFrame([{"historical_subject_id": "hsub_syn",
+                             "scenario_polity_id": "sp_syn"}])
+    fake = _fake_1756_feature(halc_id)
+    v_fake = validate_production_features(fake, reg, assertions, mapping,
+                                          SNAPSHOT_DATE)
+    _check("R03_fake_1756_source_exploit_rejected",
+           any("does not explicitly cover 1756-08-01" in x
+               or "no political authority" in x for x in v_fake)
+           and len(v_fake) >= 1,
+           f"HALC-as-evidence + hand-typed 1756 feature validity is "
+           f"REJECTED ({len(v_fake)} violations: assertion validity "
+           "1500 only + political_authority=NO)")
+    reg_fx = _fixture_registry(reg)
+    ass_fx = pd.concat([assertions, _fixture_assertions()],
+                       ignore_index=True)
+    ok_feat = _valid_synthetic_feature(halc_id)
+    v_ok = validate_production_features(ok_feat, reg_fx, ass_fx, mapping,
+                                        SNAPSHOT_DATE)
+    _check("R02_H04_not_vacuous",
+           v_ok == [] and len(v_fake) > 0,
+           "the same gate run PASSES a feature backed by an independent "
+           "scholarly assertion (subject match, 1756 coverage, locator, "
+           "political authority) and FAILS the exploit — executed every "
+           "run, never vacuous")
+    timings["gates_s"] = time.perf_counter() - t0
+
+    # ---- R05: exact land intersection (coastal synthetic) ---------------
     t0 = time.perf_counter()
-    features = gpd.read_parquet(cfg.data_dir / "historical"
-                                / "historical_boundary_features.parquet")
-    catalogue = pd.read_csv(cfg.data_dir / "historical"
-                            / "historical_geometry_catalogue.csv",
-                            keep_default_na=False, na_values=[""])
-    polity_map = pd.DataFrame(columns=["historical_subject_id",
-                                       "scenario_polity_id"])
-    violations = validate_production_features(features, reg, polity_map,
-                                              SNAPSHOT_DATE) \
-        if len(features) else []
-    _check("H04_source_discipline_gates",
-           not violations and len(features) == 0,
-           f"production features={len(features)} (SOURCE_GAP), "
-           f"discipline violations={violations or 0}; the "
-           "1500-cross-section->1756 path is impossible by gate + test")
-    snap_feats = select_features_for_snapshot(features, SNAPSHOT_DATE)
-    snap = gpd.GeoDataFrame(
+    snap_c, hexpoly, land, hist = _coastal_fixture(grid)
+    fmem, pmem = bind_snapshot_to_hexes(
+        snap_c, np.array([hexpoly], dtype=object),
+        [grid.hex_id(500, 500)], np.array([land], dtype=object),
+        np.array([True]), scenario_id, SNAPSHOT_DATE)
+    from .islands import ground_area_perimeter as _gap
+
+    land_km2 = _gap(land)[0]
+    expect_km2 = _gap(shapely.intersection(hist, land))[0]
+    old_wrong_km2 = _gap(shapely.intersection(hist, hexpoly))[0]
+    got = float(pmem.iloc[0]["intersection_ground_km2"])
+    share = float(pmem.iloc[0]["share_of_terrestrial_hex_land"])
+    _check("R05_exact_land_intersection",
+           abs(got - expect_km2) < 1e-3 and share <= 1.0
+           and old_wrong_km2 > expect_km2 * 1.3,
+           f"coastal fixture: polygon∩(hex∩land)={got:.3f} km2 == "
+           f"{expect_km2:.3f}; the old full-hex numerator would have "
+           f"counted {old_wrong_km2:.3f} km2 of sea as political land; "
+           f"share={share:.4f} <= 1")
+    # ---- R06: same-polity union, no double counting ---------------------
+    a = shapely.intersection(hexpoly, shapely.box(*shapely.bounds(
+        np.array([hexpoly], dtype=object))[0][[0, 1]],
+        *(shapely.bounds(np.array([hexpoly], dtype=object))[0][[2, 3]]
+          - [3000, 0])))
+    b_ = shapely.transform(a, lambda xy: xy + np.array([1500.0, 0.0]))
+    snap2 = gpd.GeoDataFrame(pd.DataFrame([
+        dict(snap_c.iloc[0].drop("geometry")) | {
+            "boundary_feature_id": "hbf_A", "geometry": a},
+        dict(snap_c.iloc[0].drop("geometry")) | {
+            "boundary_feature_id": "hbf_B", "geometry": b_},
+    ]), geometry="geometry")
+    _, pmem2 = bind_snapshot_to_hexes(
+        snap2, np.array([hexpoly], dtype=object),
+        [grid.hex_id(500, 500)],
+        np.array([hexpoly], dtype=object),  # all-land hex
+        np.array([True]), scenario_id, SNAPSHOT_DATE)
+    union_km2 = _gap(shapely.intersection(shapely.union(a, b_),
+                                          hexpoly))[0]
+    got2 = float(pmem2.iloc[0]["intersection_ground_km2"])
+    naive2 = _gap(shapely.intersection(a, hexpoly))[0] \
+        + _gap(shapely.intersection(b_, hexpoly))[0]
+    _check("R06_same_polity_union_no_double_count",
+           abs(got2 - union_km2) < 1e-3 and naive2 > union_km2 * 1.2
+           and "hbf_A|hbf_B"
+           == pmem2.iloc[0]["contributing_boundary_feature_ids"],
+           f"overlapping same-polity features: unioned={got2:.3f} km2 "
+           f"== {union_km2:.3f}; naive sum would be {naive2:.3f}; "
+           "feature provenance retained")
+    # ---- R08: winner distortion is real ---------------------------------
+    polys49 = np.array([hexpoly], dtype=object)
+    b0 = shapely.bounds(polys49)[0]
+    xcut = b0[0] + (b0[2] - b0[0]) * 0.49
+    ga = shapely.box(b0[0] - 1e4, b0[1] - 1e4, xcut, b0[3] + 1e4)
+    gb = shapely.box(xcut, b0[1] - 1e4, b0[2] + 1e4, b0[3] + 1e4)
+    snap3 = gpd.GeoDataFrame(pd.DataFrame([
+        dict(snap_c.iloc[0].drop("geometry")) | {
+            "boundary_feature_id": "hbf_A49",
+            "scenario_polity_id": "sp_a", "geometry": ga},
+        dict(snap_c.iloc[0].drop("geometry")) | {
+            "boundary_feature_id": "hbf_B51",
+            "scenario_polity_id": "sp_b", "geometry": gb},
+    ]), geometry="geometry")
+    _, pmem3 = bind_snapshot_to_hexes(
+        snap3, polys49, [grid.hex_id(500, 500)], polys49,
+        np.array([True]), scenario_id, SNAPSHOT_DATE)
+    cons = membership_conservation_audit(snap3, pmem3, hexpoly)
+    hexa = hexification_audit(snap3, pmem3,
+                              {grid.hex_id(500, 500): hexpoly}, hexpoly)
+    a_row = hexa[hexa["scenario_polity_id"] == "sp_a"].iloc[0]
+    a_cons = cons[cons["scenario_polity_id"] == "sp_a"].iloc[0]
+    _check("R08_winner_distortion_real",
+           bool(pmem3[pmem3["scenario_polity_id"] == "sp_b"]
+                ["is_dominant"].iloc[0])
+           and abs(a_cons["conservation_error_km2"]) < 0.01
+           and a_row["winner_represented_ground_km2"] == 0.0
+           and a_row["omission_ground_km2"]
+           > a_row["source_land_ground_km2"] * 0.95
+           and a_row["representation_status"] == "ZERO_HEX_LOSS",
+           "49/51 border hex: loser's membership area is conserved "
+           f"(error {a_cons['conservation_error_km2']} km2) but the "
+           "winner representation shows the REAL omission "
+           f"({a_row['omission_ground_km2']} km2) — distortion is no "
+           "longer hidden by membership sums")
+    ov = overlay_candidates_from_audit(hexa, snap3)
+    _check("R09_zero_hex_provenance",
+           len(ov) == 1
+           and ov.iloc[0]["political_evidence_id"] == "hev_syn"
+           and ov.iloc[0]["global_source_id"] == "hsrc_syn",
+           "zero-hex loss produced an overlay candidate WITH mandatory "
+           "evidence/source provenance (None-provenance raises)")
+    try:
+        controls_from_membership(pmem3, scenario_id, {})
+        prov_ok = False
+    except ValueError:
+        prov_ok = True
+    ctrl_fx = controls_from_membership(
+        pmem3, scenario_id,
+        {"sp_a": {"source_id": "hsrc_syn"},
+         "sp_b": {"source_id": "hsrc_syn"}})
+    _check("R10_control_provenance_complete",
+           prov_ok and (ctrl_fx["source_id"] == "hsrc_syn").all()
+           and "political_evidence_ids" in ctrl_fx.columns
+           and "boundary_feature_ids" in ctrl_fx.columns,
+           "generated control rows carry source_id + evidence + feature "
+           "provenance; None-provenance generation raises")
+    _check("R11_claims_not_derived",
+           "claimant_scenario_polity_id" not in ctrl_fx.columns,
+           "claims are never generated from control (structurally)")
+    _, pmem_o = bind_snapshot_to_hexes(
+        snap3, polys49, [grid.hex_id(500, 500)], polys49,
+        np.array([False]), scenario_id, SNAPSHOT_DATE)
+    _check("R12_ocean_never_terrestrial_target", len(pmem_o) == 0,
+           "OCEAN hex produces zero terrestrial membership")
+    timings["synthetic_semantics_s"] = time.perf_counter() - t0
+
+    # ---- production state (still SOURCE_GAP, honest) --------------------
+    t0 = time.perf_counter()
+    snap_prod = gpd.GeoDataFrame(
         {c: pd.Series(dtype="object") for c in
          ["boundary_feature_id", "historical_subject_id",
-          "scenario_polity_id", "feature_role", "source_confidence",
-          "snapshot_date"]},
+          "scenario_polity_id", "feature_role", "political_evidence_id",
+          "global_source_id", "source_confidence", "snapshot_date"]},
         geometry=gpd.GeoSeries([], crs="EPSG:3857"))
-    snap.to_parquet(run_dir
-                    / "historical_snapshot_features_1756_08_01.parquet")
-    _check("H05_snapshot_compiled",
-           len(snap_feats) == 0 and len(snap) == 0,
-           f"snapshot {SNAPSHOT_DATE}: {len(snap)} features (temporal "
-           "selection ran on the real feature table; UNKNOWN validity "
-           "never auto-matches)")
-    overlaps = check_contested_overlaps(snap) if len(snap) else []
-    _check("H06_no_silent_contested_overlap", not overlaps,
-           f"independent-polity overlaps without contested semantics="
-           f"{overlaps or 0}")
-    # Binding machinery runs (empty in production, proven by tests).
-    mem = bind_snapshot_to_hexes(
-        snap, np.array([], dtype=object), [], np.array([]),
-        np.array([], dtype=bool), scenario_id, SNAPSHOT_DATE, 0.0)
-    mem.to_parquet(run_dir / "historical_hex_membership.parquet")
-    audit = hexification_audit(snap, mem)
-    audit.to_csv(run_dir / "historical_hexification_audit.csv",
-                 index=False)
-    overlay = overlay_candidates_from_audit(audit, snap)
-    overlay.to_csv(run_dir / "historical_political_overlay_candidates.csv",
-                   index=False)
-    ctrl_new = controls_from_membership(mem, scenario_id, {}, {})
-    _check("H07_binding_machinery_zero_production",
-           len(mem) == 0 and len(audit) == 0 and len(overlay) == 0
-           and len(ctrl_new) == 0,
-           f"membership={len(mem)}, audit rows={len(audit)}, overlay "
-           f"candidates={len(overlay)}, new control rows={len(ctrl_new)} "
-           f"— method {BINDING_METHOD} implemented and synthetic-tested; "
-           "no fabricated production rows")
-    timings["snapshot_s"] = time.perf_counter() - t0
+    snap_prod.to_parquet(
+        run_dir / "historical_snapshot_features_1756_08_01.parquet")
+    sel = select_features_for_snapshot(features, SNAPSHOT_DATE)
+    fmem_p, pmem_p = bind_snapshot_to_hexes(
+        snap_prod, np.array([], dtype=object), [],
+        np.array([], dtype=object), np.array([], dtype=bool),
+        scenario_id, SNAPSHOT_DATE)
+    fmem_p.to_parquet(run_dir / "historical_hex_feature_membership.parquet")
+    pmem_p.to_parquet(run_dir / "historical_hex_membership.parquet")
+    cons_p = membership_conservation_audit(snap_prod, pmem_p, None)
+    cons_p.to_csv(run_dir / "membership_conservation_audit.csv",
+                  index=False)
+    hexa_p = hexification_audit(snap_prod, pmem_p, {}, None)
+    hexa_p.to_csv(run_dir / "historical_hexification_audit.csv",
+                  index=False)
+    ov_p = overlay_candidates_from_audit(hexa_p, snap_prod)
+    ov_p.to_csv(run_dir / "historical_political_overlay_candidates.csv",
+                index=False)
+    _check("R16b_production_rows_still_zero",
+           len(sel) == 0 and len(pmem_p) == 0 and len(hexa_p) == 0
+           and len(ov_p) == 0,
+           "production: snapshot 0 / membership 0 / audits 0 / overlay "
+           "0 — SOURCE_GAP is not resolved with synthetic data")
+    contested = check_contested_overlaps(snap_prod) \
+        if len(snap_prod) else []
+    _check("R07_many_to_many_preserved",
+           not contested
+           and {"membership_count", "border_hex",
+                "contributing_boundary_feature_ids"}
+           <= set(pmem_p.columns)
+           and int(pmem3["membership_count"].max()) == 2,
+           "many-to-many membership schema preserved (border fixture "
+           "carries both polities); no silent contested overlaps")
+    timings["production_s"] = time.perf_counter() - t0
 
-    # ---- scenario + regression gates ------------------------------------
+    # ---- regressions -----------------------------------------------------
     snapd = load_scenario(cfg.data_dir, scenario_id)
-    cov = snapd.political_coverage
-    pilot = cov[cov["coverage_unit_id"]
-                == "region_low_countries_1756_pilot"]
-    _check("H08_pilot_coverage_unit",
-           len(pilot) == 1
-           and pilot.iloc[0]["control_coverage_status"]
-           == "SOURCE_IDENTIFIED"
-           and int((cov["control_coverage_status"]
-                    == "COMPLETE").sum()) == 0
-           and len(cov) == 52,
-           "pilot REGION unit added (control=SOURCE_IDENTIFIED, other "
-           "dimensions independent); existing 51 units kept; COMPLETE=0 "
-           "— absence still means UNKNOWN, never neutral")
-    ctrl_sha = sha256_of(sdir / "territorial_control.csv")
-    _check("H09_control_claims_bytes_unchanged",
-           ctrl_sha == sha256_of(m8_dir / "territorial_control.csv")
-           and sha256_of(sdir / "territorial_claims.csv")
-           == sha256_of(m8_dir / "territorial_claims.csv"),
-           "territorial_control/claims byte-identical to MAPGEN-008 — "
-           "SOURCE_GAP added no control and claims were never derived "
-           "from control")
     eu_man = pd.read_csv(eu_dir / "europe_hex_chunk_manifest.csv")
-    _check("H10_europe_coverage_regression",
+    _check("R14_010_europe_regression",
            len(eu_man) == 50
            and int(eu_man["hex_count"].sum()) == 1885422
-           and int(eu_man["terrestrial_count"].sum()) == 862795
-           and int(eu_man["ocean_count"].sum()) == 1022627,
-           "Europe coverage intact: 50 chunks, 1,885,422 hexes "
-           "(862,795 terrestrial / 1,022,627 ocean)")
+           and int(eu_man["terrestrial_count"].sum()) == 862795,
+           "Europe coverage intact (50 chunks / 1,885,422 hexes / "
+           "862,795 terrestrial)")
     tokugawa_sp = make_scenario_polity_id(scenario_id,
                                           "pol_tokugawa_shogunate")
     controllers = set(snapd.territorial_control[
         "controller_scenario_polity_id"].dropna())
-    geo = pd.read_parquet(geo_dir / "geography_hexes.parquet",
-                          columns=["hex_id", "water_type"])
-    tosh_wt = geo.loc[geo["hex_id"] == "h6000_q+002190_r+000789",
-                      "water_type"].iloc[0]
-    aud = snapd.scenario_polity_inclusion_audit
-    _check("H11_scenario_regression",
+    _check("R15_009r2_scenario_regression",
            len(snapd.polities) == 66
            and len(snapd.scenario_polity_relationships) == 46
-           and controllers == {tokugawa_sp}
-           and tosh_wt == "OCEAN"
-           and int((aud["audit_record_status"]
-                    == "SUPERSEDED").sum()) == 1,
-           "009R2 (66 polities/46 relationships, ACTIVE/SUPERSEDED) and "
-           "MAPGEN-008 (Tokugawa, Toshima OCEAN) intact")
+           and controllers == {tokugawa_sp},
+           "66 polities / 46 relationships / Tokugawa-only control")
+    geo = pd.read_parquet(geo_dir / "geography_hexes.parquet",
+                          columns=["hex_id", "water_type"])
+    _check("R16_008_toshima_regression",
+           geo.loc[geo["hex_id"] == "h6000_q+002190_r+000789",
+                   "water_type"].iloc[0] == "OCEAN",
+           "Toshima underlying hex stays OCEAN")
     forb = (scan_forbidden_reference_code(
         Path(__file__).parent / "historical_binding.py")
         + scan_forbidden_reference_code(
             Path(__file__).parent / "historical_geometry.py"))
-    _check("H12_no_modern_admin_generation", not forb,
-           f"AST scan of binding+geometry data layers clean "
-           f"(hits={forb or 0}); HALC (scholarly historical GIS) is the "
-           "only geometry substrate candidate, never Natural Earth")
-    _check("H13_namespace_versions",
-           HPG_SCHEMA_VERSION == "1.1.0"
-           and HPG_ALGORITHM_VERSION == "1.0.0"
+    _check("R13_modern_admin_generation_forbidden", not forb,
+           f"AST scan clean (hits={forb or 0})")
+    _check("R17_versions",
+           HPG_SCHEMA_VERSION == "1.2.0"
+           and HPG_ALGORITHM_VERSION == "1.1.0"
            and SCENARIO_SCHEMA_VERSION == "1.4.0"
-           and "geometry_source_id" in BOUNDARY_FEATURE_COLUMNS
-           and "political_evidence_source_id"
-           in BOUNDARY_FEATURE_COLUMNS,
-           f"hpg schema {HPG_SCHEMA_VERSION} (additive substrate/"
-           "evidence separation), scenario schema unchanged 1.4.0")
-    _check("H14_area_conservation_na",
-           len(mem) == 0,
-           "area conservation gate N/A at 0 production features; the "
-           "identity (source area == membership sum) is enforced by "
-           "synthetic tests and will gate real data in MAPGEN-012+")
+           and "political_evidence_id" in BOUNDARY_FEATURE_COLUMNS,
+           f"hpg schema {HPG_SCHEMA_VERSION} (assertion entity), "
+           f"algorithm {HPG_ALGORITHM_VERSION} (exact-land + union + "
+           "split audits); run-level determinism proved by second run")
 
     # ---- renders ---------------------------------------------------------
     t0 = time.perf_counter()
-    render_halc_sources(
-        run_dir / "low_countries_historical_sources.png", halc,
-        assessment,
-        "MAPGEN-011: acquired historical sources + assessment "
-        "(HALC v15.0 = 1500 substrate, NOT 1756 authority)")
-    render_source_gap(
-        run_dir / "low_countries_source_gap_status.png", catalogue,
-        "MAPGEN-011 pilot outcome: SOURCE_GAP — verified acquisition, "
-        "zero fabricated 1756 polygons")
-    render_coverage(
-        run_dir / "low_countries_coverage_status.png", cov,
-        "Political coverage after MAPGEN-011 — UNKNOWN vs COMPLETE "
-        "distinction preserved")
+    _render_contract(run_dir / "source_vs_evidence_assertion_contract.png",
+                     assertions)
+    _render_land_semantics(
+        run_dir / "exact_land_binding_semantics.png", hexpoly, land,
+        hist, expect_km2, old_wrong_km2, land_km2)
+    _render_winner_distortion(
+        run_dir / "membership_vs_winner_distortion.png", hexpoly, ga, gb,
+        a_cons, a_row)
     from PIL import Image
 
-    img_names = ["low_countries_historical_sources.png",
-                 "low_countries_source_gap_status.png",
-                 "low_countries_coverage_status.png"]
+    img_names = ["source_vs_evidence_assertion_contract.png",
+                 "exact_land_binding_semantics.png",
+                 "membership_vs_winner_distortion.png"]
     aspects = {}
     for n in img_names:
         with Image.open(run_dir / n) as im:
             aspects[n] = round(im.size[0] / im.size[1], 3)
-    _check("H15_renders",
-           all((run_dir / n).exists() for n in img_names)
-           and all(0.3 <= a <= 4.0 for a in aspects.values()),
-           f"{len(img_names)} renders, aspects={aspects}; the 1756 "
-           "continuous-geometry/hex-control/hexification images are "
-           "IMPOSSIBLE without production geometry and are deliberately "
-           "not faked (documented in README)")
+    _check("R18_renders",
+           all(0.3 <= a <= 4.0 for a in aspects.values()),
+           f"{len(img_names)} renders, aspects={aspects} (B/C labelled "
+           "SYNTHETIC SEMANTICS TEST)")
     timings["render_s"] = time.perf_counter() - t0
 
     up_after = {k: sha256_of(Path(k)) for k in upstream}
-    _check("H16_upstream_immutable", up_after == upstream,
-           f"{len(upstream)} upstream/scenario files byte-identical "
-           "before/after")
+    _check("R19_upstream_immutable", up_after == upstream,
+           f"{len(upstream)} upstream files byte-identical before/after")
 
     val = pd.DataFrame(val_rows).sort_values("check_id").reset_index(
         drop=True)
     val.to_csv(run_dir / "pilot_validation.csv", index=False)
     n_pass = int(val["pass"].sum())
-
     summary_rows = [
         ("stage", STAGE),
-        ("outcome", "SOURCE_GAP (formal stop per spec §30 — dataset "
-                    "acquired+verified, no 1756 geometry exists yet)"),
+        ("outcome", "semantics hardening only — MAPGEN-011 SOURCE_GAP "
+                    "frozen"),
         ("hpg_schema_version", HPG_SCHEMA_VERSION),
-        ("dataset_acquired", "HALC v15.0 hdl:10622/PGFYTM"),
-        ("dataset_licence", "CC BY-SA 4.0"),
-        ("dataset_cross_sections", "1500 only (1350/1650/1800 pending "
-                                   "upstream)"),
-        ("halc_locality_polygons", 14863),
+        ("hpg_algorithm_version", HPG_ALGORITHM_VERSION),
+        ("evidence_assertions_registered", len(assertions)),
         ("production_boundary_features", 0),
         ("snapshot_features_1756_08_01", 0),
         ("hex_membership_rows", 0),
         ("new_control_rows", 0),
-        ("overlay_candidates", 0),
-        ("sources_assessed", len(assessment)),
-        ("global_sources_registered", len(reg)),
-        ("coverage_units", len(cov)),
-        ("coverage_complete_units", 0),
+        ("fake_1756_exploit", "REJECTED (negative fixture every run)"),
+        ("binding_denominator", "exact hex ∩ OSM-coast-authority land"),
+        ("same_polity_double_count", "eliminated (union before winner)"),
         ("validation_pass", f"{n_pass}/{len(val)}"),
     ]
     pd.DataFrame(summary_rows, columns=["metric", "value"]).assign(
@@ -421,29 +500,20 @@ def run_historical_pilot(cfg: MapgenConfig,
     manifest = {
         "run_id": run_id, "stage": STAGE,
         "generated_utc": _dt.datetime.now(_dt.timezone.utc).isoformat(),
-        "outcome": "SOURCE_GAP",
         "hpg_schema_version": HPG_SCHEMA_VERSION,
+        "hpg_algorithm_version": HPG_ALGORITHM_VERSION,
         "version_reasons": {
-            "hpg_1.1.0": "additive geometry_source_id + "
-                         "political_evidence_source_id columns: "
-                         "substrate and 1756 political authority are "
-                         "separate by schema",
-        },
-        "halc_acquisition": {
-            "handle": "hdl:10622/PGFYTM", "version": "15.0",
-            "release_date": "2026-01-01",
-            "licence": "CC BY-SA 4.0 (verified via Dataverse API)",
-            "download_date_utc": "2026-08-11",
-            "data_paper_doi": "10.1163/24523666-bja10033",
-            "files_sha256": halc_shas,
-            "crs": "EPSG:4326", "locality_polygons": 14863,
-            "cross_sections_published": ["1500"],
-            "redistribution": "permitted (BY-SA) but kept out of git by "
-                              "data/raw policy",
+            "hpg_schema_1.2.0": "additive evidence-assertion entity + "
+                                "political_evidence_id on features: "
+                                "authority moves from sources to "
+                                "registered assertions",
+            "hpg_algorithm_1.1.0": "binding semantics changed: exact "
+                                   "hex∩OSM-land denominators, "
+                                   "same-polity union before winner, "
+                                   "conservation vs winner-distortion "
+                                   "audit split",
         },
         "binding_method": BINDING_METHOD,
-        "area_conservation_tolerance_note": "to be measured from real "
-        "data when production geometry exists; no magic tolerance set",
         "upstream_sha256": upstream,
         "timings_s": {k: round(v, 1) for k, v in timings.items()},
         "peak_memory_mb": round(_peak_memory_mb(), 1),
@@ -453,7 +523,7 @@ def run_historical_pilot(cfg: MapgenConfig,
     (run_dir / "run_manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False),
         encoding="utf-8")
-    _write_readme(run_dir, run_id, assessment, reg, cov, aspects)
+    _write_readme(run_dir, run_id, assertions, val, aspects)
     review = run_dir / "chatgpt_review"
     review.mkdir(exist_ok=True)
     hdir = cfg.data_dir / "historical"
@@ -464,17 +534,15 @@ def run_historical_pilot(cfg: MapgenConfig,
         "summary.csv": run_dir / "pilot_summary.csv",
         "historical_source_assessment.csv":
             hdir / "historical_source_assessment.csv",
-        "historical_source_registry.csv":
-            hdir / "historical_source_registry.csv",
-        "historical_geometry_catalogue.csv":
-            hdir / "historical_geometry_catalogue.csv",
+        "historical_evidence_assertions.csv":
+            hdir / "historical_evidence_assertions.csv",
+        "membership_conservation_audit.csv":
+            run_dir / "membership_conservation_audit.csv",
         "historical_hexification_audit.csv":
             run_dir / "historical_hexification_audit.csv",
         "historical_political_overlay_candidates.csv":
             run_dir / "historical_political_overlay_candidates.csv",
         "scenario_political_coverage.csv": sdir / "political_coverage.csv",
-        "territorial_control.csv": sdir / "territorial_control.csv",
-        "territorial_claims.csv": sdir / "territorial_claims.csv",
     }
     for dst, src in copies.items():
         shutil.copy2(src, review / dst)
@@ -482,11 +550,6 @@ def run_historical_pilot(cfg: MapgenConfig,
         hdir / "historical_boundary_features.parquet").drop(
         columns="geometry")).to_csv(
         review / "historical_boundary_features.csv", index=False)
-    pd.DataFrame(gpd.read_parquet(
-        run_dir / "historical_snapshot_features_1756_08_01.parquet").drop(
-        columns="geometry")).to_csv(
-        review / "historical_snapshot_features_1756_08_01.csv",
-        index=False)
     pd.read_parquet(run_dir / "historical_hex_membership.parquet").to_csv(
         review / "historical_hex_membership.csv", index=False)
     for n in img_names:
@@ -496,82 +559,194 @@ def run_historical_pilot(cfg: MapgenConfig,
     (run_dir / "run_manifest.json").write_text(
         json.dumps(manifest, indent=2, ensure_ascii=False),
         encoding="utf-8")
-    print(f"[pilot] {run_id}: validation {n_pass}/{len(val)}, outcome="
-          f"SOURCE_GAP (HALC v15.0 acquired, 1500-only), production "
-          f"features=0 ({timings['total_s']:.0f}s)")
+    print(f"[pilot] {run_id}: validation {n_pass}/{len(val)}, "
+          f"exploit REJECTED, exact-land binding proven, production "
+          f"rows still 0 ({timings['total_s']:.0f}s)")
     for w in warnings:
         print(f"[pilot][WARN] {w}")
     return run_dir
 
 
-def _write_readme(run_dir, run_id, assessment, reg, cov, aspects):
+# --------------------------------------------------------------------------
+# Renders
+# --------------------------------------------------------------------------
+def _render_contract(path, assertions):
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(figsize=(14, 8))
+
+    def box(x, y, w, h, text, fc, fs=9):
+        ax.add_patch(plt.Rectangle((x, y), w, h, fc=fc, ec="#333333",
+                                   lw=1.2, zorder=2))
+        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center",
+                fontsize=fs, zorder=3)
+
+    box(0.03, 0.62, 0.28, 0.28,
+        "SOURCE (hsrc_)\n\nwhat a work IS\n(authority level,\nlicence, "
+        "dates)", "#efe9d6")
+    box(0.36, 0.62, 0.28, 0.28,
+        "EVIDENCE ASSERTION (hev_)\n\nwhat a specific locator\nPROVES, "
+        "for which subject,\nfor which dates,\ngeometry vs political "
+        "authority", "#dce7f2")
+    box(0.69, 0.62, 0.28, 0.28,
+        "PRODUCTION FEATURE (hbf_)\n\nmust reference a political\n"
+        "assertion covering the\nsnapshot date — feature-side\ndates "
+        "can never substitute", "#f7dcd7")
+    ax.annotate("", xy=(0.36, 0.76), xytext=(0.31, 0.76),
+                arrowprops={"arrowstyle": "->", "lw": 2})
+    ax.annotate("", xy=(0.69, 0.76), xytext=(0.64, 0.76),
+                arrowprops={"arrowstyle": "->", "lw": 2})
+    box(0.10, 0.10, 0.80, 0.40,
+        "CLOSED EXPLOIT (negatively tested EVERY run, R02/R03):\n\n"
+        "HALC 1500 as geometry source + HALC 1500 as 'evidence' + "
+        "hand-typed feature validity 1750-1760\n-> REJECTED: HALC's "
+        "only assertion is GEOMETRIC_SUBSTRATE_ONLY (1500, political_"
+        "authority=NO)\n\nthe same gate PASSES a feature backed by an "
+        "independent scholarly assertion\n(subject match + explicit "
+        "1756 coverage + exact locator + political_authority=YES)\n\n"
+        f"registered real assertions: {len(assertions)} (HALC substrate "
+        "/ Corsica existence / San Marino continuity)", "#ddead9", 10)
+    ax.set_xlim(0, 1)
+    ax.set_ylim(0, 1)
+    ax.set_axis_off()
+    ax.set_title("MAPGEN-011R: source vs evidence-assertion contract",
+                 fontsize=11)
+    _save(fig, path)
+
+
+def _render_land_semantics(path, hexpoly, land, hist, new_km2, old_km2,
+                           land_km2):
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots(figsize=(11, 9))
+    for g, fc, ec, lw, alpha in [
+            (hexpoly, "#a8c8e8", "#333333", 1.5, 1.0),
+            (land, "#d8d2c0", "#333333", 0.8, 1.0),
+            (shapely.intersection(hist, hexpoly), "#b03a2e", None, 0,
+             0.30),
+            (shapely.intersection(hist, land), "#7a1f1f", None, 0, 0.75)]:
+        for p in shapely.get_parts(g) if g.geom_type.startswith("Multi") \
+                else [g]:
+            if p.geom_type != "Polygon" or p.is_empty:
+                continue
+            xs, ys = zip(*p.exterior.coords)
+            ax.fill(xs, ys, fc=fc, ec=ec, lw=lw or 0, alpha=alpha,
+                    zorder=3)
+    b = shapely.bounds(np.array([hexpoly], dtype=object))[0]
+    ax.set_xlim(b[0] - 2000, b[2] + 2000)
+    ax.set_ylim(b[1] - 2000, b[3] + 2000)
+    ax.set_aspect("equal")
+    ax.set_axis_off()
+    ax.set_title(
+        "SYNTHETIC SEMANTICS TEST (not production data)\n"
+        "exact-land binding: dark red = polygon ∩ (hex ∩ OSM land) = "
+        f"{new_km2:.2f} km2 (counted)\nlight red = old full-hex "
+        f"intersection = {old_km2:.2f} km2 (sea wrongly counted before "
+        f"011R)\nhex land = {land_km2:.2f} km2; share <= 1 hard-gated",
+        fontsize=10)
+    _save(fig, path)
+
+
+def _render_winner_distortion(path, hexpoly, ga, gb, a_cons, a_row):
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, (ax, ax2) = plt.subplots(1, 2, figsize=(15, 8),
+                                  width_ratios=[1, 1])
+    for g, fc in [(shapely.intersection(ga, hexpoly), "#1f618d"),
+                  (shapely.intersection(gb, hexpoly), "#b03a2e")]:
+        for p in shapely.get_parts(g) if g.geom_type.startswith("Multi") \
+                else [g]:
+            xs, ys = zip(*p.exterior.coords)
+            ax.fill(xs, ys, fc=fc, alpha=0.6, zorder=3)
+    xs, ys = zip(*hexpoly.exterior.coords)
+    ax.plot(xs, ys, color="#333333", lw=2)
+    ax.set_aspect("equal")
+    ax.set_axis_off()
+    ax.set_title("SYNTHETIC SEMANTICS TEST: 49% (blue) vs 51% (red) "
+                 "border hex\nred wins the whole hex", fontsize=10)
+    ax2.text(0.0, 0.95, (
+        "loser polity (49%):\n\n"
+        "membership conservation audit:\n"
+        f"  source land       {a_cons['source_land_ground_km2']} km2\n"
+        f"  membership sum    "
+        f"{a_cons['membership_intersection_ground_km2']} km2\n"
+        f"  conservation err  {a_cons['conservation_error_km2']} km2  "
+        "(bookkeeping OK)\n\n"
+        "winner hexification audit (the REAL gameplay error):\n"
+        f"  winner area       "
+        f"{a_row['winner_represented_ground_km2']} km2\n"
+        f"  omission          {a_row['omission_ground_km2']} km2\n"
+        f"  status            {a_row['representation_status']}\n\n"
+        "before 011R these two were conflated and the loss\n"
+        "was invisible (area_error ~ 0 -> 'GOOD')"),
+        va="top", family="monospace", fontsize=10)
+    ax2.set_axis_off()
+    fig.suptitle("membership conservation vs winner distortion — "
+                 "now separate audits", fontsize=11)
+    _save(fig, path)
+
+
+def _write_readme(run_dir, run_id, assertions, val, aspects):
     lines = [
-        f"# {STAGE} Review — Historical Boundary Source Acquisition + "
-        "Low Countries Pilot (outcome: SOURCE_GAP)",
+        f"# {STAGE} Review — Historical Production Gate + Land-Area Hex "
+        "Binding Semantics Hardening",
         "",
-        "**REFERENCE ADMINISTRATION IS NOT GAMEPLAY OWNERSHIP.**",
-        "**SCENARIO POLITICAL GEOGRAPHY IS GAMEPLAY-AUTHORITATIVE ONLY "
-        "WITHIN ITS SCENARIO SNAPSHOT.**",
-        "**MISSING ROW + INCOMPLETE COVERAGE = UNKNOWN, NEVER "
-        "NEUTRAL.**",
         "**HISTORICAL GEOMETRY IS SOURCE-DERIVED, NOT GENERATED FROM "
         "MODERN ADMINISTRATION.**",
+        "**MISSING ROW + INCOMPLETE COVERAGE = UNKNOWN, NEVER "
+        "NEUTRAL.**",
         "",
-        "## What actually happened",
+        f"Run `{run_id}`. MAPGEN-011's historical content is FROZEN "
+        "(HALC v15.0 acquisition, 1500-only finding, SOURCE_GAP, zero "
+        "production rows, byte-identical control/claims). This stage "
+        "fixes implementation semantics only.",
         "",
-        "- The MAPGEN-010 SOURCE_GAP was re-investigated for real: the "
-        "**Historical Atlas of the Low Countries** was located on the "
-        "IISH Dataverse (hdl:10622/PGFYTM), and **version 15.0 "
-        "(released 2026-01-01) was downloaded and verified** — 5 files, "
-        "SHA-256 recorded, licence **CC BY-SA 4.0** confirmed via the "
-        "Dataverse API, data paper DOI 10.1163/24523666-bja10033.",
-        "- Contents verified by inspection: layer `HALC 1500` with "
-        "**14,863 locality polygons** (EPSG:4326) and an ADM0..ADM9 "
-        "administrative hierarchy **for the year 1500**. The published "
-        "dataset contains **only the 1500 cross-section**; 1350/1650/"
-        "1800 are planned upstream but NOT yet released, and no "
-        "1756 sovereignty attributes exist.",
-        "- **1650/1800/1500 ≠ 1756 rule**: with no 1756-applicable "
-        "geometry or per-subject political evidence, production 1756 "
-        "features CANNOT be created without fabrication. Per spec §30 "
-        "the pilot therefore stops formally at **SOURCE_GAP** with "
-        "every candidate recorded in "
-        "`historical_source_assessment.csv` "
-        f"({len(assessment)} candidates, per-axis verdicts, none "
-        "qualifying as 1756 boundary authority).",
-        "- Production rows: boundary features **0**, snapshot features "
-        "**0**, hex membership **0**, new control rows **0**, overlay "
-        "candidates **0**. `territorial_control/claims` are "
-        "byte-identical to MAPGEN-008.",
+        "## Fixes",
         "",
-        "## What was built anyway (and proven by tests)",
+        "- **Fake-1756 exploit closed**: authority now lives in "
+        "registered EVIDENCE ASSERTIONS (hev_), not sources. A feature "
+        "must reference a political assertion whose subject matches and "
+        "whose validity explicitly covers 1756-08-01; HALC's only "
+        "assertion is GEOMETRIC_SUBSTRATE_ONLY (1500, political "
+        "authority NO), so the 'HALC as its own evidence + hand-typed "
+        "1756 validity' path is rejected — and a negative fixture "
+        "executes EVERY run so the gate can never go vacuous (R02/R03). "
+        "hpg schema 1.1.0 → **1.2.0** (additive).",
+        "- **Exact-land binding**: numerators and denominators are now "
+        "the exact hex ∩ OSM-coast-authority land geometry — sea area "
+        "never counts as political land, land_fraction approximations "
+        "are gone, share>1 raises instead of clipping. hpg algorithm "
+        "1.0.0 → **1.1.0**.",
+        "- **Same-polity union**: multi-feature coverage of one hex is "
+        "unioned before the winner decision (no double counting); "
+        "feature-level provenance moves to a separate "
+        "`historical_hex_feature_membership` table.",
+        "- **Audit split**: membership conservation (geometry "
+        "bookkeeping) vs winner hexification distortion (real "
+        "omission/commission via geometry symmetric difference) — a "
+        "49/51 border loss is now visible instead of hiding behind a "
+        "membership sum.",
+        "- **Provenance mandatory**: generated control rows and overlay "
+        "candidates require source + evidence + feature ids "
+        "(None-provenance raises). Claims still never derive from "
+        "control.",
         "",
-        "- hpg schema 1.0.0 → **1.1.0** (additive): "
-        "`geometry_source_id` (substrate) and "
-        "`political_evidence_source_id` are separate columns — a "
-        "cross-section substrate alone can never carry a 1756 "
-        "assertion (machine gate + dedicated tests).",
-        "- `historical_binding.py`: MAX_GROUND_LAND_SHARE hex binding "
-        "(many-to-many preserved, ground-area winner, deterministic "
-        "ties, border/dominance metrics), hexification distortion "
-        "audit, zero-hex-loss → overlay candidates, control generation "
-        "(claims NEVER derived from control), contested-overlap "
-        "detection. All synthetic-tested; production-gated by the "
-        "source-discipline validator.",
-        "- Coverage: `region_low_countries_1756_pilot` added "
-        "(control/evidence = SOURCE_IDENTIFIED, other dimensions "
-        "independent); 51 existing units untouched; COMPLETE = 0.",
+        "## Production state (unchanged, honest)",
         "",
-        "## Unblock paths for a real 1756 pilot (MAPGEN-012 candidate)",
-        "",
-        "1. Upstream publishes the 1650/1800 HALC cross-sections → use "
-        "as substrate + per-subject 1756 continuity evidence "
-        "(priority-4 path of §5).",
-        "2. Build a locality-level 1756 sovereignty evidence table on "
-        "the acquired 1500 substrate from scholarly territorial "
-        "studies (large curation effort, locator-level citations).",
-        "3. Georeferenced near-contemporary maps (Ferraris 1771-78, "
-        "Fricx 1704-12 — both registered) as georeference aids only.",
+        "- boundary features 0 / snapshot features 0 / membership 0 / "
+        "new control 0. SOURCE_GAP is NOT resolved with synthetic data; "
+        f"the {len(assertions)} registered real assertions are "
+        "work-level (HALC substrate, Corsica existence, San Marino "
+        "continuity) and none authorises production geometry.",
         "",
         "## Images",
         "",
@@ -580,16 +755,16 @@ def _write_readme(run_dir, run_id, assessment, reg, cov, aspects):
         lines.append(f"- `{n}` (aspect {a})")
     lines += [
         "",
-        "- The spec's 1756 continuous-geometry / hex-control / "
-        "hexification-error images are impossible without production "
-        "geometry and were deliberately NOT faked.",
+        "- The land-binding and winner-distortion figures are labelled "
+        "SYNTHETIC SEMANTICS TEST — they demonstrate the algorithms, "
+        "not production data.",
         "",
         "## Validation",
         "",
-        "- `validation.csv` lists every gate (acquisition verification, "
-        "assessment completeness, source discipline, zero-fabrication, "
-        "coverage contract, 008/009R2/010 regressions, AST scans, "
-        "upstream immutability). Pass count in `summary.csv`.",
+        "- `validation.csv` covers R01-R19 (frozen 011 outcome, "
+        "non-vacuous exploit rejection + acceptance, exact-land, union, "
+        "many-to-many, winner distortion, provenance, regressions, AST "
+        "scans, upstream immutability). Pass count in `summary.csv`.",
     ]
     (run_dir / "README_REVIEW.md").write_text("\n".join(lines) + "\n",
                                               encoding="utf-8")

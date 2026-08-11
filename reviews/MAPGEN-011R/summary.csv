@@ -1,0 +1,14 @@
+metric,value,run_id
+stage,MAPGEN-011R,historical_pilot_r_20260812
+outcome,semantics hardening only — MAPGEN-011 SOURCE_GAP frozen,historical_pilot_r_20260812
+hpg_schema_version,1.2.0,historical_pilot_r_20260812
+hpg_algorithm_version,1.1.0,historical_pilot_r_20260812
+evidence_assertions_registered,3,historical_pilot_r_20260812
+production_boundary_features,0,historical_pilot_r_20260812
+snapshot_features_1756_08_01,0,historical_pilot_r_20260812
+hex_membership_rows,0,historical_pilot_r_20260812
+new_control_rows,0,historical_pilot_r_20260812
+fake_1756_exploit,REJECTED (negative fixture every run),historical_pilot_r_20260812
+binding_denominator,exact hex ∩ OSM-coast-authority land,historical_pilot_r_20260812
+same_polity_double_count,eliminated (union before winner),historical_pilot_r_20260812
+validation_pass,20/20,historical_pilot_r_20260812

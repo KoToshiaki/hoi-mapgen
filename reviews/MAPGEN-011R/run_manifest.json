@@ -1,0 +1,42 @@
+{
+  "run_id": "historical_pilot_r_20260812",
+  "stage": "MAPGEN-011R",
+  "generated_utc": "2026-08-11T16:48:08.980456+00:00",
+  "hpg_schema_version": "1.2.0",
+  "hpg_algorithm_version": "1.1.0",
+  "version_reasons": {
+    "hpg_schema_1.2.0": "additive evidence-assertion entity + political_evidence_id on features: authority moves from sources to registered assertions",
+    "hpg_algorithm_1.1.0": "binding semantics changed: exact hex∩OSM-land denominators, same-polity union before winner, conservation vs winner-distortion audit split"
+  },
+  "binding_method": "MAX_GROUND_LAND_SHARE",
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_catalogue_009r_20260811\\chatgpt_review\\polities.csv": "fbd08cf86a17b89e722850db472a425bc974bdc456cd8dccbaa3719a18bcea87",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_catalogue_009r_20260811\\chatgpt_review\\scenario_polity_relationships.csv": "3e0a4b3d9094f0576c2a9040c932b60ea9094fc6821f89bebf1a15b088f1ddfe",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e"
+  },
+  "timings_s": {
+    "gates_s": 0.4,
+    "synthetic_semantics_s": 0.0,
+    "production_s": 0.0,
+    "render_s": 0.4
+  },
+  "peak_memory_mb": 186.1,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

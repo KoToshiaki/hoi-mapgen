@@ -26,11 +26,23 @@ from pathlib import Path
 import pandas as pd
 
 # 1.1.0 (MAPGEN-011): additive — geometry_source_id (substrate) and
-# political_evidence_source_id are SEPARATE columns: a cross-section
-# geometry source alone can never carry a snapshot-date political
-# assertion. No existing column changed meaning.
-HPG_SCHEMA_VERSION = "1.1.0"
-HPG_ALGORITHM_VERSION = "1.0.0"
+# political_evidence_source_id are SEPARATE columns.
+# 1.2.0 (MAPGEN-011R): additive — EVIDENCE ASSERTIONS become their own
+# canonical entity (historical_evidence_assertions): a source is not an
+# authority by itself; only a registered assertion (which locator, which
+# subject, which dates, geometry vs political authority) can back a
+# production feature via political_evidence_id. Closes the exploit where
+# a cross-section source + hand-typed feature validity could smuggle a
+# 1756 claim through.
+HPG_SCHEMA_VERSION = "1.2.0"
+# 1.1.0 (MAPGEN-011R): binding semantics changed — land denominators and
+# political intersections use the EXACT hex ∩ OSM-coast-authority land
+# geometry (never land_fraction approximations, sea area never counts);
+# same-polity multi-feature intersections are unioned before the winner
+# decision (no double counting); hexification distortion is measured on
+# the WINNER representation (omission/commission), separately from
+# membership conservation.
+HPG_ALGORITHM_VERSION = "1.1.0"
 
 # Authority levels — deliberately unequal; never flattened.
 SOURCE_AUTHORITY_LEVELS = [
@@ -53,10 +65,36 @@ BOUNDARY_FEATURE_COLUMNS = [
     "boundary_feature_id", "historical_subject_id", "feature_role",
     "valid_from", "valid_to", "temporal_precision", "global_source_id",
     "geometry_source_id", "political_evidence_source_id",
+    "political_evidence_id",
     "source_locator", "interpretation_level", "source_confidence",
     "positional_uncertainty_km", "digitisation_method", "geometry_status",
     "notes",
 ]
+
+ASSERTION_TYPES = ["POLITICAL_CONTROL", "DE_JURE_CLAIM",
+                   "BOUNDARY_POSITION", "TERRITORIAL_CONTINUITY",
+                   "POLITY_EXISTENCE", "GEOMETRIC_SUBSTRATE_ONLY",
+                   "TOPOGRAPHIC_GEOREFERENCE_ONLY"]
+EVIDENCE_ASSERTION_COLUMNS = [
+    "historical_evidence_id", "global_source_id",
+    "historical_subject_id", "assertion_type", "valid_from", "valid_to",
+    "temporal_precision", "exact_locator", "interpretation_level",
+    "confidence", "geometry_authority", "political_authority", "notes",
+]
+
+
+def make_evidence_assertion_id(citation_key_or_source: str,
+                               subject: str, assertion_type: str,
+                               valid_from: str, valid_to: str) -> str:
+    key = (f"{citation_key_or_source}|{subject}|{assertion_type}|"
+           f"{valid_from}|{valid_to}")
+    return f"hev_{_h(key)}"
+
+
+def load_evidence_assertions(data_dir: Path) -> pd.DataFrame:
+    return pd.read_csv(Path(data_dir) / "historical"
+                       / "historical_evidence_assertions.csv",
+                       keep_default_na=False, na_values=[""])
 
 
 def _h(key: str) -> str:

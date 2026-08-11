@@ -1,0 +1,21 @@
+run_id,check_id,pass,detail
+historical_pilot_r_20260812,R01_MAPGEN011_source_gap_unchanged,True,"HALC v15.0 acquisition, 1500-only finding, SOURCE_GAP and zero production features all frozen"
+historical_pilot_r_20260812,R02_H04_not_vacuous,True,"the same gate run PASSES a feature backed by an independent scholarly assertion (subject match, 1756 coverage, locator, political authority) and FAILS the exploit — executed every run, never vacuous"
+historical_pilot_r_20260812,R03_fake_1756_source_exploit_rejected,True,HALC-as-evidence + hand-typed 1756 feature validity is REJECTED (3 violations: assertion validity 1500 only + political_authority=NO)
+historical_pilot_r_20260812,R04_evidence_assertion_required,True,3 registered evidence assertions; HALC carries exactly one — GEOMETRIC_SUBSTRATE_ONLY with political_authority=NO (the assertion that closes the exploit)
+historical_pilot_r_20260812,R05_exact_land_intersection,True,coastal fixture: polygon∩(hex∩land)=9.681 km2 == 9.681; the old full-hex numerator would have counted 19.537 km2 of sea as political land; share=0.5851 <= 1
+historical_pilot_r_20260812,R06_same_polity_union_no_double_count,True,overlapping same-polity features: unioned=20.351 km2 == 20.351; naive sum would be 25.852; feature provenance retained
+historical_pilot_r_20260812,R07_many_to_many_preserved,True,many-to-many membership schema preserved (border fixture carries both polities); no silent contested overlaps
+historical_pilot_r_20260812,R08_winner_distortion_real,True,49/51 border hex: loser's membership area is conserved (error 0.0 km2) but the winner representation shows the REAL omission (12.8506 km2) — distortion is no longer hidden by membership sums
+historical_pilot_r_20260812,R09_zero_hex_provenance,True,zero-hex loss produced an overlay candidate WITH mandatory evidence/source provenance (None-provenance raises)
+historical_pilot_r_20260812,R10_control_provenance_complete,True,generated control rows carry source_id + evidence + feature provenance; None-provenance generation raises
+historical_pilot_r_20260812,R11_claims_not_derived,True,claims are never generated from control (structurally)
+historical_pilot_r_20260812,R12_ocean_never_terrestrial_target,True,OCEAN hex produces zero terrestrial membership
+historical_pilot_r_20260812,R13_modern_admin_generation_forbidden,True,AST scan clean (hits=0)
+historical_pilot_r_20260812,R14_010_europe_regression,True,"Europe coverage intact (50 chunks / 1,885,422 hexes / 862,795 terrestrial)"
+historical_pilot_r_20260812,R15_009r2_scenario_regression,True,66 polities / 46 relationships / Tokugawa-only control
+historical_pilot_r_20260812,R16_008_toshima_regression,True,Toshima underlying hex stays OCEAN
+historical_pilot_r_20260812,R16b_production_rows_still_zero,True,production: snapshot 0 / membership 0 / audits 0 / overlay 0 — SOURCE_GAP is not resolved with synthetic data
+historical_pilot_r_20260812,R17_versions,True,"hpg schema 1.2.0 (assertion entity), algorithm 1.1.0 (exact-land + union + split audits); run-level determinism proved by second run"
+historical_pilot_r_20260812,R18_renders,True,"3 renders, aspects={'source_vs_evidence_assertion_contract.png': 1.685, 'exact_land_binding_semantics.png': 0.835, 'membership_vs_winner_distortion.png': 1.652} (B/C labelled SYNTHETIC SEMANTICS TEST)"
+historical_pilot_r_20260812,R19_upstream_immutable,True,8 upstream files byte-identical before/after
