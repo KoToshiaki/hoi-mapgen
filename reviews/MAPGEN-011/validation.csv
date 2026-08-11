@@ -1,0 +1,17 @@
+run_id,check_id,pass,detail
+historical_pilot_20260811,H01_halc_acquired_and_verified,True,"HALC v15.0 acquired: 14863 locality polygons, CRS EPSG:4326, 5 files with SHA-256 recorded (CC BY-SA 4.0 via Dataverse API)"
+historical_pilot_20260811,H02_halc_registry_updated,True,"registry records the ACTUAL acquired version, licence and the 1500-only cross-section finding"
+historical_pilot_20260811,H03_assessment_table_complete,True,"8 candidates assessed with per-axis verdicts; NO source qualifies as 1756 boundary authority (multi-axis, never one boolean)"
+historical_pilot_20260811,H04_source_discipline_gates,True,"production features=0 (SOURCE_GAP), discipline violations=0; the 1500-cross-section->1756 path is impossible by gate + test"
+historical_pilot_20260811,H05_snapshot_compiled,True,snapshot 1756-08-01: 0 features (temporal selection ran on the real feature table; UNKNOWN validity never auto-matches)
+historical_pilot_20260811,H06_no_silent_contested_overlap,True,independent-polity overlaps without contested semantics=0
+historical_pilot_20260811,H07_binding_machinery_zero_production,True,"membership=0, audit rows=0, overlay candidates=0, new control rows=0 — method MAX_GROUND_LAND_SHARE implemented and synthetic-tested; no fabricated production rows"
+historical_pilot_20260811,H08_pilot_coverage_unit,True,"pilot REGION unit added (control=SOURCE_IDENTIFIED, other dimensions independent); existing 51 units kept; COMPLETE=0 — absence still means UNKNOWN, never neutral"
+historical_pilot_20260811,H09_control_claims_bytes_unchanged,True,territorial_control/claims byte-identical to MAPGEN-008 — SOURCE_GAP added no control and claims were never derived from control
+historical_pilot_20260811,H10_europe_coverage_regression,True,"Europe coverage intact: 50 chunks, 1,885,422 hexes (862,795 terrestrial / 1,022,627 ocean)"
+historical_pilot_20260811,H11_scenario_regression,True,"009R2 (66 polities/46 relationships, ACTIVE/SUPERSEDED) and MAPGEN-008 (Tokugawa, Toshima OCEAN) intact"
+historical_pilot_20260811,H12_no_modern_admin_generation,True,"AST scan of binding+geometry data layers clean (hits=0); HALC (scholarly historical GIS) is the only geometry substrate candidate, never Natural Earth"
+historical_pilot_20260811,H13_namespace_versions,True,"hpg schema 1.1.0 (additive substrate/evidence separation), scenario schema unchanged 1.4.0"
+historical_pilot_20260811,H14_area_conservation_na,True,area conservation gate N/A at 0 production features; the identity (source area == membership sum) is enforced by synthetic tests and will gate real data in MAPGEN-012+
+historical_pilot_20260811,H15_renders,True,"3 renders, aspects={'low_countries_historical_sources.png': 1.588, 'low_countries_source_gap_status.png': 1.685, 'low_countries_coverage_status.png': 2.008}; the 1756 continuous-geometry/hex-control/hexification images are IMPOSSIBLE without production geometry and are deliberately not faked (documented in README)"
+historical_pilot_20260811,H16_upstream_immutable,True,8 upstream/scenario files byte-identical before/after

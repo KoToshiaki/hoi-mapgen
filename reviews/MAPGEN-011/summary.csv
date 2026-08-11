@@ -1,0 +1,18 @@
+metric,value,run_id
+stage,MAPGEN-011,historical_pilot_20260811
+outcome,"SOURCE_GAP (formal stop per spec §30 — dataset acquired+verified, no 1756 geometry exists yet)",historical_pilot_20260811
+hpg_schema_version,1.1.0,historical_pilot_20260811
+dataset_acquired,HALC v15.0 hdl:10622/PGFYTM,historical_pilot_20260811
+dataset_licence,CC BY-SA 4.0,historical_pilot_20260811
+dataset_cross_sections,1500 only (1350/1650/1800 pending upstream),historical_pilot_20260811
+halc_locality_polygons,14863,historical_pilot_20260811
+production_boundary_features,0,historical_pilot_20260811
+snapshot_features_1756_08_01,0,historical_pilot_20260811
+hex_membership_rows,0,historical_pilot_20260811
+new_control_rows,0,historical_pilot_20260811
+overlay_candidates,0,historical_pilot_20260811
+sources_assessed,8,historical_pilot_20260811
+global_sources_registered,17,historical_pilot_20260811
+coverage_units,52,historical_pilot_20260811
+coverage_complete_units,0,historical_pilot_20260811
+validation_pass,16/16,historical_pilot_20260811

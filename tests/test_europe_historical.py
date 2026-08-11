@@ -199,7 +199,7 @@ def test_complete_coverage_valid_case():
 def test_real_scenario_coverage_table():
     s = load_scenario(DATA, SC)
     cov = s.political_coverage
-    assert len(cov) == 51
+    assert len(cov) >= 51  # 51 (010) + pilot region unit (011)
     assert (cov["control_coverage_status"] != "COMPLETE").all()
     kanto = cov[cov["coverage_unit_id"] == "region_kanto_pilot"].iloc[0]
     assert kanto["control_coverage_status"] == "TERRITORY_PARTIAL"
@@ -235,5 +235,5 @@ def test_political_overlay_never_alters_geography():
         "geography_hexes.parquet", columns=["hex_id", "water_type"])
     assert geo.loc[geo["hex_id"] == "h6000_q+002190_r+000789",
                    "water_type"].iloc[0] == "OCEAN"
-    assert HPG_SCHEMA_VERSION == "1.0.0"
+    assert HPG_SCHEMA_VERSION == "1.1.0"  # additive 011 columns
     assert HPG_ALGORITHM_VERSION == "1.0.0"

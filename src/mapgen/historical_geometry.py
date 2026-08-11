@@ -25,7 +25,11 @@ from pathlib import Path
 
 import pandas as pd
 
-HPG_SCHEMA_VERSION = "1.0.0"
+# 1.1.0 (MAPGEN-011): additive — geometry_source_id (substrate) and
+# political_evidence_source_id are SEPARATE columns: a cross-section
+# geometry source alone can never carry a snapshot-date political
+# assertion. No existing column changed meaning.
+HPG_SCHEMA_VERSION = "1.1.0"
 HPG_ALGORITHM_VERSION = "1.0.0"
 
 # Authority levels — deliberately unequal; never flattened.
@@ -48,6 +52,7 @@ GEOMETRY_STATUSES = ["GEOMETRY_PRESENT", "GEOMETRY_PENDING", "SOURCE_GAP"]
 BOUNDARY_FEATURE_COLUMNS = [
     "boundary_feature_id", "historical_subject_id", "feature_role",
     "valid_from", "valid_to", "temporal_precision", "global_source_id",
+    "geometry_source_id", "political_evidence_source_id",
     "source_locator", "interpretation_level", "source_confidence",
     "positional_uncertainty_km", "digitisation_method", "geometry_status",
     "notes",
