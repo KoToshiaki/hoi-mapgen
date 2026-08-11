@@ -34,7 +34,13 @@ import pandas as pd
 # production feature via political_evidence_id. Closes the exploit where
 # a cross-section source + hand-typed feature validity could smuggle a
 # 1756 claim through.
-HPG_SCHEMA_VERSION = "1.2.0"
+# 1.3.0 (MAPGEN-011R2): additive — feature<->evidence links become their
+# own many-to-many table (historical_boundary_feature_evidence) with an
+# evidence_role: one feature carries a BUNDLE (geometry shape +
+# political/claim status + temporal continuity). The single
+# political_evidence_id / political_evidence_source_id columns remain as
+# DEPRECATED aliases and are no longer production authority.
+HPG_SCHEMA_VERSION = "1.3.0"
 # 1.1.0 (MAPGEN-011R): binding semantics changed — land denominators and
 # political intersections use the EXACT hex ∩ OSM-coast-authority land
 # geometry (never land_fraction approximations, sea area never counts);
@@ -42,7 +48,16 @@ HPG_SCHEMA_VERSION = "1.2.0"
 # decision (no double counting); hexification distortion is measured on
 # the WINNER representation (omission/commission), separately from
 # membership conservation.
-HPG_ALGORITHM_VERSION = "1.1.0"
+# 1.2.0 (MAPGEN-011R2): production admission now evaluates the EVIDENCE
+# BUNDLE against a role compatibility matrix (existence never authorises
+# a boundary; de-facto needs control evidence; de-jure needs claim
+# evidence; geometry evidence needs geometry_authority=YES and, when its
+# represented date differs from the snapshot, an unbroken
+# TERRITORIAL_CONTINUITY bridge). Confidence aggregates on an explicit
+# ordinal (worst-of-bundle), component counts are measured on the
+# unioned land geometry, and the land mask is a single source of truth
+# shared by binding and audits.
+HPG_ALGORITHM_VERSION = "1.2.0"
 
 # Authority levels — deliberately unequal; never flattened.
 SOURCE_AUTHORITY_LEVELS = [
@@ -83,6 +98,69 @@ EVIDENCE_ASSERTION_COLUMNS = [
 ]
 
 
+# ---- MAPGEN-011R2: feature <-> evidence bundle model ---------------------
+# A source is a work; an assertion is what one locator in that work
+# proves; a boundary feature is drawn geometry. A feature is admitted to
+# production only by a BUNDLE of assertions, each linked with the role it
+# plays for that feature.
+EVIDENCE_ROLES = ["GEOMETRY_SHAPE", "POLITICAL_STATUS",
+                  "TEMPORAL_CONTINUITY", "CLAIM_STATUS",
+                  "CONTESTED_STATUS", "SUPPORTING", "QA_ONLY"]
+FEATURE_EVIDENCE_LINK_COLUMNS = [
+    "boundary_feature_id", "historical_evidence_id", "evidence_role",
+    "is_required", "notes",
+]
+# Roles that may never, on their own, admit anything to production.
+NON_AUTHORISING_ROLES = {"SUPPORTING", "QA_ONLY"}
+
+# Compatibility matrix: which evidence roles a feature_role requires,
+# and which assertion_type each of those roles must carry.
+# UNCERTAIN_BOUNDARY is deliberately absent: it is review/audit geometry
+# and may never be converted into gameplay control.
+FEATURE_ROLE_REQUIREMENTS = {
+    "POLITY_EXTERNAL_BOUNDARY": {
+        "GEOMETRY_SHAPE": {"BOUNDARY_POSITION", "GEOMETRIC_SUBSTRATE_ONLY"},
+        "POLITICAL_STATUS": {"POLITICAL_CONTROL"},
+    },
+    "DE_FACTO_CONTROL_BOUNDARY": {
+        "GEOMETRY_SHAPE": {"BOUNDARY_POSITION", "GEOMETRIC_SUBSTRATE_ONLY"},
+        "POLITICAL_STATUS": {"POLITICAL_CONTROL"},
+    },
+    "DE_JURE_CLAIM_BOUNDARY": {
+        "GEOMETRY_SHAPE": {"BOUNDARY_POSITION", "GEOMETRIC_SUBSTRATE_ONLY"},
+        "CLAIM_STATUS": {"DE_JURE_CLAIM"},
+    },
+    "DISPUTED_BOUNDARY": {
+        "GEOMETRY_SHAPE": {"BOUNDARY_POSITION", "GEOMETRIC_SUBSTRATE_ONLY"},
+        "CONTESTED_STATUS": {"POLITICAL_CONTROL", "DE_JURE_CLAIM"},
+    },
+    "CONSTITUENT_INTERNAL_BOUNDARY": {
+        "GEOMETRY_SHAPE": {"BOUNDARY_POSITION", "GEOMETRIC_SUBSTRATE_ONLY"},
+        "POLITICAL_STATUS": {"POLITICAL_CONTROL", "DE_JURE_CLAIM"},
+    },
+}
+GAMEPLAY_CONVERTIBLE_ROLES = set(FEATURE_ROLE_REQUIREMENTS)
+
+# Confidence is an ORDERED enum — never compared as a string.
+CONFIDENCE_ORDER = ["UNKNOWN", "LOW", "MEDIUM", "HIGH"]
+
+
+def confidence_rank(value) -> int:
+    v = str(value).upper() if value is not None else "UNKNOWN"
+    return CONFIDENCE_ORDER.index(v) if v in CONFIDENCE_ORDER else 0
+
+
+def worst_confidence(values) -> str:
+    """Worst-of-bundle aggregation on the explicit ordinal.
+
+    HIGH+MEDIUM=MEDIUM, HIGH+LOW=LOW, MEDIUM+UNKNOWN=UNKNOWN. An empty
+    bundle is UNKNOWN (never optimistic)."""
+    vals = list(values)
+    if not vals:
+        return "UNKNOWN"
+    return CONFIDENCE_ORDER[min(confidence_rank(v) for v in vals)]
+
+
 def make_evidence_assertion_id(citation_key_or_source: str,
                                subject: str, assertion_type: str,
                                valid_from: str, valid_to: str) -> str:
@@ -94,6 +172,12 @@ def make_evidence_assertion_id(citation_key_or_source: str,
 def load_evidence_assertions(data_dir: Path) -> pd.DataFrame:
     return pd.read_csv(Path(data_dir) / "historical"
                        / "historical_evidence_assertions.csv",
+                       keep_default_na=False, na_values=[""])
+
+
+def load_feature_evidence_links(data_dir: Path) -> pd.DataFrame:
+    return pd.read_csv(Path(data_dir) / "historical"
+                       / "historical_boundary_feature_evidence.csv",
                        keep_default_na=False, na_values=[""])
 
 

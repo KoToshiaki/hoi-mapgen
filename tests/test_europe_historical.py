@@ -235,5 +235,5 @@ def test_political_overlay_never_alters_geography():
         "geography_hexes.parquet", columns=["hex_id", "water_type"])
     assert geo.loc[geo["hex_id"] == "h6000_q+002190_r+000789",
                    "water_type"].iloc[0] == "OCEAN"
-    assert HPG_SCHEMA_VERSION == "1.2.0"  # +011R evidence assertions
-    assert HPG_ALGORITHM_VERSION == "1.1.0"  # +011R exact-land binding
+    assert HPG_SCHEMA_VERSION == "1.3.0"  # +011R2 evidence link table
+    assert HPG_ALGORITHM_VERSION == "1.2.0"  # +011R2 bundle semantics

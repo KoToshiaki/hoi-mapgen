@@ -1,0 +1,31 @@
+run_id,check_id,pass,detail
+historical_pilot_r2_20260812,R2-01_011R_regression,True,"MAPGEN-011/011R frozen: HALC v15.0 (14,863 localities, 1500-only), SOURCE_GAP, 0 production features, HALC assertion still GEOMETRIC_SUBSTRATE_ONLY / political NO"
+historical_pilot_r2_20260812,R2-02_assertion_type_compatibility,True,compatibility matrix defined for 5 convertible feature roles; UNCERTAIN_BOUNDARY is review/audit geometry only
+historical_pilot_r2_20260812,R2-03_polity_existence_cannot_authorise_boundary,True,"POLITY_EXISTENCE (political_authority=YES, exact locator, 1756 validity) rejected for both required roles: 2 violations — existence is not boundary authority"
+historical_pilot_r2_20260812,R2-04_geometry_authority_required,True,GEOMETRY_SHAPE evidence with geometry_authority=NO rejected
+historical_pilot_r2_20260812,R2-05_de_facto_requires_control_evidence,True,DE_FACTO_CONTROL_BOUNDARY backed by DE_JURE_CLAIM rejected
+historical_pilot_r2_20260812,R2-06_de_jure_requires_claim_evidence,True,DE_JURE_CLAIM_BOUNDARY backed by POLITICAL_CONTROL rejected
+historical_pilot_r2_20260812,R2-07_temporal_continuity_bridge_required,True,"REAL HALC 1500 geometry + 1756 political control, without a continuity bridge, is rejected (interpolation forbidden)"
+historical_pilot_r2_20260812,R2-08_continuity_gap_rejected,True,continuity bridge 1500-1700 leaves a 1700->1756 gap and is rejected
+historical_pilot_r2_20260812,R2-09_valid_multi_evidence_bundle_passes,True,direct-1756 bundle PASSES (confidence HIGH+MEDIUM=MEDIUM); 1750-geometry + 1750-1760 continuity + 1756 control also PASSES (HIGH+LOW+MEDIUM=LOW)
+historical_pilot_r2_20260812,R2-09b_zero_hex_provenance,True,"zero-hex loss becomes an overlay candidate with evidence, source and subject provenance"
+historical_pilot_r2_20260812,R2-10_confidence_ordinal,True,worst-of-bundle on the explicit ordinal; the old string min() would have returned HIGH for HIGH+MEDIUM
+historical_pilot_r2_20260812,R2-11_union_component_count,True,two overlapping/adjacent features union to ONE connected component (per-feature part counting would have said 2 and falsely raised ENCLAVE_AT_RISK)
+historical_pilot_r2_20260812,R2-12_multi_subject_provenance,True,membership and audit keep ALL contributing historical subjects (not feats[0] only); confidence is the ordinal worst (HIGH+LOW=LOW)
+historical_pilot_r2_20260812,R2-13_land_union_single_authority,True,audits derive the land union from the SAME per-hex mask the binding used; a divergent explicit union raises instead of being silently accepted
+historical_pilot_r2_20260812,R2-14_control_provenance_bundle,True,multi-source control rows reference a deterministic compiled provenance record (source_id) and keep the full id sets in additive columns; single-source rows keep the real source id; missing provenance raises
+historical_pilot_r2_20260812,R2-15_claims_not_derived,True,claims are never generated from control
+historical_pilot_r2_20260812,R2-16_SOURCE_GAP_still_zero,True,production: 0 features / 0 evidence links / 0 snapshot / 0 membership / 0 audits — synthetic fixtures were never written into production data
+historical_pilot_r2_20260812,R2-17_010_europe_regression,True,"Europe coverage intact (50 chunks / 1,885,422 hexes / 862,795 terrestrial)"
+historical_pilot_r2_20260812,R2-18_009r2_scenario_regression,True,66 polities / 46 relationships / Tokugawa-only control / ACTIVE-SUPERSEDED audit intact
+historical_pilot_r2_20260812,R2-19_toshima_regression,True,Toshima underlying hex stays OCEAN
+historical_pilot_r2_20260812,R2-20_versions,True,"hpg schema 1.3.0 (feature-evidence link table), algorithm 1.2.0 (bundle compatibility + continuity + ordinal confidence + union components); determinism proved by a second run"
+historical_pilot_r2_20260812,R2-21_assertion_table_integrity,True,"3 production assertions + fixtures pass integrity (enums, date order, registered sources, duplicate semantics, orphan links)"
+historical_pilot_r2_20260812,R2-22_ocean_never_terrestrial_target,True,OCEAN hexes produce zero terrestrial membership
+historical_pilot_r2_20260812,R2-23_no_silent_contested_overlap,True,two independent polities overlapping the same area without contested semantics is detected; the same pair passes once one side is DE_JURE_CLAIM_BOUNDARY (silent clipping stays forbidden)
+historical_pilot_r2_20260812,R2-24_exact_land_binding_retained,True,coastal hex: counted 9.68 km2 (polygon ∩ land); the pre-011R full-hex numerator would have counted 19.54 km2 including sea
+historical_pilot_r2_20260812,R2-25_same_polity_union_retained,True,overlapping same-polity features unioned to 26.40 km2; naive per-feature sum would be 36.08 km2
+historical_pilot_r2_20260812,R2-26_winner_distortion_retained,True,49/51 hex: conservation error 0.0 km2 (bookkeeping OK) but winner omission 12.8506 km2 (real gameplay loss)
+historical_pilot_r2_20260812,R2-27_modern_admin_generation_forbidden,True,AST scan of the binding/geometry data layers clean (hits=0)
+historical_pilot_r2_20260812,R2-28_renders,True,"3 renders, aspects={'feature_evidence_bundle_contract.png': 1.592, 'assertion_role_compatibility_matrix.png': 1.988, 'temporal_continuity_bridge.png': 2.263} (synthetic panels labelled SYNTHETIC SEMANTICS TEST)"
+historical_pilot_r2_20260812,R2-29_upstream_immutable,True,8 upstream files byte-identical before/after
