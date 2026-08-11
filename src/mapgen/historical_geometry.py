@@ -40,7 +40,11 @@ import pandas as pd
 # political/claim status + temporal continuity). The single
 # political_evidence_id / political_evidence_source_id columns remain as
 # DEPRECATED aliases and are no longer production authority.
-HPG_SCHEMA_VERSION = "1.3.0"
+# 1.4.0 (MAPGEN-012): additive — AUTHORISED SNAPSHOT schema. The hex
+# binder accepts only compiler output (production_authorised=True) whose
+# confidence and provenance are BUNDLE-DERIVED; deprecated per-feature
+# aliases can no longer influence anything downstream.
+HPG_SCHEMA_VERSION = "1.4.0"
 # 1.1.0 (MAPGEN-011R): binding semantics changed — land denominators and
 # political intersections use the EXACT hex ∩ OSM-coast-authority land
 # geometry (never land_fraction approximations, sea area never counts);
@@ -57,7 +61,12 @@ HPG_SCHEMA_VERSION = "1.3.0"
 # ordinal (worst-of-bundle), component counts are measured on the
 # unioned land geometry, and the land mask is a single source of truth
 # shared by binding and audits.
-HPG_ALGORITHM_VERSION = "1.2.0"
+# 1.3.0 (MAPGEN-012): the binder's ADMISSION CONTRACT changed — only
+# authorised snapshot features may be bound, and membership/control
+# confidence + provenance are bundle-derived. The binding METRICS
+# (exact-land intersection, same-polity union, winner rule) are
+# unchanged.
+HPG_ALGORITHM_VERSION = "1.3.0"
 
 # Authority levels — deliberately unequal; never flattened.
 SOURCE_AUTHORITY_LEVELS = [

@@ -1,0 +1,33 @@
+run_id,check_id,pass,detail
+central_europe_1756_pilot_20260812,M12-01_011R2_regression,True,assertion table (5 rows) and 2 feature-evidence links pass 011R2 integrity; no silent contested overlap
+central_europe_1756_pilot_20260812,M12-02_raw_feature_cannot_bind_directly,True,binding a raw boundary feature raises: the binder accepts only compile_authorised_snapshot_features() output
+central_europe_1756_pilot_20260812,M12-03_bundle_compiler_required,True,compiler authorised 1 of 1 raw features (rejected 0); bundle confidence and provenance are compiler-derived
+central_europe_1756_pilot_20260812,M12-04_deprecated_alias_mutation_inert,True,rewriting the deprecated political_evidence_id / political_evidence_source_id / source_confidence aliases does not change the compiled snapshot at all
+central_europe_1756_pilot_20260812,M12-05_bundle_confidence_reaches_control,True,"membership and control confidence come from the compiled bundle (['MEDIUM']), never from the deprecated feature field"
+central_europe_1756_pilot_20260812,M12-06_bundle_evidence_ids_reach_control,True,evidence ids propagate end to end: ['hev_63418cd6ce49|hev_886d8a602567']
+central_europe_1756_pilot_20260812,M12-07_bundle_source_ids_reach_control,True,source ids propagate end to end: ['hsrc_34735c52ef0d']
+central_europe_1756_pilot_20260812,M12-08_explicit_subject_mapping,True,"every authorised feature resolves through the explicit, reviewed subject -> scenario polity mapping ({'hsub_meissen_electoral_saxony_core': 'pol_saxony'})"
+central_europe_1756_pilot_20260812,M12-09_direct_1756_source_verified,True,"1756 Vaugondy/Robert sheet (BnF, public domain) acquired; raster sha256 matches the georeference record; represented date 1756 is the sheet's own privilege year, not a reissue"
+central_europe_1756_pilot_20260812,M12-10_source_licence_verified,True,Vaugondy licence verified public domain; the Utrecht 1756 corroboration sheet is recorded LICENCE_BLOCKED and was NOT downloaded (its repository rights field is unusable)
+central_europe_1756_pilot_20260812,M12-11_gcp_artifact_complete,True,"11 GCPs in the canonical artifact (10 from the sheet's own graticule, 1 independent settlement check); prime meridian recorded as FERRO_20W_OF_PARIS (NOT assumed Greenwich)"
+central_europe_1756_pilot_20260812,M12-12_holdout_residual_measured,True,"selected PROJECTIVE: fit RMS 50 m, holdout RMS 1453 m (graticule-only 88 m, settlement check 2902 m); POLYNOMIAL_2 fit 11 m but holdout 243,405 m — overfitting rejected"
+central_europe_1756_pilot_20260812,M12-13_no_modern_admin_boundary_tracing,True,AST scan of the georeference/binding layers is clean and no GCP uses modern administrative geometry (only the sheet's graticule + one settlement point)
+central_europe_1756_pilot_20260812,M12-14_production_feature_positive,True,1 production boundary feature(s) digitised from the 1756 raster; positional uncertainty 2.975 km (never 0)
+central_europe_1756_pilot_20260812,M12-15_authorised_snapshot_positive,True,"1 authorised 1756 snapshot feature(s), bundle confidence ['MEDIUM']"
+central_europe_1756_pilot_20260812,M12-16_exact_land_binding,True,1426 membership rows via MAX_GROUND_LAND_SHARE on exact hex n OSM-coast-authority land; max land share 1.0000
+central_europe_1756_pilot_20260812,M12-17_same_polity_union,True,"feature-level rows 1426 -> unioned polity rows 1426: one row per (hex, polity), no double counting"
+central_europe_1756_pilot_20260812,M12-18_many_to_many_preserved,True,membership keeps every polity per hex; border hexes 0
+central_europe_1756_pilot_20260812,M12-19_structural_container_control_zero,True,controllers ['sp_992101257e91'] contain no structural container or composite root
+central_europe_1756_pilot_20260812,M12-20_root_member_duplicate_control_zero,True,no hex carries control from both a composite root and a member
+central_europe_1756_pilot_20260812,M12-21_claims_not_derived,True,claims were not generated from control
+central_europe_1756_pilot_20260812,M12-22_low_countries_source_gap_unchanged,True,Low Countries stays SOURCE_GAP and HALC v15.0 was NOT reused for Central Europe
+central_europe_1756_pilot_20260812,M12-23_europe_hex_regression,True,"Europe coverage intact (50 chunks / 1,885,422 hexes)"
+central_europe_1756_pilot_20260812,M12-24_scenario_catalogue_regression,True,66 polities / 46 relationships / ACTIVE-SUPERSEDED intact
+central_europe_1756_pilot_20260812,M12-25_toshima_regression,True,Toshima underlying hex stays OCEAN
+central_europe_1756_pilot_20260812,M12-26_conservation_measured,True,"membership conservation: source land 16,035.1 km2 (union path) vs membership sum 16,035.1 km2 (per-hex sum), error -0.003 km2 = 0 ppm. MECHANISM: geodesic area is not additive under projected-plane subdivision - splitting the territory across ~1.3k hexes introduces internal edges that are straight in EPSG:3857 but not geodesics, and the measured effect (~0.9 m sagitta on a 6 km east-west edge) accounts for the residual. Tolerance 1000 ppm was set from this measurement, not chosen a priori."
+central_europe_1756_pilot_20260812,M12-27_winner_distortion_measured,True,"winner representation 17,702.6 km2 vs source 16,035.1 km2 (omission 0.0, commission 1,667.5, symdiff 1,667.5) — status GOOD"
+central_europe_1756_pilot_20260812,M12-28_no_silent_zero_hex_loss,True,"zero-hex losses 0, overlay candidates 0 (loss is never silent)"
+central_europe_1756_pilot_20260812,M12-29_incomplete_coverage_keeps_unknown,True,"53 coverage units, COMPLETE=0; the pilot is TERRITORY_PARTIAL so a missing control row still means UNKNOWN"
+central_europe_1756_pilot_20260812,M12-30_versions,True,hpg 1.4.0/1.3.0; new georeference namespace 1.0.0/1.0.0; determinism proved by a second run
+central_europe_1756_pilot_20260812,M12-31_renders,True,"6 production renders, aspects={'central_europe_1756_source_map.png': 1.242, 'central_europe_georeference_gcps.png': 2.294, 'central_europe_1756_continuous_geometry.png': 1.203, 'central_europe_1756_hex_membership.png': 1.184, 'central_europe_1756_control.png': 1.184, 'central_europe_hexification_error.png': 1.907}"
+central_europe_1756_pilot_20260812,M12-32_upstream_immutable,True,6 upstream files byte-identical

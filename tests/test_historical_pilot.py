@@ -331,12 +331,22 @@ def _snap_rows(*rows):
 
 def _row(pid, geom, fid="hbf_x", subject=None, evid="hev_syn",
          gsrc="hsrc_syn", conf="MEDIUM"):
+    """AUTHORISED snapshot row (same schema the compiler emits)."""
     return {"boundary_feature_id": fid,
             "historical_subject_id": subject or f"hsub_{pid[3:]}",
             "scenario_polity_id": pid,
             "feature_role": "POLITY_EXTERNAL_BOUNDARY",
-            "political_evidence_id": evid, "global_source_id": gsrc,
-            "source_confidence": conf, "snapshot_date": SNAP,
+            "snapshot_date": SNAP, "bundle_confidence": conf,
+            "bundle_evidence_ids": evid, "bundle_source_ids": gsrc,
+            "bundle_evidence_roles": "GEOMETRY_SHAPE|POLITICAL_STATUS",
+            "valid_from": "1748-01-01", "valid_to": "1763-12-31",
+            "positional_uncertainty_km": 5.0,
+            "geometry_status": "GEOMETRY_PRESENT",
+            "production_authorised": True,
+            # deprecated aliases retained to prove they are ignored
+            "political_evidence_id": "hev_DEPRECATED",
+            "global_source_id": "hsrc_DEPRECATED",
+            "source_confidence": "HIGH",
             "geometry": geom}
 
 
@@ -517,11 +527,11 @@ def test_zero_hex_loss_overlay_candidate_with_provenance():
     hexa = hexification_audit(snap, pmem, dict(zip(ids, polys)))
     cands = overlay_candidates_from_audit(hexa, snap)
     assert list(cands["scenario_polity_id"]) == ["sp_b"]
-    assert cands.iloc[0]["political_evidence_id"] == "hev_syn"
-    assert cands.iloc[0]["global_source_id"] == "hsrc_syn"
+    assert cands.iloc[0]["bundle_evidence_ids"] == "hev_syn"
+    assert cands.iloc[0]["bundle_source_ids"] == "hsrc_syn"
     assert cands.iloc[0]["historical_subject_ids"] == "hsub_b"
     bad = snap.copy()
-    bad["political_evidence_id"] = None
+    bad["bundle_evidence_ids"] = None
     with pytest.raises(ValueError, match="provenance"):
         overlay_candidates_from_audit(hexa, bad)
 
@@ -553,7 +563,7 @@ def test_control_provenance_bundle_and_no_claims():
         == "hsrc_only"
     # provenance is mandatory
     stripped = pm_one.copy()
-    stripped["contributing_global_source_ids"] = ""
+    stripped["bundle_source_ids"] = ""
     with pytest.raises(ValueError, match="provenance"):
         controls_from_membership(stripped, SC)
 
@@ -599,11 +609,12 @@ def test_regressions_and_source_gap_state():
     assert len(s.scenario_polity_relationships) == 46
     feats = gpd.read_parquet(DATA / "historical"
                              / "historical_boundary_features.parquet")
-    assert len(feats) == 0
     links = pd.read_csv(DATA / "historical"
                         / "historical_boundary_feature_evidence.csv")
-    assert len(links) == 0  # SOURCE_GAP: nothing linked in production
+    # MAPGEN-012: the Central Europe pilot added real production
+    # geometry; every feature still carries a complete evidence bundle
     assert list(links.columns) == FEATURE_EVIDENCE_LINK_COLUMNS
+    assert set(links["boundary_feature_id"])         == set(feats["boundary_feature_id"])
     assertions = pd.read_csv(
         DATA / "historical" / "historical_evidence_assertions.csv")
     halc = assertions[assertions["assertion_type"]
@@ -613,5 +624,5 @@ def test_regressions_and_source_gap_state():
     man = pd.read_csv(
         "output/europe_foundation_20260811/europe_hex_chunk_manifest.csv")
     assert int(man["hex_count"].sum()) == 1885422
-    assert HPG_SCHEMA_VERSION == "1.3.0"
-    assert HPG_ALGORITHM_VERSION == "1.2.0"
+    assert HPG_SCHEMA_VERSION == "1.4.0"
+    assert HPG_ALGORITHM_VERSION == "1.3.0"

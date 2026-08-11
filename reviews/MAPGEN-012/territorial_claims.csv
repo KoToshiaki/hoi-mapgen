@@ -1,0 +1,2 @@
+scenario_id,territorial_target_type,territorial_target_id,claimant_scenario_polity_id,claim_type,source_confidence,source_id,notes
+seven_years_war_1756_08_01,TERRESTRIAL_HEX,h6000_q+002183_r+000819,sp_5cbc14bfb67b,CORE_TERRITORY,HIGH,src_69e8dfc1b435,Shogunal seat; core territory claim mirrors control.

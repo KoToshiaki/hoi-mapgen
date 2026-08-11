@@ -144,7 +144,12 @@ def test_global_source_reused_across_two_synthetic_scenarios():
 def test_historical_geometry_provenance_required():
     feats = gpd.read_parquet(DATA / "historical"
                              / "historical_boundary_features.parquet")
-    assert len(feats) == 0  # no production geometry without sources
+    # MAPGEN-012: production geometry exists now, and every feature must
+    # still resolve to a registered source (no geometry without sources)
+    reg0 = pd.read_csv(DATA / "historical"
+                       / "historical_source_registry.csv")
+    assert feats["geometry_source_id"].isin(
+        set(reg0["global_source_id"])).all()
     cat = pd.read_csv(DATA / "historical"
                       / "historical_geometry_catalogue.csv")
     reg = pd.read_csv(DATA / "historical"
@@ -235,5 +240,5 @@ def test_political_overlay_never_alters_geography():
         "geography_hexes.parquet", columns=["hex_id", "water_type"])
     assert geo.loc[geo["hex_id"] == "h6000_q+002190_r+000789",
                    "water_type"].iloc[0] == "OCEAN"
-    assert HPG_SCHEMA_VERSION == "1.3.0"  # +011R2 evidence link table
-    assert HPG_ALGORITHM_VERSION == "1.2.0"  # +011R2 bundle semantics
+    assert HPG_SCHEMA_VERSION == "1.4.0"  # +012 authorised snapshot
+    assert HPG_ALGORITHM_VERSION == "1.3.0"  # +012 admission contract

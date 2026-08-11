@@ -1,0 +1,65 @@
+{
+  "run_id": "central_europe_1756_pilot_20260812",
+  "stage": "MAPGEN-012",
+  "generated_utc": "2026-08-11T18:05:51.079414+00:00",
+  "hpg_schema_version": "1.4.0",
+  "hpg_algorithm_version": "1.3.0",
+  "historical_map_georeference_schema_version": "1.0.0",
+  "historical_map_georeference_algorithm_version": "1.0.0",
+  "version_reasons": {
+    "hpg_schema_1.4.0": "additive authorised-snapshot schema",
+    "hpg_algorithm_1.3.0": "binder admission contract: only compiled authorised features, with bundle-derived confidence and provenance",
+    "georeference_1.0.0": "new namespace for historical raster georeferencing (GCP artifact, transform comparison, holdout residuals)"
+  },
+  "map_source": {
+    "citation_key": "vaugondy_1756_haute_saxe_bnf",
+    "global_source_id": "hsrc_34735c52ef0d",
+    "title": "Partie meridionale du cercle de Haute Saxe ...",
+    "author": "Gilles Robert de Vaugondy",
+    "holding_institution": "Bibliotheque nationale de France",
+    "ark": "btv1b530412497",
+    "represented_date": "1756",
+    "publication_date": "1756",
+    "licence": "public domain (PD-France, PD-US-expired)",
+    "image_sha256": "022986c4969242dacd3492860bf84f71caa89f11c13ba6479a4ba375c3d82c10",
+    "prime_meridian": "FERRO_20W_OF_PARIS",
+    "prime_meridian_offset_deg_east": -17.662771
+  },
+  "corroboration_outstanding": {
+    "source": "Utrecht UB 1756 'seat of war' map (20.500.14918/430596)",
+    "status": "LICENCE_BLOCKED — record verified, file not acquired, so the Vaugondy sheet is currently the sole boundary authority for this pilot"
+  },
+  "positional_uncertainty_rule": "sqrt(max(graticule_holdout_rms, settlement_check)^2 + (line_width_px * m_per_px)^2 + (simplify_px * m_per_px)^2)",
+  "conservation_tolerance_rule": "max(0.05 km2, 1000 ppm of source land area); measured error this run -0.0030 km2 = 0 ppm, caused by geodesic area being non-additive under projected-plane subdivision (internal hex edges are straight in EPSG:3857, not geodesics)",
+  "border_uncertainty_rule": "a border hex whose dominance margin is below the land a one-uncertainty-radius boundary shift could sweep (uncertainty_km * 6 km) becomes UNRESOLVED, never DISPUTED_CONTROL: cartographic uncertainty is not a historical dispute",
+  "binding_method": "MAX_GROUND_LAND_SHARE",
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_control.csv": "ece749b6cdc676454acea99cb3f05ab45ef5b43a062bfb4cb553c49bdab8f098",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_foundation_20260811\\chatgpt_review\\territorial_claims.csv": "efe7ae8a72ad7e520d494efd036d3b5c80d0ce45aff833031eccf731c44f3e4e",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_catalogue_009r_20260811\\chatgpt_review\\polities.csv": "fbd08cf86a17b89e722850db472a425bc974bdc456cd8dccbaa3719a18bcea87",
+    "D:\\VScode\\hoi\\mapgen\\output\\scenario_catalogue_009r_20260811\\chatgpt_review\\scenario_polity_relationships.csv": "3e0a4b3d9094f0576c2a9040c932b60ea9094fc6821f89bebf1a15b088f1ddfe",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "compiler_s": 0.0,
+    "extent_s": 0.5,
+    "binding_s": 0.6,
+    "render_s": 2.1
+  },
+  "peak_memory_mb": 1787.6,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

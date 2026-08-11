@@ -37,6 +37,7 @@ from .historical_geometry import (CONFIDENCE_ORDER, EVIDENCE_ROLES,
                                   FEATURE_ROLE_REQUIREMENTS,
                                   GAMEPLAY_CONVERTIBLE_ROLES,
                                   NON_AUTHORISING_ROLES, confidence_rank,
+                                  select_features_for_snapshot,
                                   worst_confidence)
 from .islands import ground_area_perimeter
 
@@ -77,7 +78,8 @@ def land_union_from(hex_land, explicit=None):
     raises — binding and audits may never use different land masks."""
     geoms = list(hex_land.values()) if isinstance(hex_land, dict) \
         else [g for g in hex_land]
-    geoms = [g for g in geoms if g is not None and not shapely.is_empty(g)]
+    geoms = [shapely.make_valid(g) for g in geoms
+             if g is not None and not shapely.is_empty(g)]
     derived = shapely.union_all(geoms) if geoms else None
     if explicit is None:
         return derived
@@ -265,6 +267,106 @@ def evaluate_feature_bundle(feature, links: pd.DataFrame,
     return v, info
 
 
+AUTHORISED_SNAPSHOT_COLUMNS = [
+    "boundary_feature_id", "historical_subject_id", "scenario_polity_id",
+    "feature_role", "snapshot_date", "bundle_confidence",
+    "bundle_evidence_ids", "bundle_source_ids", "bundle_evidence_roles",
+    "valid_from", "valid_to", "positional_uncertainty_km",
+    "geometry_status", "production_authorised", "geometry",
+]
+# Deprecated per-feature aliases: kept for provenance display only, they
+# can never influence the compiled snapshot or anything downstream.
+DEPRECATED_FEATURE_AUTHORITY_FIELDS = (
+    "political_evidence_id", "political_evidence_source_id",
+    "source_confidence")
+
+
+def compile_authorised_snapshot_features(features: pd.DataFrame,
+                                         links: pd.DataFrame,
+                                         assertions: pd.DataFrame,
+                                         registry: pd.DataFrame,
+                                         subject_mapping: pd.DataFrame,
+                                         snapshot_date: str):
+    """THE only route from raw historical features to bindable data.
+
+    Selects temporal candidates, validates each evidence bundle, rejects
+    any feature with a single violation, resolves the scenario polity
+    from an EXPLICIT mapping, and compiles bundle-derived confidence and
+    provenance. Deprecated per-feature alias fields are never read.
+
+    Returns (authorised, rejected).
+    """
+    import geopandas as gpd
+
+    mapping = dict(zip(subject_mapping["historical_subject_id"],
+                       subject_mapping["scenario_polity_id"])) \
+        if len(subject_mapping) else {}
+    empty = gpd.GeoDataFrame(
+        {c: pd.Series(dtype="object")
+         for c in AUTHORISED_SNAPSHOT_COLUMNS if c != "geometry"},
+        geometry=pd.Series(dtype="object"))
+    rej_cols = ["boundary_feature_id", "historical_subject_id",
+                "feature_role", "rejection_reasons"]
+    if not len(features):
+        return empty, pd.DataFrame(columns=rej_cols)
+    cands = select_features_for_snapshot(features, snapshot_date)
+    rows, rejected = [], []
+    skipped = features[~features["boundary_feature_id"].isin(
+        cands["boundary_feature_id"])] if len(cands) else features
+    for t in skipped.itertuples():
+        rejected.append({
+            "boundary_feature_id": t.boundary_feature_id,
+            "historical_subject_id": t.historical_subject_id,
+            "feature_role": t.feature_role,
+            "rejection_reasons": "feature temporal validity does not "
+                                 f"cover {snapshot_date}"})
+    for t in cands.itertuples():
+        row = {"boundary_feature_id": t.boundary_feature_id,
+               "historical_subject_id": t.historical_subject_id,
+               "feature_role": t.feature_role}
+        v, info = evaluate_feature_bundle(row, links, assertions,
+                                          registry, snapshot_date)
+        loc = getattr(t, "source_locator", None)
+        if not isinstance(loc, str) or not loc or loc == "UNKNOWN":
+            v.append("exact feature source_locator required")
+        g = getattr(t, "geometry", None)
+        if g is None or shapely.is_empty(g):
+            v.append("empty geometry")
+        elif not shapely.is_valid(g):
+            v.append("invalid geometry")
+        unc = getattr(t, "positional_uncertainty_km", None)
+        if unc is None or (isinstance(unc, float) and np.isnan(unc)) \
+                or float(unc) <= 0:
+            v.append("positional_uncertainty_km must be measured and "
+                     "> 0 for a historical map feature")
+        pid = mapping.get(t.historical_subject_id)
+        if not pid:
+            v.append("no explicit scenario polity mapping for "
+                     f"{t.historical_subject_id} (name matching is "
+                     "forbidden)")
+        if v:
+            rejected.append({**row, "rejection_reasons": "; ".join(v)})
+            continue
+        rows.append({
+            **row, "scenario_polity_id": pid,
+            "snapshot_date": snapshot_date,
+            "bundle_confidence": info["confidence"],
+            "bundle_evidence_ids": _joined(info["evidence_ids"]),
+            "bundle_source_ids": _joined(info["source_ids"]),
+            "bundle_evidence_roles": _joined(info["roles"]),
+            "valid_from": t.valid_from, "valid_to": t.valid_to,
+            "positional_uncertainty_km": float(unc),
+            "geometry_status": getattr(t, "geometry_status",
+                                       "GEOMETRY_PRESENT"),
+            "production_authorised": True,
+            "geometry": t.geometry,
+        })
+    out = gpd.GeoDataFrame(pd.DataFrame(
+        rows, columns=AUTHORISED_SNAPSHOT_COLUMNS), geometry="geometry",
+        crs=getattr(features, "crs", None)) if rows else empty
+    return out, pd.DataFrame(rejected, columns=rej_cols)
+
+
 def validate_production_features(features: pd.DataFrame,
                                  registry: pd.DataFrame,
                                  assertions: pd.DataFrame,
@@ -424,11 +526,25 @@ def bind_snapshot_to_hexes(snapshot, hex_polys: np.ndarray,
     counting); exact ties break by stable scenario_polity_id order.
     Raises ValueError if a land share exceeds 1 beyond tolerance.
     """
+    if len(snapshot):
+        missing = [c for c in ("production_authorised",
+                               "bundle_confidence", "bundle_evidence_ids",
+                               "bundle_source_ids", "scenario_polity_id")
+                   if c not in snapshot.columns]
+        if missing:
+            raise ValueError(
+                "bind_snapshot_to_hexes accepts ONLY authorised snapshot "
+                f"features; missing columns {missing}. Raw features must "
+                "go through compile_authorised_snapshot_features()")
+        if not snapshot["production_authorised"].astype(bool).all():
+            raise ValueError(
+                "bind_snapshot_to_hexes: every row must have "
+                "production_authorised=True")
     ctrl = snapshot[snapshot["feature_role"].isin(CONTROL_ROLES)]
     fcols = ["scenario_id", "snapshot_date", "hex_id",
              "scenario_polity_id", "historical_subject_id",
-             "boundary_feature_id", "political_evidence_id",
-             "global_source_id", "intersection_ground_km2",
+             "boundary_feature_id", "bundle_evidence_ids",
+             "bundle_source_ids", "intersection_ground_km2",
              "binding_method"]
     pcols = ["scenario_id", "snapshot_date", "hex_id",
              "scenario_polity_id", "intersection_ground_km2",
@@ -436,8 +552,9 @@ def bind_snapshot_to_hexes(snapshot, hex_polys: np.ndarray,
              "dominance_margin", "membership_count", "border_hex",
              "contributing_boundary_feature_ids",
              "contributing_historical_subject_ids",
-             "political_evidence_ids", "contributing_global_source_ids",
-             "source_confidence", "binding_method"]
+             "bundle_evidence_ids", "bundle_source_ids",
+             "source_confidence", "positional_uncertainty_km",
+             "binding_method"]
     if not len(ctrl) or not len(hex_polys):
         return (pd.DataFrame(columns=fcols), pd.DataFrame(columns=pcols))
     tree = shapely.STRtree(np.asarray(hex_polys, dtype=object))
@@ -463,9 +580,8 @@ def bind_snapshot_to_hexes(snapshot, hex_polys: np.ndarray,
                 "scenario_polity_id": t.scenario_polity_id,
                 "historical_subject_id": t.historical_subject_id,
                 "boundary_feature_id": t.boundary_feature_id,
-                "political_evidence_id": getattr(
-                    t, "political_evidence_id", None),
-                "global_source_id": getattr(t, "global_source_id", None),
+                "bundle_evidence_ids": t.bundle_evidence_ids,
+                "bundle_source_ids": t.bundle_source_ids,
                 "intersection_ground_km2": round(km2, 6),
                 "binding_method": BINDING_METHOD,
             })
@@ -497,14 +613,21 @@ def bind_snapshot_to_hexes(snapshot, hex_polys: np.ndarray,
                     f.boundary_feature_id for f in feats),
                 "contributing_historical_subject_ids": _joined(
                     f.historical_subject_id for f in feats),
-                "political_evidence_ids": _joined(
-                    getattr(f, "political_evidence_id", None)
-                    for f in feats),
-                "contributing_global_source_ids": _joined(
-                    getattr(f, "global_source_id", None) for f in feats),
-                # ORDINAL worst-of-bundle (never string min)
+                "bundle_evidence_ids": _joined(
+                    p for f in feats
+                    for p in str(f.bundle_evidence_ids).split(
+                        ID_SEPARATOR)),
+                "bundle_source_ids": _joined(
+                    p for f in feats
+                    for p in str(f.bundle_source_ids).split(
+                        ID_SEPARATOR)),
+                # ORDINAL worst-of-bundle (never string min); the
+                # COMPILED bundle confidence is the only authority.
                 "source_confidence": worst_confidence(
-                    f.source_confidence for f in feats),
+                    f.bundle_confidence for f in feats),
+                "positional_uncertainty_km": max(
+                    float(getattr(f, "positional_uncertainty_km", 0.0)
+                          or 0.0) for f in feats),
                 "binding_method": BINDING_METHOD,
             })
         if not entries:
@@ -642,9 +765,10 @@ def overlay_candidates_from_audit(audit, snapshot) -> pd.DataFrame:
             raise ValueError(f"overlay candidate {t.scenario_polity_id} "
                              "without source feature provenance")
         f = src.iloc[0]
-        eid = f.get("political_evidence_id")
-        gsid = f.get("global_source_id")
-        if not isinstance(eid, str) or not isinstance(gsid, str):
+        eid = f.get("bundle_evidence_ids")
+        gsid = f.get("bundle_source_ids")
+        if not isinstance(eid, str) or not isinstance(gsid, str) \
+                or not eid or not gsid:
             raise ValueError(
                 f"overlay candidate {t.scenario_polity_id}: provenance "
                 "(political_evidence_id/global_source_id) is mandatory")
@@ -654,8 +778,8 @@ def overlay_candidates_from_audit(audit, snapshot) -> pd.DataFrame:
             "source_feature_id": f["boundary_feature_id"],
             "historical_subject_ids":
                 t.contributing_historical_subject_ids,
-            "political_evidence_id": eid,
-            "global_source_id": gsid,
+            "bundle_evidence_ids": eid,
+            "bundle_source_ids": gsid,
             "source_ground_area_km2": t.source_land_ground_km2,
             "reason": "feature survives in source geometry but wins "
                       "zero hexes under MAX_GROUND_LAND_SHARE",
@@ -664,8 +788,8 @@ def overlay_candidates_from_audit(audit, snapshot) -> pd.DataFrame:
         })
     return pd.DataFrame(rows, columns=[
         "candidate_id", "scenario_polity_id", "source_feature_id",
-        "historical_subject_ids", "political_evidence_id",
-        "global_source_id", "source_ground_area_km2", "reason",
+        "historical_subject_ids", "bundle_evidence_ids",
+        "bundle_source_ids", "source_ground_area_km2", "reason",
         "recommended_representation", "status"])
 
 
@@ -697,8 +821,8 @@ def controls_from_membership(polity_mem, scenario_id: str,
     dom = polity_mem[polity_mem["is_dominant"]]
     rows = []
     for t in dom.itertuples():
-        sids = str(getattr(t, "contributing_global_source_ids", "") or "")
-        eids = str(getattr(t, "political_evidence_ids", "") or "")
+        sids = str(getattr(t, "bundle_source_ids", "") or "")
+        eids = str(getattr(t, "bundle_evidence_ids", "") or "")
         fids = str(getattr(t, "contributing_boundary_feature_ids", "")
                    or "")
         extra = (provenance_by_polity or {}).get(t.scenario_polity_id, {})

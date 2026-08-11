@@ -1,0 +1,2 @@
+scenario_polity_id,contributing_historical_subject_ids,source_land_ground_km2,winner_represented_ground_km2,winner_area_error_km2,winner_area_error_fraction,omission_ground_km2,commission_ground_km2,symmetric_difference_ground_km2,source_component_count,represented_hex_count,zero_hex_survival,border_hex_count,mean_dominance_margin,representation_status
+sp_992101257e91,hsub_meissen_electoral_saxony_core,16035.0847,17702.5611,1667.4764,0.103989,0.0,1667.4766,1667.4766,4,1426,True,0,11.244798,GOOD
