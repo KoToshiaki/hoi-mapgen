@@ -1,0 +1,2 @@
+boundary_feature_id,historical_subject_id,feature_role,rejection_reasons
+hbf_82df724eeace,hsub_schwarzburg_unpartitioned_wash,UNCERTAIN_BOUNDARY,hbf_82df724eeace: feature_role UNCERTAIN_BOUNDARY is not convertible to production gameplay control (review/audit geometry only); no explicit scenario polity mapping for hsub_schwarzburg_unpartitioned_wash (name matching is forbidden)

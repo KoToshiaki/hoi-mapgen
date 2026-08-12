@@ -1,4 +1,3 @@
 historical_subject_id,scenario_id,polity_id,scenario_polity_id,mapping_basis,reviewed
 hsub_meissen_electoral_saxony_core,seven_years_war_1756_08_01,pol_saxony,sp_992101257e91,"The sheet's MARQUISAT DE MISNIE bloc is the core territory of the Electorate of Saxony, which is the most specific registered territorial actor (MAPGEN-009R2 catalogue). No new polity was invented.",YES
 hsub_duchy_of_saxe_weimar,seven_years_war_1756_08_01,pol_saxe_weimar,sp_539bf465a695,"The sheet labels this bloc 'DUCHE DE WEIMAR', so the subject IS the registered actor: a 1:1 mapping with no inference beyond the map's own naming.",YES
-hsub_schwarzburg,seven_years_war_1756_08_01,pol_schwarzburg,sp_64fa0df4a5a7,"The sheet labels this bloc 'SCHWARTZBURG', so the subject IS the registered actor: a 1:1 mapping with no inference beyond the map's own naming.",YES

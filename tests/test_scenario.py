@@ -399,7 +399,16 @@ def test_inclusion_audit_covers_all_europe_polities():
         s.scenario_polities["scenario_polity_id"] != tokugawa]
     audit = s.scenario_polity_inclusion_audit
     audited = set(audit["included_polity_id"].dropna())
-    assert set(europe["polity_id"]) <= audited
+    # MAPGEN-014: a superseded model artifact keeps its scenario row for
+    # audit history but is no longer named by an active audit row — its
+    # candidate row records the replacements instead.
+    superseded = set(s.scenario_polities.loc[
+        s.scenario_polities["existence_status"]
+        == "MODEL_ARTIFACT_SUPERSEDED", "polity_id"])
+    assert set(europe["polity_id"]) - superseded <= audited
+    for p in superseded:
+        assert audit["superseded_by_candidate_ids"].fillna("").str.len().gt(
+            0).any()
     # And the audit also tracks evaluated-but-not-included candidates.
     assert (audit["included_polity_id"].isna()).sum() >= 5
 
@@ -493,9 +502,15 @@ def test_mapgen013_promotion_only_ever_added_rows():
 
 
 def test_playability_not_decided():
+    """No playability decision has been taken for any polity that is
+    still an active actor. A superseded model artifact is explicitly
+    NON_PLAYABLE, which is a correction, not a design decision."""
     s = load_scenario(DATA, SC)
-    assert (s.scenario_polities["playability_status"]
-            == "UNDECIDED").all()
+    sp = s.scenario_polities
+    active = sp[sp["existence_status"] != "MODEL_ARTIFACT_SUPERSEDED"]
+    assert (active["playability_status"] == "UNDECIDED").all()
+    superseded = sp[sp["existence_status"] == "MODEL_ARTIFACT_SUPERSEDED"]
+    assert (superseded["playability_status"] == "NON_PLAYABLE").all()
 
 
 # --------------------------------------------------------------------------
@@ -654,7 +669,9 @@ def test_active_counts_exclude_superseded_no_double_unresolved():
     act = audit[audit["audit_record_status"] == "ACTIVE"]
     sup = audit[audit["audit_record_status"] == "SUPERSEDED"]
     assert len(act) + len(sup) == len(audit)
-    assert len(sup) == 1
+    # Schleswig-Holstein (MAPGEN-009R) and the Schwarzburg model artifact
+    # (MAPGEN-014) — both replaced by refined children, neither deleted.
+    assert len(sup) == 2
     unres = act[act["inclusion_status"] == "UNRESOLVED"]
     # Schleswig contributes via its two refined children ONLY —
     # the superseded parent never double-counts.
@@ -681,17 +698,24 @@ def test_009r_historical_content_unchanged_by_r2():
     # 1756 sheet labels itself (Saxe-Weimar, Schwarzburg); everything the
     # 009R2 review approved is otherwise untouched.
     s = load_scenario(DATA, SC)
-    added = {"pol_saxe_weimar", "pol_schwarzburg"}
+    # MAPGEN-013 added Saxe-Weimar and Schwarzburg; MAPGEN-014 superseded
+    # the Schwarzburg artifact and registered the two principalities that
+    # actually existed. Nothing the 009R2 review approved was touched.
+    added = {"pol_saxe_weimar", "pol_schwarzburg",
+             "pol_schwarzburg_rudolstadt", "pol_schwarzburg_sondershausen"}
     assert added <= set(s.polities["polity_id"])
     assert len(s.polities) == 66 + len(added)
     assert len(s.scenario_polities) == 66 + len(added)
-    assert len(s.scenario_polity_relationships) == 46 + len(added)
+    # the superseded artifact lost its live imperial relationship
+    assert len(s.scenario_polity_relationships) == 46 + len(added) - 1
     rc = s.scenario_polity_relationships[
         "relationship_type"].value_counts().to_dict()
-    assert rc["IMPERIAL_MEMBER_OF"] == 29 + len(added)
+    assert rc["IMPERIAL_MEMBER_OF"] == 29 + len(added) - 1
     assert "pol_corsican_republic" in set(s.polities["polity_id"])
-    assert (s.scenario_polities["playability_status"]
-            == "UNDECIDED").all()
+    active = s.scenario_polities[
+        s.scenario_polities["existence_status"]
+        != "MODEL_ARTIFACT_SUPERSEDED"]
+    assert (active["playability_status"] == "UNDECIDED").all()
 
 
 def test_mapgen008_controls_still_untouched_after_009r():

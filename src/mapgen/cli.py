@@ -47,6 +47,8 @@ def main(argv: list[str] | None = None) -> int:
                    "historical political geometry foundation (resumable)"),
         ("pilot", "MAPGEN-011: historical boundary source acquisition + "
                   "Low Countries production pilot"),
+        ("revision", "MAPGEN-014: source corroboration, polity model "
+                     "correction and canonical authority revision"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -104,6 +106,12 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "revision":
+        from .historical_revision_pipeline import run_historical_revision
+
+        run_historical_revision(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "pilot":

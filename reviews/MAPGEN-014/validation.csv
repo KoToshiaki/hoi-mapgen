@@ -1,0 +1,35 @@
+run_id,check_id,pass,detail
+central_europe_1756_revision_20260813,M14-01_base_commit,True,MAPGEN-014 builds on MAPGEN-013 commit 5eff1643982ccc8954dbeced216f7ed71053c9dd
+central_europe_1756_revision_20260813,M14-02_mapgen013_regression,True,"MAPGEN-013 artifacts intact: 1,614 canonical rows, 1,096 promoted CONTROLLED, 4 published conflicts"
+central_europe_1756_revision_20260813,M14-03_pol_schwarzburg_not_active_actor,True,"pol_schwarzburg is retained for audit history as MODEL_ARTIFACT_SUPERSEDED / NON_TERRITORIAL_INSTITUTION, controls nothing and authorises no geometry; it was NOT repurposed as a structural container"
+central_europe_1756_revision_20260813,M14-04_two_principalities_individually_audited,True,"Schwarzburg-Rudolstadt and Schwarzburg-Sondershausen are registered and audited individually, each with its imperial title at the snapshot date"
+central_europe_1756_revision_20260813,M14-05_no_unpartitioned_schwarzburg_control,True,"the SCHWARTZBURG wash is UNCERTAIN_BOUNDARY, has no polity mapping and cannot reach production; neither principality controls a hex"
+central_europe_1756_revision_20260813,M14-06_source_lineage_recorded,True,"4 sources carry lineage: {'hsrc_34735c52ef0d': 'PARTIALLY_INDEPENDENT', 'hsrc_79b470dbf941': 'PARTIALLY_INDEPENDENT', 'hsrc_a5816e9281d6': 'INDEPENDENT', 'hsrc_1bead8f288ea': 'INDEPENDENT'}"
+central_europe_1756_revision_20260813,M14-07_derivative_not_double_counted,True,2 sources are corroboration-eligible and none is a derivative or same-plate copy; the two map houses are French Sanson/Jaillot and German Homann/Nuremberg
+central_europe_1756_revision_20260813,M14-08_each_georeference_independent,True,"the 1747 source did NOT inherit the Vaugondy transform: it has no GCP row at all, because its graticule numerals could not be read unambiguously and no control point was invented"
+central_europe_1756_revision_20260813,M14-09_continuity_required_for_off_date_geometry,True,"1747 geometry is not admitted to the 1756 snapshot; no geometry-authoritative assertion exists for it, so the continuity bridge cannot be bypassed"
+central_europe_1756_revision_20260813,M14-10_existence_is_not_continuity,True,"the scholarly authority proves the polities existed, not where their boundaries ran: POLITY_EXISTENCE with geometry_authority NO, never reused as continuity"
+central_europe_1756_revision_20260813,M14-11_corroboration_measured,True,"corroboration recorded per subject: {'INSUFFICIENT_OVERLAP': np.int64(1), 'UNRESOLVED': np.int64(1), 'AGREES': np.int64(1)} — the Weimar overlap is UNRESOLVED (not measured), not silently called agreement"
+central_europe_1756_revision_20260813,M14-12_uncertainty_not_tuned,True,uncertainty stays at the measured 9.168 km (never lowered); the revision produced {'CONTROLLED->UNRESOLVED': 401} — no row was moved INTO CONTROLLED
+central_europe_1756_revision_20260813,M14-13_saxony_stale_authority_resolved,True,"401 canonical rows carried the stale 2.975 km classification and were superseded: {'CONTROLLED': 1096, 'UNRESOLVED': 426} -> {'CONTROLLED': 695, 'UNRESOLVED': 827}. A repeat revision changes 0 rows, so the new state is stable"
+central_europe_1756_revision_20260813,M14-14_supersession_log_complete,True,"401 revision rows carry old/new promotion id, status, controller and uncertainty; 1 promotion(s) marked SUPERSEDED and none deleted"
+central_europe_1756_revision_20260813,M14-15_prior_conflicts_resolved,True,all 4 MAPGEN-013 conflict hexes re-evaluated: {'EXPLICITLY_UNRESOLVED': np.int64(4)} — the earlier row was not preferred just for being older
+central_europe_1756_revision_20260813,M14-16_canonical_target_unique,True,"1,614 canonical rows, 0 duplicate keys"
+central_europe_1756_revision_20260813,M14-17_canonical_provenance_complete,True,"490 provenance rows, one per promoted target, all carrying the global source bundle"
+central_europe_1756_revision_20260813,M14-18_no_aggregate_class_controller,True,11 aggregation classes hold no polity id and no territory
+central_europe_1756_revision_20260813,M14-19_hre_controller_zero,True,the Empire gained two more estates and still controls nothing
+central_europe_1756_revision_20260813,M14-20_exact_land_binding,True,"1,530 membership rows on exact hex ∩ OSM land, max share 1.0000"
+central_europe_1756_revision_20260813,M14-21_multi_polity_memberships_preserved,True,16 multi-polity border hexes kept as many-to-many membership; the wash contributes none because it is no longer authorised
+central_europe_1756_revision_20260813,M14-22_no_silent_snapping,True,no geometry was snapped or clipped; exactly one feature is rejected from production: hbf_82df724eeace: feature_role UNCERTAIN_BOUNDARY is not convertible to production gamepla
+central_europe_1756_revision_20260813,M14-23_overlay_hard_gate,True,"no subject was pushed to OVERLAY_ONLY: {'STANDARD_HEX': np.int64(2), 'UNRESOLVED': np.int64(1)}. A source-uncertainty failure is never hidden behind an overlay"
+central_europe_1756_revision_20260813,M14-24_low_countries_source_gap,True,Low Countries still SOURCE_GAP
+central_europe_1756_revision_20260813,M14-25_europe_grid_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+central_europe_1756_revision_20260813,M14-26_toshima_regression,True,Toshima hex still OCEAN and its island-component row intact
+central_europe_1756_revision_20260813,M14-27_claims_not_derived,True,claims table still holds its single MAPGEN-008 row; control never generated claims
+central_europe_1756_revision_20260813,M14-28_incomplete_coverage_unknown,True,"0 COMPLETE coverage units; 1,614 canonical rows against 3,828 hexes in the extent alone, and UNRESOLVED never carries a controller"
+central_europe_1756_revision_20260813,M14-29_all_source_licences_assessed,True,"13 assessed sources each carry an explicit licence verdict ({'YES': np.int64(7), 'NO': np.int64(4), 'UNKNOWN': np.int64(2)}) and every source added by this stage is verified YES; the 1747 raster is public-domain but is NOT redistributed in this repository (Gallica conditions recorded)"
+central_europe_1756_revision_20260813,M14-30_deterministic_identifiers,True,"promotion and revision ids are content-derived hashes, so a repeat run reproduces them exactly (promo_115617644595); the two-run byte comparison is reported separately"
+central_europe_1756_revision_20260813,M14-31_canonical_integrity,True,canonical integrity: clean
+central_europe_1756_revision_20260813,M14-32_forbidden_reference_scan,True,AST scans of the revision pipeline and promotion module are clean of reference-administration usage
+central_europe_1756_revision_20260813,M14-33_renders,True,"6 renders written, aspects {'source_lineage_and_corroboration.png': 2.151, 'vaugondy_vs_secondary_boundary.png': 2.452, 'schwarzburg_model_correction.png': 1.703, 'saxony_uncertainty_before_after.png': 2.298, 'canonical_control_revision.png': 2.439, 'central_europe_control_after_corroboration.png': 1.278}"
+central_europe_1756_revision_20260813,M14-34_upstream_immutable,True,2 upstream artifacts byte-identical

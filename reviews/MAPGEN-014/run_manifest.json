@@ -1,0 +1,39 @@
+{
+  "run_id": "central_europe_1756_revision_20260813",
+  "stage": "MAPGEN-014",
+  "generated_utc": "2026-08-12T17:54:26.866626+00:00",
+  "base_commit_mapgen013": "5eff1643982ccc8954dbeced216f7ed71053c9dd",
+  "scenario_control_promotion_schema_version": "1.0.0",
+  "scenario_control_promotion_algorithm_version": "1.0.0",
+  "hpg_schema_version": "1.4.0",
+  "hpg_algorithm_version": "1.3.0",
+  "scenario_schema_version": "1.4.0",
+  "schwarzburg_correction": "pol_schwarzburg was a model artifact created from one map wash. NDB 24 (2010) shows the house was partitioned in 1599 into Schwarzburg-Rudolstadt and Schwarzburg-Sondershausen, both imperial principalities in 1756 with seat and vote in the Reichsfuerstenrat from 1754. The artifact is superseded, the two principalities are registered, and the wash geometry is demoted to UNCERTAIN_BOUNDARY so it can never bind.",
+  "corroboration_outcome": "The 1747 Zollmann / Homann Heirs sheets were acquired and audited. They corroborate the DEPICTION finding — neither source separates the two Schwarzburg principalities — but no boundary distance was measured, because georeferencing was attempted and not completed and no control point was invented. The Saxon core is outside the 1747 sheets entirely.",
+  "uncertainty_model": "global 9.168 km from the 1756 sheet's own four independent settlement checks. No local uncertainty zone was created, because that requires cross-source residuals that this stage did not obtain.",
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "bind_s": 0.8,
+    "revision_s": 0.3,
+    "render_s": 3.0,
+    "total_s": 4.4
+  },
+  "peak_memory_mb": 1788.5,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}
