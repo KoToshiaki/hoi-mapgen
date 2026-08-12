@@ -1,7 +1,7 @@
 {
   "run_id": "central_europe_1756_expand_20260813",
   "stage": "MAPGEN-013",
-  "generated_utc": "2026-08-12T17:00:06.192761+00:00",
+  "generated_utc": "2026-08-12T17:01:42.576108+00:00",
   "base_commit_mapgen012": "1793ea1786d6c4796d1cb0349387a5046b2358fc",
   "scenario_control_promotion_schema_version": "1.0.0",
   "scenario_control_promotion_algorithm_version": "1.0.0",
@@ -26,14 +26,14 @@
     "D:\\VScode\\hoi\\mapgen\\output\\central_europe_1756_pilot_20260812\\pilot_summary.csv": "bceb3221867fc3ea26ea499dca61a429d16535e19c720a630c8b33b8a625e512"
   },
   "timings_s": {
-    "load_s": 0.1,
+    "load_s": 0.0,
     "bind_s": 0.8,
     "audit_s": 0.6,
     "promotion_s": 0.1,
-    "render_s": 1.9,
-    "total_s": 3.7
+    "render_s": 2.2,
+    "total_s": 3.9
   },
-  "peak_memory_mb": 1806.3,
+  "peak_memory_mb": 1813.5,
   "package_versions": {
     "numpy": "2.5.1",
     "pandas": "3.0.5",

@@ -769,7 +769,7 @@ def run_historical_pilot(cfg: MapgenConfig,
     m12_now = canonical.loc[canonical["territorial_target_id"].isin(
         set(m12_ctrl["territorial_target_id"])),
         "control_status"].value_counts().to_dict()
-    _check("M13-37_revision_published_not_applied",
+    _check("M13-36_revision_published_not_applied",
            n_flip > 0 and len(revision) > 0
            and m12_now == {"CONTROLLED": 1096, "UNRESOLVED": 330},
            f"at {unc_km:.3f} km, {n_flip:,} of {len(revision):,} "
@@ -788,7 +788,7 @@ def run_historical_pilot(cfg: MapgenConfig,
                  and pd.isna(m12_owner[t])))
         for t in conflicts["territorial_target_id"]) \
         if len(conflicts) else True
-    _check("M13-38_promotion_conflicts_disclosed",
+    _check("M13-37_promotion_conflicts_disclosed",
            len(conflicts) == len(m13_already) and retained
            and (len(conflicts) == 0
                 or conflicts["resolution"].eq(
@@ -1356,7 +1356,7 @@ def _write_readme(run_dir, run_id, s, refine, topo, aspects, raw_d, auth_d,
         "",
         "## 7. Validation",
         "",
-        f"- `validation.csv` holds M13-01..M13-38; pass count "
+        f"- `validation.csv` holds M13-01..M13-37; pass count "
         f"{s['validation_pass']}.",
         "- Determinism: the run is executed twice and the artifacts "
         "compared (see the completion report).",

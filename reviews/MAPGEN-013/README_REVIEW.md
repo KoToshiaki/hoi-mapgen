@@ -51,7 +51,7 @@ Run `central_europe_1756_expand_20260813`, built on MAPGEN-012 commit `1793ea178
 
 ## 7. Validation
 
-- `validation.csv` holds M13-01..M13-38; pass count 37/37.
+- `validation.csv` holds M13-01..M13-37; pass count 37/37.
 - Determinism: the run is executed twice and the artifacts compared (see the completion report).
 
 ## 8. Known limitations — what this run does NOT claim
