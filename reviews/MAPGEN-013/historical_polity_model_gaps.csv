@@ -1,0 +1,4 @@
+map_source_id,observed_on_source,gap_type,reason,action
+hsrc_34735c52ef0d,Enclosed wash outlines of the Thuringian states (Weimar/Gotha/Schwarzburg/Reuss group) west of Meissen,POLITY_MODEL_GAP,"These are real 1756 territorial actors but the MAPGEN-009R2 catalogue tracks them only as AGGREGATION_CANDIDATE classes, so no specific registered polity can carry them. Assigning them to a root polity would be fabrication.",left undigitised; recorded for the catalogue refinement backlog
+hsrc_34735c52ef0d,Principality of Anhalt enclosures,POLITY_MODEL_GAP,cand_anhalt_lines is an AGGREGATION_CANDIDATE with no registered polity id.,left undigitised
+hsrc_34735c52ef0d,Bohemia / Brandenburg / Lusatia areas,SOURCE_EXTRACTION_GAP,"Their wash outlines are not closed within this sheet (they continue past the neat line or merge with uncoloured ground), so no enclosed region can be extracted without inventing the missing side.",not digitised from this sheet

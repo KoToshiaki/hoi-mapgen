@@ -440,16 +440,56 @@ def test_no_modern_admin_generation_for_catalogue():
                                                case=False).any()
 
 
-def test_mapgen008_control_files_immutable():
+CONTROL_BASELINE = Path(
+    "output/scenario_foundation_20260811/chatgpt_review")
+
+
+def assert_mapgen008_rows_semantically_intact():
+    """MAPGEN-013 promotes 1,611 rows into this file, so byte identity is
+    gone by design. What must survive is the MEANING of the three
+    MAPGEN-008 rows: same targets, same controllers, same statuses, same
+    confidence. Claims are still byte-identical — control never generates
+    claims."""
     import hashlib
+
+    base = pd.read_csv(CONTROL_BASELINE / "territorial_control.csv",
+                       keep_default_na=False, na_values=[""])
+    cur = pd.read_csv(Path("data/scenarios") / SC
+                      / "territorial_control.csv",
+                      keep_default_na=False, na_values=[""])
+    cols = ["scenario_id", "territorial_target_type",
+            "territorial_target_id", "controller_scenario_polity_id",
+            "control_status", "source_confidence", "source_id"]
+    assert len(base) == 3
+    kept = cur[cur["territorial_target_id"].isin(
+        base["territorial_target_id"])]
+    assert len(kept) == 3
+    pd.testing.assert_frame_equal(
+        base[cols].sort_values("territorial_target_id")
+        .reset_index(drop=True),
+        kept[cols].sort_values("territorial_target_id")
+        .reset_index(drop=True))
 
     def sha(p):
         return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
-    base = Path("output/scenario_foundation_20260811/chatgpt_review")
-    cur = Path("data/scenarios") / SC
-    for f in ("territorial_control.csv", "territorial_claims.csv"):
-        assert sha(cur / f) == sha(base / f)
+    assert sha(Path("data/scenarios") / SC / "territorial_claims.csv") \
+        == sha(CONTROL_BASELINE / "territorial_claims.csv")
+
+
+def test_mapgen008_control_rows_semantically_immutable():
+    assert_mapgen008_rows_semantically_intact()
+
+
+def test_mapgen013_promotion_only_ever_added_rows():
+    """Promotion may add authority; it may never delete or rewrite a row
+    that was already reviewed."""
+    base = pd.read_csv(CONTROL_BASELINE / "territorial_control.csv")
+    cur = pd.read_csv(Path("data/scenarios") / SC
+                      / "territorial_control.csv")
+    assert len(cur) >= len(base)
+    assert set(base["territorial_target_id"]) <= set(
+        cur["territorial_target_id"])
 
 
 def test_playability_not_decided():
@@ -637,25 +677,22 @@ def test_superseded_rows_cannot_register_or_control():
 
 
 def test_009r_historical_content_unchanged_by_r2():
+    # MAPGEN-013 registered exactly two further imperial estates that the
+    # 1756 sheet labels itself (Saxe-Weimar, Schwarzburg); everything the
+    # 009R2 review approved is otherwise untouched.
     s = load_scenario(DATA, SC)
-    assert len(s.polities) == 66
-    assert len(s.scenario_polities) == 66
-    assert len(s.scenario_polity_relationships) == 46
+    added = {"pol_saxe_weimar", "pol_schwarzburg"}
+    assert added <= set(s.polities["polity_id"])
+    assert len(s.polities) == 66 + len(added)
+    assert len(s.scenario_polities) == 66 + len(added)
+    assert len(s.scenario_polity_relationships) == 46 + len(added)
     rc = s.scenario_polity_relationships[
         "relationship_type"].value_counts().to_dict()
-    assert rc["IMPERIAL_MEMBER_OF"] == 29
+    assert rc["IMPERIAL_MEMBER_OF"] == 29 + len(added)
     assert "pol_corsican_republic" in set(s.polities["polity_id"])
     assert (s.scenario_polities["playability_status"]
             == "UNDECIDED").all()
 
 
 def test_mapgen008_controls_still_untouched_after_009r():
-    import hashlib
-
-    def sha(p):
-        return hashlib.sha256(Path(p).read_bytes()).hexdigest()
-
-    base = Path("output/scenario_foundation_20260811/chatgpt_review")
-    cur = Path("data/scenarios") / SC
-    for f in ("territorial_control.csv", "territorial_claims.csv"):
-        assert sha(cur / f) == sha(base / f)
+    assert_mapgen008_rows_semantically_intact()

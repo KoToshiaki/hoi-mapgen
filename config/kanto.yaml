@@ -531,6 +531,11 @@ scenarios:
   # MAPGEN-009R2: the 009R run whose historical content must remain
   # unchanged by the review-contract fixes.
   mapgen009r_baseline_run: scenario_catalogue_009r_20260811
+  # MAPGEN-013: the historical production path reads terrain/water and
+  # island components from this geography run directly, so it never has to
+  # touch the reference-administration config namespace and can pass its
+  # own forbidden-reference AST scan.
+  geography_run: geography_v1_3_islands_006r_20260809
 
 human_geography:
   upstream_run: geography_v1_3_islands_006r_20260809

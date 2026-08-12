@@ -211,13 +211,24 @@ def test_real_scenario_coverage_table():
 
 
 def test_relationship_still_creates_no_territory():
+    """Control comes from digitised sources only. After MAPGEN-013 the
+    controllers are the Tokugawa row plus the polities that actually have
+    1756 production geometry — never an overlord that merely holds a
+    relationship."""
     s = load_scenario(DATA, SC)
-    controllers = s.territorial_control[
-        "controller_scenario_polity_id"].dropna()
+    controllers = set(s.territorial_control[
+        "controller_scenario_polity_id"].dropna())
     from mapgen.scenario import make_scenario_polity_id
 
-    assert set(controllers) == {make_scenario_polity_id(
-        SC, "pol_tokugawa_shogunate")}
+    produced = set(pd.read_csv(
+        DATA / "historical" / "historical_subject_scenario_mapping.csv")
+        ["polity_id"].map(lambda p: make_scenario_polity_id(SC, p)))
+    assert make_scenario_polity_id(SC, "pol_tokugawa_shogunate") \
+        in controllers
+    assert controllers <= produced | {
+        make_scenario_polity_id(SC, "pol_tokugawa_shogunate")}
+    for overlord in ("pol_holy_roman_empire", "pol_habsburg_monarchy"):
+        assert make_scenario_polity_id(SC, overlord) not in controllers
 
 
 def test_raw_many_to_many_intersection_allowed():

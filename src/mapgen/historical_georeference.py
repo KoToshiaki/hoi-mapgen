@@ -163,6 +163,27 @@ def evaluate_models(gcps: pd.DataFrame, models=None) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def select_model_stable(audit: pd.DataFrame, independent_col: str,
+                        max_independent_m: float = 50_000.0) -> str:
+    """Select on GEOMETRIC holdout, but disqualify any model whose
+    INDEPENDENT check residual explodes.
+
+    A polynomial can snake through the graticule nodes (best geometric
+    holdout) while being wildly wrong between them; only independent
+    points off the grid reveal that. Complexity is therefore never
+    rewarded unless the model is also globally stable.
+    """
+    ok = audit[(audit["status"] == "FITTED")
+               & audit["holdout_rms_m"].notna()
+               & (audit[independent_col] <= max_independent_m)]
+    if not len(ok):
+        raise ValueError("no model is both fittable and globally stable")
+    best = float(ok["holdout_rms_m"].min())
+    order = {m: i for i, m in enumerate(TRANSFORM_MODELS)}
+    cands = ok[ok["holdout_rms_m"] <= best * 1.10]
+    return sorted(cands["model"], key=lambda m: order[m])[0]
+
+
 def select_model(audit: pd.DataFrame) -> str:
     """Pick the SIMPLEST model whose holdout RMS is not materially worse
     than the best (within 10%). Complexity is never rewarded by fit

@@ -605,8 +605,10 @@ def test_missing_not_neutral_preserved():
 
 def test_regressions_and_source_gap_state():
     s = load_scenario(DATA, SC)
-    assert len(s.polities) == 66
-    assert len(s.scenario_polity_relationships) == 46
+    # MAPGEN-013 added the two self-labelled estates and their imperial
+    # membership; nothing else in the catalogue moved.
+    assert len(s.polities) == 68
+    assert len(s.scenario_polity_relationships) == 48
     feats = gpd.read_parquet(DATA / "historical"
                              / "historical_boundary_features.parquet")
     links = pd.read_csv(DATA / "historical"

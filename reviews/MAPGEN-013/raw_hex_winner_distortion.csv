@@ -1,0 +1,4 @@
+scenario_polity_id,historical_subject_id,source_land_km2,raw_winner_area_km2,raw_hex_count,raw_omission_km2,raw_commission_km2,raw_symmetric_difference_km2,raw_symdiff_fraction,audit_scope
+sp_992101257e91,hsub_meissen_electoral_saxony_core,16035.08,17653.01,1422,5.41,1623.33,1628.74,0.1016,RAW_HEX_WINNER_ONLY
+sp_539bf465a695,hsub_duchy_of_saxe_weimar,812.86,1232.84,100,3.39,423.36,426.75,0.525,RAW_HEX_WINNER_ONLY
+sp_64fa0df4a5a7,hsub_schwarzburg,679.99,1081.47,89,0.0,401.48,401.48,0.5904,RAW_HEX_WINNER_ONLY

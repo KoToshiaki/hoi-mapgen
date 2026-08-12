@@ -1,0 +1,50 @@
+{
+  "run_id": "central_europe_1756_expand_20260813",
+  "stage": "MAPGEN-013",
+  "generated_utc": "2026-08-12T16:57:58.271465+00:00",
+  "base_commit_mapgen012": "1793ea1786d6c4796d1cb0349387a5046b2358fc",
+  "scenario_control_promotion_schema_version": "1.0.0",
+  "scenario_control_promotion_algorithm_version": "1.0.0",
+  "hpg_schema_version": "1.4.0",
+  "hpg_algorithm_version": "1.3.0",
+  "georeference_schema_version": "1.0.0",
+  "georeference_algorithm_version": "1.0.0",
+  "scenario_schema_version": "1.4.0",
+  "source_namespace_migration": "canonical territorial_control.source_id stays scenario-local (src_9d6f03b5c85f) so existing foreign keys keep their meaning; the historical bundle (hsrc_34735c52ef0d, hev_, hbf_) moves to territorial_control_provenance.csv, and scenario sources.csv carries the global_source_id crosswalk",
+  "positional_uncertainty": {
+    "mapgen012_km": 2.975,
+    "mapgen013_km": 9.168,
+    "direction": "EXPANDED",
+    "reason": "MAPGEN-012 rested on a single settlement check. Four independent checks (east/centre/west/south) showed larger residuals, so the uncertainty was raised. It was never forced down to make the 330 unresolved hexes resolvable."
+  },
+  "transform_selection_rule": "simplest model within 10 percent of the best GRATICULE-only holdout RMS, disqualifying any model whose independent settlement residual exceeds 50 km. POLYNOMIAL_2 had the best graticule holdout and was rejected for exploding off-grid",
+  "mapgen012_revision_backlog": "the promoted MAPGEN-012 rows were classified at 2.975 km. At 9.168 km more of them would become UNRESOLVED. That revision is NOT applied silently: it is recorded here and in the promotion log notes for review",
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68",
+    "D:\\VScode\\hoi\\mapgen\\output\\central_europe_1756_pilot_20260812\\pilot_territorial_control.csv": "b9ed0fac370914cfe3172e6bd04d1ce13ad264282844341f3feb03845b4d1b21",
+    "D:\\VScode\\hoi\\mapgen\\output\\central_europe_1756_pilot_20260812\\pilot_summary.csv": "bceb3221867fc3ea26ea499dca61a429d16535e19c720a630c8b33b8a625e512"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "bind_s": 0.9,
+    "audit_s": 0.7,
+    "promotion_s": 0.1,
+    "render_s": 2.3,
+    "total_s": 4.3
+  },
+  "peak_memory_mb": 1777.1,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

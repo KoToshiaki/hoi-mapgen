@@ -1,0 +1,4 @@
+scenario_polity_id,contributing_historical_subject_ids,source_land_ground_km2,winner_represented_ground_km2,winner_area_error_km2,winner_area_error_fraction,omission_ground_km2,commission_ground_km2,symmetric_difference_ground_km2,source_component_count,represented_hex_count,zero_hex_survival,border_hex_count,mean_dominance_margin,representation_status
+sp_539bf465a695,hsub_duchy_of_saxe_weimar,812.8574,1232.8355,419.9781,0.516669,3.386,423.3639,426.7498,4,100,True,8,8.04061,BORDER_COARSE
+sp_64fa0df4a5a7,hsub_schwarzburg,679.9881,1081.465,401.477,0.590418,0.0,401.477,401.477,1,89,True,0,7.640308,BORDER_COARSE
+sp_992101257e91,hsub_meissen_electoral_saxony_core,16035.0847,17653.0082,1617.9235,0.100899,5.4113,1623.3349,1628.7462,4,1422,True,8,11.270242,GOOD
