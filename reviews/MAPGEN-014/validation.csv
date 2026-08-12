@@ -15,7 +15,7 @@ central_europe_1756_revision_20260813,M14-13_saxony_stale_authority_resolved,Tru
 central_europe_1756_revision_20260813,M14-14_supersession_log_complete,True,"401 revision rows carry old/new promotion id, status, controller and uncertainty; 1 promotion(s) marked SUPERSEDED and none deleted"
 central_europe_1756_revision_20260813,M14-15_prior_conflicts_resolved,True,all 4 MAPGEN-013 conflict hexes re-evaluated: {'EXPLICITLY_UNRESOLVED': np.int64(4)} — the earlier row was not preferred just for being older
 central_europe_1756_revision_20260813,M14-16_canonical_target_unique,True,"1,614 canonical rows, 0 duplicate keys"
-central_europe_1756_revision_20260813,M14-17_canonical_provenance_complete,True,"490 provenance rows, one per promoted target, all carrying the global source bundle"
+central_europe_1756_revision_20260813,M14-17_canonical_provenance_complete,True,"1,611 provenance rows, one per promoted target, all carrying the global source bundle"
 central_europe_1756_revision_20260813,M14-18_no_aggregate_class_controller,True,11 aggregation classes hold no polity id and no territory
 central_europe_1756_revision_20260813,M14-19_hre_controller_zero,True,the Empire gained two more estates and still controls nothing
 central_europe_1756_revision_20260813,M14-20_exact_land_binding,True,"1,530 membership rows on exact hex ∩ OSM land, max share 1.0000"

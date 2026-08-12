@@ -253,3 +253,20 @@ def test_no_stale_uncertainty_left_in_canonical_authority():
     revised = set(rv["territorial_target_id"])
     assert revised <= set(c["territorial_target_id"])
     assert float(rv["old_uncertainty_km"].max()) == 2.975
+
+
+def test_unchanged_rows_keep_their_original_provenance():
+    """A revision must not strip provenance from rows it did not change:
+    that would erase which promotion established them."""
+    c, p, lg, rv = _promoted()
+    before = len(p)
+    cand = pd.concat([_cand(n=2), _cand(n=1, status="UNRESOLVED",
+                                        start=2)], ignore_index=True)
+    c2, p2, lg2, rv2, rep = revise_control(
+        c, p, lg, rv, cand, "s", "NEW", "sha2", "b.csv", SRC,
+        "re-measured", 2.975, 9.168, promoted_utc="2026-08-13")
+    assert rep["unchanged"] == 2 and rep["revised"] == 1
+    assert len(p2) == before, "no provenance row may be lost"
+    assert set(p2["source_stage"]) == {"OLD", "NEW"}
+    assert p2[p2["source_stage"] == "NEW"]["territorial_target_id"].tolist() \
+        == ["h2"]

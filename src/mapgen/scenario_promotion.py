@@ -235,6 +235,9 @@ def revise_control(canonical, provenance, log, revision_log, candidate,
             old_ctrl = canonical.at[i, "controller_scenario_polity_id"]
             if _same(old_status, t.control_status) \
                     and _same(old_ctrl, controller):
+                # Unchanged rows keep the provenance they were promoted
+                # with: rewriting it would erase which promotion actually
+                # established them.
                 report["unchanged"] += 1
                 continue
             old_pid = prov_pid.get(key)
@@ -280,8 +283,10 @@ def revise_control(canonical, provenance, log, revision_log, candidate,
     if new_rows:
         canonical = pd.concat([canonical, pd.DataFrame(new_rows)],
                               ignore_index=True)
-    touched = set(map(tuple, candidate[
-        ["territorial_target_type", "territorial_target_id"]].values))
+    # Only rows we actually rewrote lose their old provenance row; an
+    # unchanged target must never be silently stripped of its provenance.
+    touched = {(p["territorial_target_type"], p["territorial_target_id"])
+               for p in new_prov}
     if len(provenance):
         keep = ~provenance[["territorial_target_type",
                             "territorial_target_id"]].apply(
