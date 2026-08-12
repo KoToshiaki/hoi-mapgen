@@ -1,7 +1,7 @@
 {
   "run_id": "central_europe_1756_revision_20260813",
   "stage": "MAPGEN-014",
-  "generated_utc": "2026-08-12T17:56:39.207096+00:00",
+  "generated_utc": "2026-08-12T17:57:26.326353+00:00",
   "base_commit_mapgen013": "5eff1643982ccc8954dbeced216f7ed71053c9dd",
   "scenario_control_promotion_schema_version": "1.0.0",
   "scenario_control_promotion_algorithm_version": "1.0.0",
@@ -18,11 +18,11 @@
   "timings_s": {
     "load_s": 0.1,
     "bind_s": 0.8,
-    "revision_s": 0.3,
+    "revision_s": 0.2,
     "render_s": 2.9,
     "total_s": 4.3
   },
-  "peak_memory_mb": 1749.6,
+  "peak_memory_mb": 1797.5,
   "package_versions": {
     "numpy": "2.5.1",
     "pandas": "3.0.5",

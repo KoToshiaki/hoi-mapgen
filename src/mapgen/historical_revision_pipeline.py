@@ -545,15 +545,18 @@ def run_historical_revision(cfg: MapgenConfig,
     rep_rows.append({
         "historical_subject_id": WASH_SUBJECT,
         "scenario_polity_id": None,
+        # Measured on the drawn geometry itself: this run's land mask
+        # only spans the two authorised territories, so clipping it here
+        # would understate the wash instead of describing it.
         "source_area_km2": round(ground_area_perimeter(
-            shapely.intersection(
-                features.loc[features["historical_subject_id"]
-                             == WASH_SUBJECT, "geometry"].iloc[0],
-                land_union))[0], 2),
+            features.loc[features["historical_subject_id"]
+                         == WASH_SUBJECT, "geometry"].iloc[0])[0], 2),
         "reliable_geometry": "NO", "standard_hex_survival": 0,
         "zero_hex_fragments": 0, "enclave_fragments": 0,
         "recommended_mode": "UNRESOLVED",
-        "decision_reason": "The polity partition itself is unresolved, so "
+        "decision_reason": "Area measured on the drawn geometry, not "
+                           "clipped to this run's land mask. The polity "
+                           "partition itself is unresolved, so "
                            "there is no actor to represent. Overlay is "
                            "forbidden: it would turn an unresolved "
                            "historical question into a rendering choice."})
