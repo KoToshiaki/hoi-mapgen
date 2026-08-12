@@ -702,12 +702,15 @@ def test_009r_historical_content_unchanged_by_r2():
     # the Schwarzburg artifact and registered the two principalities that
     # actually existed. Nothing the 009R2 review approved was touched.
     added = {"pol_saxe_weimar", "pol_schwarzburg",
-             "pol_schwarzburg_rudolstadt", "pol_schwarzburg_sondershausen"}
+             "pol_schwarzburg_rudolstadt", "pol_schwarzburg_sondershausen",
+             "pol_saxe_eisenach"}
     assert added <= set(s.polities["polity_id"])
     assert len(s.polities) == 66 + len(added)
     assert len(s.scenario_polities) == 66 + len(added)
-    # the superseded artifact lost its live imperial relationship
-    assert len(s.scenario_polity_relationships) == 46 + len(added) - 1
+    # the superseded artifact lost its live imperial relationship;
+    # MAPGEN-015 added Saxe-Eisenach's imperial membership AND the
+    # Weimar/Eisenach personal union.
+    assert len(s.scenario_polity_relationships) == 46 + len(added) + 1 - 1
     rc = s.scenario_polity_relationships[
         "relationship_type"].value_counts().to_dict()
     assert rc["IMPERIAL_MEMBER_OF"] == 29 + len(added) - 1

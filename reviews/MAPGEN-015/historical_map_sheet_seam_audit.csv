@@ -1,0 +1,2 @@
+sheet_a,sheet_b,overlap_feature,n_samples,median_offset_km,p95_offset_km,max_offset_km,status,notes
+f1,f2,not established,0,,,,NOT_MEASURABLE_NO_GEOREFERENCE,"A seam offset is a distance between two georeferenced sheets. Neither sheet is georeferenced, so this is recorded as not measurable rather than as agreement. The sheets are also sections (inferior/superior) that join along a stated line rather than overlapping broadly, which the next stage must confirm on the raster."

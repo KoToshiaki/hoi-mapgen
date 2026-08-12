@@ -1,0 +1,7 @@
+metric,mapgen014_value,corrected_value,corrected_metric_name,problem,fix
+saxony_controlled_before,1096,1096,saxony_controlled_before,computed over the whole authorised candidate,filtered to the Saxony subject via provenance
+saxony_controlled_after,695,695,saxony_controlled_after,same,same
+saxony_unresolved_before,426,330,saxony_unresolved_before,Saxe-Weimar's 100 unresolved hexes were counted as Saxony's,filtered to the Saxony subject via provenance
+saxony_unresolved_after,827,731,saxony_unresolved_after,same,same
+"(candidate-scope aggregate, kept but renamed)","{'CONTROLLED': 1096, 'UNRESOLVED': 426} -> {'CONTROLLED': 695, 'UNRESOLVED': 827}","{'CONTROLLED': 1096, 'UNRESOLVED': 426} -> {'CONTROLLED': 695, 'UNRESOLVED': 827}",authorised_candidate_scope_controlled/unresolved_before/after,carried the Saxony name,renamed; the value itself was correct for its scope
+independent_boundary_corroborations,1,depiction 1 / measured 0,depiction_level_corroborations + measured_boundary_corroborations,an AGREES row with n_samples=0 was counted as a boundary corroboration,a measured corroboration now requires n_samples > 0 and real distance statistics
