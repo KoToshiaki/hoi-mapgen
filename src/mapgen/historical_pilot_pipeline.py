@@ -519,12 +519,20 @@ def run_historical_pilot(cfg: MapgenConfig,
             "authoritative_omission_km2": ao,
             "authoritative_commission_km2": ac,
             "authoritative_symmetric_difference_km2": round(ao + ac, 2),
-            "uncertain_band_fraction": round(unres_km2 / src_km2, 4)
-            if src_km2 else None,
+            # Hex land overhangs the territory, so this ratio legitimately
+            # exceeds 1 when every hex of a small polity is unresolved.
+            "unresolved_hex_land_to_source_land_ratio":
+                round(unres_km2 / src_km2, 4) if src_km2 else None,
             "representation_status":
                 "AUTHORITY_WITH_UNCERTAIN_BAND" if len(u)
                 else "AUTHORITY_COMPLETE_WITHIN_FEATURE",
-            "audit_scope": "AUTHORITATIVE_CONTROL_ONLY"})
+            "audit_scope": "AUTHORITATIVE_CONTROL_ONLY",
+            # This audit measures the CURRENT re-measured uncertainty.
+            # For Saxony the canonical rows were promoted under the older
+            # 2.975 km classification, so the two differ on purpose.
+            "basis": "RECOMPUTED_AT_CURRENT_UNCERTAINTY",
+            "matches_canonical_rows":
+                bool(t.scenario_polity_id != saxony_sp)})
     raw_d = pd.DataFrame(raw_rows)
     auth_d = pd.DataFrame(auth_rows)
     pids = sorted(src_by_pol)
@@ -733,10 +741,18 @@ def run_historical_pilot(cfg: MapgenConfig,
            set(auth_d["representation_status"]) <= {
                "AUTHORITY_WITH_UNCERTAIN_BAND",
                "AUTHORITY_COMPLETE_WITHIN_FEATURE"}
-           and auth_d["unresolved_land_km2"].notna().all(),
+           and auth_d["unresolved_land_km2"].notna().all()
+           and auth_d["basis"].eq(
+               "RECOMPUTED_AT_CURRENT_UNCERTAINTY").all()
+           and not bool(auth_d.loc[auth_d["scenario_polity_id"]
+                                   == saxony_sp,
+                                   "matches_canonical_rows"].iloc[0]),
            "representation_status now describes what the authority "
            "actually covers instead of grading raw hexification: "
-           f"{dict(auth_d['representation_status'].value_counts())}")
+           f"{dict(auth_d['representation_status'].value_counts())}. The "
+           "audit is measured at the CURRENT uncertainty, so the Saxony "
+           "row deliberately does not match its canonical (2.975 km) "
+           "classification")
     city = gcps[gcps["reference_type"] == "SETTLEMENT_MODERN_REFERENCE"]
     _check("M13-17_independent_checks_added",
            len(city) >= 4 and (~city["included_in_fit"].astype(bool)).all()

@@ -45,7 +45,7 @@ Run `central_europe_1756_expand_20260813`, built on MAPGEN-012 commit `1793ea178
 - `central_europe_1756_multi_polity_continuous.png` (aspect 1.578)
 - `central_europe_1756_multi_polity_hex.png` (aspect 1.504)
 - `central_europe_1756_authoritative_control.png` (aspect 1.504)
-- `raw_vs_authoritative_distortion.png` (aspect 1.947)
+- `raw_vs_authoritative_distortion.png` (aspect 1.964)
 - `polity_model_refinement.png` (aspect 1.703)
 - `canonical_promotion_overview.png` (aspect 2.3)
 

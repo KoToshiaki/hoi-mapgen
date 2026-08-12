@@ -1,4 +1,4 @@
-scenario_polity_id,historical_subject_id,source_land_km2,authoritative_controlled_area_km2,controlled_hex_count,unresolved_hex_count,unresolved_land_km2,authoritative_omission_km2,authoritative_commission_km2,authoritative_symmetric_difference_km2,uncertain_band_fraction,representation_status,audit_scope
-sp_992101257e91,hsub_meissen_electoral_saxony_core,16035.08,8631.49,695,727,9021.51,7403.59,0.0,7403.59,0.5626,AUTHORITY_WITH_UNCERTAIN_BAND,AUTHORITATIVE_CONTROL_ONLY
-sp_539bf465a695,hsub_duchy_of_saxe_weimar,812.86,0.0,0,100,1232.84,812.86,0.0,812.86,1.5167,AUTHORITY_WITH_UNCERTAIN_BAND,AUTHORITATIVE_CONTROL_ONLY
-sp_64fa0df4a5a7,hsub_schwarzburg,679.99,0.0,0,89,1081.47,679.99,0.0,679.99,1.5904,AUTHORITY_WITH_UNCERTAIN_BAND,AUTHORITATIVE_CONTROL_ONLY
+scenario_polity_id,historical_subject_id,source_land_km2,authoritative_controlled_area_km2,controlled_hex_count,unresolved_hex_count,unresolved_land_km2,authoritative_omission_km2,authoritative_commission_km2,authoritative_symmetric_difference_km2,unresolved_hex_land_to_source_land_ratio,representation_status,audit_scope,basis,matches_canonical_rows
+sp_992101257e91,hsub_meissen_electoral_saxony_core,16035.08,8631.49,695,727,9021.51,7403.59,0.0,7403.59,0.5626,AUTHORITY_WITH_UNCERTAIN_BAND,AUTHORITATIVE_CONTROL_ONLY,RECOMPUTED_AT_CURRENT_UNCERTAINTY,False
+sp_539bf465a695,hsub_duchy_of_saxe_weimar,812.86,0.0,0,100,1232.84,812.86,0.0,812.86,1.5167,AUTHORITY_WITH_UNCERTAIN_BAND,AUTHORITATIVE_CONTROL_ONLY,RECOMPUTED_AT_CURRENT_UNCERTAINTY,True
+sp_64fa0df4a5a7,hsub_schwarzburg,679.99,0.0,0,89,1081.47,679.99,0.0,679.99,1.5904,AUTHORITY_WITH_UNCERTAIN_BAND,AUTHORITATIVE_CONTROL_ONLY,RECOMPUTED_AT_CURRENT_UNCERTAINTY,True
