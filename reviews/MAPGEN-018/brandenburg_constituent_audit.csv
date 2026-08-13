@@ -1,0 +1,8 @@
+constituent,depicted_on,classification,separate_scenario_polity,notes
+Altmark (Vieille Marche),BnF Vaugondy 1751 sheet,TERRITORIAL_CONSTITUENT,NO,An internal division of Brandenburg. A visible name on a map is not a sovereign actor: it stays part of pol_brandenburg and gets no polity of its own.
+Mittelmark (Moyenne Marche),BnF Vaugondy 1751 sheet,TERRITORIAL_CONSTITUENT,NO,An internal division of Brandenburg. A visible name on a map is not a sovereign actor: it stays part of pol_brandenburg and gets no polity of its own.
+Neumark,BnF Vaugondy 1751 sheet,TERRITORIAL_CONSTITUENT,NO,An internal division of Brandenburg. A visible name on a map is not a sovereign actor: it stays part of pol_brandenburg and gets no polity of its own.
+Uckermark,BnF Vaugondy 1751 sheet,TERRITORIAL_CONSTITUENT,NO,An internal division of Brandenburg. A visible name on a map is not a sovereign actor: it stays part of pol_brandenburg and gets no polity of its own.
+Prignitz (Quartier de Pregnitz),BnF Vaugondy 1751 sheet,TERRITORIAL_CONSTITUENT,NO,An internal division of Brandenburg. A visible name on a map is not a sovereign actor: it stays part of pol_brandenburg and gets no polity of its own.
+Magdeburg / Halberstadt,neighbouring sheets,SEPARATE_HOHENZOLLERN_TERRITORY,YES_ELSEWHERE,"Held by the same monarch but NOT Brandenburg. Sharing a ruler is not being the same territory, and they may not be absorbed into pol_brandenburg."
+Pomerania (Swedish and Prussian parts),BnF Vaugondy 1751 sheet,SEPARATE_TERRITORIAL_QUESTION,REQUIRES_ITS_OWN_AUDIT,"The sheet's own note defines Swedish Pomerania as the duchy of Bardt, the county of Gutzkow and the duchy of Stettin. A regional label is not a controller and none of it is assigned to Brandenburg."

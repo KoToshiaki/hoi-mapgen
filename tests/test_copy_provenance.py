@@ -242,7 +242,9 @@ def test_production_brandenburg_authorises_nothing():
     f = gpd.read_parquet(H / "historical_boundary_features.parquet")
     assert len(f) == 3
     assert not (sids & set(f["global_source_id"]))
-    assert len(pd.read_csv(H / "brandenburg_bnf_gcps.csv")) == 0
+    # MAPGEN-018 georeferenced the BnF sheet, so GCPs now exist. What
+    # must remain true is that a transform is not an authority.
+    assert len(pd.read_csv(H / "brandenburg_blha_gcps.csv")) == 0
 
 
 @prod
@@ -258,6 +260,7 @@ def test_production_coverage_moved_to_source_acquired():
     cov = pd.read_csv(SD / "political_coverage.csv")
     row = cov[cov["coverage_unit_id"] == "region_brandenburg_1756_pilot"]
     assert len(row) == 1
-    assert row.iloc[0]["source_evidence_status"] == "SOURCE_ACQUIRED"
+    assert row.iloc[0]["source_evidence_status"] in (
+        "SOURCE_ACQUIRED", "GEOREFERENCED")
     assert row.iloc[0]["control_coverage_status"] == "UNASSESSED"
     assert (cov["control_coverage_status"] == "COMPLETE").sum() == 0

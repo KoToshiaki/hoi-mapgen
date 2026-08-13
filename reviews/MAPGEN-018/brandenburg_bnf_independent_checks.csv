@@ -1,0 +1,2 @@
+map_source_id,copy_id,check_id,historical_map_label,pixel_x,pixel_y,reference_feature_name,reference_lon,reference_lat,reference_source,identity_confidence,residual_m,included_in_fit,notes
+hsrc_d22d155bbd4a,copy_bnf_ge_dd_2987_3790,bchk_berlin,BERLIN,1950.0,4900.0,Berlin,13.41053,52.52437,"GeoNames cities15000 (CC BY 4.0), local copy",HIGH,9279.6,False,The town symbol was located beside the BERLIN lettering on the native raster. Used ONLY as an independent check of the graticule fit and of the prime-meridian reading; it is not in the fit.

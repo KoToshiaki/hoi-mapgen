@@ -55,6 +55,7 @@ def main(argv: list[str] | None = None) -> int:
                       "and the Brandenburg production front"),
         ("copyaudit", "MAPGEN-017: Brandenburg copy-specific source "
                       "acquisition and segment continuity"),
+        ("georef", "MAPGEN-018: Brandenburg graticule georeference"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -112,6 +113,12 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "georef":
+        from .historical_georef_pipeline import run_historical_georef
+
+        run_historical_georef(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "copyaudit":

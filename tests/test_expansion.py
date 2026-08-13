@@ -265,7 +265,8 @@ def test_production_coverage_unit_opened_as_unknown():
     # The CONTROL coverage is what must not move: an acquired raster
     # is not a resolved territory.
     assert row.iloc[0]["source_evidence_status"] in (
-        "SOURCE_IDENTIFIED_NOT_ACQUIRED", "SOURCE_ACQUIRED")
+        "SOURCE_IDENTIFIED_NOT_ACQUIRED", "SOURCE_ACQUIRED",
+        "GEOREFERENCED")
     assert (cov["control_coverage_status"] == "COMPLETE").sum() == 0
 
 

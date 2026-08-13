@@ -1,0 +1,19 @@
+{
+  "map_source_id": "hsrc_d22d155bbd4a",
+  "copy_id": "copy_bnf_ge_dd_2987_3790",
+  "prime_meridian": "FERRO_20W_OF_PARIS",
+  "transform": {
+    "model": "AFFINE",
+    "lon": [
+      11.540555258470038,
+      0.0010285003841164278,
+      -2.971893769777779e-11
+    ],
+    "lat": [
+      55.35851954639728,
+      -1.3547763061672838e-08,
+      -0.0005762027504033689
+    ]
+  },
+  "positional_uncertainty_km": 9.282
+}

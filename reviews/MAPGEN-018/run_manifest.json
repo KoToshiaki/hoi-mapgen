@@ -1,0 +1,63 @@
+{
+  "run_id": "brandenburg_1756_georef_20260813",
+  "stage": "MAPGEN-018",
+  "outcome": "PARTIAL",
+  "generated_utc": "2026-08-13T11:37:52.530535+00:00",
+  "base_commit_mapgen017": "2761d1501f6c1f3f7c37692e90f3edd7d75cd9f3",
+  "georeference": {
+    "route": "GRATICULE_FIRST",
+    "meridians_read": [
+      31,
+      32,
+      33,
+      34,
+      35,
+      36
+    ],
+    "parallels_read": [
+      53,
+      54,
+      55
+    ],
+    "gcps": 18,
+    "fit": 13,
+    "holdout": 5,
+    "model": "AFFINE",
+    "fit_rms_m": 59.9,
+    "holdout_rms_m": 60.1,
+    "independent_check_km": 9.28,
+    "prime_meridian": "FERRO_20W_OF_PARIS",
+    "prime_meridian_evidence": "NOT stated in a note on this sheet. The longitude band 31-36 places Brandenburg only under a Ferro-type prime meridian, and the independent Berlin check lands within 9.3 km under Ferro = Paris - 20 deg, the same convention the 1756 Vaugondy sheet states explicitly. Recorded as CORROBORATED_BY_INDEPENDENT_POINT, not as read from this plate.",
+    "positional_uncertainty_km": 9.282
+  },
+  "what_did_not_happen": [
+    "no BLHA object verified at source, acquired or georeferenced",
+    "no 1756 political-control document opened",
+    "no boundary segment reached continuity",
+    "no boundary digitised, no membership, no control",
+    "no canonical control row changed"
+  ],
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "render_s": 0.7,
+    "total_s": 1.0
+  },
+  "peak_memory_mb": 199.3,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

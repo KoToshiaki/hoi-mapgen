@@ -1,0 +1,31 @@
+run_id,check_id,pass,detail
+brandenburg_1756_georef_20260813,M18-01_mapgen017_regression,True,"MAPGEN-017 baseline intact: 1,614 rows (697/917), Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, 3 boundary features"
+brandenburg_1756_georef_20260813,M18-02_bnf_copy_metadata_regression,True,"BnF copy metadata unchanged: GE DD-2987 (3790), 7941x6135, plate 1751, represented political date UNVERIFIED"
+brandenburg_1756_georef_20260813,M18-03_copy_state_overclaim_corrected,True,"the copy-state label was weakened: a 1751 catalogue entry plus a 1751 privilege inscription is exactly that, and proving an EARLY state needs a copy comparison that has not been done"
+brandenburg_1756_georef_20260813,M18-04_graticule_gcps_are_real,True,"18 graticule intersections from 6 meridians [31.0, 32.0, 33.0, 34.0, 35.0, 36.0] and 3 parallels [53.0, 54.0, 55.0]; every numeral was read at magnification, none interpolated"
+brandenburg_1756_georef_20260813,M18-05_fit_holdout_split,True,"fit 13 / holdout 5; the holdout is one whole meridian plus two corners of another, and the points span all four quadrants {'NW': 3, 'NE': 3, 'SW': 6, 'SE': 6}"
+brandenburg_1756_georef_20260813,M18-06_transform_selected_on_holdout,True,"AFFINE selected: fit 59.9 m, holdout 60.1 m. POLYNOMIAL_2 fits better and holds out worse, so complexity was not rewarded"
+brandenburg_1756_georef_20260813,M18-07_independent_point_validates_prime_meridian,True,"the sheet does NOT state its prime meridian; the Ferro reading is corroborated by an independent Berlin check at 9.28 km, not inherited from another Vaugondy sheet"
+brandenburg_1756_georef_20260813,M18-08_uncertainty_map_specific,True,"Brandenburg uncertainty 9.282 km derived from THIS sheet: holdout 60 m, independent check 9.28 km, line width 168.2 m, digitisation 134.6 m at 67.3 m/px — Saxony's 9.168 km was not inherited"
+brandenburg_1756_georef_20260813,M18-09_blha_not_verified_or_acquired,True,"both BLHA leads are recorded as UNVERIFIED at source: no signature confirmed, no licence checked, no raster acquired"
+brandenburg_1756_georef_20260813,M18-10_blha_duplicate_identity_unresolved,True,the two catalogue objects of one title are counted as AT MOST one source; their relation (same copy / same plate / different plate / reproduction) is unresolved and neither is georeferenced
+brandenburg_1756_georef_20260813,M18-11_vaugondy_still_not_independent,True,"the georeferenced sheet is still same-atlas with the 1756 sheet already in production, so it cannot corroborate it"
+brandenburg_1756_georef_20260813,M18-12_1756_political_evidence_sought_not_obtained,True,two 1756 political-control candidates are recorded as NOT_OBTAINED with empty locators and written reasons; each row also states that an administrative record could never serve as boundary-position evidence
+brandenburg_1756_georef_20260813,M18-13_admin_evidence_is_not_boundary_evidence,True,"no assertion of any kind exists for the Brandenburg sheet, so a georeferenced plate has not quietly become an authority"
+brandenburg_1756_georef_20260813,M18-14_segments_still_unresolved,True,all six frontier segments remain UNRESOLVED: a georeferenced 1751 plate is still a 1751 plate
+brandenburg_1756_georef_20260813,M18-15_off_date_geometry_cannot_bypass_continuity,True,"no boundary feature was created from the georeferenced sheet, because nothing bridges it to 1756-08-01"
+brandenburg_1756_georef_20260813,M18-16_constituents_are_not_polities,True,"5 Brandenburg constituents (Altmark, Mittelmark, Neumark, Uckermark, Prignitz) are territorial constituents, not polities; none was registered as a scenario actor"
+brandenburg_1756_georef_20260813,M18-17_magdeburg_and_pomerania_separated,True,"Magdeburg/Halberstadt are recorded as separate Hohenzollern territory, not Brandenburg; Pomerania needs its own audit and none of it is assigned to Brandenburg"
+brandenburg_1756_georef_20260813,M18-18_controller_discipline,True,pol_brandenburg remains the intended specific controller and holds nothing; no composite root holds duplicate control
+brandenburg_1756_georef_20260813,M18-19_promotion_idempotent,True,"promotion workflow exercised with this stage's empty candidate: 0 inserted, canonical untouched"
+brandenburg_1756_georef_20260813,M18-20_coverage_georeferenced_not_complete,True,"coverage advanced SOURCE_ACQUIRED -> GEOREFERENCED while control coverage stays UNASSESSED; nothing is COMPLETE, so absence still means UNKNOWN"
+brandenburg_1756_georef_20260813,M18-21_low_countries_regression,True,Low Countries still SOURCE_GAP
+brandenburg_1756_georef_20260813,M18-22_schwarzburg_regression,True,Schwarzburg wash still UNCERTAIN_BOUNDARY with 89 UNRESOLVED
+brandenburg_1756_georef_20260813,M18-23_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731} and Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+brandenburg_1756_georef_20260813,M18-24_europe_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+brandenburg_1756_georef_20260813,M18-25_toshima_regression,True,Toshima hex still OCEAN with its island-component row intact
+brandenburg_1756_georef_20260813,M18-26_claims_not_derived,True,claims table still holds its single MAPGEN-008 row
+brandenburg_1756_georef_20260813,M18-27_canonical_integrity,True,canonical integrity: clean
+brandenburg_1756_georef_20260813,M18-28_upstream_immutable,True,2 upstream artifacts byte-identical
+brandenburg_1756_georef_20260813,M18-29_no_new_schema,True,no schema or namespace added; module passes the forbidden-reference scan
+brandenburg_1756_georef_20260813,M18-30_absent_results_not_illustrated,True,"no BLHA source, cross-source, continuous-geometry or hex-control figure was produced, because none of those results exists"
