@@ -53,6 +53,8 @@ def main(argv: list[str] | None = None) -> int:
                       "Weimar/Eisenach model audit, metric correction"),
         ("expansion", "MAPGEN-016: Zollmann feature-point final attempt "
                       "and the Brandenburg production front"),
+        ("copyaudit", "MAPGEN-017: Brandenburg copy-specific source "
+                      "acquisition and segment continuity"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -110,6 +112,12 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "copyaudit":
+        from .historical_copy_pipeline import run_historical_copy
+
+        run_historical_copy(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "expansion":

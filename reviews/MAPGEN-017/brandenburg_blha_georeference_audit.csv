@@ -1,0 +1,2 @@
+map_source_id,copy_id,status,route,model,n_fit,n_holdout,fit_rms_m,holdout_rms_m,p50_m,p90_m,p95_m,max_m,line_width_uncertainty_m,symbol_uncertainty_m,positional_uncertainty_km,selected,notes
+hsrc_a82a692f2890,copy_blha_original_copper_engraving,NOT_ACQUIRED,,,0,0,,,,,,,,,,False,"Not acquired, so not georeferenced. Any future attempt must be fully independent of the BnF transform."

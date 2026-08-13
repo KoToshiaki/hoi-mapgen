@@ -205,9 +205,12 @@ def test_production_route_b_recorded_every_rejection():
 
 
 @prod
-def test_production_zollmann_is_exhausted_and_authorises_nothing():
+def test_production_zollmann_is_deferred_and_authorises_nothing():
+    """MAPGEN-017 relabelled EXHAUSTED -> DEFERRED_AFTER_BOUNDED_ATTEMPT:
+    the bounded attempt is unchanged, but it never proved the scan
+    ungeoreferenceable."""
     a = pd.read_csv(H / "zollmann_georeference_final_audit.csv")
-    assert a.iloc[0]["final_status"] == EXHAUSTED
+    assert a.iloc[0]["final_status"] == "DEFERRED_AFTER_BOUNDED_ATTEMPT"
     assert int(a.iloc[0]["fit_count"]) == 0
     assert int(a.iloc[0]["sheets_georeferenced"]) == 0
     reg = pd.read_csv(H / "historical_source_registry.csv")
@@ -225,7 +228,9 @@ def test_production_brandenburg_source_is_not_corroboration():
             lambda d: d["citation_key"].str.contains("vaugondy_1751"),
             "global_source_id"])]
     assert len(row) == 1
-    assert row.iloc[0]["independence_status"] == "DERIVATIVE"
+    # MAPGEN-017: "same house" does not prove derivation, but it still
+    # is not independence.
+    assert row.iloc[0]["independence_status"] == "SHARED_ATLAS_LINEAGE"
     assert row.iloc[0]["corroboration_eligible"] == "NO"
 
 
@@ -256,8 +261,11 @@ def test_production_coverage_unit_opened_as_unknown():
     row = cov[cov["coverage_unit_id"] == "region_brandenburg_1756_pilot"]
     assert len(row) == 1
     assert row.iloc[0]["control_coverage_status"] == "UNASSESSED"
-    assert row.iloc[0]["source_evidence_status"] \
-        == "SOURCE_IDENTIFIED_NOT_ACQUIRED"
+    # MAPGEN-017 acquired the BnF copy, so the SOURCE status advanced.
+    # The CONTROL coverage is what must not move: an acquired raster
+    # is not a resolved territory.
+    assert row.iloc[0]["source_evidence_status"] in (
+        "SOURCE_IDENTIFIED_NOT_ACQUIRED", "SOURCE_ACQUIRED")
     assert (cov["control_coverage_status"] == "COMPLETE").sum() == 0
 
 

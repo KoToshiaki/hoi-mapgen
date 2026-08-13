@@ -211,7 +211,8 @@ def test_production_1747_has_no_gcp_and_no_assertion():
     a = pd.read_csv(H / "historical_evidence_assertions.csv")
     assert sid not in set(a["global_source_id"])
     assert reg.loc[reg["global_source_id"] == sid,
-                   "georeference_status"].iloc[0] == "NOT_YET_GEOREFERENCED"
+                   "georeference_status"].iloc[0] in (
+        "NOT_YET_GEOREFERENCED", "DEFERRED_AFTER_BOUNDED_ATTEMPT")
 
 
 @prod

@@ -1,0 +1,54 @@
+{
+  "run_id": "brandenburg_1756_acquisition_20260813",
+  "stage": "MAPGEN-017",
+  "outcome": "PARTIAL",
+  "generated_utc": "2026-08-13T10:05:51.012333+00:00",
+  "base_commit_mapgen016": "ff9bfed8899cade9ae5b696a6e1f5c78d0f5effb",
+  "copy_model": "map WORK -> PLATE -> physical/digitised COPY. MAPGEN-016 read a holding record for one copy and treated it as if it dated the source; four copies of two works are now registered separately, each with its own copy, plate and issue dates and its own state confidence.",
+  "bnf_acquisition": {
+    "ark": "ark:/12148/btv1b53041280v",
+    "shelfmark": "BnF, departement Cartes et plans, GE DD-2987 (3790)",
+    "collection": "Collection d'Anville ; 03790",
+    "pixels": [
+      7941,
+      6135
+    ],
+    "sha256": "485bc0a430837879d28db06f165334d6ff883777f8c0ef6f403dd26975051264",
+    "plate_date_read_from_plate": "Avec Privilege. 1751",
+    "graticule": "numbered degree graticule on all four borders",
+    "inset": "Supplement pour le Marquisat de Brandebourg (Vieille Marche and Quartier de Pregnitz), same scale",
+    "map_own_note": "La Pomeranie Suedoise comprend le Duche de Bardt, le Comte de Gutzkow et le Duche de Stettin"
+  },
+  "zollmann_status_change": "GEOREFERENCE_EXHAUSTED_FOR_CURRENT_SCAN -> DEFERRED_AFTER_BOUNDED_ATTEMPT. The earlier label claimed more than the evidence supported. No data changed with the relabelling.",
+  "what_did_not_happen": [
+    "no georeference, no GCP, no transform for either sheet",
+    "no BLHA raster acquired and no licence verified",
+    "no continuity segment confirmed",
+    "no Brandenburg geometry, membership or control",
+    "no uncertainty inherited from Saxony",
+    "no canonical control row changed"
+  ],
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "render_s": 1.7,
+    "total_s": 1.9
+  },
+  "peak_memory_mb": 536.7,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

@@ -1,0 +1,1 @@
+map_source_id,copy_id,gcp_id,historical_map_label,raw_pixel_x,raw_pixel_y,reference_feature_name,reference_lon,reference_lat,reference_source,identity_confidence,symbol_position_uncertainty_m,included_in_fit,holdout,residual_m,accepted,excluded_reason
