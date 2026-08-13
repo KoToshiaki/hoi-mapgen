@@ -266,7 +266,7 @@ def test_production_coverage_unit_opened_as_unknown():
     # is not a resolved territory.
     assert row.iloc[0]["source_evidence_status"] in (
         "SOURCE_IDENTIFIED_NOT_ACQUIRED", "SOURCE_ACQUIRED",
-        "GEOREFERENCED")
+        "GEOREFERENCED", "GEOREFERENCE_PROVISIONAL")
     assert (cov["control_coverage_status"] == "COMPLETE").sum() == 0
 
 

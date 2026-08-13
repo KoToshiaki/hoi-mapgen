@@ -1,0 +1,10 @@
+observation_id,kind,border,pixel_axis,pixel_value,degree_value_raw,numeral_read,second_coordinate_known,notes
+mer_31E_top_border,MERIDIAN_TICK,TOP,x,1746.0,31.0,YES,NO,"A meridian tick on the top border fixes a longitude and a pixel x. It does NOT fix a latitude, so it is not a two-dimensional control point on its own."
+mer_32E_top_border,MERIDIAN_TICK,TOP,x,2720.0,32.0,YES,NO,"A meridian tick on the top border fixes a longitude and a pixel x. It does NOT fix a latitude, so it is not a two-dimensional control point on its own."
+mer_33E_top_border,MERIDIAN_TICK,TOP,x,3692.0,33.0,YES,NO,"A meridian tick on the top border fixes a longitude and a pixel x. It does NOT fix a latitude, so it is not a two-dimensional control point on its own."
+mer_34E_top_border,MERIDIAN_TICK,TOP,x,4664.5,34.0,YES,NO,"A meridian tick on the top border fixes a longitude and a pixel x. It does NOT fix a latitude, so it is not a two-dimensional control point on its own."
+mer_35E_top_border,MERIDIAN_TICK,TOP,x,5635.0,35.0,YES,NO,"A meridian tick on the top border fixes a longitude and a pixel x. It does NOT fix a latitude, so it is not a two-dimensional control point on its own."
+mer_36E_top_border,MERIDIAN_TICK,TOP,x,6608.0,36.0,YES,NO,"A meridian tick on the top border fixes a longitude and a pixel x. It does NOT fix a latitude, so it is not a two-dimensional control point on its own."
+par_55N_left_border,PARALLEL_TICK,LEFT,y,622.5,55.0,YES,NO,"A parallel tick on the left border fixes a latitude and a pixel y, not a longitude."
+par_54N_left_border,PARALLEL_TICK,LEFT,y,2357.0,54.0,YES,NO,"A parallel tick on the left border fixes a latitude and a pixel y, not a longitude."
+par_53N_left_border,PARALLEL_TICK,LEFT,y,4093.5,53.0,YES,NO,"A parallel tick on the left border fixes a latitude and a pixel y, not a longitude."

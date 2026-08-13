@@ -1,0 +1,29 @@
+run_id,check_id,pass,detail
+brandenburg_georef_review_20260813,R18-01_mapgen018_canonical_regression,True,"canonical unchanged: 1,614 rows, Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, 3 features"
+brandenburg_georef_review_20260813,R18-02_reconstructed_points_identified,True,"18 MAPGEN-018 rows are the Cartesian product of 6 meridian and 3 parallel border observations - 9 primitive measurements, not 18"
+brandenburg_georef_review_20260813,R18-03_reconstructed_not_counted_as_gcp,True,all 18 rows are retained as audit history but reclassified RECONSTRUCTED_GRID_POINT and count as 0 production GCPs
+brandenburg_georef_review_20260813,R18-04_no_cartesian_product_accepted,True,the 60 m figure is renamed reconstructed_grid_* everywhere; it is not a geographic holdout accuracy and is no longer recorded under a name that would suggest it is
+brandenburg_georef_review_20260813,R18-05_primitive_observations_are_one_dimensional,True,each of the 9 border ticks fixes ONE coordinate and its numeral was read; none is a two-dimensional control point on its own
+brandenburg_georef_review_20260813,R18-06_independent_checks_minimum,True,"5 independent feature checks accepted, each located by cropping its predicted window at native resolution and reading what is actually printed there"
+brandenburg_georef_review_20260813,R18-07_checks_spatially_distributed,True,"checks span ['NE', 'SE', 'SW', 'centre'] - not clustered around Berlin"
+brandenburg_georef_review_20260813,R18-08_prime_meridian_candidates_compared,True,"three candidates scored on the same 5 checks: Ferro 9.3 km median against 1,207 km for the next best, so the meridian is corroborated by multiple points rather than by one"
+brandenburg_georef_review_20260813,R18-09_georeference_status_downgraded,True,"status is GEOREFERENCE_PROVISIONAL_RECONSTRUCTED_GRID: the transform was not repaired, it was demoted"
+brandenburg_georef_review_20260813,R18-10_uncertainty_from_multiple_checks,True,"uncertainty recomputed from 5 checks (median 9.27 km, p90 27.66 km, max 28.6 km) = 27.657 km, replacing the 9.282 km that one Berlin point had produced"
+brandenburg_georef_review_20260813,R18-11_systematic_error_documented,True,"the error is systematic, not scatter: centre/SW checks are 7.6-9.3 km while E/NE checks are 26.2-28.6 km. A single check point could not have revealed this"
+brandenburg_georef_review_20260813,R18-12_no_production_from_provisional_transform,True,"no boundary was digitised, no assertion written and no snapshot feature created from a provisional transform"
+brandenburg_georef_review_20260813,R18-13_coverage_downgraded,True,coverage rolled back GEOREFERENCED -> GEOREFERENCE_PROVISIONAL
+brandenburg_georef_review_20260813,R18-14_blha_shortfall_reported_not_hidden,True,"SHORTFALL: the stage brief required acquiring AKS 1145 A. Neither BLHA object was verified at source and neither raster was acquired in this stage. Reported as a shortfall, not as a finding"
+brandenburg_georef_review_20260813,R18-15_political_evidence_shortfall_reported,True,"SHORTFALL: the brief required opening an individual 1756 entry of the Novum Corpus. No document was read, so pinpoint evidence remains 0"
+brandenburg_georef_review_20260813,R18-16_continuity_shortfall_reported,True,SHORTFALL: per-frontier documented search results were required; the six segments still carry only their original outstanding questions
+brandenburg_georef_review_20260813,R18-17_controller_discipline,True,pol_brandenburg still holds nothing and no composite root holds duplicate control
+brandenburg_georef_review_20260813,R18-18_promotion_idempotent,True,"promotion workflow exercised with an empty candidate: 0 inserted, canonical untouched"
+brandenburg_georef_review_20260813,R18-19_low_countries_regression,True,Low Countries still SOURCE_GAP
+brandenburg_georef_review_20260813,R18-20_schwarzburg_regression,True,Schwarzburg wash unchanged
+brandenburg_georef_review_20260813,R18-21_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+brandenburg_georef_review_20260813,R18-22_europe_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+brandenburg_georef_review_20260813,R18-23_toshima_regression,True,Toshima hex still OCEAN
+brandenburg_georef_review_20260813,R18-24_claims_not_derived,True,claims table still holds its single MAPGEN-008 row
+brandenburg_georef_review_20260813,R18-25_canonical_integrity,True,canonical integrity: clean
+brandenburg_georef_review_20260813,R18-26_upstream_immutable,True,2 upstream artifacts byte-identical
+brandenburg_georef_review_20260813,R18-27_no_new_schema,True,no schema added; module passes the forbidden-reference scan
+brandenburg_georef_review_20260813,R18-28_no_fake_validation_shown,True,"no BLHA figure and no 'corrected georeference' figure was produced: the transform was not corrected, it was downgraded"

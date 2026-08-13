@@ -1,0 +1,89 @@
+{
+  "run_id": "brandenburg_georef_review_20260813",
+  "stage": "MAPGEN-018R",
+  "outcome": "PARTIAL",
+  "generated_utc": "2026-08-13T11:55:35.580630+00:00",
+  "base_commit_mapgen018": "56e8a3bb753abe6a592b4ada2808d64f40636cdf",
+  "diagnosis": {
+    "finding": "the 18 MAPGEN-018 GCPs were a Cartesian product",
+    "detail": "6 meridian x-observations on the top border and 3 parallel y-observations on the left border were crossed into 18 rows. Each longitude reused one pixel_x three times and each latitude reused one pixel_y six times, so there were 9 primitive measurements, not 18 control points.",
+    "consequence": "the fit/holdout split shared primitive observations (every held-out point's y came from a parallel also used in the fit), so the 60 m 'holdout RMS' measured how well an affine model reproduces a rectangle - which it does perfectly by construction - and said nothing about geographic accuracy.",
+    "second_finding": "one independent check point could not reveal this. Berlin happened to land at 9.28 km, which looked like ordinary 18th-century placement error.",
+    "what_the_checks_show": "5 identified towns give median 9.3 km, p90 27.7 km, max 28.6 km. The windows predicted for Frankfurt an der Oder, Neuruppin and Schwedt contained Fuerstenwalde, Fehrbellin and Angermuende instead - a systematic error, not scatter.",
+    "action": "georeference status downgraded to GEOREFERENCE_PROVISIONAL_RECONSTRUCTED_GRID; the 18 rows are retained as RECONSTRUCTED_GRID_POINT and counted as 0 production GCPs; no geometry, no control."
+  },
+  "georeference_status": "GEOREFERENCE_PROVISIONAL_RECONSTRUCTED_GRID",
+  "independent_checks": {
+    "n": 5,
+    "median_km": 9.27,
+    "p90_km": 27.66,
+    "max_km": 28.6,
+    "quadrants": [
+      "NE",
+      "SE",
+      "SW",
+      "centre"
+    ]
+  },
+  "prime_meridian": {
+    "selected": "FERRO_20W_OF_PARIS",
+    "status": "CORROBORATED_BY_MULTIPLE_INDEPENDENT_POINTS",
+    "candidates": [
+      {
+        "candidate": "FERRO_20W_OF_PARIS",
+        "offset_to_greenwich_deg": -17.662771,
+        "n_checks": 5,
+        "median_residual_km": 9.27,
+        "p90_residual_km": 27.66,
+        "max_residual_km": 28.6,
+        "status": "CORROBORATED_BY_MULTIPLE_INDEPENDENT_POINTS"
+      },
+      {
+        "candidate": "PARIS",
+        "offset_to_greenwich_deg": 2.337229,
+        "n_checks": 5,
+        "median_residual_km": 1362.78,
+        "p90_residual_km": 1376.03,
+        "max_residual_km": 1383.78,
+        "status": "REJECTED_LARGER_RESIDUALS"
+      },
+      {
+        "candidate": "GREENWICH",
+        "offset_to_greenwich_deg": 0.0,
+        "n_checks": 5,
+        "median_residual_km": 1206.75,
+        "p90_residual_km": 1218.61,
+        "max_residual_km": 1226.0,
+        "status": "REJECTED_LARGER_RESIDUALS"
+      }
+    ]
+  },
+  "shortfalls_against_the_brief": [
+    "BLHA AKS 1145 A was not acquired and neither BLHA object was verified at source",
+    "no individual 1756 Novum Corpus entry was opened",
+    "the six continuity segments were not individually researched"
+  ],
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "render_s": 0.9,
+    "total_s": 1.1
+  },
+  "peak_memory_mb": 213.5,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

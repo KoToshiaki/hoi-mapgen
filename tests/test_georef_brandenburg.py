@@ -142,21 +142,27 @@ def test_production_gcps_are_read_intersections():
 
 
 @prod
-def test_production_transform_selected_on_holdout():
+def test_production_reconstructed_grid_residuals_are_renamed():
+    """MAPGEN-018R: the 60 m figures describe a RECONSTRUCTED grid, not a
+    geographic holdout, and must not be stored under a name that says
+    otherwise."""
     a = pd.read_csv(H / "brandenburg_bnf_georeference_audit.csv")
     sel = a[a["selected"].astype(bool)].iloc[0]
     assert sel["model"] == "AFFINE"
+    assert "reconstructed_grid_holdout_residual_m" in a.columns
+    assert "holdout_rms_m" not in a.columns
     poly = a[a["model"] == "POLYNOMIAL_2"].iloc[0]
-    assert poly["fit_rms_m"] < sel["fit_rms_m"]
-    assert poly["holdout_rms_m"] > sel["holdout_rms_m"]
-    assert sel["holdout_rms_m"] < 100
+    assert (poly["reconstructed_grid_fit_residual_m"]
+            < sel["reconstructed_grid_fit_residual_m"])
 
 
 @prod
 def test_production_uncertainty_is_map_specific():
     a = pd.read_csv(H / "brandenburg_bnf_georeference_audit.csv")
     sel = a[a["selected"].astype(bool)].iloc[0]
-    assert abs(sel["positional_uncertainty_km"] - 9.282) < 1e-6
+    # MAPGEN-018R replaced the one-point 9.282 km with a p90 over five
+    # spatially distributed checks.
+    assert sel["positional_uncertainty_km"] > 9.282
     assert sel["positional_uncertainty_km"] != 9.168
     assert sel["pixel_scale_m_per_px"] > 0
 

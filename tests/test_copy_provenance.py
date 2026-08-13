@@ -261,6 +261,7 @@ def test_production_coverage_moved_to_source_acquired():
     row = cov[cov["coverage_unit_id"] == "region_brandenburg_1756_pilot"]
     assert len(row) == 1
     assert row.iloc[0]["source_evidence_status"] in (
-        "SOURCE_ACQUIRED", "GEOREFERENCED")
+        "SOURCE_ACQUIRED", "GEOREFERENCED",
+        "GEOREFERENCE_PROVISIONAL")
     assert row.iloc[0]["control_coverage_status"] == "UNASSESSED"
     assert (cov["control_coverage_status"] == "COMPLETE").sum() == 0
