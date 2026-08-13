@@ -1,0 +1,2 @@
+sheet_a,sheet_b,overlap_feature,n_samples,median_offset_km,p95_offset_km,max_offset_km,status,notes
+f1,f2,not established,0,,,,NOT_MEASURABLE_NO_GEOREFERENCE,"Unchanged from MAPGEN-015. A seam offset is a distance between two georeferenced sheets; neither sheet is georeferenced, and Route B did not change that."

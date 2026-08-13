@@ -1,0 +1,3 @@
+scenario_polity_id,historical_subject_id,source_land_km2,raw_winner_area_km2,raw_hex_count,audit_scope
+sp_992101257e91,hsub_meissen_electoral_saxony_core,16035.08,17653.01,1422,RAW_HEX_WINNER_ONLY
+sp_539bf465a695,hsub_duchy_of_saxe_weimar,812.86,1232.84,100,RAW_HEX_WINNER_ONLY

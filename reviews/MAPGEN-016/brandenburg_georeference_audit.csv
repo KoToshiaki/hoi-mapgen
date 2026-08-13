@@ -1,0 +1,2 @@
+map_source_id,model,status,n_fit,n_holdout,fit_rms_m,holdout_rms_m,positional_uncertainty_km,selected,notes
+hsrc_d22d155bbd4a,,NOT_ATTEMPTED_SOURCE_NOT_ACQUIRED,0,0,,,,False,"The raster was not acquired in this stage, so no georeference was attempted. Saxony's 9.168 km uncertainty is NOT inherited: a Brandenburg uncertainty must be derived from this sheet's own GCP holdout, symbol residual, line thickness and cross-source residual."

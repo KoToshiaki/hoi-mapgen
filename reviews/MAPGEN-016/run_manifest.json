@@ -1,0 +1,41 @@
+{
+  "run_id": "central_europe_1756_expansion_20260813",
+  "stage": "MAPGEN-016",
+  "outcome": "PARTIAL",
+  "generated_utc": "2026-08-13T09:49:42.214435+00:00",
+  "base_commit_mapgen015": "a47ce5d7cddbfe7a764e0d1fcf61b3d6a337d0cb",
+  "hpg_schema_version": "1.4.0",
+  "scenario_schema_version": "1.4.0",
+  "zollmann_outcome": "GEOREFERENCE_EXHAUSTED_FOR_CURRENT_SCAN. Route B was given one bounded attempt: nine candidate windows on sheet f1, two symbols positively identified, one accepted (Weimar's walled town outline). Erfurt's star is the Petersberg citadel rather than the town centre and was rejected; four windows missed their town outright. One point cannot define a transform, so the source is closed for 6 km control resolution on this scan.",
+  "brandenburg_outcome": "Source chain identified and assessed, not acquired. The Vaugondy 1751 sheet exists with an institutional holding at Ksiaznica Pomorska; its 1751 date is the plate privilege date and the represented political date is unverified. It is also the SAME plate family as the sheet already in production, so it can never corroborate that geometry. No continuity evidence for 1751-1756 was found, so it could not authorise 1756 control even if acquired.",
+  "what_did_not_happen": [
+    "no GCP was accepted beyond one point, and no transform fitted",
+    "no Brandenburg raster acquired, no licence verified",
+    "no Brandenburg geometry, membership or control created",
+    "no uncertainty inherited from Saxony",
+    "no canonical control row changed"
+  ],
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "render_s": 1.1,
+    "total_s": 1.3
+  },
+  "peak_memory_mb": 205.2,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

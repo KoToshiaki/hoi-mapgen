@@ -51,6 +51,8 @@ def main(argv: list[str] | None = None) -> int:
                      "correction and canonical authority revision"),
         ("precision", "MAPGEN-015: 1747 precision georeference attempt, "
                       "Weimar/Eisenach model audit, metric correction"),
+        ("expansion", "MAPGEN-016: Zollmann feature-point final attempt "
+                      "and the Brandenburg production front"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -108,6 +110,12 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "expansion":
+        from .historical_expansion_pipeline import run_historical_expansion
+
+        run_historical_expansion(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "precision":
