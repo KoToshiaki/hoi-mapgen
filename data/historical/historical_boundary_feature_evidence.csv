@@ -11,3 +11,11 @@ hbf_c455f25d6f49,hev_f53c6f33a49f,TEMPORAL_CONTINUITY,YES,island outline carried
 hbf_47682dfac78d,hev_13364aa51fe0,GEOMETRY_SHAPE,YES,physical outline of the landmass
 hbf_47682dfac78d,hev_3b103df245e9,POLITICAL_STATUS,YES,statutory authority over that landmass in 1756
 hbf_47682dfac78d,hev_007d6bad0acf,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey back to the snapshot
+hbf_f2169d1d26f9,hev_955d8d15d43d,GEOMETRY_SHAPE,YES,physical outline of the island
+hbf_f2169d1d26f9,hev_6df0d3e8b767,POLITICAL_STATUS,YES,sovereignty title at the snapshot
+hbf_f2169d1d26f9,hev_7695c809052d,POLITICAL_STATUS,NO,government actually running on the island
+hbf_f2169d1d26f9,hev_55f1634d1083,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey to the snapshot
+hbf_ebfa1ff1171e,hev_f020c02e4625,GEOMETRY_SHAPE,YES,physical outline of the island
+hbf_ebfa1ff1171e,hev_c0a65bb47b7b,POLITICAL_STATUS,YES,sovereignty title at the snapshot
+hbf_ebfa1ff1171e,hev_2e2dedf17bab,POLITICAL_STATUS,NO,government actually running on the island
+hbf_ebfa1ff1171e,hev_a0ddf76441c8,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey to the snapshot

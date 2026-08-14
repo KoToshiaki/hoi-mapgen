@@ -401,10 +401,8 @@ def test_canonical_control_is_untouched():
     c = pd.read_csv("data/scenarios/seven_years_war_1756_08_01/"
                     "territorial_control.csv",
                     keep_default_na=False, na_values=[""])
-    bi = set(pd.read_csv(
-        "data/historical/british_isles_hex_membership_audit.csv",
-        keep_default_na=False, na_values=[])["hex_id"])
-    c = c[~c["territorial_target_id"].isin(bi)]
+    from _production_baseline import strip_island_production
+    c = strip_island_production(c)
     assert len(c) == 1614
     assert int((c["control_status"] == "CONTROLLED").sum()) == 697
     assert int((c["control_status"] == "UNRESOLVED").sum()) == 917

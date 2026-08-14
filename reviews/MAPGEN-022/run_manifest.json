@@ -1,0 +1,250 @@
+{
+  "run_id": "mediterranean_1756_20260815",
+  "stage": "MAPGEN-022",
+  "outcome": "FULL",
+  "generated_utc": "2026-08-14T16:22:56.291758+00:00",
+  "base_commit_mapgen021": "9ad43bf966469109563d4823144146149a027726",
+  "baseline_from_committed_summary": {
+    "canonical_rows_after": 29578,
+    "canonical_controlled_after": 28527,
+    "canonical_unresolved_after": 1051,
+    "gb_membership_rows": 20396,
+    "gb_controlled": 20310,
+    "gb_unresolved": 86,
+    "ie_membership_rows": 7568,
+    "ie_controlled": 7520,
+    "ie_unresolved": 48
+  },
+  "landmasses": [
+    {
+      "rank_by_area": 2,
+      "part_index": 189,
+      "ground_area_km2": 23833.1,
+      "projected_area_km2": 40775.0,
+      "centroid_lon": 9.03602,
+      "centroid_lat": 40.09713,
+      "bbox_3857": "[905121, 4702211, 1094143, 5050631]",
+      "anchors_contained_sicily": "",
+      "anchors_contained_sardinia": "Cagliari;Oristano;Sassari",
+      "named_identification": "",
+      "is_single_connected_component": true,
+      "stage_role": "MAIN_LANDMASS_SARDINIA",
+      "anchor_role": "IDENTITY_QA_ONLY_NOT_OWNERSHIP_SOURCE",
+      "ownership_source": "HISTORICAL_EVIDENCE_BUNDLE",
+      "physical_source": "OSM coast-authority land polygons via the canonical Europe land cache"
+    },
+    {
+      "rank_by_area": 3,
+      "part_index": 1910,
+      "ground_area_km2": 25437.0,
+      "projected_area_km2": 40582.0,
+      "centroid_lon": 14.15413,
+      "centroid_lat": 37.59036,
+      "bbox_3857": "[1383061, 4389987, 1742493, 4622104]",
+      "anchors_contained_sicily": "Catania;Messina;Palermo",
+      "anchors_contained_sardinia": "",
+      "named_identification": "",
+      "is_single_connected_component": true,
+      "stage_role": "MAIN_LANDMASS_SICILY",
+      "anchor_role": "IDENTITY_QA_ONLY_NOT_OWNERSHIP_SOURCE",
+      "ownership_source": "HISTORICAL_EVIDENCE_BUNDLE",
+      "physical_source": "OSM coast-authority land polygons via the canonical Europe land cache"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "med_1738_vienna_sicily",
+      "polity": "pol_sicily",
+      "kind": "SOVEREIGNTY_BASIS",
+      "evidence_role": "POLITICAL_CONTROL",
+      "effective_date": "1738-11-18",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "med_1756_sicily_institutions",
+      "polity": "pol_sicily",
+      "kind": "CONTEMPORARY_IN_ISLAND_ADMINISTRATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "effective_date": "1756-08-01",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "med_1720_hague_sardinia",
+      "polity": "pol_sardinia",
+      "kind": "SOVEREIGNTY_BASIS",
+      "evidence_role": "POLITICAL_CONTROL",
+      "effective_date": "1720-02-17",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "med_1756_sardinia_institutions",
+      "polity": "pol_sardinia",
+      "kind": "CONTEMPORARY_IN_ISLAND_ADMINISTRATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "effective_date": "1756-08-01",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "med_sardinia_editti_compilation",
+      "polity": "pol_sardinia",
+      "kind": "CONTEMPORARY_IN_ISLAND_LEGISLATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "effective_date": "1720-01-01",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "med_1816_two_sicilies_cutoff",
+      "polity": "TEMPORAL_BOUNDARY",
+      "kind": "POST_SNAPSHOT_CUTOFF",
+      "evidence_role": "TEMPORAL_BOUNDARY",
+      "effective_date": "1816-12-12",
+      "in_force_at_snapshot": "NO"
+    },
+    {
+      "evidence_id": "med_1847_fusione_perfetta_cutoff",
+      "polity": "TEMPORAL_BOUNDARY",
+      "kind": "POST_SNAPSHOT_CUTOFF",
+      "evidence_role": "TEMPORAL_BOUNDARY",
+      "effective_date": "1847",
+      "in_force_at_snapshot": "NO"
+    },
+    {
+      "evidence_id": "med_1759_charles_to_spain",
+      "polity": "TEMPORAL_BOUNDARY",
+      "kind": "POST_SNAPSHOT_CUTOFF",
+      "evidence_role": "TEMPORAL_BOUNDARY",
+      "effective_date": "1759",
+      "in_force_at_snapshot": "NO"
+    }
+  ],
+  "membership": [
+    {
+      "control_status": "CONTROLLED",
+      "basis": "WHOLE_LAND_SINGLE_AUTHORISED_COMPONENT",
+      "hexes": 2613
+    },
+    {
+      "control_status": "UNRESOLVED",
+      "basis": "MIXED_UNAUDITED_LAND_COMPONENT",
+      "hexes": 2
+    }
+  ],
+  "area_semantics": [
+    {
+      "landmass": "Sicily",
+      "ground_area_km2": 25437.0,
+      "projected_area_km2": 40582.0,
+      "mercator_inflation_factor": 1.5954,
+      "expected_inflation_1_over_cos2_lat": 1.5926,
+      "centroid_lat": 37.5904,
+      "n_interior_rings": 0,
+      "interior_ring_ground_km2": 0.0,
+      "published_area_km2": 25711.0,
+      "published_figure_kind": "conventional island area",
+      "difference_km2": -274.0,
+      "difference_pct": -1.07,
+      "canonical_geometry_semantics": "OSM coastline-derived land polygon: the boundary is the sea coastline only. The polygon is NOT cut at inland water, so lakes, lagoons and reservoirs inside the coast are counted as land unless OSM maps them as connected to the sea.",
+      "inland_water_treatment": "MEASURED: the canonical polygon has no interior rings, so no inland water is excluded from the ground area",
+      "intertidal_treatment": "The OSM coastline follows mean high water. Where a coast has a wide intertidal zone the polygon includes ground that some published figures exclude. NOT measured here - stated as a mechanism, not quantified, and therefore NOT used to explain the residual.",
+      "residual_explanation_status": "WITHIN_2_PCT_NO_SINGLE_CAUSE_ASSERTED",
+      "note": "This is QA, not an ownership gate. No control row depends on the agreement between canonical and published area; membership is computed from the canonical geometry alone."
+    },
+    {
+      "landmass": "Sardinia",
+      "ground_area_km2": 23833.1,
+      "projected_area_km2": 40775.0,
+      "mercator_inflation_factor": 1.7109,
+      "expected_inflation_1_over_cos2_lat": 1.709,
+      "centroid_lat": 40.0971,
+      "n_interior_rings": 0,
+      "interior_ring_ground_km2": 0.0,
+      "published_area_km2": 24090.0,
+      "published_figure_kind": "conventional island area",
+      "difference_km2": -256.9,
+      "difference_pct": -1.07,
+      "canonical_geometry_semantics": "OSM coastline-derived land polygon: the boundary is the sea coastline only. The polygon is NOT cut at inland water, so lakes, lagoons and reservoirs inside the coast are counted as land unless OSM maps them as connected to the sea.",
+      "inland_water_treatment": "MEASURED: the canonical polygon has no interior rings, so no inland water is excluded from the ground area",
+      "intertidal_treatment": "The OSM coastline follows mean high water. Where a coast has a wide intertidal zone the polygon includes ground that some published figures exclude. NOT measured here - stated as a mechanism, not quantified, and therefore NOT used to explain the residual.",
+      "residual_explanation_status": "WITHIN_2_PCT_NO_SINGLE_CAUSE_ASSERTED",
+      "note": "This is QA, not an ownership gate. No control row depends on the agreement between canonical and published area; membership is computed from the canonical geometry alone."
+    }
+  ],
+  "geometry_storage": [
+    {
+      "landmass": "Sicily",
+      "subject": "hsub_sicily_main_island",
+      "n_coordinates": 56224,
+      "wkb_bytes": 899597,
+      "wkb_sha256": "0a048df4ac671a0d3c8f571924eefdcdc4c60b954bf99c980ab799666aed372c",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Sardinia",
+      "subject": "hsub_sardinia_main_island",
+      "n_coordinates": 62479,
+      "wkb_bytes": 999677,
+      "wkb_sha256": "d2415e1f45880f20783a717ca9a2af272ade78713f47f1cc70e711305af763a3",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Great Britain",
+      "subject": "hsub_great_britain_main_island",
+      "n_coordinates": 909712,
+      "wkb_bytes": 14555405,
+      "wkb_sha256": "d204972f4c6a20758f3d786d918cac09fa9049919b710e813d33098bbb4544e5",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Ireland",
+      "subject": "hsub_ireland_main_island",
+      "n_coordinates": 288871,
+      "wkb_bytes": 4621949,
+      "wkb_sha256": "cd6d6a3485f629a5562fb73722c473da97b7aba70b0ef2e5f1eb4e80ef8bb575",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    }
+  ],
+  "canonical": {
+    "before": 29578,
+    "after": 32193,
+    "added": 2615
+  },
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.3,
+    "render_s": 1.4,
+    "total_s": 2.1
+  },
+  "peak_memory_mb": 1128.7,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

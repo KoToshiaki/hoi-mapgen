@@ -218,10 +218,8 @@ def test_production_coverage_rolled_back():
 @prod
 def test_production_canonical_untouched():
     c = pd.read_csv(SD / "territorial_control.csv")
-    bi = set(pd.read_csv(
-        "data/historical/british_isles_hex_membership_audit.csv",
-        keep_default_na=False, na_values=[])["hex_id"])
-    c = c[~c["territorial_target_id"].isin(bi)]
+    from _production_baseline import strip_island_production
+    c = strip_island_production(c)
     assert len(c) == 1614
     v = c["control_status"].value_counts().to_dict()
     assert v["CONTROLLED"] == 697 and v["UNRESOLVED"] == 917

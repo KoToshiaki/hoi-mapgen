@@ -309,9 +309,8 @@ def test_coverage_is_partial_never_complete():
 
 def test_earlier_stages_are_untouched(canon):
     """Everything MAPGEN-020 left behind must still be there underneath."""
-    mixdf = pd.read_csv(H / "british_isles_hex_membership_audit.csv",
-                        keep_default_na=False, na_values=[])
-    rest = canon[~canon["territorial_target_id"].isin(mixdf["hex_id"])]
+    from _production_baseline import strip_island_production
+    rest = strip_island_production(canon)
     assert len(rest) == 1614
     v = rest["control_status"].value_counts().to_dict()
     assert v["CONTROLLED"] == 697 and v["UNRESOLVED"] == 917

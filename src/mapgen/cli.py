@@ -64,6 +64,8 @@ def main(argv: list[str] | None = None) -> int:
                        "independent BLHA georeference"),
         ("coastbound", "MAPGEN-021: British Isles coast-bounded "
                        "territorial production"),
+        ("medislands", "MAPGEN-022: Sicily and Sardinia coast-bounded "
+                       "territorial production"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -121,6 +123,13 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "medislands":
+        from .historical_mediterranean_pipeline import (
+            run_historical_mediterranean)
+
+        run_historical_mediterranean(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "coastbound":

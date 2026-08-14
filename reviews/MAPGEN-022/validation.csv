@@ -1,0 +1,39 @@
+run_id,check_id,pass,detail
+mediterranean_1756_20260815,M22-01_mapgen021_regression,True,"removing the 2,615 Mediterranean rows leaves exactly 29,578; Great Britain 20,310 and Ireland 7,520 CONTROLLED unchanged"
+mediterranean_1756_20260815,M22-02_baseline_read_from_committed_summary,True,"the baseline is read from the COMMITTED reviews/MAPGEN-021/summary.csv - 29,578 rows, GB membership 20,396, Ireland 7,568 - not from a remembered figure"
+mediterranean_1756_20260815,M22-03_sicily_actor_resolved,True,pol_sicily resolved from the existing MAPGEN-009 catalogue; no new actor created
+mediterranean_1756_20260815,M22-04_sardinia_actor_resolved,True,pol_sardinia resolved from the existing catalogue
+mediterranean_1756_20260815,M22-05_no_duplicate_actors,True,each polity id appears once; no Sicily or Sardinia duplicate was introduced
+mediterranean_1756_20260815,M22-06_sicily_authority_exact_locator,True,Treaty of Vienna 1738 cited with its cession clause: Austria cedes Naples and Sicily to Don Carlos for Parma and Piacenza
+mediterranean_1756_20260815,M22-07_sicily_contemporary_evidence,True,"the island's own organs, with archival date ranges spanning 1756: Real segreteria (1611-1826), Deputazione del regno (1547-1819) and three functional deputations"
+mediterranean_1756_20260815,M22-08_sardinia_authority_exact_locator,True,"Treaty of The Hague 1720 cited with the Savoy-Austria exchange clause; Sicily out, Sardinia in"
+mediterranean_1756_20260815,M22-09_sardinia_contemporary_evidence,True,Segreteria di Stato e di Guerra del Regno di Sardegna (1720-1848) - the Savoyard apparatus for the island opens in the year of the exchange and is running at the snapshot
+mediterranean_1756_20260815,M22-10_post_snapshot_state_not_backdated,True,"three post-snapshot cutoffs recorded and all marked not in force: 1759 Bourbon succession, 1816 Two Sicilies, 1847 fusione perfetta"
+mediterranean_1756_20260815,M22-11_sicily_naples_personal_union_no_merge,True,"Charles of Bourbon is king of both in 1756, and Naples still holds nothing: the shared crown produced no territory and the 1816 merger was not back-dated"
+mediterranean_1756_20260815,M22-12_sardinia_mainland_not_auto_produced,True,"every Sardinia row comes from the island component only; the mapping basis records that before 1847 the Kingdom of Sardinia IS the island and Piedmont, Savoy and Nice are a separate composite holding"
+mediterranean_1756_20260815,M22-13_corsica_not_auto_assigned,True,"Corsica (8,720 km2) is its own component, assigned to nobody; the MAPGEN-009R contested audit for pol_corsican_republic is left exactly as it was"
+mediterranean_1756_20260815,M22-14_canonical_coastline_physical_only,True,the coastline carries geometry authority only and the treaties and archives carry political authority only; neither side can produce a control row alone
+mediterranean_1756_20260815,M22-15_no_modern_italian_admin_leakage,True,"the bundles draw on an allowlist of exactly four sources and no control row cites a modern Italian region, province or comune"
+mediterranean_1756_20260815,M22-16_sicily_component_deterministic,True,"one connected component of 25,437 km2 containing Palermo, Messina and Catania"
+mediterranean_1756_20260815,M22-17_sardinia_component_deterministic,True,"one connected component of 23,833 km2 containing Cagliari, Sassari and Oristano"
+mediterranean_1756_20260815,M22-18_anchors_identity_only,True,"anchors say which island, never whose. Note both targets rank BELOW North Africa and the Italian mainland by area, so size could not have identified them"
+mediterranean_1756_20260815,M22-19_exact_land_intersection,True,"membership over 2,615 hexes from hex INTERSECT canonical land, attributed per component"
+mediterranean_1756_20260815,M22-20_mixed_components_conservative,True,2 hexes carry unaudited offshore land beside a main island and are held UNRESOLVED; the MAPGEN-021 2 per cent threshold was audited against this data and reused unchanged
+mediterranean_1756_20260815,M22-21_no_centroid_only_assignment,True,no centroid rule: every decision is an area intersection
+mediterranean_1756_20260815,M22-22_authority_bundle_complete,True,"all 2,615 Mediterranean rows trace to a scenario polity, an evidence assertion, the landmass identity record and the canonical substrate"
+mediterranean_1756_20260815,M22-23_sicily_maps_only_to_sicily_actor,True,the Sicily landmass maps to pol_sicily and nothing else
+mediterranean_1756_20260815,M22-24_sardinia_maps_only_to_sardinia_actor,True,the Sardinia landmass maps to pol_sardinia and nothing else
+mediterranean_1756_20260815,M22-25_area_semantics_honestly_reported,True,"ground and projected area reported with the Mercator factor checked against 1/cos^2(lat); inland water MEASURED (zero interior rings, so none excluded); the intertidal mechanism is named but explicitly NOT quantified and NOT used to explain the residual"
+mediterranean_1756_20260815,M22-26_geometry_storage_exactness_preserved,True,"geometry is stored exactly once in the feature parquet, never duplicated as WKT and never simplified - membership must stay reproducible from the stored artifacts"
+mediterranean_1756_20260815,M22-27_promotion_idempotent,True,re-running promotion with an empty candidate inserts 0 rows
+mediterranean_1756_20260815,M22-28_no_silent_collision,True,"zero hexes see both islands, which is the expected answer for landmasses 200 km apart; no target id repeats in canonical and no existing row was overwritten"
+mediterranean_1756_20260815,M22-29_incomplete_offshore_coverage_remains_unknown,True,both new coverage units are TERRITORY_PARTIAL; no unit anywhere in the scenario is COMPLETE
+mediterranean_1756_20260815,M22-30_british_isles_regression,True,"Great Britain 20,310 and Ireland 7,520 CONTROLLED, matching the committed MAPGEN-021 summary exactly"
+mediterranean_1756_20260815,M22-31_brandenburg_regression,True,"Brandenburg untouched: still holds nothing, and the MAPGEN-020 continuity and BLHA georeference artifacts are intact"
+mediterranean_1756_20260815,M22-32_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+mediterranean_1756_20260815,M22-33_low_countries_regression,True,Low Countries still SOURCE_GAP
+mediterranean_1756_20260815,M22-34_schwarzburg_regression,True,Schwarzburg wash unchanged and still not production-convertible
+mediterranean_1756_20260815,M22-35_europe_grid_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+mediterranean_1756_20260815,M22-36_toshima_regression,True,Toshima hex still OCEAN
+mediterranean_1756_20260815,M22-37_claims_regression,True,claims table still holds its single MAPGEN-008 row
+mediterranean_1756_20260815,M22-38_determinism_and_integrity,True,"canonical integrity clean, upstream byte-identical, no schema added, forbidden-reference scan clean"
