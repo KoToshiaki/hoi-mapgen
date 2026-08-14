@@ -1,0 +1,3 @@
+moved_out,moved_in,zone,rule,applied_before_any_fit
+ofp_berlin,ofp_frankfurt_oder,SW,PRIOR_TRANSFORM_POINT_CANNOT_BE_BLIND,YES
+ofp_potsdam,ofp_gorzow_wielkopolski,SW,PRIOR_TRANSFORM_POINT_CANNOT_BE_BLIND,YES

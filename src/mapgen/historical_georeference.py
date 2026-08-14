@@ -163,6 +163,59 @@ def evaluate_models(gcps: pd.DataFrame, models=None) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def jacobian_stability(t, x0: float, y0: float, x1: float, y1: float,
+                       n: int = 40) -> dict:
+    """Sample the local scale and orientation of a transform over a field.
+
+    A rubber-sheet model can reproduce its control points and still fold,
+    flip or blow up between them. Sampling the Jacobian over the WHOLE map
+    extent is what catches that, so a model is never accepted on residuals
+    alone.
+    """
+    xs = np.linspace(x0, x1, n)
+    ys = np.linspace(y0, y1, n)
+    X, Y = np.meshgrid(xs, ys)
+    X, Y = X.ravel(), Y.ravel()
+    lo0, la0 = apply_transform(t, X, Y)
+    lox, lax = apply_transform(t, X + 1.0, Y)
+    loy, lay = apply_transform(t, X, Y + 1.0)
+    _, _, dx = GEOD.inv(lo0, la0, lox, lax)
+    _, _, dy = GEOD.inv(lo0, la0, loy, lay)
+    dx, dy = np.abs(dx), np.abs(dy)
+    det = (lox - lo0) * (lay - la0) - (loy - lo0) * (lax - la0)
+    signs = np.unique(np.sign(det[np.abs(det) > 0]))
+    return {
+        "mpp_x_min": float(dx.min()), "mpp_x_max": float(dx.max()),
+        "mpp_y_min": float(dy.min()), "mpp_y_max": float(dy.max()),
+        "scale_ratio": float(max(dx.max() / max(dx.min(), 1e-9),
+                                 dy.max() / max(dy.min(), 1e-9))),
+        "folding": bool(len(signs) > 1),
+        "mean_pixel_scale_m": float((dx.mean() + dy.mean()) / 2.0),
+    }
+
+
+def design_condition(model: str, px, py, lon, lat) -> float:
+    """Condition number of the least-squares design matrix.
+
+    Reported so an ill-conditioned solve can never be mistaken for a
+    genuinely better model.
+    """
+    px = np.asarray(px, float)
+    py = np.asarray(py, float)
+    if model in ("AFFINE", "POLYNOMIAL_2"):
+        return float(np.linalg.cond(_design(model, px, py)))
+    lon = np.asarray(lon, float)
+    lat = np.asarray(lat, float)
+    n = len(px)
+    M = np.zeros((2 * n, 8))
+    for i in range(n):
+        M[2 * i] = [px[i], py[i], 1, 0, 0, 0,
+                    -px[i] * lon[i], -py[i] * lon[i]]
+        M[2 * i + 1] = [0, 0, 0, px[i], py[i], 1,
+                        -px[i] * lat[i], -py[i] * lat[i]]
+    return float(np.linalg.cond(M))
+
+
 def select_model_stable(audit: pd.DataFrame, independent_col: str,
                         max_independent_m: float = 50_000.0) -> str:
     """Select on GEOMETRIC holdout, but disqualify any model whose

@@ -1,0 +1,40 @@
+run_id,check_id,pass,detail
+brandenburg_georef_rebuild_20260813,M19-01_mapgen018r_regression,True,"MAPGEN-018R baseline intact: 1,614 canonical rows, 697 CONTROLLED, 917 UNRESOLVED, 3 boundary features"
+brandenburg_georef_rebuild_20260813,M19-02_observed_correspondence_vs_gcp_role_separated,True,"33 rows are OBSERVED_FEATURE_POINTs with directly observed pixels; 20 of them additionally carry the production fit role. Observation and fit role are separate columns, so 'no production GCP' can never again be written as 'no observation'"
+brandenburg_georef_rebuild_20260813,M19-03_existing_five_points_retained,True,"the five MAPGEN-018R points are carried forward as observed feature points, re-measured on their symbols: Angermuende, Berlin, Brandenburg an der Havel, Fuerstenwalde, Potsdam"
+brandenburg_georef_rebuild_20260813,M19-04_map_first_candidate_collection,True,"28 of 33 points were found by scanning the sheet, not by cropping a predicted window; every point is anchored on the engraved symbol, not on label text"
+brandenburg_georef_rebuild_20260813,M19-05_minimum_observed_2d_points,True,"33 directly observed two-dimensional correspondences (minimum 16, target 20)"
+brandenburg_georef_rebuild_20260813,M19-06_spatial_distribution,True,"all five zones carry at least three points: {'NE': 8, 'NW': 6, 'SE': 4, 'SW': 10, 'centre': 5}"
+brandenburg_georef_rebuild_20260813,M19-07_split_frozen_and_disjoint,True,"fit 20 / model 6 / blind 6 are pairwise disjoint; 2 audited reassignment(s), all applied before any transform was fitted"
+brandenburg_georef_rebuild_20260813,M19-08_reconstructed_grid_excluded,True,"the 18 MAPGEN-018 reconstructed rows are retained as audit history; none of their pixel positions appears among the 33 observed points, and they take no part in the fit, the model comparison or any accuracy figure"
+brandenburg_georef_rebuild_20260813,M19-09_border_observations_not_2d_gcps,True,18 one-dimensional border ticks on all four borders (MAPGEN-018 measured two); used for meridian and projection QA only
+brandenburg_georef_rebuild_20260813,M19-10_prime_meridian_multi_point,True,"three candidates scored on 26 observed features read against the plate's own graduations: Ferro 28.6 km median against 1,197 km for the next best"
+brandenburg_georef_rebuild_20260813,M19-11_model_selection_on_real_observations,True,all three models fitted on the same 20 observed points and scored on the same 6 held-out observed points
+brandenburg_georef_rebuild_20260813,M19-12_blind_untouched_by_selection,True,"the 6 blind points appear in neither the fit, nor the model comparison, nor the prime-meridian comparison"
+brandenburg_georef_rebuild_20260813,M19-13_polynomial_stability,True,"POLYNOMIAL_2 has the best fit residual (6.79 km) and the worst holdout (10.93 km): it is rejected, so no rubber sheet was allowed to iron out the plate's own distortion"
+brandenburg_georef_rebuild_20260813,M19-14_uncertainty_evidence_derived,True,"17.228 km built from blind p90 17.22 km, symbol placement, printed line width and digitisation - all measured on THIS sheet, none carried over from Saxony"
+brandenburg_georef_rebuild_20260813,M19-15_status_honest,True,"promotion to GEOREFERENCED_VALIDATED rests on observed points in five zones, a disjoint blind set of 6, no Jacobian folding and no catastrophic quadrant (worst zone median 11.26 km against best 7.39 km)"
+brandenburg_georef_rebuild_20260813,M19-16_aks1145_source_verified,True,"AKS 1145 A verified at DDB and at the BLHA catalogue: CUIOBZPON6CADUEAOKWJYLWETXYZI62E, internal id 1266626"
+brandenburg_georef_rebuild_20260813,M19-17_aks1145_cc0_verified,True,licence read at source: CC0 1.0 Universell
+brandenburg_georef_rebuild_20260813,M19-18_aks1145_raster_acquired,True,"raster acquired at 7582x6436, 10,446,481 bytes, sha256 verified on disk, downloaded 2026-08-13T13:28:35Z"
+brandenburg_georef_rebuild_20260813,M19-19_aks1132_verified,True,"AKS 1132 A verified at source; no digitisation is offered, so no raster could be acquired. Reported as an absence, not a refusal"
+brandenburg_georef_rebuild_20260813,M19-20_copy_relation_audited,True,"1132 and 1145 are the same work; the impression relation is UNRESOLVED because 1132 has no image to compare. They count as ONE source, not two"
+brandenburg_georef_rebuild_20260813,M19-21_blha_georef_independent_if_attempted,True,"no BLHA georeference was attempted in this stage, so nothing could be inherited from the BnF transform. Recorded as a shortfall against the brief"
+brandenburg_georef_rebuild_20260813,M19-22_novum_corpus_individual_entry,True,"5 individual 1756 entries opened and read in bsb11399173: No. XII, No. XVIII, No. XXVI, No. XXXIII, No. XXXII"
+brandenburg_georef_rebuild_20260813,M19-23_political_evidence_exact_locator,True,"every row carries scan number and printed column, e.g. bsb11399173, scan 0015, col. 25, heading line; enforcement clause col. 25-26"
+brandenburg_georef_rebuild_20260813,M19-24_admin_evidence_is_not_boundary_evidence,True,"roles are POLITICAL_CONTROL / ADMINISTRATIVE_SCOPE only: an edict says who governed, never where the line ran"
+brandenburg_georef_rebuild_20260813,M19-25_all_six_segments_researched,True,all six frontiers individually researched with named sources and locators; statuses {'CONTINUOUS': 6}
+brandenburg_georef_rebuild_20260813,M19-26_no_digitisation_from_provisional_transform,True,no geometry was digitised while the transform was provisional; the transform is validated only as of this stage and digitisation is deferred
+brandenburg_georef_rebuild_20260813,M19-27_no_off_date_production_without_continuity,True,no control was promoted; the 1758 sheet was never treated as 1756 geometry
+brandenburg_georef_rebuild_20260813,M19-28_no_average_line_synthesis,True,"no boundary assertion was written, so no line was averaged between sources"
+brandenburg_georef_rebuild_20260813,M19-29_brandenburg_specific_actor,True,pol_brandenburg exists as a distinct scenario actor
+brandenburg_georef_rebuild_20260813,M19-30_prussian_root_duplicate_zero,True,no composite root holds duplicate control
+brandenburg_georef_rebuild_20260813,M19-31_pomerania_separation,True,"Pomerania is documented as administratively separate from the Kurmark and Neumark in March 1756 (own Regierung at Stettin, own Hofgericht at Koeslin), so it is never folded into Brandenburg"
+brandenburg_georef_rebuild_20260813,M19-32_canonical_integrity,True,canonical integrity: clean
+brandenburg_georef_rebuild_20260813,M19-33_low_countries_regression,True,Low Countries still SOURCE_GAP
+brandenburg_georef_rebuild_20260813,M19-34_schwarzburg_regression,True,Schwarzburg wash unchanged
+brandenburg_georef_rebuild_20260813,M19-35_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+brandenburg_georef_rebuild_20260813,M19-36_europe_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+brandenburg_georef_rebuild_20260813,M19-37_toshima_regression,True,Toshima hex still OCEAN
+brandenburg_georef_rebuild_20260813,M19-38_claims_regression,True,claims table still holds its single MAPGEN-008 row
+brandenburg_georef_rebuild_20260813,M19-39_determinism_and_no_new_schema,True,"promotion idempotent with an empty candidate, upstream artifacts byte-identical, no schema added, forbidden-reference scan clean"

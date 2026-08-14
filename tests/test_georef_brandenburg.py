@@ -149,11 +149,18 @@ def test_production_reconstructed_grid_residuals_are_renamed():
     a = pd.read_csv(H / "brandenburg_bnf_georeference_audit.csv")
     sel = a[a["selected"].astype(bool)].iloc[0]
     assert sel["model"] == "AFFINE"
-    assert "reconstructed_grid_holdout_residual_m" in a.columns
+    # MAPGEN-019 refitted on observed features, so the audit no longer
+    # carries reconstructed-grid residuals at all. The renamed figures stay
+    # with the reconstructed grid, which is where they belong.
+    g = pd.read_csv(H / "brandenburg_reconstructed_grid_points.csv")
+    assert "reconstructed_grid_fit_residual_m" in g.columns
+    assert "residual_m" not in g.columns
+    assert "reconstructed_grid_holdout_residual_m" not in a.columns
     assert "holdout_rms_m" not in a.columns
     poly = a[a["model"] == "POLYNOMIAL_2"].iloc[0]
-    assert (poly["reconstructed_grid_fit_residual_m"]
-            < sel["reconstructed_grid_fit_residual_m"])
+    # a polynomial still fits better and still generalises worse
+    assert poly["fit_rms_m"] < sel["fit_rms_m"]
+    assert poly["hold_rms_m"] > sel["hold_rms_m"]
 
 
 @prod
@@ -164,7 +171,10 @@ def test_production_uncertainty_is_map_specific():
     # spatially distributed checks.
     assert sel["positional_uncertainty_km"] > 9.282
     assert sel["positional_uncertainty_km"] != 9.168
-    assert sel["pixel_scale_m_per_px"] > 0
+    # MAPGEN-019 derives the figure from blind validation and reports the
+    # sampled Jacobian scale of the selected transform.
+    assert sel["mean_pixel_scale_m"] > 0
+    assert sel["positional_uncertainty_km"] >= sel["blind_p90_km"]
 
 
 @prod
@@ -187,8 +197,11 @@ def test_production_georeference_authorises_nothing_yet():
     assert sid not in set(ev["global_source_id"])
     f = gpd.read_parquet(H / "historical_boundary_features.parquet")
     assert len(f) == 3 and sid not in set(f["global_source_id"])
+    # MAPGEN-019 validated the transform AND established continuity, and
+    # still digitised nothing. A validated transform authorises geometry;
+    # it does not create it.
     seg = pd.read_csv(H / "brandenburg_boundary_segment_continuity.csv")
-    assert (seg["continuity_status"] == "UNRESOLVED").all()
+    assert len(seg) == 6 and (seg["individually_researched"] == "YES").all()
 
 
 @prod

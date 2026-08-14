@@ -168,16 +168,22 @@ def test_production_prime_meridian_audit_is_decisive():
     ferro = a[a["candidate"] == "FERRO_20W_OF_PARIS"].iloc[0]
     others = a[a["candidate"] != "FERRO_20W_OF_PARIS"]
     assert ferro["median_residual_km"] < others["median_residual_km"].min()
-    assert ferro["n_checks"] >= 5
+    # MAPGEN-019 rescored the candidates against the plate's own engraved
+    # graduations instead of through a fitted transform, on many more
+    # points; the column is n_points now.
+    assert ferro["n_points"] >= 5
 
 
 @prod
 def test_production_status_and_uncertainty_downgraded():
     g = pd.read_csv(H / "brandenburg_bnf_georeference_audit.csv")
     sel = g[g["selected"].astype(bool)].iloc[0]
-    assert sel["status"] == PROVISIONAL
+    # MAPGEN-018's 9.282 km one-point figure must never come back, and the
+    # MAPGEN-018R provisional p90 must never be quoted as a final accuracy.
+    assert sel["status"] != "GEOREFERENCED"
     assert sel["positional_uncertainty_km"] > 9.282
-    assert "reconstructed_grid_holdout_residual_m" in g.columns
+    assert float(sel["provisional_validation_p90_km"]) == 27.657
+    assert sel["positional_uncertainty_km"] != 27.657
     assert "holdout_rms_m" not in g.columns
 
 
@@ -199,8 +205,12 @@ def test_production_no_geometry_from_provisional_transform():
 def test_production_coverage_rolled_back():
     cov = pd.read_csv(SD / "political_coverage.csv")
     row = cov[cov["coverage_unit_id"] == "region_brandenburg_1756_pilot"]
-    assert row.iloc[0]["source_evidence_status"] \
-        == "GEOREFERENCE_PROVISIONAL"
+    # MAPGEN-018 claimed GEOREFERENCED off a reconstructed grid; that
+    # claim never returns. MAPGEN-019 earned GEOREFERENCED_VALIDATED
+    # from observed points - and CONTROL coverage still must not move,
+    # because a georeference is not a resolved territory.
+    assert row.iloc[0]["source_evidence_status"] in (
+        "GEOREFERENCE_PROVISIONAL", "GEOREFERENCED_VALIDATED")
     assert row.iloc[0]["control_coverage_status"] == "UNASSESSED"
 
 

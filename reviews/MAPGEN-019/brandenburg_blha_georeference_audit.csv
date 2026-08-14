@@ -1,0 +1,2 @@
+map_source_id,copy_id,status,model,n_fit,n_holdout,fit_rms_m,holdout_rms_m,positional_uncertainty_km,selected,notes
+hsrc_blha_lotter_unverified,UNRESOLVED,NOT_ACQUIRED,,0,0,,,,False,"Neither BLHA object was verified at source in this stage, so nothing was acquired and nothing georeferenced. Any future attempt must be fully independent of the BnF transform: the BnF geometry may never be traced to manufacture a second source."
