@@ -60,6 +60,8 @@ def main(argv: list[str] | None = None) -> int:
                          "the Brandenburg georeference"),
         ("georefrebuild", "MAPGEN-019: rebuild the Brandenburg "
                           "georeference from observed feature points"),
+        ("dualsource", "MAPGEN-020: Brandenburg continuity audit and "
+                       "independent BLHA georeference"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -117,6 +119,13 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "dualsource":
+        from .historical_dual_source_pipeline import (
+            run_historical_dual_source)
+
+        run_historical_dual_source(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "georefrebuild":

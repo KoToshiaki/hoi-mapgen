@@ -1,0 +1,40 @@
+run_id,check_id,pass,detail
+brandenburg_dual_source_20260814,M20-01_mapgen019_regression,True,"MAPGEN-019 baseline intact: 1,614/697/917, 3 features, 33 BnF observed points, BnF GEOREFERENCED_VALIDATED at 17.228 km"
+brandenburg_dual_source_20260814,M20-02_political_and_boundary_continuity_separated,True,the single continuity_status column is gone; political and boundary-position continuity are separate columns with 7 distinct boundary states
+brandenburg_dual_source_20260814,M20-03_saxony_1748_1751_boundary_case_audited,True,"F 8218 (1748-1751) verified at source, corroborated by 17B 4948 with Ebeling's 1737 plan of the disputed line; the only INTERNATIONAL correction found, and it closes in the BnF's own represented year"
+brandenburg_dual_source_20260814,M20-04_glauchow_sabor_1746_1757_audited,True,"3 Neumaerkische Kammer 17143 opened: it sits under Registratur des Oberforstmeisters >> Amt Zuellichau >> Forstgrenzen and both parties were Prussian after 1742, so it is a forest boundary, not a territorial transfer"
+brandenburg_dual_source_20260814,M20-05_pomerania_dispute_audited,True,"37 Schwedt-Vierraden 116 opened and shown NOT settled in the window: the same quarrel runs on through 117, 118 and a Regulierung of 1770-1789"
+brandenburg_dual_source_20260814,M20-06_mecklenburg_regulation_audited,True,7 Lindow/M 69 (1704-1763) names the Mecklenburg Amt Fuerstenberg as counterparty; 7 Lindow/M 67 (1669-1758) corroborates
+brandenburg_dual_source_20260814,M20-07_remaining_frontiers_strengthened,True,"Magdeburg/Halberstadt and the Commonwealth are no longer carried on Wikipedia alone: both cite the 1756 edicts by scan and column, and the Commonwealth frontier adds BLHA 3 Neumaerkische Kammer 12085 (Sapieha's claim on the Drage)"
+brandenburg_dual_source_20260814,M20-08_local_changes_subsegmented,True,"12 subsegments over 7 segments: every frontier carrying a local case also carries a remainder, so one Feldmark never condemns a whole frontier"
+brandenburg_dual_source_20260814,M20-09_blha_georef_independent,True,the BLHA transform was fitted only on symbols observed on AKS 1145 A; it does not even share a prime meridian with the BnF sheet (EMPIRICAL_PLATE_OFFSET vs FERRO_20W_OF_PARIS)
+brandenburg_dual_source_20260814,M20-10_blha_observed_gcp_provenance,True,"24 BLHA points, none sharing a pixel position with the 33 BnF points, all anchored on this sheet's own red Urbes fill"
+brandenburg_dual_source_20260814,M20-11_blha_fit_model_blind_isolated,True,"fit 15 / model 5 / blind 4, pairwise disjoint and frozen before fitting"
+brandenburg_dual_source_20260814,M20-12_blha_uncertainty_independent,True,"12.555 km, built from this sheet's own blind p90 (12.551 km) plus its own symbol, line-width and digitisation terms; the BnF 17.228 km is not carried over"
+brandenburg_dual_source_20260814,M20-13_bnf_digitisation_not_faked,True,"the BnF digitisation was attempted and failed; the attempt and its failure mode are recorded, no polygon was written, and nothing was traced from the BLHA sheet"
+brandenburg_dual_source_20260814,M20-14_blha_digitisation_not_faked,True,no BLHA polygon was written and nothing was traced from the BnF sheet
+brandenburg_dual_source_20260814,M20-15_colour_is_not_the_controller,True,"every component's controller rests on lettering, the title cartouche or a 1756 administrative record; colour was used only to segment"
+brandenburg_dual_source_20260814,M20-16_brandenburg_components_audited,True,"Altmark, Mittelmark, Neumark, Uckermark and Prignitz all audited on both sheets: Altmark, Cottbus (Kreis), Mittelmark, Neumark, Prignitz, Ruppin, Uckermark"
+brandenburg_dual_source_20260814,M20-17_magdeburg_halberstadt_excluded,True,Magdeburg and Halberstadt are lettered on UNCOLOURED ground on the ca.1758 sheet and addressed by their own Regierung and Kammer in 1756; excluded
+brandenburg_dual_source_20260814,M20-18_pomerania_excluded,True,Pomerania is lettered DUCATUS POMERANIAE PARS on uncoloured ground and administered from Stettin and Koeslin; excluded
+brandenburg_dual_source_20260814,M20-19_inset_isolated,True,the Vieille Marche / Prignitz supplement keeps its own graticule and its own gap; the BLHA sheet drawing that territory does not close a gap in the BnF sheet
+brandenburg_dual_source_20260814,M20-20_cross_source_samples_real,True,"no cross-source boundary audit was written, because there are no two polygons to measure between. An empty or zero-sample audit file would have been worse than none"
+brandenburg_dual_source_20260814,M20-21_no_average_line_synthesis,True,"no boundary assertion and no feature were written, so no line was averaged between sources"
+brandenburg_dual_source_20260814,M20-22_boundary_changes_not_hidden,True,"5 local boundary cases are recorded with signature, Bestand, classification path and Laufzeit rather than smoothed into a frontier-level CONTINUOUS"
+brandenburg_dual_source_20260814,M20-23_1756_political_evidence_retained,True,the five MAPGEN-019 Novum Corpus entries are carried forward unchanged
+brandenburg_dual_source_20260814,M20-24_admin_evidence_is_not_boundary_position,True,the 1756 edicts stay POLITICAL_CONTROL / ADMINISTRATIVE_SCOPE and are never cited as boundary-position authority
+brandenburg_dual_source_20260814,M20-25_specific_actor_pol_brandenburg,True,pol_brandenburg exists as a distinct scenario actor
+brandenburg_dual_source_20260814,M20-26_prussian_root_duplicate_zero,True,no composite root holds control and pol_brandenburg still holds nothing
+brandenburg_dual_source_20260814,M20-27_safe_interior_not_asserted_without_geometry,True,"the safe-interior rule needs a hex to sit inside BOTH uncertainty-buffered polygons. With no polygon there is no such test, and none was invented"
+brandenburg_dual_source_20260814,M20-28_exact_land_binding_untouched,True,"no snapshot feature was compiled, so the exact-land binder was never invoked"
+brandenburg_dual_source_20260814,M20-29_production_provenance_complete,True,"no production row was written, so there is no row lacking provenance"
+brandenburg_dual_source_20260814,M20-30_promotion_idempotent,True,"promotion workflow exercised with an empty candidate: 0 inserted, canonical untouched"
+brandenburg_dual_source_20260814,M20-31_no_silent_overwrite,True,the promotion log is unchanged; nothing was overwritten
+brandenburg_dual_source_20260814,M20-32_incomplete_coverage_remains_unknown,True,control coverage stays UNASSESSED: a georeferenced pair of sheets is not a resolved territory
+brandenburg_dual_source_20260814,M20-33_low_countries_regression,True,Low Countries still SOURCE_GAP
+brandenburg_dual_source_20260814,M20-34_schwarzburg_regression,True,Schwarzburg wash unchanged
+brandenburg_dual_source_20260814,M20-35_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+brandenburg_dual_source_20260814,M20-36_europe_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+brandenburg_dual_source_20260814,M20-37_toshima_regression,True,Toshima hex still OCEAN
+brandenburg_dual_source_20260814,M20-38_claims_regression,True,claims table still holds its single MAPGEN-008 row
+brandenburg_dual_source_20260814,M20-39_determinism_and_integrity,True,"canonical integrity clean, upstream byte-identical, no schema added, forbidden-reference scan clean"

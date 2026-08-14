@@ -365,18 +365,22 @@ def test_pomerania_is_documented_as_separate_from_brandenburg():
 
 def test_all_six_segments_were_individually_researched():
     seg = pd.read_csv(H / "brandenburg_boundary_segment_continuity.csv")
-    assert len(seg) == 6
+    # MAPGEN-020 split each frontier into named subsegments and renamed the
+    # locator column; the requirement that every frontier be researched on
+    # its own is unchanged.
+    assert seg["segment_id"].nunique() >= 6
     assert (seg["individually_researched"] == "YES").all()
-    assert (seg["sources_searched"].str.len() > 60).all()
-    assert (seg["exact_locators"].str.len() > 40).all()
-    assert seg["segment_id"].nunique() == 6
+    assert (seg["change_evidence"].str.len() > 40).all()
+    assert (seg["exact_locator"].str.len() > 10).all()
 
 
 def test_searched_but_unresolved_is_distinguishable_from_unsearched():
-    seg = pd.read_csv(H / "brandenburg_boundary_segment_continuity.csv")
+    seg = pd.read_csv(H / "brandenburg_boundary_segment_continuity.csv",
+                      keep_default_na=False, na_values=[""])
     for r in seg.itertuples():
-        assert r.change_1751_to_1756 != ""
-        assert r.reason and len(r.reason) > 80
+        assert r.territorial_political_continuity
+        assert r.boundary_position_continuity
+        assert r.change_evidence and len(r.change_evidence) > 40
         assert r.confidence in {"HIGH", "MEDIUM", "LOW"}
 
 

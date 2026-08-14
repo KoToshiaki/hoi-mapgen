@@ -1,0 +1,30 @@
+{
+  "map_source_id": "hsrc_blha_aks_1145_a",
+  "copy_id": "copy_blha_aks_1145_a",
+  "prime_meridian": "EMPIRICAL_PLATE_OFFSET",
+  "prime_meridian_offset_to_greenwich_deg": -22.528363,
+  "transform": {
+    "model": "AFFINE",
+    "lon": [
+      10.07947277222983,
+      0.0008562971365302277,
+      8.254475098115766e-05
+    ],
+    "lat": [
+      53.68672835851048,
+      5.33578860149358e-05,
+      -0.00039615530237156206
+    ]
+  },
+  "fitted_on": "OBSERVED_FEATURE_POINTS",
+  "n_fit": 15,
+  "positional_uncertainty_km": 12.555,
+  "georeference_status": "GEOREFERENCED_VALIDATED",
+  "map_field_pixels": [
+    388.0,
+    345.0,
+    7075.0,
+    6085.0
+  ],
+  "independent_of_bnf_transform": true
+}

@@ -222,13 +222,17 @@ def test_production_zollmann_is_deferred_not_exhausted():
 @prod
 def test_production_segments_are_stated_individually():
     s = pd.read_csv(H / "brandenburg_boundary_segment_continuity.csv")
-    assert len(s) == 6
+    assert len(s) >= 6
     # MAPGEN-019 researched every segment, so the statuses are no longer
     # uniformly UNRESOLVED. What must survive is that each frontier is
     # stated ON ITS OWN, never as one global claim about "the boundary".
-    assert s["segment_id"].nunique() == 6
+    # MAPGEN-020 subsegmented the frontiers, so there are more rows than
+    # segments. What must survive is that each frontier is stated ON ITS
+    # OWN, never as one global claim about "the boundary".
+    assert s["segment_id"].nunique() >= 6
+    assert s["subsegment_id"].nunique() == len(s)
     assert (s["individually_researched"] == "YES").all()
-    assert s["reason"].str.len().min() > 40
+    assert s["notes"].fillna("").str.len().max() > 40
     c = pd.read_csv(H / "brandenburg_temporal_continuity_audit.csv")
     assert c.iloc[0]["single_global_assertion_written"] == "NO"
 

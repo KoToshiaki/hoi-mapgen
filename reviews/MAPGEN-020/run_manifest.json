@@ -1,0 +1,165 @@
+{
+  "run_id": "brandenburg_dual_source_20260814",
+  "stage": "MAPGEN-020",
+  "outcome": "PARTIAL",
+  "generated_utc": "2026-08-14T14:25:48.756450+00:00",
+  "base_commit_mapgen019": "5a6af5790f5f6ecd2b2bb3a345ba5f77104b37c0",
+  "continuity": {
+    "segments": 7,
+    "subsegments": 12,
+    "archival_cases": [
+      {
+        "case_id": "case_saxony_branitz_weissagk_groetsch",
+        "archival_signature": "2 Kurmaerkische Kammer F 8218",
+        "laufzeit": "1748-1751",
+        "classification": "LOCAL_CORRECTION"
+      },
+      {
+        "case_id": "case_silesia_glauchow_sabor",
+        "archival_signature": "3 Neumaerkische Kammer 17143",
+        "laufzeit": "1746-1757",
+        "classification": "BOUNDARY_REGULATION_WITHOUT_TERRITORIAL_TRANSFER"
+      },
+      {
+        "case_id": "case_pompom_gartz_vierraden",
+        "archival_signature": "37 Schwedt-Vierraden 116",
+        "laufzeit": "1743-1752",
+        "classification": "LOCAL_CORRECTION"
+      },
+      {
+        "case_id": "case_mecklenburg_menow_fuerstenberg",
+        "archival_signature": "7 Lindow/M 69",
+        "laufzeit": "1704-1763",
+        "classification": "LOCAL_CORRECTION"
+      },
+      {
+        "case_id": "case_commonwealth_drage_driesen",
+        "archival_signature": "3 Neumaerkische Kammer 12085",
+        "laufzeit": "1251-1775",
+        "classification": "CLAIM_WITHOUT_EFFECTED_CHANGE"
+      }
+    ]
+  },
+  "blha_georeference": {
+    "points": 24,
+    "model": "AFFINE",
+    "blind": {
+      "n": 4,
+      "median_km": 9.119,
+      "p90_km": 12.551
+    },
+    "uncertainty_km": 12.555,
+    "prime_meridian": "EMPIRICAL_PLATE_OFFSET",
+    "offset_deg": -22.528363,
+    "candidates": [
+      {
+        "candidate": "EMPIRICAL_PLATE_OFFSET",
+        "offset_to_greenwich_deg": -22.528363,
+        "n_points": 20,
+        "median_residual_km": 12.684,
+        "p75_residual_km": 15.232,
+        "p90_residual_km": 22.349,
+        "max_residual_km": 24.183,
+        "status": "SELECTED_EMPIRICAL_PLATE_MERIDIAN",
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"
+      },
+      {
+        "candidate": "FERRO_20W_OF_PARIS",
+        "offset_to_greenwich_deg": -17.662771,
+        "n_points": 20,
+        "median_residual_km": 328.047,
+        "p75_residual_km": 332.202,
+        "p90_residual_km": 334.362,
+        "max_residual_km": 336.589,
+        "status": "REJECTED",
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"
+      },
+      {
+        "candidate": "GREENWICH",
+        "offset_to_greenwich_deg": 0.0,
+        "n_points": 20,
+        "median_residual_km": 1516.572,
+        "p75_residual_km": 1522.405,
+        "p90_residual_km": 1524.676,
+        "max_residual_km": 1532.071,
+        "status": "REJECTED",
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"
+      },
+      {
+        "candidate": "PARIS",
+        "offset_to_greenwich_deg": 2.337229,
+        "n_points": 20,
+        "median_residual_km": 1672.718,
+        "p75_residual_km": 1678.74,
+        "p90_residual_km": 1682.278,
+        "max_residual_km": 1690.814,
+        "status": "REJECTED",
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"
+      }
+    ]
+  },
+  "digitisation": [
+    {
+      "sheet": "BnF Vaugondy 1751",
+      "source_id": "hsrc_d22d155bbd4a",
+      "attempted": "YES",
+      "succeeded": "NO",
+      "method": "crimson boundary wash extracted as a barrier mask (R-G>28, R-B>34, R>120), dilated to close gaps, then a 4-connected flood fill seeded on the Berlin symbol inside the engraved field",
+      "result": "the fill escaped and covered 97.7% of the field",
+      "diagnosis": "the Brandenburg boundary on this plate is drawn as a DASHED crimson line with a discontinuous wash; a 7-px dilation does not close every gap, and larger dilations begin to swallow the boundary's own neighbourhood",
+      "second_attempt": "all saturated colour treated as barrier, at four threshold/dilation combinations",
+      "second_result": "the aged paper is itself tinted, so every threshold that closed the dashes also walled off the interior (fill collapsed to 33-362 px)",
+      "conclusion": "NO_POLYGON_PRODUCED",
+      "traced_from_other_source": "NO",
+      "geometry_written": "NO",
+      "stage_decision": "Digitisation was stopped rather than forced. Producing a polygon by relaxing the colour rule, or by tracing one sheet from the other, would have violated the stage's own constraints; producing one by hand within the remaining budget would have put the rest of the stage at risk.",
+      "research_stage": "MAPGEN-020"
+    },
+    {
+      "sheet": "BLHA Lotter ca.1758",
+      "source_id": "hsrc_blha_aks_1145_a",
+      "attempted": "NO",
+      "succeeded": "NO",
+      "method": "not attempted: the BnF attempt was the cheaper of the two and its failure mode (discontinuous boundary rendering plus a tinted ground) applies at least as strongly here, where the Kreis washes are pastel and the neighbours carry thin coloured edge stripes of similar hue",
+      "result": NaN,
+      "diagnosis": NaN,
+      "second_attempt": NaN,
+      "second_result": NaN,
+      "conclusion": "NOT_ATTEMPTED",
+      "traced_from_other_source": "NO",
+      "geometry_written": "NO",
+      "stage_decision": "Digitisation was stopped rather than forced. Producing a polygon by relaxing the colour rule, or by tracing one sheet from the other, would have violated the stage's own constraints; producing one by hand within the remaining budget would have put the rest of the stage at risk.",
+      "research_stage": "MAPGEN-020"
+    }
+  ],
+  "shortfalls_against_the_brief": [
+    "neither source boundary was digitised, so there is no cross-source comparison, no safe-interior test and no production control"
+  ],
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.1,
+    "render_s": 1.3,
+    "total_s": 1.5
+  },
+  "peak_memory_mb": 208.3,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

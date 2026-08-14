@@ -201,7 +201,7 @@ def test_production_georeference_authorises_nothing_yet():
     # still digitised nothing. A validated transform authorises geometry;
     # it does not create it.
     seg = pd.read_csv(H / "brandenburg_boundary_segment_continuity.csv")
-    assert len(seg) == 6 and (seg["individually_researched"] == "YES").all()
+    assert len(seg) >= 6 and (seg["individually_researched"] == "YES").all()
 
 
 @prod

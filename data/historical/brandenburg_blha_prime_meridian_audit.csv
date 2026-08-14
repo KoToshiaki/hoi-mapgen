@@ -1,0 +1,5 @@
+candidate,offset_to_greenwich_deg,n_points,median_residual_km,p75_residual_km,p90_residual_km,max_residual_km,status,scored_on,method
+EMPIRICAL_PLATE_OFFSET,-22.528363,20,12.684,15.232,22.349,24.183,SELECTED_EMPIRICAL_PLATE_MERIDIAN,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"
+FERRO_20W_OF_PARIS,-17.662771,20,328.047,332.202,334.362,336.589,REJECTED,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"
+GREENWICH,0.0,20,1516.572,1522.405,1524.676,1532.071,REJECTED,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"
+PARIS,2.337229,20,1672.718,1678.74,1682.278,1690.814,REJECTED,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the BLHA plate's engraved border graduations, never through a fitted transform and never from the BnF sheet"

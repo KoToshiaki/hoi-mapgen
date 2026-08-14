@@ -1,0 +1,3 @@
+candidate,pixel_x,pixel_y,reason
+Luckenwalde,3198.6,4670.5,"the 43-px blob is a paper stain in blank ground beside the words AD MAGDEBURG, not a printed town symbol"
+Stendal,1858.5,2875.7,"the symbol sits ON the Elbe and carries the label TANGERMUNDE; Stendal is inland. Identified as Tangermuende, which is not in the reference gazetteer, so the point is dropped rather than mislabelled"

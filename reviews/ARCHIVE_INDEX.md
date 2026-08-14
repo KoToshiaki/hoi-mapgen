@@ -25,7 +25,8 @@ the local run outputs listed below and are not duplicated on GitHub.
 | MAPGEN-009R2 | scenario_catalogue_009r2_20260811/chatgpt_review | **canonical scenario catalogue** | — | reviews/MAPGEN-009R2/ |
 | MAPGEN-010 | europe_foundation_20260811/chatgpt_review | complete | MAPGEN-011+ | reviews/MAPGEN-010/ |
 | MAPGEN-018R | brandenburg_georef_review_20260813/chatgpt_review | disqualified the MAPGEN-018 transform | MAPGEN-019 | reviews/MAPGEN-018R/ |
-| MAPGEN-019 | brandenburg_georef_rebuild_20260813/chatgpt_review | **latest completed stage** — Brandenburg georeference rebuilt from 33 observed feature points and validated | — | reviews/MAPGEN-019/ |
+| MAPGEN-019 | brandenburg_georef_rebuild_20260813/chatgpt_review | Brandenburg georeference rebuilt from 33 observed feature points and validated | MAPGEN-020 | reviews/MAPGEN-019/ |
+| MAPGEN-020 | brandenburg_dual_source_20260814/chatgpt_review | **latest completed stage** — continuity split into political vs boundary-position, four archival cases, independent BLHA georeference; no geometry digitised | — | reviews/MAPGEN-020/ |
 
 Run timestamps live inside each package's `run_manifest.json`; stage
 directory names stay stable.
