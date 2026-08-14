@@ -621,8 +621,14 @@ def test_regressions_and_source_gap_state():
         DATA / "historical" / "historical_evidence_assertions.csv")
     halc = assertions[assertions["assertion_type"]
                       == "GEOMETRIC_SUBSTRATE_ONLY"]
-    assert len(halc) == 1
-    assert halc.iloc[0]["political_authority"] == "NO"
+    # MAPGEN-021 added the OSM coastline as a second geometric substrate.
+    # The rule being protected is that NO geometric substrate ever carries
+    # political authority, which is now checked across all of them, and the
+    # HALC assertion specifically is still present and still powerless.
+    assert (halc["political_authority"] == "NO").all()
+    hs = halc[halc["historical_subject_id"] == "low_countries_localities"]
+    assert len(hs) == 1
+    assert hs.iloc[0]["political_authority"] == "NO"
     man = pd.read_csv(
         "output/europe_foundation_20260811/europe_hex_chunk_manifest.csv")
     assert int(man["hex_count"].sum()) == 1885422

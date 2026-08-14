@@ -390,7 +390,8 @@ def test_searched_but_unresolved_is_distinguishable_from_unsearched():
 def test_no_geometry_was_digitised_and_no_control_promoted():
     import geopandas as gpd
     feats = gpd.read_parquet(H / "historical_boundary_features.parquet")
-    assert len(feats) == 3
+    assert not feats["historical_subject_id"].str.contains(
+        "brandenburg", case=False, na=False).any()
     assert "hsrc_d22d155bbd4a" not in set(feats["global_source_id"])
     ass = pd.read_csv(H / "historical_evidence_assertions.csv")
     assert "hsrc_d22d155bbd4a" not in set(ass["global_source_id"])
@@ -400,6 +401,10 @@ def test_canonical_control_is_untouched():
     c = pd.read_csv("data/scenarios/seven_years_war_1756_08_01/"
                     "territorial_control.csv",
                     keep_default_na=False, na_values=[""])
+    bi = set(pd.read_csv(
+        "data/historical/british_isles_hex_membership_audit.csv",
+        keep_default_na=False, na_values=[])["hex_id"])
+    c = c[~c["territorial_target_id"].isin(bi)]
     assert len(c) == 1614
     assert int((c["control_status"] == "CONTROLLED").sum()) == 697
     assert int((c["control_status"] == "UNRESOLVED").sum()) == 917

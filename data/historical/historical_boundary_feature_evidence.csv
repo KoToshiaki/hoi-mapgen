@@ -5,3 +5,9 @@ hbf_e04d229dab78,hev_a58ba7e6f5cd,GEOMETRY_SHAPE,YES,"1756 sheet, DUCHE DE WEIMA
 hbf_e04d229dab78,hev_090b079c8ce6,POLITICAL_STATUS,YES,"1756 sheet, DUCHE DE WEIMAR"
 hbf_82df724eeace,hev_b134aa1d8c3f,GEOMETRY_SHAPE,YES,"1756 sheet, SCHWARTZBURG"
 hbf_82df724eeace,hev_aefa0d26edda,SUPPORTING,NO,"existence of a Schwarzburg complex, not control by one polity"
+hbf_c455f25d6f49,hev_c34b6560f482,GEOMETRY_SHAPE,YES,physical outline of the landmass
+hbf_c455f25d6f49,hev_528f625f3ed5,POLITICAL_STATUS,YES,statutory authority over that landmass in 1756
+hbf_c455f25d6f49,hev_f53c6f33a49f,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey back to the snapshot
+hbf_47682dfac78d,hev_13364aa51fe0,GEOMETRY_SHAPE,YES,physical outline of the landmass
+hbf_47682dfac78d,hev_3b103df245e9,POLITICAL_STATUS,YES,statutory authority over that landmass in 1756
+hbf_47682dfac78d,hev_007d6bad0acf,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey back to the snapshot

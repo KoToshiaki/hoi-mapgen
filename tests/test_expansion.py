@@ -244,12 +244,19 @@ def test_production_brandenburg_has_no_geometry_and_no_uncertainty():
     import geopandas as gpd
 
     f = gpd.read_parquet(H / "historical_boundary_features.parquet")
-    assert len(f) == 3, "no Brandenburg feature may exist yet"
+    # MAPGEN-021 added two British Isles landmass features. The intent
+    # here is that no BRANDENBURG feature exists, so assert that directly.
+    assert not f["historical_subject_id"].str.contains(
+        "brandenburg", case=False, na=False).any(),         "no Brandenburg feature may exist yet"
 
 
 @prod
 def test_production_canonical_untouched_by_this_stage():
     c = pd.read_csv(SD / "territorial_control.csv")
+    bi = set(pd.read_csv(
+        "data/historical/british_isles_hex_membership_audit.csv",
+        keep_default_na=False, na_values=[])["hex_id"])
+    c = c[~c["territorial_target_id"].isin(bi)]
     assert len(c) == 1614
     v = c["control_status"].value_counts().to_dict()
     assert v["CONTROLLED"] == 697 and v["UNRESOLVED"] == 917

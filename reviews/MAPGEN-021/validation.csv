@@ -1,0 +1,34 @@
+run_id,check_id,pass,detail
+british_isles_1756_20260815,M21-01_mapgen020_regression,True,"MAPGEN-020 baseline intact underneath: removing the 27,964 British Isles rows leaves exactly 1,614/697/917; Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}"
+british_isles_1756_20260815,M21-02_great_britain_actor_exists,True,pol_great_britain is the existing DIRECT_TERRITORIAL_ACTOR; no new British composite root was created
+british_isles_1756_20260815,M21-03_ireland_actor_exists,True,pol_kingdom_of_ireland is the existing DEPENDENT_TERRITORIAL_ACTOR
+british_isles_1756_20260815,M21-04_personal_union_does_not_merge_territory,True,Great Britain and Ireland remain two actors holding two disjoint sets of hexes; a shared crown produced no shared row
+british_isles_1756_20260815,M21-05_1707_union_evidence_exact_locator,True,"Article I quoted from the official text with locator legislation.gov.uk/aep/Ann/6/11, ARTICLE I"
+british_isles_1756_20260815,M21-06_1756_great_britain_contemporary_evidence,True,"two 1756 acts of the same Parliament read for territorial wording: 29 Geo. 2 c. 20 (County of Bute, North Britain) and 29 Geo. 2 c. 37 (County of York)"
+british_isles_1756_20260815,M21-07_ireland_contemporary_evidence,True,"Sheriffs Act 1755 (Ireland) section III, operative 1 May 1756, from the official eISB; sheriffs' officers are county administration inside Ireland"
+british_isles_1756_20260815,M21-08_ireland_remains_separate_polity,True,"the union with Ireland is recorded with effect 1 Jan 1801 and explicitly NOT in force at the snapshot; Ireland holds its own 7,520 hexes"
+british_isles_1756_20260815,M21-09_isle_of_man_excluded,True,the Isle of Man is identified as its own component (570.5 km2) and assigned to neither polity; the 1765 Revestment is named so it cannot be back-dated
+british_isles_1756_20260815,M21-10_canonical_coastline_is_physical_only,True,the coastline carries geometry_authority and NO political authority; the statutes carry political_authority and NO geometry authority. Neither can produce a control row alone
+british_isles_1756_20260815,M21-11_no_modern_admin_leakage,True,"the British Isles bundles draw on an ALLOWLIST of exactly three sources - the OSM coastline, legislation.gov.uk and the eISB - and none of the 27,964 control rows cites England, Scotland, Wales or Northern Ireland. The island is one controller, not three, and no contemporary administrative boundary layer is registered or reachable"
+british_isles_1756_20260815,M21-12_gb_main_landmass_identity_deterministic,True,"Great Britain is the single largest connected land component (218,685 km2) and contains all three identity anchors"
+british_isles_1756_20260815,M21-13_ireland_main_landmass_identity_deterministic,True,"Ireland is the second largest component (83,552 km2) and contains all three identity anchors"
+british_isles_1756_20260815,M21-14_anchor_points_are_identity_qa_only,True,"anchors answer 'which island is this', never 'whose island is this'"
+british_isles_1756_20260815,M21-15_whole_land_exact_intersection,True,"membership is computed from hex INTERSECT canonical land, per component, over 27,964 hexes"
+british_isles_1756_20260815,M21-16_mixed_component_hex_handled_conservatively,True,134 hexes hold unaudited offshore land alongside a main landmass and are left UNRESOLVED rather than swept in
+british_isles_1756_20260815,M21-17_no_centroid_only_assignment,True,"no centroid rule anywhere: every decision is an area intersection, and a hex whose centre is at sea can still be CONTROLLED on its land"
+british_isles_1756_20260815,M21-18_great_britain_maps_only_to_pol_great_britain,True,the Great Britain landmass maps to pol_great_britain and to nothing else; England/Wales/Scotland are internal legal distinctions and never controllers
+british_isles_1756_20260815,M21-19_ireland_maps_only_to_pol_kingdom_of_ireland,True,the Ireland landmass maps to pol_kingdom_of_ireland only; the modern Northern Ireland border is nowhere in this stage
+british_isles_1756_20260815,M21-20_hanover_not_inherited,True,George II is also Elector of Hanover; no British hex became Hanoverian
+british_isles_1756_20260815,M21-21_no_cross_union_territorial_inheritance,True,personal union inherits zero territory in either direction
+british_isles_1756_20260815,M21-22_production_provenance_complete,True,"all 27,964 British Isles rows carry a source id and trace to the landmass identity record, the evidence bundle and the scenario polity"
+british_isles_1756_20260815,M21-23_promotion_idempotent,True,re-running the promotion with an empty candidate inserts 0 rows and leaves canonical untouched
+british_isles_1756_20260815,M21-24_no_silent_collision,True,"0 hexes see both landmasses; each is resolved on exact land area with the basis recorded, and no target id appears twice in canonical"
+british_isles_1756_20260815,M21-25_incomplete_offshore_coverage_remains_unknown,True,"both new coverage units are TERRITORY_PARTIAL: the main island is assessed, the offshore archipelago is not, so neither polity is COMPLETE"
+british_isles_1756_20260815,M21-26_brandenburg_regression,True,Brandenburg still holds nothing and was not touched
+british_isles_1756_20260815,M21-27_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+british_isles_1756_20260815,M21-28_low_countries_regression,True,Low Countries still SOURCE_GAP
+british_isles_1756_20260815,M21-29_schwarzburg_regression,True,Schwarzburg wash unchanged
+british_isles_1756_20260815,M21-30_europe_grid_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+british_isles_1756_20260815,M21-31_toshima_regression,True,Toshima hex still OCEAN
+british_isles_1756_20260815,M21-32_claims_regression,True,claims table still holds its single MAPGEN-008 row
+british_isles_1756_20260815,M21-33_determinism_and_integrity,True,"canonical integrity clean, upstream byte-identical, no schema added, forbidden-reference scan clean"

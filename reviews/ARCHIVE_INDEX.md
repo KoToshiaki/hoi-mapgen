@@ -26,7 +26,8 @@ the local run outputs listed below and are not duplicated on GitHub.
 | MAPGEN-010 | europe_foundation_20260811/chatgpt_review | complete | MAPGEN-011+ | reviews/MAPGEN-010/ |
 | MAPGEN-018R | brandenburg_georef_review_20260813/chatgpt_review | disqualified the MAPGEN-018 transform | MAPGEN-019 | reviews/MAPGEN-018R/ |
 | MAPGEN-019 | brandenburg_georef_rebuild_20260813/chatgpt_review | Brandenburg georeference rebuilt from 33 observed feature points and validated | MAPGEN-020 | reviews/MAPGEN-019/ |
-| MAPGEN-020 | brandenburg_dual_source_20260814/chatgpt_review | **latest completed stage** — continuity split into political vs boundary-position, four archival cases, independent BLHA georeference; no geometry digitised | — | reviews/MAPGEN-020/ |
+| MAPGEN-020 | brandenburg_dual_source_20260814/chatgpt_review | continuity split into political vs boundary-position, four archival cases, independent BLHA georeference; no geometry digitised | MAPGEN-021 | reviews/MAPGEN-020/ |
+| MAPGEN-021 | british_isles_1756_20260815/chatgpt_review | **latest completed stage** — first large territorial production: Great Britain 20,310 and Ireland 7,520 hexes, coast-bounded, canonical 1,614 → 29,578 | — | reviews/MAPGEN-021/ |
 
 Run timestamps live inside each package's `run_manifest.json`; stage
 directory names stay stable.

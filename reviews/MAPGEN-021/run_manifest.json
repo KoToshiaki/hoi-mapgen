@@ -1,0 +1,127 @@
+{
+  "run_id": "british_isles_1756_20260815",
+  "stage": "MAPGEN-021",
+  "outcome": "FULL",
+  "generated_utc": "2026-08-14T15:51:33.028826+00:00",
+  "base_commit_mapgen020": "aaca77371a20f7720f3913dd111fbc2f4b78b893",
+  "landmasses": [
+    {
+      "rank_by_area": 0,
+      "part_index": 12128,
+      "ground_area_km2": 218685.0,
+      "projected_area_km2": 632920.5,
+      "centroid_lon": -2.57267,
+      "centroid_lat": 54.13554,
+      "bbox_3857": "[-693285, 6439126, 196281, 8109845]",
+      "anchors_contained_gb": "Cardiff;Edinburgh;London",
+      "anchors_contained_ie": "",
+      "named_identification": "",
+      "is_single_connected_component": true,
+      "stage_role": "MAIN_LANDMASS_GREAT_BRITAIN",
+      "anchor_role": "IDENTITY_QA_ONLY_NOT_OWNERSHIP_SOURCE",
+      "ownership_source": "HISTORICAL_EVIDENCE_BUNDLE",
+      "physical_source": "OSM coast-authority land polygons via the canonical Europe land cache"
+    },
+    {
+      "rank_by_area": 1,
+      "part_index": 457,
+      "ground_area_km2": 83552.5,
+      "projected_area_km2": 235069.4,
+      "centroid_lon": -7.87773,
+      "centroid_lat": 53.45969,
+      "bbox_3857": "[-1166616, 6700842, -604748, 7436543]",
+      "anchors_contained_gb": "",
+      "anchors_contained_ie": "Belfast;Cork;Dublin",
+      "named_identification": "",
+      "is_single_connected_component": true,
+      "stage_role": "MAIN_LANDMASS_IRELAND",
+      "anchor_role": "IDENTITY_QA_ONLY_NOT_OWNERSHIP_SOURCE",
+      "ownership_source": "HISTORICAL_EVIDENCE_BUNDLE",
+      "physical_source": "OSM coast-authority land polygons via the canonical Europe land cache"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "bi_1707_union_article_i",
+      "polity": "pol_great_britain",
+      "citation": "6 Ann. c. 11 (1706 c. 11); noted in the official text as 'Chapter VIII. 5 & 6 Ann. in the Common printed Editions'",
+      "evidence_role": "POLITICAL_CONTROL",
+      "effective_date": "1707-05-01"
+    },
+    {
+      "evidence_id": "bi_1756_gb_statute_scotland",
+      "polity": "pol_great_britain",
+      "citation": "29 Geo. 2 c. 20 (1756)",
+      "evidence_role": "POLITICAL_CONTROL",
+      "effective_date": "1756"
+    },
+    {
+      "evidence_id": "bi_1756_gb_statute_england",
+      "polity": "pol_great_britain",
+      "citation": "29 Geo. 2 c. 37 (1756)",
+      "evidence_role": "POLITICAL_CONTROL",
+      "effective_date": "1756"
+    },
+    {
+      "evidence_id": "bi_1755_ireland_sheriffs_act",
+      "polity": "pol_kingdom_of_ireland",
+      "citation": "1755 (29 Geo. 2) c. 15 [Ireland]",
+      "evidence_role": "POLITICAL_CONTROL",
+      "effective_date": "1756-05-01"
+    },
+    {
+      "evidence_id": "bi_1751_ireland_cork_infirmary",
+      "polity": "pol_kingdom_of_ireland",
+      "citation": "1751 (25 Geo. 2) c. 23 [Ireland]",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "effective_date": "1751"
+    },
+    {
+      "evidence_id": "bi_1801_union_temporal_cutoff",
+      "polity": "TEMPORAL_BOUNDARY",
+      "citation": "39 & 40 Geo. 3 c. 67 (1800 c. 67)",
+      "evidence_role": "TEMPORAL_BOUNDARY",
+      "effective_date": "1801-01-01"
+    }
+  ],
+  "membership": [
+    {
+      "control_status": "CONTROLLED",
+      "basis": "WHOLE_LAND_SINGLE_AUTHORISED_COMPONENT",
+      "hexes": 27830
+    },
+    {
+      "control_status": "UNRESOLVED",
+      "basis": "MIXED_UNAUDITED_LAND_COMPONENT",
+      "hexes": 134
+    }
+  ],
+  "canonical": {
+    "before": 1614,
+    "after": 29578,
+    "added": 27964
+  },
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.3,
+    "render_s": 1.0,
+    "total_s": 1.8
+  },
+  "peak_memory_mb": 1111.5,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

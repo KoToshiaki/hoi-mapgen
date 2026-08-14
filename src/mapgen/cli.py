@@ -62,6 +62,8 @@ def main(argv: list[str] | None = None) -> int:
                           "georeference from observed feature points"),
         ("dualsource", "MAPGEN-020: Brandenburg continuity audit and "
                        "independent BLHA georeference"),
+        ("coastbound", "MAPGEN-021: British Isles coast-bounded "
+                       "territorial production"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -119,6 +121,13 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "coastbound":
+        from .historical_coast_bounded_pipeline import (
+            run_historical_coast_bounded)
+
+        run_historical_coast_bounded(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "dualsource":

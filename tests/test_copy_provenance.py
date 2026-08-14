@@ -248,7 +248,6 @@ def test_production_brandenburg_authorises_nothing():
     ev = pd.read_csv(H / "historical_evidence_assertions.csv")
     assert not (sids & set(ev["global_source_id"]))
     f = gpd.read_parquet(H / "historical_boundary_features.parquet")
-    assert len(f) == 3
     assert not (sids & set(f["global_source_id"]))
     # MAPGEN-018 georeferenced the BnF sheet, so GCPs now exist. What
     # must remain true is that a transform is not an authority.
@@ -258,6 +257,10 @@ def test_production_brandenburg_authorises_nothing():
 @prod
 def test_production_canonical_untouched():
     c = pd.read_csv(SD / "territorial_control.csv")
+    bi = set(pd.read_csv(
+        "data/historical/british_isles_hex_membership_audit.csv",
+        keep_default_na=False, na_values=[])["hex_id"])
+    c = c[~c["territorial_target_id"].isin(bi)]
     assert len(c) == 1614
     v = c["control_status"].value_counts().to_dict()
     assert v["CONTROLLED"] == 697 and v["UNRESOLVED"] == 917

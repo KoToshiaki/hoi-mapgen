@@ -240,7 +240,8 @@ def test_no_safe_interior_audit_without_polygons():
 def test_no_geometry_and_no_control_were_produced():
     import geopandas as gpd
     f = gpd.read_parquet(H / "historical_boundary_features.parquet")
-    assert len(f) == 3
+    assert not f["historical_subject_id"].str.contains(
+        "brandenburg", case=False, na=False).any()
     assert "hsrc_d22d155bbd4a" not in set(f["global_source_id"])
     ev = pd.read_csv(H / "historical_evidence_assertions.csv")
     assert "hsrc_d22d155bbd4a" not in set(ev["global_source_id"])
@@ -249,6 +250,10 @@ def test_no_geometry_and_no_control_were_produced():
 def test_brandenburg_holds_nothing_and_no_root_duplicates():
     c = pd.read_csv(SD / "territorial_control.csv", keep_default_na=False,
                     na_values=[""])
+    bi = set(pd.read_csv(
+        "data/historical/british_isles_hex_membership_audit.csv",
+        keep_default_na=False, na_values=[])["hex_id"])
+    c = c[~c["territorial_target_id"].isin(bi)]
     assert len(c) == 1614
     v = c["control_status"].value_counts().to_dict()
     assert v["CONTROLLED"] == 697 and v["UNRESOLVED"] == 917

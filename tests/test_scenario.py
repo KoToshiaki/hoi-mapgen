@@ -326,8 +326,16 @@ def test_personal_union_is_not_ownership_merge():
     han = _sp_by_name(s, "Electorate of Brunswick-Lüneburg (Hanover)")
     assert gb != han  # two distinct scenario polities
     ctrl = s.territorial_control
-    assert not ctrl["controller_scenario_polity_id"].isin(
-        [gb, han]).any()  # the union created no territorial control
+    # MAPGEN-021 gave Great Britain territory from its OWN statutes (the
+    # Acts of Union and two 1756 acts), which is not a union inheritance.
+    # What the personal union must still never do is move land between the
+    # two crowns, so Hanover holds nothing and no hex is shared.
+    assert not ctrl["controller_scenario_polity_id"].eq(han).any()
+    gb_hexes = set(ctrl.loc[ctrl["controller_scenario_polity_id"] == gb,
+                            "territorial_target_id"])
+    han_hexes = set(ctrl.loc[ctrl["controller_scenario_polity_id"] == han,
+                             "territorial_target_id"])
+    assert not gb_hexes & han_hexes
 
 
 def test_empire_membership_is_not_ownership():
