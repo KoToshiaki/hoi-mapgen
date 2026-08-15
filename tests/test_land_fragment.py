@@ -99,8 +99,15 @@ def test_land_fragment_schema_is_additive():
 
 
 def test_backward_compatibility_of_old_target_rows(canon):
-    """A reader that ignores fragments sees exactly MAPGEN-024."""
-    old = canon[canon.territorial_target_type != "LAND_FRAGMENT"]
+    """A reader that ignores fragments sees exactly MAPGEN-024.
+
+    MAPGEN-026 later added Iberian hex rows, which are ordinary
+    TERRESTRIAL_HEX rows and so cannot be told apart by target type; they
+    are subtracted from their own membership audit.
+    """
+    from _production_baseline import strip_iberia_production
+    old = strip_iberia_production(
+        canon[canon.territorial_target_type != "LAND_FRAGMENT"])
     assert len(old) == 50565
     assert int((old.territorial_target_type
                 == "TERRESTRIAL_HEX").sum()) == 50564
@@ -123,9 +130,8 @@ def test_validator_accepts_fragments_only_when_told_about_them(canon):
         "output/geography_v1_3_islands_006r_20260809/geography_hexes.parquet",
         columns=["hex_id", "water_type"])
     terr = set(geo.loc[geo.water_type == "NONE", "hex_id"])
-    for name in ("british_isles_hex_membership_audit.csv",
-                 "mediterranean_hex_membership_audit.csv",
-                 "island_hex_membership_audit.csv"):
+    from _production_baseline import MEMBERSHIP_AUDITS
+    for name in MEMBERSHIP_AUDITS:
         terr |= set(pd.read_csv(H / name, keep_default_na=False,
                                 na_values=[])["hex_id"])
     # the earlier central-Europe stages bound their own membership sets

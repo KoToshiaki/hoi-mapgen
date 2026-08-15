@@ -84,6 +84,9 @@ REGIONS = {
     "saxony_brandenburg": dict(
         title="Saxony and Brandenburg",
         bbox=(1150000, 6500000, 1750000, 7000000)),
+    "iberian": dict(
+        title="Iberian mainland",
+        bbox=(-1120000, 4180000, 420000, 5540000)),
 }
 
 

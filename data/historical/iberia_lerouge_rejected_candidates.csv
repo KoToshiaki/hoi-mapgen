@@ -1,0 +1,19 @@
+candidate_label,pixel_x,pixel_y,proposed_target,reason,note,point_id
+TOULOUSE,4292.0,805.0,Toulouse,NO_SYMBOL_AT_RECORDED_PIXEL,"the crop shows Aire, Lescar, Pau and the word GASCOGNE and carries no settlement mark at all; the nearest detected wash blob is 308 px away. The pixel was never a measured blob centroid.",
+PAMPELUNE,3965.0,1043.0,Pamplona,WRONG_SETTLEMENT,the crop reads Monreal / Sanguesa / Aragon R.; Pamplona lies well north-west of it. Kept out rather than re-pointed by prediction.,
+BADAJOS,1590.1,2871.4,Badajoz,WASH_NOT_SEPARABLE_FROM_BORDER,"the blob lies inside the crimson boundary band between Olivenca and Telena, so a town wash cannot be told from the border wash here. The Badajos label is nearby but the anchor is not measurable.",
+Tarazona,3814.9,1409.0,Tarazona,WASH_NOT_SEPARABLE_FROM_BORDER,"cities5000 does resolve Tarazona, but the crimson blob nearest the recorded pixel lies on the boundary band beside Sadava / Exea and carries no Tarazona legend, so there is no measurable symbol.",
+Cuenca,3433.0,2313.0,Cuenca,VIGNETTE_ANCHOR_AMBIGUOUS,a multi-building perspective vignette has no single defensible centre. Carried over from the MAPGEN-026 candidate audit.,
+CORDOUE,2441.5,3258.3,Cordoba,VIGNETTE_ANCHOR_AMBIGUOUS,"a walled-town perspective drawing; its ink centroid moves 29 px when the measuring radius changes, so it is not a point observation.",
+Porto,969.0,1714.0,Porto,LABEL_NOT_LEGIBLE,"the large word beside the Douro mouth cannot be read as Porto rather than as the river name; no unambiguous label, so no anchor.",
+CADIX,1913.0,3705.0,Cadiz,SYMBOL_OUTSIDE_READ_WINDOW,the Cadix lettering runs off the left edge of every window opened for it and no settlement mark could be brought into view with the label; reported as a miss.,
+Malaga,2636.0,3652.0,Malaga,SYMBOL_IDENTITY_AMBIGUOUS,the Malaga and Velez Malaga legends overlap along the coast and the candidate ring cannot be assigned to one of them.,
+EVORA,1265.0,2913.0,Evora,TWO_CANDIDATE_VIGNETTES,two crimson vignettes sit within 100 px of the EVORA legend and neither can be preferred by reading alone.,
+Teruel,3795.0,2220.0,Teruel,WASH_NOT_SEPARABLE_FROM_BORDER,the only candidate beside the Teruel legend lies on the crimson boundary band.,
+Colmenar,3030.2,2219.7,Colmenar,AMBIGUOUS_LABEL,the plate engraves only Colmenar; Colmenar de Oreja and Colmenar Viejo both lie within the search window and choosing between them would be the provisional transform deciding an identity.,
+SJuan,3143.5,2617.2,San Juan,AMBIGUOUS_LABEL,S.Juan matches many places in La Mancha; no distinguishing legend.,
+Ourique,971.6,3283.6,Ourique,NOT_IN_GAZETTEER,,ofp_ourique
+Avis,1225.0,2682.3,Avis,NOT_IN_GAZETTEER,,ofp_avis
+Arronches,1544.7,2633.6,Arronches,NOT_IN_GAZETTEER,,ofp_arronches
+Valenca_do_Minho,1059.4,1353.9,Valenca,NOT_IN_GAZETTEER,,ofp_valenca
+Orgas,2809.8,2507.5,Orgaz,NOT_IN_GAZETTEER,,ofp_orgaz

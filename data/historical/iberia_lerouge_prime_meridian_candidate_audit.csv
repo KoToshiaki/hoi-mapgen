@@ -1,0 +1,5 @@
+candidate,offset_to_greenwich_deg,n_points,median_residual_km,p75_residual_km,p90_residual_km,max_residual_km,scored_on,method,status
+EMPIRICAL_PLATE_OFFSET,-18.263322,29,28.571,36.994,47.47,60.322,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the engraved border graduations, not through a fitted transform",ADOPTED_AS_PLATE_MERIDIAN
+FERRO_20W_OF_PARIS,-17.662771,29,52.846,83.575,86.735,100.771,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the engraved border graduations, not through a fitted transform",PLAUSIBLE_NOT_ADOPTED
+GREENWICH,0.0,29,1542.985,1585.822,1627.911,1640.489,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the engraved border graduations, not through a fitted transform",REJECTED
+PARIS,2.337229,29,1735.473,1784.527,1832.752,1846.508,FIT + MODEL_SELECTION_HOLDOUT (blind untouched),"longitudes read off the engraved border graduations, not through a fitted transform",REJECTED

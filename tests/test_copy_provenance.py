@@ -181,10 +181,15 @@ def test_production_copy_registry_separates_work_plate_copy():
                     keep_default_na=False, na_values=[""])
     assert len(c) >= 4
     assert c["copy_id"].is_unique
-    assert c["map_work_id"].nunique() == 2
+    # MAPGEN-026 added a third work (the Le Rouge atlas). The claim this
+    # test makes is about the Brandenburg registry it was written for.
+    bb = c[c["map_work_id"].str.startswith("work_")]
+    assert bb["map_work_id"].nunique() == 2
     assert {"map_work_id", "plate_id", "copy_id", "catalogued_copy_date",
             "plate_date", "issue_date", "represented_political_date",
             "copy_state", "copy_state_confidence"} <= set(c.columns)
+    # no copy in the registry, old or new, may claim to depict a political
+    # date that was never verified
     assert (c["represented_political_date"] == "UNVERIFIED").all()
 
 
@@ -203,7 +208,8 @@ def test_production_bnf_copy_acquired_and_dated_from_the_plate():
 @prod
 def test_production_other_copies_are_demoted_not_used():
     c = pd.read_csv(H / "historical_map_copy_registry.csv")
-    others = c[c["copy_id"] != "copy_bnf_ge_dd_2987_3790"]
+    others = c[c["map_work_id"].str.startswith("work_")
+               & (c["copy_id"] != "copy_bnf_ge_dd_2987_3790")]
     assert (others["raster_acquired"] == "NO").all()
     assert others["role"].isin(["PLATE_STATE_COMPARISON_ONLY",
                                 "INDEPENDENT_GEOMETRY_SUBSTRATE_CANDIDATE"

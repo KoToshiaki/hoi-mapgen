@@ -33,3 +33,14 @@ hbf_9f2803a50b1c,hev_7fa3f46995eb,POLITICAL_STATUS,NO,government actually runnin
 hbf_9f2803a50b1c,hev_426a1d670e05,TEMPORAL_CONTINUITY,YES,outline carried from the modern survey to the snapshot
 hbf_f2169d1d26f9,hev_2714e09703ae,POLITICAL_STATUS,YES,"Sicily sovereignty title, archive-grade provenance (MAPGEN-023 hardening)"
 hbf_ebfa1ff1171e,hev_614c3c7f6a31,POLITICAL_STATUS,YES,"Sardinia sovereignty title, archive-grade provenance (MAPGEN-023 hardening)"
+hbf_4da53367f9a0,hev_abb876de2058,GEOMETRY_SHAPE,YES,the plate's own drawn boundaries
+hbf_4da53367f9a0,hev_01c12212351f,GEOMETRY_SHAPE,NO,coastline substrate
+hbf_4da53367f9a0,hev_de06d6f7238a,POLITICAL_STATUS,YES,the crown's own act at the snapshot
+hbf_4da53367f9a0,hev_c4c807454a57,POLITICAL_STATUS,NO,scholarship on the same reign
+hbf_4da53367f9a0,hev_8538f8cbccb2,TEMPORAL_CONTINUITY,YES,coastline carried from the modern survey to the snapshot
+hbf_4da53367f9a0,hev_d3498586d4ae,SUPPORTING,NO,Gibraltar is British and is withheld
+hbf_7ed17b927930,hev_a8cce229d5e0,GEOMETRY_SHAPE,YES,the plate's own drawn boundaries
+hbf_7ed17b927930,hev_2deb7271ec44,GEOMETRY_SHAPE,NO,coastline substrate
+hbf_7ed17b927930,hev_8f705a7b8b3d,POLITICAL_STATUS,YES,the crown's own act at the snapshot
+hbf_7ed17b927930,hev_9bf4c3c3345b,POLITICAL_STATUS,NO,scholarship on the same reign
+hbf_7ed17b927930,hev_9836b0a3cb4e,TEMPORAL_CONTINUITY,YES,coastline carried from the modern survey to the snapshot

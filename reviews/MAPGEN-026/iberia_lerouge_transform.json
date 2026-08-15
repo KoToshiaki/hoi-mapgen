@@ -1,0 +1,58 @@
+{
+ "map_source_id": "hsrc_lerouge_1756_atlas_portatif_espagne_portugal",
+ "copy_id": "copy_polona_106354248",
+ "model": "POLYNOMIAL_2",
+ "params": {
+  "model": "POLYNOMIAL_2",
+  "lon": [
+   -11.088363359021237,
+   0.0027479274751416685,
+   -0.00023743725347206678,
+   -3.3167872241361094e-08,
+   -2.913578657120438e-08,
+   8.010018912393762e-08
+  ],
+  "lat": [
+   44.70802726466705,
+   -7.726989917232099e-05,
+   -0.0017858104200644872,
+   5.636679584460145e-08,
+   -6.50567764904295e-08,
+   -8.556146401592873e-08
+  ]
+ },
+ "prime_meridian": "EMPIRICAL_PLATE_OFFSET",
+ "prime_meridian_offset_deg": -18.263322,
+ "prime_meridian_role": "DIAGNOSTIC_ONLY: the transform maps pixels straight to Greenwich degrees from observed features; the plate meridian is audited, not applied",
+ "n_observed": 34,
+ "n_fit": 21,
+ "n_model_selection": 8,
+ "n_blind": 5,
+ "selection_rule": "simplest model within 10% of the best holdout rms",
+ "best_holdout_rms_m": 24667.938535413432,
+ "design_condition": 101228902.65143129,
+ "jacobian": {
+  "mpp_x_min": 193.50375468908476,
+  "mpp_x_max": 241.6855632648457,
+  "mpp_y_min": 205.73652729879885,
+  "mpp_y_max": 330.8419419639037,
+  "scale_ratio": 1.6080855757976784,
+  "folding": false,
+  "mean_pixel_scale_m": 240.61713772171336
+ },
+ "blind_rms_m": 15602.406967175712,
+ "blind_p95_m": 23303.6676,
+ "blind_max_m": 23951.338,
+ "n_unseen": 13,
+ "unseen_rms_m": 21635.499924129996,
+ "unseen_p95_m": 34613.657999999996,
+ "unseen_max_m": 34735.206,
+ "positional_uncertainty_rule": "p95 of the residuals at every point the fit never saw (MODEL_SELECTION_HOLDOUT + BLIND_VALIDATION)",
+ "mean_pixel_scale_m": 240.61713772171336,
+ "face_px": [
+  232,
+  262,
+  6022,
+  4630
+ ]
+}

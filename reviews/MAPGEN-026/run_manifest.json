@@ -1,0 +1,400 @@
+{
+  "run_id": "iberian_mainland_1756_20260816",
+  "stage": "MAPGEN-026",
+  "outcome": "FULL",
+  "generated_utc": "2026-08-15T17:01:44.705941+00:00",
+  "base_commit_mapgen025": "da8d78736964043e5fd3363ed99782be5ef4a7b7",
+  "baseline_from_committed_summary": {
+    "canonical_rows_after": 53579,
+    "canonical_controlled_after": 52510,
+    "canonical_unresolved_after": 1069,
+    "land_fragment_rows": 3014
+  },
+  "source": {
+    "specified": "IGN/CNIG 1755 Carte d'Espagne, signatura 13-C-69",
+    "specified_status": "UNAVAILABLE_UPSTREAM",
+    "adopted_global_source_id": "hsrc_4c13f0498990",
+    "adopted_copy_id": "copy_polona_106354248",
+    "lineage": [
+      {
+        "global_source_id": "hsrc_4c13f0498990",
+        "cartographer": "Georges-Louis Le Rouge",
+        "engraver": "",
+        "publisher": "Le Rouge; Prault fils; Veuve Robinot; Briasson, Paris",
+        "plate_family": "FRENCH_POCKET_ATLAS_COMPILATION",
+        "source_survey_or_base_map": "the atlas title claims the plates are 'dressees sur les nouvelles observations'; the plate itself names no survey and no authority for the Iberian sheet",
+        "derived_from_source_id": "",
+        "shared_cartographic_lineage": "UNKNOWN",
+        "lineage_confidence": "LOW",
+        "independence_status": "LINEAGE_NOT_ESTABLISHED",
+        "independence_reason": "Le Rouge worked as a compiler and translator of other houses' material, and no derivation from a named predecessor could be shown or ruled out within this stage's bounded search. The consequence is carried through rather than hidden: the plate is used for WHERE the provinces are, at a measured 34.6 km p95 error, and its frontier depiction is never treated as independent confirmation of anyone else's.",
+        "corroboration_eligible": "NO"
+      }
+    ]
+  },
+  "georeference": {
+    "n_observed": 34,
+    "split": {
+      "FIT": 21,
+      "MODEL_SELECTION_HOLDOUT": 8,
+      "BLIND_VALIDATION": 5
+    },
+    "models": [
+      {
+        "model": "AFFINE",
+        "status": "FITTED",
+        "n_fit": 21,
+        "n_holdout": 8,
+        "fit_rms_m": 22946.34183135237,
+        "fit_p95_m": 43017.598509641386,
+        "fit_max_m": 65477.4972147663,
+        "holdout_rms_m": 27251.89728708465,
+        "holdout_p95_m": 40991.79916966882,
+        "holdout_max_m": 47351.33675785575
+      },
+      {
+        "model": "PROJECTIVE",
+        "status": "FITTED",
+        "n_fit": 21,
+        "n_holdout": 8,
+        "fit_rms_m": 22974.95528938602,
+        "fit_p95_m": 39581.03669608587,
+        "fit_max_m": 64436.58600462658,
+        "holdout_rms_m": 28058.974415612065,
+        "holdout_p95_m": 40248.94748233268,
+        "holdout_max_m": 44966.17068895504
+      },
+      {
+        "model": "POLYNOMIAL_2",
+        "status": "FITTED",
+        "n_fit": 21,
+        "n_holdout": 8,
+        "fit_rms_m": 16714.309759571726,
+        "fit_p95_m": 26908.33547961933,
+        "fit_max_m": 29845.1143903226,
+        "holdout_rms_m": 24667.938535413432,
+        "holdout_p95_m": 34664.30253093373,
+        "holdout_max_m": 34735.20552458729
+      }
+    ],
+    "chosen": "POLYNOMIAL_2",
+    "jacobian": {
+      "mpp_x_min": 193.50375468908476,
+      "mpp_x_max": 241.6855632648457,
+      "mpp_y_min": 205.73652729879885,
+      "mpp_y_max": 330.8419419639037,
+      "scale_ratio": 1.6080855757976784,
+      "folding": false,
+      "mean_pixel_scale_m": 240.61713772171336
+    },
+    "prime_meridian_audit": [
+      {
+        "candidate": "EMPIRICAL_PLATE_OFFSET",
+        "offset_to_greenwich_deg": -18.263322,
+        "n_points": 29,
+        "median_residual_km": 28.571,
+        "p75_residual_km": 36.994,
+        "p90_residual_km": 47.47,
+        "max_residual_km": 60.322,
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the engraved border graduations, not through a fitted transform",
+        "status": "ADOPTED_AS_PLATE_MERIDIAN"
+      },
+      {
+        "candidate": "FERRO_20W_OF_PARIS",
+        "offset_to_greenwich_deg": -17.662771,
+        "n_points": 29,
+        "median_residual_km": 52.846,
+        "p75_residual_km": 83.575,
+        "p90_residual_km": 86.735,
+        "max_residual_km": 100.771,
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the engraved border graduations, not through a fitted transform",
+        "status": "PLAUSIBLE_NOT_ADOPTED"
+      },
+      {
+        "candidate": "GREENWICH",
+        "offset_to_greenwich_deg": 0.0,
+        "n_points": 29,
+        "median_residual_km": 1542.985,
+        "p75_residual_km": 1585.822,
+        "p90_residual_km": 1627.911,
+        "max_residual_km": 1640.489,
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the engraved border graduations, not through a fitted transform",
+        "status": "REJECTED"
+      },
+      {
+        "candidate": "PARIS",
+        "offset_to_greenwich_deg": 2.337229,
+        "n_points": 29,
+        "median_residual_km": 1735.473,
+        "p75_residual_km": 1784.527,
+        "p90_residual_km": 1832.752,
+        "max_residual_km": 1846.508,
+        "scored_on": "FIT + MODEL_SELECTION_HOLDOUT (blind untouched)",
+        "method": "longitudes read off the engraved border graduations, not through a fitted transform",
+        "status": "REJECTED"
+      }
+    ],
+    "positional_uncertainty_km": 34.61,
+    "uncertainty_rule": "p95 of the residuals at every point the fit never saw (MODEL_SELECTION_HOLDOUT + BLIND_VALIDATION)"
+  },
+  "cells": [
+    {
+      "cell": 0,
+      "outcome": "UNRESOLVED",
+      "crown": "",
+      "zone": "sea and the Balearics",
+      "settlements_read": "MALLORQUE, Alcudia, Campos, Porto Petro, Dragonera",
+      "reason": "NOT_MAINLAND_SCOPE",
+      "note": "the open sea plus the Balearic islands. This stage produces the Iberian MAINLAND only."
+    },
+    {
+      "cell": 5,
+      "outcome": "OWNED",
+      "crown": "FRANCE",
+      "zone": "Gascogne",
+      "settlements_read": "Auch, Condom, Eauze, Tarbes, Lescar, Aire",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Gascony, French crown territory; recorded so the Spanish region can never absorb it across the Pyrenees."
+    },
+    {
+      "cell": 6,
+      "outcome": "OWNED",
+      "crown": "SPAIN",
+      "zone": "Catalonia",
+      "settlements_read": "Solsona, Cardona, Manresa, Cervera, Vich, Camprodon",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Principality of Catalonia, under the Spanish crown at the snapshot; governed since the Nueva Planta decree of 1716 through the Real Audiencia and the Captain General at Barcelona."
+    },
+    {
+      "cell": 7,
+      "outcome": "OWNED",
+      "crown": "FRANCE",
+      "zone": "Languedoc",
+      "settlements_read": "Albi, Castres, Lavaur, Castelnaudary, Rieux, Montauban",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Languedoc, French crown territory."
+    },
+    {
+      "cell": 10,
+      "outcome": "OWNED",
+      "crown": "FRANCE",
+      "zone": "Quercy and Rouergue",
+      "settlements_read": "Cahors, Rodez, Albi, Montauban, the Lot",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "French crown territory north of the Pyrenean watershed."
+    },
+    {
+      "cell": 13,
+      "outcome": "OWNED",
+      "crown": "PORTUGAL",
+      "zone": "Beira",
+      "settlements_read": "Viseu, Guarda, Pinhel, Penamacor, Monsanto",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Beira, a province of the Kingdom of Portugal under D. Jose I; all five towns are Portuguese comarca seats."
+    },
+    {
+      "cell": 15,
+      "outcome": "OWNED",
+      "crown": "SPAIN",
+      "zone": "Valencia",
+      "settlements_read": "Segorbe, Requena, Xativa, Alzira, Turis",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Kingdom of Valencia, under the Spanish crown; its own fueros were abolished in 1707 and it was administered from Valencia by the Audiencia and Captain General."
+    },
+    {
+      "cell": 17,
+      "outcome": "OWNED",
+      "crown": "SPAIN",
+      "zone": "Navarre",
+      "settlements_read": "PAMPLUNE, Estella, Tafalla, Olite, Viana, Logrono",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Kingdom of Navarre, under the Spanish crown since 1512, keeping its own Cortes and Diputacion; a distinct kingdom in law but not a separate monarch, and the plate's own ROYAUME DE NAVARRE lettering agrees."
+    },
+    {
+      "cell": 18,
+      "outcome": "UNRESOLVED",
+      "crown": "",
+      "zone": "Algarve",
+      "settlements_read": "ROY. DE ALGARVE, Faro, Tavira, Silves, Lagos, Estombar",
+      "reason": "SEPARATE_KINGDOM_TITLE_UNEVALUATED",
+      "note": "the plate styles it a kingdom in its own right. MAPGEN-009 already split Naples from Sicily for sharing a monarch, so the Algarve is not folded into pol_portugal without its own evidence. Left UNRESOLVED and passed on as an audit candidate."
+    },
+    {
+      "cell": 19,
+      "outcome": "OWNED",
+      "crown": "PORTUGAL",
+      "zone": "Tras-os-Montes on the Douro",
+      "settlements_read": "Miranda (do Douro), Torre de Moncorvo, Lamego",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "all three are Portuguese comarca towns. Miranda do Douro sits ON the frontier and is Portuguese; no Spanish settlement is engraved anywhere inside this cell, so the one-crown rule applies here exactly as it does inland."
+    },
+    {
+      "cell": 20,
+      "outcome": "OWNED",
+      "crown": "PORTUGAL",
+      "zone": "Estremadura",
+      "settlements_read": "the word PORTUGAL engraved across the cell, with Setubal, Evora, Alcacer do Sal, Almada, Ribatejo",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Portuguese Estremadura and the Ribatejo, the crown's own heartland around the capital."
+    },
+    {
+      "cell": 21,
+      "outcome": "UNRESOLVED",
+      "crown": "",
+      "zone": "Mallorca",
+      "settlements_read": "Mallorque, Alcudia, Sagra, Campos",
+      "reason": "NOT_MAINLAND_SCOPE",
+      "note": "Balearic island, out of scope."
+    },
+    {
+      "cell": 22,
+      "outcome": "OWNED",
+      "crown": "FRANCE",
+      "zone": "Roussillon",
+      "settlements_read": "Villefranche, Bellegarde, the word ROUSSILLON, Besalu, Camprodon",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Roussillon, ceded to France by the Treaty of the Pyrenees in 1659 and French at the snapshot."
+    },
+    {
+      "cell": 23,
+      "outcome": "OWNED",
+      "crown": "PORTUGAL",
+      "zone": "Douro near Amarante",
+      "settlements_read": "Amarante, Lamego, Villa Real",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "three Portuguese towns of the Douro province, none of them near the frontier, and no Spanish settlement inside."
+    },
+    {
+      "cell": 24,
+      "outcome": "UNRESOLVED",
+      "crown": "",
+      "zone": "lower Minho",
+      "settlements_read": "VIGO, Ribadavia, Melgaco, BRAGA, Valenca, Amarante, Villa Real",
+      "reason": "MIXED_CROWN_LEAK",
+      "note": "the cell holds Vigo and Ribadavia, which are Spanish, together with Braga, Valenca and Melgaco, which are Portuguese. The wash network is open across the Minho here, so the cell can carry no owner."
+    },
+    {
+      "cell": 25,
+      "outcome": "UNRESOLVED",
+      "crown": "",
+      "zone": "Sanabria and Tras-os-Montes",
+      "settlements_read": "Monforte de Lemos, Ponferrada, Sanabria, Benavente, Zamora, Braganza",
+      "reason": "MIXED_CROWN_LEAK",
+      "note": "Zamora, Benavente and Ponferrada are Spanish; Braganca is Portuguese. Another opening in the network, on the Tras-os-Montes frontier."
+    },
+    {
+      "cell": 26,
+      "outcome": "OWNED",
+      "crown": "PORTUGAL",
+      "zone": "Beira Alta",
+      "settlements_read": "Lamego, Pinhel, Torre de Moncorvo",
+      "reason": "ONE_CROWN_ONLY_IN_CELL",
+      "note": "Portuguese Beira Alta; no Spanish settlement inside."
+    }
+  ],
+  "special_cases": [
+    {
+      "case": "GIBRALTAR",
+      "treatment": "WITHHELD_FROM_EVERY_SAFE_INTERIOR"
+    },
+    {
+      "case": "ANDORRA",
+      "treatment": "WITHHELD_FROM_EVERY_SAFE_INTERIOR"
+    },
+    {
+      "case": "LLIVIA",
+      "treatment": "WITHHELD_FROM_EVERY_SAFE_INTERIOR"
+    },
+    {
+      "case": "OLIVENZA",
+      "treatment": "WITHHELD_FROM_EVERY_SAFE_INTERIOR"
+    },
+    {
+      "case": "COUTO_MISTO",
+      "treatment": "WITHHELD_FROM_EVERY_SAFE_INTERIOR"
+    },
+    {
+      "case": "CEUTA",
+      "treatment": "WITHHELD_FROM_EVERY_SAFE_INTERIOR"
+    }
+  ],
+  "production": {
+    "controlled": 5457,
+    "unresolved": 16593,
+    "not_produced": 318,
+    "spain": 5431,
+    "portugal": 26
+  },
+  "target_types": [
+    "TERRESTRIAL_HEX",
+    "ISLAND_COMPONENT",
+    "LAND_FRAGMENT"
+  ],
+  "scenario_schema_version": "1.5.0",
+  "hpg_schema_version": "1.4.0",
+  "preview": {
+    "scenario_id": "seven_years_war_1756_08_01",
+    "generated_utc": "2026-08-15T17:01:43.346687+00:00",
+    "authoritative": false,
+    "purpose": "QA_AND_PRESENTATION_ONLY",
+    "stats": {
+      "controlled": 54951,
+      "unresolved": 17661,
+      "gap": 0,
+      "fragments": 3014,
+      "fragment_km2": 5644.3,
+      "polities": 9,
+      "terrestrial_hexes": 862795,
+      "unknown_terrestrial": 790183,
+      "controlled_share_pct": 6.369,
+      "canonical_controlled": 57967,
+      "canonical_unresolved": 17662,
+      "island_component_rows": 1,
+      "off_europe_grid_rows": 2
+    },
+    "closeup_gap_hexes": {
+      "british_isles": 0,
+      "iceland": 0,
+      "mediterranean": 0,
+      "malta_gozo": 0,
+      "saxony_brandenburg": 0,
+      "iberian": 0
+    },
+    "colour_rule": "sha1(polity_id)[0] % len(PALETTE); personal unions and composite membership never share a colour"
+  },
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_coverage.parquet": "5557cf757f466d3666425ea1c28da77f7c1618daeea4fe31e87029c7b9d843c3",
+    "output\\europe_land_cache\\europe_land_parts.parquet": "81a5c66249f500b3460cd8dc528caece563cd3fe3714a88454d8e99b0e98d5e7"
+  },
+  "image_aspects": {
+    "iberian_georeference_uncertainty.png": 3.277,
+    "iberian_production.png": 2.785,
+    "iberian_political_closeup.png": 1.133,
+    "scenario_1756_political_map.png": 1.053,
+    "scenario_1756_political_map_legend.png": 1.222
+  },
+  "timings_s": {
+    "load_s": 0.8,
+    "preview_s": 49.0,
+    "gates_s": 0.8,
+    "total_s": 51.9
+  },
+  "peak_memory_mb": 3027.2,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

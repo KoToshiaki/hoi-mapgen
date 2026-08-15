@@ -19,7 +19,11 @@ H = Path("data/historical")
 # every coast-bounded stage writes one of these
 MEMBERSHIP_AUDITS = ("british_isles_hex_membership_audit.csv",
                      "mediterranean_hex_membership_audit.csv",
-                     "island_hex_membership_audit.csv")
+                     "island_hex_membership_audit.csv",
+                     # MAPGEN-026 is the first MAINLAND batch, so the name
+                     # "island production" is now too narrow; the mechanism
+                     # is the same and the list is what it strips.
+                     "iberia_hex_membership_audit.csv")
 
 
 def island_production_hex_ids() -> set[str]:
@@ -45,6 +49,28 @@ def strip_island_production(control: pd.DataFrame) -> pd.DataFrame:
     if "territorial_target_type" in out.columns:
         out = out[out["territorial_target_type"] != "LAND_FRAGMENT"]
     return out
+
+
+IBERIA_AUDIT = "iberia_hex_membership_audit.csv"
+
+
+def iberia_production_hex_ids() -> set[str]:
+    """Hex ids MAPGEN-026 wrote for the Iberian mainland.
+
+    Separate from the island set because a test that pins the row count a
+    2024-era stage left behind must subtract only what came AFTER it, not
+    everything coast-bounded that came before.
+    """
+    p = H / IBERIA_AUDIT
+    if not p.exists():
+        return set()
+    return set(pd.read_csv(p, keep_default_na=False,
+                           na_values=[])["hex_id"])
+
+
+def strip_iberia_production(control: pd.DataFrame) -> pd.DataFrame:
+    return control[~control["territorial_target_id"].isin(
+        iberia_production_hex_ids())]
 
 
 def hex_control(control: pd.DataFrame) -> pd.DataFrame:

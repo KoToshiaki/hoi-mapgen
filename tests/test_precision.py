@@ -270,7 +270,15 @@ def test_production_iiif_local_raster_is_native_maximum():
 def test_production_ferro_is_data_not_a_magic_constant():
     m = pd.read_csv(H / "historical_prime_meridian_contract.csv")
     assert len(m) >= 2
-    assert (abs(m["conversion_to_greenwich_deg"] - (2.337229 - 20.0))
+    # MAPGEN-026 added a plate whose own graduations do NOT agree with
+    # Ferro; that is precisely why the meridian is stored per source
+    # instead of being a constant, so the Ferro rows are what this test
+    # is about.
+    ferro = m[m["prime_meridian_name"] == "FERRO_20W_OF_PARIS"]
+    assert len(ferro) >= 2
+    assert (abs(ferro["conversion_to_greenwich_deg"] - (2.337229 - 20.0))
             < 1e-9).all()
+    assert (m.loc[m["prime_meridian_name"] != "FERRO_20W_OF_PARIS",
+                  "conversion_basis"].str.startswith("EMPIRICAL")).all()
     assert m["source_text"].str.len().min() > 20
     assert m["conversion_source"].str.len().min() > 20

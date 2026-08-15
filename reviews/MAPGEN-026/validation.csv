@@ -1,0 +1,45 @@
+run_id,check_id,pass,detail
+iberian_mainland_1756_20260816,M26-01_specified_source_failure_recorded,True,"the 1755 IGN/CNIG raster could not be retrieved (503/403/NoSuchKey on every published route); recorded as an upstream failure in the copy registry, not worked around"
+iberian_mainland_1756_20260816,M26-02_replacement_source_registered,True,Le Rouge 1756 plate registered as hsrc_4c13f0498990 with exactly one copy row
+iberian_mainland_1756_20260816,M26-03_commercial_reuse_not_impeded,True,"Creative Commons Public Domain Mark 1.0; the Commons record states Copyrighted=False, AttributionRequired=False and no restrictions"
+iberian_mainland_1756_20260816,M26-04_excluded_repositories_not_used,True,David Rumsey is barred as a production primary and Gallica/BnF terms were excluded; the adopted copy is Polona via Wikimedia Commons and says so on the record
+iberian_mainland_1756_20260816,M26-05_raster_is_gitignored,True,"the native raster lives under data/raw, which .gitignore excludes; only its sha256 and pixel size are committed"
+iberian_mainland_1756_20260816,M26-06_raster_hash_recorded,True,sha256 of the exact raster recorded in the copy registry
+iberian_mainland_1756_20260816,M26-07_lineage_audited_not_assumed,True,"Le Rouge compiled other houses' material; no derivation could be shown or ruled out, so the plate is NOT eligible as independent corroboration of anyone else's frontier"
+iberian_mainland_1756_20260816,M26-08_source_assessment_is_partial_not_total,True,boundary authority recorded as PARTIAL: adopted for safe interiors only
+iberian_mainland_1756_20260816,M26-09_exact_locator_present,True,plate and engraved-face locator recorded on the source row
+iberian_mainland_1756_20260816,M26-10_observed_correspondence_minimum,True,"34 observed 2D correspondences, minimum 24"
+iberian_mainland_1756_20260816,M26-11_observed_correspondence_target,True,"34 observed 2D correspondences, target 32"
+iberian_mainland_1756_20260816,M26-12_every_correspondence_directly_observed,True,"every pixel coordinate is a detector measurement on the plate, not a reading off a rescaled preview"
+iberian_mainland_1756_20260816,M26-13_graticule_never_used_as_2d_control,True,"44 border graduation observations, none eligible as a 2D control point: a tick fixes one coordinate, and crossing ticks is what MAPGEN-018R disqualified"
+iberian_mainland_1756_20260816,M26-14_split_frozen_before_fitting,True,"split roles assigned by quadrant + point_id order + a fixed 5-cycle, with no residual consulted"
+iberian_mainland_1756_20260816,M26-15_blind_set_is_non_empty,True,"5 blind points; NE and SE have none, which is a limitation of the frozen rule and is reported rather than re-rolled"
+iberian_mainland_1756_20260816,M26-16_all_three_models_compared,True,"AFFINE, PROJECTIVE and POLYNOMIAL_2 all fitted and scored"
+iberian_mainland_1756_20260816,M26-17_simplest_model_within_ten_percent_wins,True,"chosen POLYNOMIAL_2; simplest model inside the 10 per cent holdout band is POLYNOMIAL_2 (AFFINE is 10.5 per cent worse, just outside)"
+iberian_mainland_1756_20260816,M26-18_selection_used_holdout_not_fit,True,"selection scored on the MODEL_SELECTION holdout, never on fit residuals alone"
+iberian_mainland_1756_20260816,M26-19_transform_does_not_fold,True,"Jacobian sampled over the whole engraved face: no folding, scale ratio 1.61"
+iberian_mainland_1756_20260816,M26-20_uncertainty_is_measured_not_chosen,True,"positional uncertainty = p95 of the blind residuals = 34.61 km, over the 13 points the fit never saw"
+iberian_mainland_1756_20260816,M26-21_prime_meridian_from_the_plates_own_graduations,True,"candidates scored off the engraved graduations; adopted EMPIRICAL_PLATE_OFFSET at -18.263 deg, and it never enters the transform"
+iberian_mainland_1756_20260816,M26-22_rejected_candidates_recorded,True,"18 candidate anchors thrown out with 10 distinct reasons, each carrying a note"
+iberian_mainland_1756_20260816,M26-23_misidentifications_caught_before_fitting,True,"Toulouse had no symbol at the recorded pixel and Pamplona was a different town; both were found by drawing every anchor back onto the plate, not by their residuals"
+iberian_mainland_1756_20260816,M26-24_no_anchor_matched_outside_the_gazetteer,True,"every reference coordinate resolved in GeoNames; a label the gazetteer does not contain was dropped, as MAPGEN-018R dropped Tangermuende"
+iberian_mainland_1756_20260816,M26-25_ambiguous_names_left_unresolved,True,Colmenar and S.Juan match several places and were dropped rather than resolved by the provisional transform
+iberian_mainland_1756_20260816,M26-26_cells_owned_only_by_documented_settlements,True,"12 province cells owned, every one because the settlements engraved inside it belong to a single crown"
+iberian_mainland_1756_20260816,M26-27_no_cell_holds_two_crowns,True,a cell containing settlements of two crowns is a proven leak and is never owned
+iberian_mainland_1756_20260816,M26-28_leaks_recorded_not_dropped,True,the lower Minho and the Sanabria/Tras-os-Montes slivers hold settlements of both crowns; both are written down as leaks
+iberian_mainland_1756_20260816,M26-29_closing_radius_chosen_by_a_stated_criterion,True,smallest sealing radius with no mixed-crown cell and no owned cell below 80 per cent land: 19 half-resolution pixels
+iberian_mainland_1756_20260816,M26-30_no_modern_border_used,True,no modern administrative geometry is read anywhere in this stage; the crown of every cell comes from documentary evidence about the settlements engraved in it
+iberian_mainland_1756_20260816,M26-31_digitisation_parameters_recorded,True,"colour rules, frame, sealing radius and the uncertainty rule are stored as data, not left in a script"
+iberian_mainland_1756_20260816,M26-32_special_cases_withheld_by_name,True,"Gibraltar, Andorra, Llivia, Olivenza, the Couto Misto and Ceuta each withheld inside one uncertainty radius"
+iberian_mainland_1756_20260816,M26-33_gibraltar_not_spanish,True,Gibraltar is British from Utrecht 1713; the Gaceta of 3 August 1756 independently puts an English fleet in the bay
+iberian_mainland_1756_20260816,M26-34_andorra_not_absorbed,True,the co-principality is withheld from both Spain and France
+iberian_mainland_1756_20260816,M26-35_olivenza_not_back_dated,True,Olivenza is Portuguese in 1756 and passes to Spain only in 1801; nothing here back-dates that
+iberian_mainland_1756_20260816,M26-36_algarve_not_folded_in_without_evidence,True,"the plate styles the Algarve a kingdom in its own right; it is deferred, on the same principle that kept Naples and Sicily apart"
+iberian_mainland_1756_20260816,M26-37_only_whole_land_hexes_are_controlled,True,"5,457 CONTROLLED hexes, every one with all of its land inside a single crown's safe interior"
+iberian_mainland_1756_20260816,M26-38_no_centroid_only_assignment,True,"assignment is by exact hex-land intersection area, unioned inside each hex; no hex is decided by its centre point"
+iberian_mainland_1756_20260816,M26-39_band_is_unresolved_not_neutral,True,"16,593 hexes carry an explicit UNRESOLVED row with no controller; absence of a row would read as 'nobody looked'"
+iberian_mainland_1756_20260816,M26-40_non_terrestrial_hexes_not_produced,True,318 hexes carry Iberian land but are not canonical terrestrial hexes and get no row; the MAPGEN-006R invariant is untouched
+iberian_mainland_1756_20260816,M26-41_earlier_canonical_rows_untouched,True,"53,579 rows predate this stage, matching MAPGEN-025's committed 53,579"
+iberian_mainland_1756_20260816,M26-42_no_silent_overwrite,True,"22,050 new rows, no duplicate target, no collision reported by the promotion log"
+iberian_mainland_1756_20260816,M26-43_canonical_control_validates,True,validate_canonical_control returned 0 problems
+iberian_mainland_1756_20260816,M26-44_no_oversized_tracked_blob,True,"largest git-tracked file 24.9 MB (data/scenarios/seven_years_war_1756_08_01/territorial_control_provenance.csv), limit 52 MB; the native raster is gitignored and never enters history"

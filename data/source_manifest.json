@@ -488,6 +488,15 @@
       "download_date": "2026-08-09",
       "sha256": "1824cccd897a6c2ad546abbaf1f3545d51cff4bddfbda40244a1ad1ab1e4371d",
       "local_filename": "data/raw/ne_10m_ports.zip"
+    },
+    "geonames_cities5000": {
+      "source_name": "GeoNames cities5000 (all cities with population >= 5000)",
+      "source_url": "https://download.geonames.org/export/dump/cities5000.zip",
+      "dataset_version": "daily dump (see download_date)",
+      "licence": "CC BY 4.0 (https://www.geonames.org/about.html)",
+      "download_date": "2026-08-16",
+      "sha256": "dc72e3690695efdb6a8cb4d3df7ea2167eb1afac235d7ae1e6a38705302932d8",
+      "local_filename": "data/raw/cities5000.zip"
     }
   }
 }

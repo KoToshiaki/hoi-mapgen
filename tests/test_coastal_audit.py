@@ -72,10 +72,12 @@ def test_the_renderer_cannot_alter_canonical_data(tmp_path):
 def test_audit_stage_produced_no_territory(canon):
     from mapgen.historical_coastal_audit_pipeline import committed_baseline
     base = committed_baseline()
-    # MAPGEN-024 itself produced nothing. MAPGEN-025 later added
-    # LAND_FRAGMENT rows, so the audit stage's claim is checked against
-    # the target types that existed when it ran.
-    old = canon[canon["territorial_target_type"] != "LAND_FRAGMENT"]
+    # MAPGEN-024 itself produced nothing. Later stages did: MAPGEN-025
+    # added LAND_FRAGMENT rows and MAPGEN-026 added Iberian hex rows, so
+    # the audit stage's claim is checked against what existed when it ran.
+    from _production_baseline import strip_iberia_production
+    old = strip_iberia_production(
+        canon[canon["territorial_target_type"] != "LAND_FRAGMENT"])
     assert len(old) == base["canonical_rows_after"] == 50565
     assert int((old["control_status"] == "CONTROLLED").sum()) \
         == base["canonical_controlled_after"]

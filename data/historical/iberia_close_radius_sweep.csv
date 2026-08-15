@@ -1,0 +1,7 @@
+close_radius_ds_px,cells,owned,mixed_crown_cells,owned_cells_below_80pct_land,anchors_on_band,adopted,criterion
+11,23,8,1,0,6,False,"no cell may hold settlements of two crowns, and no owned cell may be less than 80 per cent land"
+15,27,10,0,1,8,False,"no cell may hold settlements of two crowns, and no owned cell may be less than 80 per cent land"
+19,31,10,0,0,9,True,"no cell may hold settlements of two crowns, and no owned cell may be less than 80 per cent land"
+23,33,11,0,0,9,False,"no cell may hold settlements of two crowns, and no owned cell may be less than 80 per cent land"
+27,33,11,0,0,13,False,"no cell may hold settlements of two crowns, and no owned cell may be less than 80 per cent land"
+31,37,10,0,0,19,False,"no cell may hold settlements of two crowns, and no owned cell may be less than 80 per cent land"

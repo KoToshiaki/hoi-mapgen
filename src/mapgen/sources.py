@@ -85,6 +85,20 @@ DATASETS = {
         "filename": "cities15000.zip",
         "shapefile": "cities15000.txt",
     },
+    # Same gazetteer, lower population cut. Used ONLY as the reference side
+    # of historical-map georeferencing: an 18th-century plate marks small
+    # towns that carry a legible engraved name, and cities15000 simply does
+    # not contain them, so measured observations were being discarded for
+    # want of a reference coordinate rather than for any doubt about the
+    # observation. Same provider, same licence, recorded with its own hash.
+    "geonames_cities5000": {
+        "source_name": "GeoNames cities5000 (all cities with population >= 5000)",
+        "url": "https://download.geonames.org/export/dump/cities5000.zip",
+        "version": "daily dump (see download_date)",
+        "licence": "CC BY 4.0 (https://www.geonames.org/about.html)",
+        "filename": "cities5000.zip",
+        "shapefile": "cities5000.txt",
+    },
 }
 
 
