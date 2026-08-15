@@ -1,0 +1,43 @@
+run_id,check_id,pass,detail
+batch_islands_1756_20260815,M23-01_mapgen022_regression,True,"removing the 18,372 rows produced here leaves exactly 32,193; Sicily 1,305 and Sardinia 1,308 CONTROLLED unchanged"
+batch_islands_1756_20260815,M23-02_baseline_read_from_committed_summary,True,"the baseline is read from the COMMITTED reviews/MAPGEN-022/summary.csv - 32,193 rows, 31,140 CONTROLLED, 1,053 UNRESOLVED"
+batch_islands_1756_20260815,M23-03_sicily_sovereignty_source_hardened,True,"Sicily's title now cites Wenck's Codex iuris gentium recentissimi tom. I - printed from the exemplar Charles VI laid before the Imperial Estates in 1740 - Art. III of the Vienna preliminaries, p. 3. Control rows changed: 0"
+batch_islands_1756_20260815,M23-04_sardinia_sovereignty_source_hardened,True,"Sardinia's title is fixed on the real handover: ASTo Sezione Corte, Paesi, Sardegna, Economico, Cat. I, Mazzo 1, n. 17 - the 1720 inventory of the Maestro Razionale's records, taken at Cagliari. Control rows changed: 0"
+batch_islands_1756_20260815,M23-05_sardinia_actor_scope_wording_aligned,True,"pol_sardinia stays the Kingdom of Sardinia (Savoy-Piedmont). The claim that the kingdom legally IS the island is gone from the assertions, the mapping and the coverage notes; the mainland is UNASSESSED and NOT_PRODUCED, which is a coverage statement"
+batch_islands_1756_20260815,M23-06_denmark_norway_actor_reused,True,pol_denmark_norway resolved from the existing catalogue; no pol_iceland was invented
+batch_islands_1756_20260815,M23-07_iceland_sovereignty_evidence,True,"Arvehyldingseden for Island, Kopavogur 28 July 1662, printed at Lovsamling for Island I p. 273 with its manuscript provenance (Ny kongelig Samling 1265 fol.) - Iceland's own act of homage"
+batch_islands_1756_20260815,M23-08_iceland_1756_individual_evidence,True,"3 individually dated 1756 documents from the amtmadur's fonds, one of them BEFORE the snapshot: the resolution of the syslumenn at the Althing, 16 July 1756 (TI. Skjalasafn amtmanns II. 42A)"
+batch_islands_1756_20260815,M23-09_iceland_component_deterministic,True,"one connected component of 102,663 km2 containing Reykjavik, Akureyri and Hofn"
+batch_islands_1756_20260815,M23-10_iceland_offshore_not_auto_inherited,True,15 Faroese components excluded on the ground that the Faroes swore their own homage at Thorshavn on 14 August 1662; Vestmannaeyjar excluded as unaudited offshore land
+batch_islands_1756_20260815,M23-11_order_of_st_john_actor_reused,True,pol_order_st_john reused; no new Malta polity created
+batch_islands_1756_20260815,M23-12_malta_sovereignty_evidence,True,Charles V's privilege of 23 March 1530 enumerates Malta and Gozo and the fortress of Tripoli - and does not name Comino
+batch_islands_1756_20260815,M23-13_malta_1756_contemporary_evidence,True,"Grand Master Pinto's press opened to the public on 5 June 1756 in the magistral palace, eight weeks before the snapshot; the Order's own record series span it"
+batch_islands_1756_20260815,M23-14_gozo_separately_authorised,True,Gozo authorised as its own component (66.03 km2) because the 1530 privilege names it; 3 hexes CONTROLLED
+batch_islands_1756_20260815,M23-15_comino_not_auto_inherited,True,Comino is four kilometres from Gozo and is still withheld: the 1530 privilege does not name it. Proximity is not authority
+batch_islands_1756_20260815,M23-16_1798_not_backdated,True,the French takeover of 12 June 1798 is recorded and marked not in force; the Order's rule at the snapshot is the 1530-1798 one
+batch_islands_1756_20260815,M23-17_canonical_coastline_physical_only,True,"the coastline carries geometry authority only; the homage oath, the privilege and the archives carry political authority only. Neither side can produce a control row alone"
+batch_islands_1756_20260815,M23-18_no_modern_admin_leakage,True,the bundles draw on an allowlist of exactly six sources; no modern Icelandic or Maltese administrative unit reaches a control row
+batch_islands_1756_20260815,M23-19_anchors_identity_only,True,"anchors say which island, never whose"
+batch_islands_1756_20260815,M23-20_exact_land_intersection,True,"membership over 19,476 hexes from hex INTERSECT canonical land, attributed per component"
+batch_islands_1756_20260815,M23-21_no_centroid_only_assignment,True,no centroid rule: every CONTROLLED hex holds a measured positive area of an authorised component
+batch_islands_1756_20260815,M23-22_mixed_components_conservative,True,16 hexes carry unaudited offshore land beside an authorised island and are held UNRESOLVED; the MAPGEN-021 2 per cent threshold was audited against this data and reused
+batch_islands_1756_20260815,M23-23_area_semantics_honest,True,"all five islands measured: Iceland -0.33 per cent against its published figure, zero interior rings everywhere, and the intertidal mechanism still named but not quantified"
+batch_islands_1756_20260815,M23-24_physical_change_sensitivity_audited,True,"glaciers, sandur progradation, volcanic creation and harbour reclamation each audited; Surtsey - land that rose from the sea in 1963 - is excluded by identity, not by threshold, and no island interior is withheld for any of it"
+batch_islands_1756_20260815,M23-25_geometry_exactness_preserved,True,"geometry stored exactly once per landmass in the feature parquet, hashed, never simplified and never duplicated as WKT"
+batch_islands_1756_20260815,M23-26_iceland_maps_only_to_denmark_norway,True,"the Iceland landmass maps to pol_denmark_norway and nothing else; all 18,341 of its canonical rows come from that one component"
+batch_islands_1756_20260815,M23-27_malta_gozo_map_only_to_the_order,True,"Malta and Gozo both map to the Order and to nobody else; 15 canonical rows, 12 Malta + 3 Gozo"
+batch_islands_1756_20260815,M23-28_no_territorial_inheritance_to_other_holdings,True,"authorising Iceland produced nothing in Denmark, Norway, Schleswig, Holstein, the Faroes or Greenland, and the mapping record says so explicitly"
+batch_islands_1756_20260815,M23-29_provenance_complete,True,"all 18,372 rows produced here trace to a scenario polity, an evidence assertion, a landmass identity record and the canonical substrate"
+batch_islands_1756_20260815,M23-30_promotion_idempotent,True,re-running promotion with an empty candidate inserts 0 rows
+batch_islands_1756_20260815,M23-31_no_silent_collisions,True,"no hex carries land from two authorised components, no target id repeats in canonical, and no existing row was overwritten"
+batch_islands_1756_20260815,M23-32_coverage_incomplete_remains_unknown,True,all three new coverage units are TERRITORY_PARTIAL; no unit anywhere in the scenario is COMPLETE
+batch_islands_1756_20260815,M23-33_british_isles_regression,True,"Great Britain 20,310 and Ireland 7,520 CONTROLLED, matching the committed MAPGEN-022 summary"
+batch_islands_1756_20260815,M23-34_mediterranean_regression,True,"Sicily 1,305 and Sardinia 1,308 CONTROLLED; the Corsica contested audit still assigns nothing"
+batch_islands_1756_20260815,M23-35_brandenburg_regression,True,"Brandenburg untouched: still holds nothing, and the MAPGEN-020 continuity and BLHA georeference artifacts are intact"
+batch_islands_1756_20260815,M23-36_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+batch_islands_1756_20260815,M23-37_low_countries_regression,True,Low Countries still SOURCE_GAP
+batch_islands_1756_20260815,M23-38_schwarzburg_regression,True,Schwarzburg wash unchanged and still not production-convertible
+batch_islands_1756_20260815,M23-39_europe_grid_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+batch_islands_1756_20260815,M23-40_toshima_regression,True,Toshima hex still OCEAN
+batch_islands_1756_20260815,M23-41_claims_regression,True,claims table still holds its single MAPGEN-008 row
+batch_islands_1756_20260815,M23-42_determinism_and_integrity,True,"canonical integrity clean, upstream byte-identical, no schema added, forbidden-reference scan clean"

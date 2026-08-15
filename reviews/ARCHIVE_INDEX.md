@@ -28,7 +28,8 @@ the local run outputs listed below and are not duplicated on GitHub.
 | MAPGEN-019 | brandenburg_georef_rebuild_20260813/chatgpt_review | Brandenburg georeference rebuilt from 33 observed feature points and validated | MAPGEN-020 | reviews/MAPGEN-019/ |
 | MAPGEN-020 | brandenburg_dual_source_20260814/chatgpt_review | continuity split into political vs boundary-position, four archival cases, independent BLHA georeference; no geometry digitised | MAPGEN-021 | reviews/MAPGEN-020/ |
 | MAPGEN-021 | british_isles_1756_20260815/chatgpt_review | first large territorial production: Great Britain 20,310 and Ireland 7,520 hexes, coast-bounded, canonical 1,614 → 29,578 | MAPGEN-022 | reviews/MAPGEN-021/ |
-| MAPGEN-022 | mediterranean_1756_20260815/chatgpt_review | **latest completed stage** — same coast-bounded method applied to the Mediterranean islands: Sicily 1,305 and Sardinia 1,308 hexes, canonical 29,578 → 32,193; area semantics measured rather than asserted | — | reviews/MAPGEN-022/ |
+| MAPGEN-022 | mediterranean_1756_20260815/chatgpt_review | same coast-bounded method applied to the Mediterranean islands: Sicily 1,305 and Sardinia 1,308 hexes, canonical 29,578 → 32,193; area semantics measured rather than asserted. Its sovereignty sources were later hardened by MAPGEN-023 | MAPGEN-023 | reviews/MAPGEN-022/ |
+| MAPGEN-023 | batch_islands_1756_20260815/chatgpt_review | **latest completed stage** — batch production: Iceland 18,341, Malta 12 and Gozo 3 hexes, canonical 32,193 → 50,565; MAPGEN-022's sovereignty titles re-sourced to archival provenance with zero control rows changed; the cost of the canonical majority-land hex rule measured for the first time | — | reviews/MAPGEN-023/ |
 
 Run timestamps live inside each package's `run_manifest.json`; stage
 directory names stay stable.

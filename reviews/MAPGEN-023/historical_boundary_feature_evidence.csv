@@ -1,0 +1,35 @@
+boundary_feature_id,historical_evidence_id,evidence_role,is_required,notes
+hbf_9982d6cab487,hev_63418cd6ce49,GEOMETRY_SHAPE,YES,wash outline on the 1756 sheet
+hbf_9982d6cab487,hev_886d8a602567,POLITICAL_STATUS,YES,sheet labelling of the bloc at the 1756 state
+hbf_e04d229dab78,hev_a58ba7e6f5cd,GEOMETRY_SHAPE,YES,"1756 sheet, DUCHE DE WEIMAR"
+hbf_e04d229dab78,hev_090b079c8ce6,POLITICAL_STATUS,YES,"1756 sheet, DUCHE DE WEIMAR"
+hbf_82df724eeace,hev_b134aa1d8c3f,GEOMETRY_SHAPE,YES,"1756 sheet, SCHWARTZBURG"
+hbf_82df724eeace,hev_aefa0d26edda,SUPPORTING,NO,"existence of a Schwarzburg complex, not control by one polity"
+hbf_c455f25d6f49,hev_c34b6560f482,GEOMETRY_SHAPE,YES,physical outline of the landmass
+hbf_c455f25d6f49,hev_528f625f3ed5,POLITICAL_STATUS,YES,statutory authority over that landmass in 1756
+hbf_c455f25d6f49,hev_f53c6f33a49f,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey back to the snapshot
+hbf_47682dfac78d,hev_13364aa51fe0,GEOMETRY_SHAPE,YES,physical outline of the landmass
+hbf_47682dfac78d,hev_3b103df245e9,POLITICAL_STATUS,YES,statutory authority over that landmass in 1756
+hbf_47682dfac78d,hev_007d6bad0acf,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey back to the snapshot
+hbf_f2169d1d26f9,hev_955d8d15d43d,GEOMETRY_SHAPE,YES,physical outline of the island
+hbf_f2169d1d26f9,hev_6df0d3e8b767,POLITICAL_STATUS,NO,sovereignty title at the snapshot (supporting since MAPGEN-023: the required political evidence is now the archive-grade assertion)
+hbf_f2169d1d26f9,hev_7695c809052d,POLITICAL_STATUS,NO,government actually running on the island (supporting since MAPGEN-023: the required political evidence is now the archive-grade assertion)
+hbf_f2169d1d26f9,hev_55f1634d1083,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey to the snapshot
+hbf_ebfa1ff1171e,hev_f020c02e4625,GEOMETRY_SHAPE,YES,physical outline of the island
+hbf_ebfa1ff1171e,hev_c0a65bb47b7b,POLITICAL_STATUS,NO,sovereignty title at the snapshot (supporting since MAPGEN-023: the required political evidence is now the archive-grade assertion)
+hbf_ebfa1ff1171e,hev_2e2dedf17bab,POLITICAL_STATUS,NO,government actually running on the island (supporting since MAPGEN-023: the required political evidence is now the archive-grade assertion)
+hbf_ebfa1ff1171e,hev_a0ddf76441c8,TEMPORAL_CONTINUITY,YES,island outline carried from the modern survey to the snapshot
+hbf_bfe66730723e,hev_2085f8093e4d,GEOMETRY_SHAPE,YES,physical outline
+hbf_bfe66730723e,hev_80a687b7f01f,POLITICAL_STATUS,YES,sovereignty title at the snapshot
+hbf_bfe66730723e,hev_72ed3d75f1e2,POLITICAL_STATUS,NO,government actually running on the island
+hbf_bfe66730723e,hev_fb366d0999ce,TEMPORAL_CONTINUITY,YES,outline carried from the modern survey to the snapshot
+hbf_7b632778e5dd,hev_ec7512e0c7a4,GEOMETRY_SHAPE,YES,physical outline
+hbf_7b632778e5dd,hev_75e0a6586a0e,POLITICAL_STATUS,YES,sovereignty title at the snapshot
+hbf_7b632778e5dd,hev_c4813bd05f8c,POLITICAL_STATUS,NO,government actually running on the island
+hbf_7b632778e5dd,hev_7e89fae3f2b2,TEMPORAL_CONTINUITY,YES,outline carried from the modern survey to the snapshot
+hbf_9f2803a50b1c,hev_592eeb2d946d,GEOMETRY_SHAPE,YES,physical outline
+hbf_9f2803a50b1c,hev_2c0ed95e3727,POLITICAL_STATUS,YES,sovereignty title at the snapshot
+hbf_9f2803a50b1c,hev_7fa3f46995eb,POLITICAL_STATUS,NO,government actually running on the island
+hbf_9f2803a50b1c,hev_426a1d670e05,TEMPORAL_CONTINUITY,YES,outline carried from the modern survey to the snapshot
+hbf_f2169d1d26f9,hev_2714e09703ae,POLITICAL_STATUS,YES,"Sicily sovereignty title, archive-grade provenance (MAPGEN-023 hardening)"
+hbf_ebfa1ff1171e,hev_614c3c7f6a31,POLITICAL_STATUS,YES,"Sardinia sovereignty title, archive-grade provenance (MAPGEN-023 hardening)"

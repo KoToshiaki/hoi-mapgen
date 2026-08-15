@@ -1,0 +1,521 @@
+{
+  "run_id": "batch_islands_1756_20260815",
+  "stage": "MAPGEN-023",
+  "outcome": "FULL",
+  "generated_utc": "2026-08-15T07:54:07.909735+00:00",
+  "base_commit_mapgen022": "3f2208221c1005151f9fe4c215b6bc8d94d52fd9",
+  "baseline_from_committed_summary": {
+    "canonical_rows_after": 32193,
+    "canonical_controlled_after": 31140,
+    "canonical_unresolved_after": 1053,
+    "gb_controlled": 20310,
+    "ie_controlled": 7520,
+    "sicily_controlled": 1305,
+    "sardinia_controlled": 1308,
+    "saxony_controlled": 695,
+    "brandenburg_controlled": 0
+  },
+  "mapgen022_hardening": [
+    {
+      "target": "pol_sicily",
+      "correction": "SOVEREIGNTY_SOURCE_HARDENED",
+      "field": "POLITICAL_CONTROL source",
+      "before": "European diplomatic instruments as reported in standard settlement histories (hsrc_1405c6fc82b4)",
+      "after": "Wenck, Codex iuris gentium recentissimi, tom. I (Lipsiae 1781), Acta Pacis Vindobonensis: doc. 1, Articles preliminaires signez a Vienne le 3 Octobre 1735, Art. III, p. 3; doc. 21, Diploma Caesareum pro cessione regnorum utriusque Siciliae; doc. 24, the definitive peace of Vienna of 18 November 1738",
+      "quotation": "Les Royaumes de Naples & de Sicile appartiendront au Prince, qui en est en possession, & qui en sera reconnu Roy par toutes les Puissances",
+      "control_rows_changed": 0,
+      "note": "The clause states the title in the instrument's own words. Wenck prints it from the exemplar Charles VI laid before the Imperial Estates at Regensburg on 7 March 1740, collated with the Paris royal-press edition of 1759, both taken from public archives.",
+      "stage": "MAPGEN-023",
+      "verified_utc_date": "2026-08-15"
+    },
+    {
+      "target": "pol_sicily",
+      "correction": "PREFERRED_LEAD_NOT_RETRIEVED",
+      "field": "PARES descriptive unit 6079718",
+      "before": "brief's preferred lead: PARES / Archivo Historico Nacional, Tratado de Viena, 18 November 1738, descriptive unit 6079718",
+      "after": "ATTEMPTED_AND_UNREACHABLE on 2026-08-15",
+      "quotation": "",
+      "control_rows_changed": 0,
+      "note": "pares.mcu.es refused the connection on every attempt and the successor host pares.cultura.gob.es returns 404 for every /ParesBusquedas20/catalogo/ path, including the ones its own pages link to. Tried over plain fetch, curl with three URL forms and a real browser. The signatura was NOT copied from any secondary summary; the hardening above uses a source that could actually be opened and read.",
+      "stage": "MAPGEN-023",
+      "verified_utc_date": "2026-08-15"
+    },
+    {
+      "target": "pol_sardinia",
+      "correction": "SOVEREIGNTY_SOURCE_HARDENED",
+      "field": "POLITICAL_CONTROL source",
+      "before": "European diplomatic instruments as reported in standard settlement histories (hsrc_1405c6fc82b4)",
+      "after": "Archivio di Stato di Torino, Sezione Corte, Paesi, Sardegna, Economico, Cat. I, Mazzo 1, n. 17 - 'Inventaro delle Scritture del Razionale', a parchment-bound paper volume of 20 unfoliated leaves in Castilian, drawn up at Cagliari in 1720 immediately after the handover; and Paesi, Sardegna, Politico, Cat. 4, Mazzo 3 (18 fascicoli, 32 documentary units, 1721-1783)",
+      "quotation": "todos los papeles que han hallado existentes en el officio del noble y magnifico Maestro Racional",
+      "control_rows_changed": 0,
+      "note": "This fixes the ACTUAL handover rather than the treaty that promised it: Savoyard officials inventoried the records of the Maestro Razionale of the Kingdom of Sardinia in 1720, on the island, because they had just taken the office over. Shelfmark read from Andrea Pergola, 'Prima dell'Archivio Regio sabaudo. L'Inventaro delle scritture del Razionale del Regno di Sardegna (1720)', AIDAinformazioni 2022, pp. 95-112, DOI 10.57574/596522017, notes 11-13 and 17.",
+      "stage": "MAPGEN-023",
+      "verified_utc_date": "2026-08-15"
+    },
+    {
+      "target": "pol_sardinia",
+      "correction": "ACTOR_SCOPE_WORDING_ALIGNED",
+      "field": "actor identity vs authorised scope",
+      "before": "Before the 1847 fusione perfetta the Kingdom of Sardinia legally IS the island",
+      "after": "pol_sardinia remains the Kingdom of Sardinia (Savoy-Piedmont). MAPGEN-022 authorised ONE COMPONENT of that actor's territorial scope - the island of Sardinia. Piedmont, Savoy and Nice are UNASSESSED / NOT_PRODUCED, not outside the actor.",
+      "quotation": "",
+      "control_rows_changed": 0,
+      "note": "The old wording redefined the actor to justify the scope. The scope needs no such justification: a stage may authorise part of an actor's territory and leave the rest unevaluated. The 1847 fusione perfetta is kept as TEMPORAL_BOUNDARY evidence of island-mainland institutional integration, which is what it actually is.",
+      "stage": "MAPGEN-023",
+      "verified_utc_date": "2026-08-15"
+    }
+  ],
+  "landmasses": [
+    {
+      "region": "iceland",
+      "rank_by_area": 0,
+      "part_index": 22,
+      "ground_area_km2": 102663.08,
+      "projected_area_km2": 572146.42,
+      "centroid_lon": -18.5767,
+      "centroid_lat": 65.01248,
+      "bbox_3857": "[-2730895, 9197700, -1502235, 10025671]",
+      "named_identification": "",
+      "is_single_connected_component": true,
+      "stage_role": "MAIN_LANDMASS_ICELAND",
+      "anchors_contained_iceland": "Akureyri;Hofn;Reykjavik",
+      "anchor_role": "IDENTITY_QA_ONLY_NOT_OWNERSHIP_SOURCE",
+      "ownership_source": "HISTORICAL_EVIDENCE_BUNDLE",
+      "physical_source": "OSM coast-authority land polygons via the canonical Europe land cache",
+      "anchors_contained_malta": NaN,
+      "anchors_contained_gozo": NaN
+    },
+    {
+      "region": "malta",
+      "rank_by_area": 0,
+      "part_index": 22,
+      "ground_area_km2": 246.61,
+      "projected_area_km2": 376.51,
+      "centroid_lon": 14.44019,
+      "centroid_lat": 35.88814,
+      "bbox_3857": "[1593974, 4273979, 1622648, 4300387]",
+      "named_identification": "",
+      "is_single_connected_component": true,
+      "stage_role": "MAIN_LANDMASS_MALTA",
+      "anchors_contained_iceland": NaN,
+      "anchor_role": "IDENTITY_QA_ONLY_NOT_OWNERSHIP_SOURCE",
+      "ownership_source": "HISTORICAL_EVIDENCE_BUNDLE",
+      "physical_source": "OSM coast-authority land polygons via the canonical Europe land cache",
+      "anchors_contained_malta": "Birgu;Mdina;Valletta",
+      "anchors_contained_gozo": ""
+    },
+    {
+      "region": "malta",
+      "rank_by_area": 1,
+      "part_index": 14,
+      "ground_area_km2": 66.03,
+      "projected_area_km2": 101.21,
+      "centroid_lon": 14.25251,
+      "centroid_lat": 36.04711,
+      "bbox_3857": "[1578896, 4302194, 1595924, 4311931]",
+      "named_identification": "",
+      "is_single_connected_component": true,
+      "stage_role": "AUTHORISED_LANDMASS_GOZO",
+      "anchors_contained_iceland": NaN,
+      "anchor_role": "IDENTITY_QA_ONLY_NOT_OWNERSHIP_SOURCE",
+      "ownership_source": "HISTORICAL_EVIDENCE_BUNDLE",
+      "physical_source": "OSM coast-authority land polygons via the canonical Europe land cache",
+      "anchors_contained_malta": "",
+      "anchors_contained_gozo": "Nadur;Victoria (Rabat);Xewkija"
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "m23_1662_kopavogur_homage",
+      "polity": "pol_denmark_norway",
+      "kind": "SOVEREIGNTY_BASIS",
+      "evidence_role": "POLITICAL_CONTROL",
+      "document_date": "1662-07-28",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "m23_1756_syslumenn_resolution",
+      "polity": "pol_denmark_norway",
+      "kind": "CONTEMPORARY_IN_ISLAND_ADMINISTRATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "document_date": "1756-07-16",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "m23_1756_amtmadur_crown_estates",
+      "polity": "pol_denmark_norway",
+      "kind": "CONTEMPORARY_IN_ISLAND_ADMINISTRATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "document_date": "1756-08-04",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "m23_1756_gjafakorn_relief",
+      "polity": "pol_denmark_norway",
+      "kind": "CONTEMPORARY_IN_ISLAND_ADMINISTRATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "document_date": "1756-12-05",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "m23_1530_charles_v_privilege",
+      "polity": "pol_order_st_john",
+      "kind": "SOVEREIGNTY_BASIS",
+      "evidence_role": "POLITICAL_CONTROL",
+      "document_date": "1530-03-23",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "m23_1756_order_printing_press",
+      "polity": "pol_order_st_john",
+      "kind": "CONTEMPORARY_IN_ISLAND_ADMINISTRATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "document_date": "1756-06-05",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "m23_order_government_records",
+      "polity": "pol_order_st_john",
+      "kind": "CONTEMPORARY_IN_ISLAND_ADMINISTRATION",
+      "evidence_role": "ADMINISTRATIVE_SCOPE",
+      "document_date": "1756",
+      "in_force_at_snapshot": "YES"
+    },
+    {
+      "evidence_id": "m23_1798_french_takeover_cutoff",
+      "polity": "TEMPORAL_BOUNDARY",
+      "kind": "POST_SNAPSHOT_CUTOFF",
+      "evidence_role": "TEMPORAL_BOUNDARY",
+      "document_date": "1798-06-12",
+      "in_force_at_snapshot": "NO"
+    }
+  ],
+  "membership": [
+    {
+      "region": "iceland",
+      "control_status": "CONTROLLED",
+      "basis": "WHOLE_LAND_SINGLE_AUTHORISED_COMPONENT",
+      "hexes": 18341
+    },
+    {
+      "region": "iceland",
+      "control_status": "NOT_PRODUCED",
+      "basis": "NOT_A_CANONICAL_TERRESTRIAL_HEX",
+      "hexes": 1089
+    },
+    {
+      "region": "iceland",
+      "control_status": "UNRESOLVED",
+      "basis": "MIXED_UNAUDITED_LAND_COMPONENT",
+      "hexes": 16
+    },
+    {
+      "region": "malta",
+      "control_status": "CONTROLLED",
+      "basis": "WHOLE_LAND_SINGLE_AUTHORISED_COMPONENT",
+      "hexes": 15
+    },
+    {
+      "region": "malta",
+      "control_status": "NOT_PRODUCED",
+      "basis": "NOT_A_CANONICAL_TERRESTRIAL_HEX",
+      "hexes": 15
+    }
+  ],
+  "area_semantics": [
+    {
+      "landmass": "Iceland",
+      "ground_area_km2": 102663.08,
+      "projected_area_km2": 572146.42,
+      "mercator_inflation_factor": 5.573,
+      "expected_inflation_1_over_cos2_lat": 5.6041,
+      "centroid_lat": 65.0125,
+      "n_interior_rings": 0,
+      "interior_ring_ground_km2": 0.0,
+      "published_area_km2": 103000.0,
+      "published_figure_kind": "conventional island area",
+      "difference_km2": -336.92,
+      "difference_pct": -0.33,
+      "canonical_geometry_semantics": "OSM coastline-derived land polygon: the boundary is the sea coastline only. The polygon is NOT cut at inland water, so lakes, lagoons and reservoirs inside the coast are counted as land unless OSM maps them as connected to the sea.",
+      "inland_water_treatment": "MEASURED: the canonical polygon has 0 interior rings, so no inland water is excluded from the ground area",
+      "intertidal_treatment": "The OSM coastline follows mean high water. Where a coast has a wide intertidal zone the polygon includes ground that some published figures exclude. NOT measured here - stated as a mechanism, not quantified, and therefore NOT used to explain the residual.",
+      "residual_explanation_status": "WITHIN_2_PCT_NO_SINGLE_CAUSE_ASSERTED",
+      "note": "This is QA, not an ownership gate. No control row depends on the agreement between canonical and published area; membership is computed from the canonical geometry alone.",
+      "stage": "MAPGEN-023"
+    },
+    {
+      "landmass": "Malta",
+      "ground_area_km2": 246.61,
+      "projected_area_km2": 376.51,
+      "mercator_inflation_factor": 1.5268,
+      "expected_inflation_1_over_cos2_lat": 1.5235,
+      "centroid_lat": 35.8881,
+      "n_interior_rings": 0,
+      "interior_ring_ground_km2": 0.0,
+      "published_area_km2": 246.0,
+      "published_figure_kind": "conventional island area",
+      "difference_km2": 0.61,
+      "difference_pct": 0.25,
+      "canonical_geometry_semantics": "OSM coastline-derived land polygon: the boundary is the sea coastline only. The polygon is NOT cut at inland water, so lakes, lagoons and reservoirs inside the coast are counted as land unless OSM maps them as connected to the sea.",
+      "inland_water_treatment": "MEASURED: the canonical polygon has 0 interior rings, so no inland water is excluded from the ground area",
+      "intertidal_treatment": "The OSM coastline follows mean high water. Where a coast has a wide intertidal zone the polygon includes ground that some published figures exclude. NOT measured here - stated as a mechanism, not quantified, and therefore NOT used to explain the residual.",
+      "residual_explanation_status": "WITHIN_2_PCT_NO_SINGLE_CAUSE_ASSERTED",
+      "note": "This is QA, not an ownership gate. No control row depends on the agreement between canonical and published area; membership is computed from the canonical geometry alone.",
+      "stage": "MAPGEN-023"
+    },
+    {
+      "landmass": "Gozo",
+      "ground_area_km2": 66.03,
+      "projected_area_km2": 101.21,
+      "mercator_inflation_factor": 1.5329,
+      "expected_inflation_1_over_cos2_lat": 1.5297,
+      "centroid_lat": 36.0471,
+      "n_interior_rings": 0,
+      "interior_ring_ground_km2": 0.0,
+      "published_area_km2": 67.0,
+      "published_figure_kind": "conventional island area",
+      "difference_km2": -0.97,
+      "difference_pct": -1.45,
+      "canonical_geometry_semantics": "OSM coastline-derived land polygon: the boundary is the sea coastline only. The polygon is NOT cut at inland water, so lakes, lagoons and reservoirs inside the coast are counted as land unless OSM maps them as connected to the sea.",
+      "inland_water_treatment": "MEASURED: the canonical polygon has 0 interior rings, so no inland water is excluded from the ground area",
+      "intertidal_treatment": "The OSM coastline follows mean high water. Where a coast has a wide intertidal zone the polygon includes ground that some published figures exclude. NOT measured here - stated as a mechanism, not quantified, and therefore NOT used to explain the residual.",
+      "residual_explanation_status": "WITHIN_2_PCT_NO_SINGLE_CAUSE_ASSERTED",
+      "note": "This is QA, not an ownership gate. No control row depends on the agreement between canonical and published area; membership is computed from the canonical geometry alone.",
+      "stage": "MAPGEN-023"
+    },
+    {
+      "landmass": "Sicily",
+      "ground_area_km2": 25437.0,
+      "projected_area_km2": 40582.0,
+      "mercator_inflation_factor": 1.5954,
+      "expected_inflation_1_over_cos2_lat": 1.5926,
+      "centroid_lat": 37.5904,
+      "n_interior_rings": 0,
+      "interior_ring_ground_km2": 0.0,
+      "published_area_km2": 25711.0,
+      "published_figure_kind": "conventional island area",
+      "difference_km2": -274.0,
+      "difference_pct": -1.07,
+      "canonical_geometry_semantics": "OSM coastline-derived land polygon: the boundary is the sea coastline only. The polygon is NOT cut at inland water, so lakes, lagoons and reservoirs inside the coast are counted as land unless OSM maps them as connected to the sea.",
+      "inland_water_treatment": "MEASURED: the canonical polygon has no interior rings, so no inland water is excluded from the ground area",
+      "intertidal_treatment": "The OSM coastline follows mean high water. Where a coast has a wide intertidal zone the polygon includes ground that some published figures exclude. NOT measured here - stated as a mechanism, not quantified, and therefore NOT used to explain the residual.",
+      "residual_explanation_status": "WITHIN_2_PCT_NO_SINGLE_CAUSE_ASSERTED",
+      "note": "This is QA, not an ownership gate. No control row depends on the agreement between canonical and published area; membership is computed from the canonical geometry alone.",
+      "stage": "MAPGEN-022"
+    },
+    {
+      "landmass": "Sardinia",
+      "ground_area_km2": 23833.1,
+      "projected_area_km2": 40775.0,
+      "mercator_inflation_factor": 1.7109,
+      "expected_inflation_1_over_cos2_lat": 1.709,
+      "centroid_lat": 40.0971,
+      "n_interior_rings": 0,
+      "interior_ring_ground_km2": 0.0,
+      "published_area_km2": 24090.0,
+      "published_figure_kind": "conventional island area",
+      "difference_km2": -256.9,
+      "difference_pct": -1.07,
+      "canonical_geometry_semantics": "OSM coastline-derived land polygon: the boundary is the sea coastline only. The polygon is NOT cut at inland water, so lakes, lagoons and reservoirs inside the coast are counted as land unless OSM maps them as connected to the sea.",
+      "inland_water_treatment": "MEASURED: the canonical polygon has no interior rings, so no inland water is excluded from the ground area",
+      "intertidal_treatment": "The OSM coastline follows mean high water. Where a coast has a wide intertidal zone the polygon includes ground that some published figures exclude. NOT measured here - stated as a mechanism, not quantified, and therefore NOT used to explain the residual.",
+      "residual_explanation_status": "WITHIN_2_PCT_NO_SINGLE_CAUSE_ASSERTED",
+      "note": "This is QA, not an ownership gate. No control row depends on the agreement between canonical and published area; membership is computed from the canonical geometry alone.",
+      "stage": "MAPGEN-022"
+    }
+  ],
+  "coastal_change": [
+    {
+      "landmass": "iceland",
+      "mechanism": "VOLCANIC_COASTLINE_CREATION",
+      "locus": "Vestmannaeyjar: Surtsey (1963-1967) and the Eldfell lava delta on Heimaey (1973)",
+      "direction": "ADDS_LAND_AFTER_1756",
+      "magnitude": "Surtsey 1.34 km2 measured here as a separate component; Heimaey's east side extended",
+      "effect_at_6km": "NONE on the main island - both lie offshore in a separate archipelago",
+      "interior_affected": "NO",
+      "treatment": "Surtsey is excluded by an explicit audit reason (LAND_THAT_DID_NOT_EXIST_AT_THE_SNAPSHOT); the Vestmannaeyjar are excluded as unaudited offshore components.",
+      "measured": "YES - Surtsey's area is computed from the canonical geometry in this run",
+      "substrate": "modern OSM coastline",
+      "note": "The canonical geography adopts the PRESENT-DAY coastline as physical substrate. That is not a reconstruction of the 1756 shoreline. Local change is recorded and, where it can be measured from the canonical geometry, it is measured."
+    },
+    {
+      "landmass": "iceland",
+      "mechanism": "GLACIER_MARGIN",
+      "locus": "Vatnajokull, Myrdalsjokull, Langjokull, Hofsjokull",
+      "direction": "NOT_A_COASTLINE_MECHANISM",
+      "magnitude": "large in area, but inland",
+      "effect_at_6km": "NONE on membership: the canonical land polygon is bounded by the SEA coastline, and ice sits inside that boundary, counted as land whether it is glacier or ground",
+      "interior_affected": "NO",
+      "treatment": "No hex is withheld for glacier cover. The ice has retreated substantially since 1756, but the ground beneath it was inside Iceland then and is inside Iceland now.",
+      "measured": "NO - stated as a mechanism and explicitly NOT used to explain any residual",
+      "substrate": "modern OSM coastline",
+      "note": "The canonical geography adopts the PRESENT-DAY coastline as physical substrate. That is not a reconstruction of the 1756 shoreline. Local change is recorded and, where it can be measured from the canonical geometry, it is measured."
+    },
+    {
+      "landmass": "iceland",
+      "mechanism": "JOKULHLAUP_AND_SANDUR_PROGRADATION",
+      "locus": "Skeidararsandur, Myrdalssandur and the south coast outwash plains",
+      "direction": "ADDS_AND_REMOVES_LAND",
+      "magnitude": "the south coast has prograded by of the order of kilometres in places since the eighteenth century; not quantified here",
+      "effect_at_6km": "POSSIBLE at the seaward edge of the south coast, confined to shoreline hexes",
+      "interior_affected": "NO",
+      "treatment": "Recorded as a known limitation. The affected hexes are coastal and are not withheld, because the alternative - withholding the south coast - would assert a 1756 shoreline this stage has not reconstructed.",
+      "measured": "NO - explicitly not quantified",
+      "substrate": "modern OSM coastline",
+      "note": "The canonical geography adopts the PRESENT-DAY coastline as physical substrate. That is not a reconstruction of the 1756 shoreline. Local change is recorded and, where it can be measured from the canonical geometry, it is measured."
+    },
+    {
+      "landmass": "iceland",
+      "mechanism": "ERUPTION_RECORDED_AT_THE_SNAPSHOT",
+      "locus": "Katla, 1755",
+      "direction": "CONTEMPORARY_EVIDENCE_NOT_A_MODERN_CHANGE",
+      "magnitude": "the amtmadur reported the damage to the king's estates on 4 August 1756",
+      "effect_at_6km": "NONE applied",
+      "interior_affected": "NO",
+      "treatment": "Kept because it is the one physical change for which this stage holds a contemporary document rather than a modern measurement.",
+      "measured": "NO",
+      "substrate": "modern OSM coastline",
+      "note": "The canonical geography adopts the PRESENT-DAY coastline as physical substrate. That is not a reconstruction of the 1756 shoreline. Local change is recorded and, where it can be measured from the canonical geometry, it is measured."
+    },
+    {
+      "landmass": "malta",
+      "mechanism": "HARBOUR_RECLAMATION_AND_FORTIFICATION",
+      "locus": "Grand Harbour and Marsamxett: the Valletta and Cottonera fortifications, quays and later breakwaters",
+      "direction": "ADDS_LAND",
+      "magnitude": "local, order of a fraction of a km2",
+      "effect_at_6km": "marginal, confined to the harbour hexes",
+      "interior_affected": "NO",
+      "treatment": "Recorded as a known limitation. Much of the fortification line predates the snapshot - it is the Order's own work - so the modern outline is closer to 1756 here than a naive reading would suggest.",
+      "measured": "NO",
+      "substrate": "modern OSM coastline",
+      "note": "The canonical geography adopts the PRESENT-DAY coastline as physical substrate. That is not a reconstruction of the 1756 shoreline. Local change is recorded and, where it can be measured from the canonical geometry, it is measured."
+    },
+    {
+      "landmass": "malta",
+      "mechanism": "TIDAL_RANGE",
+      "locus": "Maltese islands",
+      "direction": "NEGLIGIBLE",
+      "magnitude": "Mediterranean tide, order 0.1-0.3 m",
+      "effect_at_6km": "negligible",
+      "interior_affected": "NO",
+      "treatment": "The mean-high-water convention of the OSM coastline therefore costs very little here.",
+      "measured": "NO",
+      "substrate": "modern OSM coastline",
+      "note": "The canonical geography adopts the PRESENT-DAY coastline as physical substrate. That is not a reconstruction of the 1756 shoreline. Local change is recorded and, where it can be measured from the canonical geometry, it is measured."
+    }
+  ],
+  "geometry_storage": [
+    {
+      "landmass": "Iceland",
+      "subject": "hsub_iceland_main_island",
+      "n_coordinates": 213634,
+      "wkb_bytes": 3418157,
+      "wkb_sha256": "c17de4fe3026d8a0039dad01339d5ce682ca631541a25a6637471c3748ff4a2a",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Malta",
+      "subject": "hsub_malta_main_island",
+      "n_coordinates": 7698,
+      "wkb_bytes": 123181,
+      "wkb_sha256": "9132b47b123919abae3c52d9c01c3223db00a6f580715dcf6a9afe79e2cead36",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Gozo",
+      "subject": "hsub_gozo_island",
+      "n_coordinates": 3623,
+      "wkb_bytes": 57981,
+      "wkb_sha256": "26d68001ddf30b1840cacc741b318a78f67890003c53cfeb46274187a8b19b9a",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Sicily",
+      "subject": "hsub_sicily_main_island",
+      "n_coordinates": 56224,
+      "wkb_bytes": 899597,
+      "wkb_sha256": "0a048df4ac671a0d3c8f571924eefdcdc4c60b954bf99c980ab799666aed372c",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Sardinia",
+      "subject": "hsub_sardinia_main_island",
+      "n_coordinates": 62479,
+      "wkb_bytes": 999677,
+      "wkb_sha256": "d2415e1f45880f20783a717ca9a2af272ade78713f47f1cc70e711305af763a3",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Great Britain",
+      "subject": "hsub_great_britain_main_island",
+      "n_coordinates": 909712,
+      "wkb_bytes": 14555405,
+      "wkb_sha256": "d204972f4c6a20758f3d786d918cac09fa9049919b710e813d33098bbb4544e5",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    },
+    {
+      "landmass": "Ireland",
+      "subject": "hsub_ireland_main_island",
+      "n_coordinates": 288871,
+      "wkb_bytes": 4621949,
+      "wkb_sha256": "cd6d6a3485f629a5562fb73722c473da97b7aba70b0ef2e5f1eb4e80ef8bb575",
+      "stored_in": "historical_boundary_features.parquet (single canonical copy)",
+      "duplicated_as_wkt_csv": "NO",
+      "simplified": "NO",
+      "simplification_tolerance_m": 0,
+      "membership_computed_from": "source OSM land tiles, not this polygon"
+    }
+  ],
+  "canonical": {
+    "before": 32193,
+    "after": 50565,
+    "added": 18372
+  },
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
+  },
+  "timings_s": {
+    "load_s": 0.6,
+    "render_s": 1.5,
+    "total_s": 2.8
+  },
+  "peak_memory_mb": 1056.0,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

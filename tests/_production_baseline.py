@@ -18,7 +18,8 @@ import pandas as pd
 H = Path("data/historical")
 # every coast-bounded stage writes one of these
 MEMBERSHIP_AUDITS = ("british_isles_hex_membership_audit.csv",
-                     "mediterranean_hex_membership_audit.csv")
+                     "mediterranean_hex_membership_audit.csv",
+                     "island_hex_membership_audit.csv")
 
 
 def island_production_hex_ids() -> set[str]:

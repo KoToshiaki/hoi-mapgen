@@ -66,6 +66,8 @@ def main(argv: list[str] | None = None) -> int:
                        "territorial production"),
         ("medislands", "MAPGEN-022: Sicily and Sardinia coast-bounded "
                        "territorial production"),
+        ("batchislands", "MAPGEN-023: Iceland and Malta/Gozo coast-bounded "
+                         "production, plus the MAPGEN-022 provenance repair"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -123,6 +125,13 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "batchislands":
+        from .historical_batch_islands_pipeline import (
+            run_historical_batch_islands)
+
+        run_historical_batch_islands(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "medislands":

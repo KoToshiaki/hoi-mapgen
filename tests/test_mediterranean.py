@@ -105,11 +105,20 @@ def test_sicily_naples_share_a_king_but_no_territory(canon):
 
 
 def test_sardinia_mainland_is_not_inherited(canon, mix):
-    """Before 1847 the Kingdom of Sardinia IS the island."""
+    """One component of the actor's scope was authorised, not the actor.
+
+    MAPGEN-023 corrected the wording this test used to assert. Saying the
+    kingdom legally IS the island redefined the actor to justify the
+    scope; the scope stands on its own. What must hold is that the
+    mainland is recorded as unevaluated, and that Sardinia's canonical
+    rows still come only from the island component.
+    """
     mp = pd.read_csv(H / "historical_subject_scenario_mapping.csv")
     basis = mp.loc[mp.historical_subject_id == SUBJ_SAR,
                    "mapping_basis"].iloc[0]
-    assert "1847" in basis
+    assert "Savoy-Piedmont" in basis
+    assert "NOT_PRODUCED" in basis
+    assert "legally IS the island" not in basis
     sar = canon[canon["controller_scenario_polity_id"] == SAR_SP]
     assert len(sar) == int((mix["winner"] == "sardinia").sum())
 
@@ -147,7 +156,10 @@ def test_no_modern_italian_administrative_source(ev):
         ["osm_land_polygons_split_3857",
          "guida_generale_archivi_stato_palermo",
          "sias_archivio_di_stato_cagliari",
-         "european_peace_settlements_1720_1738"]), "global_source_id"])
+         "european_peace_settlements_1720_1738",
+         # MAPGEN-023 hardening: archival provenance for the same titles
+         "wenck_codex_juris_gentium_recentissimi_i",
+         "asto_corte_paesi_sardegna"]), "global_source_id"])
     used = set()
     for v in snapf[snapf.historical_subject_id.isin(
             [SUBJ_SIC, SUBJ_SAR])]["bundle_source_ids"]:
@@ -167,7 +179,9 @@ def test_physical_geometry_alone_cannot_create_ownership():
     assert (geo["political_authority"] == "NO").all()
     pol = a[(a.historical_subject_id.isin([SUBJ_SIC, SUBJ_SAR]))
             & (a.assertion_type == "POLITICAL_CONTROL")]
-    assert len(pol) == 4
+    # two per island from MAPGEN-022, plus one archive-grade title each
+    # from the MAPGEN-023 hardening
+    assert len(pol) == 6
     assert (pol["geometry_authority"] == "NO").all()
 
 
@@ -308,9 +322,14 @@ def test_completion_summary_matches_committed_output():
     assert base["ie_controlled"] == 7520
     canon = pd.read_csv(SD / "territorial_control.csv",
                         keep_default_na=False, na_values=[""])
-    mix = pd.read_csv(H / "mediterranean_hex_membership_audit.csv",
-                      keep_default_na=False, na_values=[])
-    assert len(canon) - len(mix) == base["canonical_rows_after"]
+    # Canonical before ANY island production, plus the two British Isles
+    # membership counts the committed summary itself reports, must be the
+    # MAPGEN-021 total. Stated this way it stays true as later island
+    # stages land on top.
+    from _production_baseline import strip_island_production
+    pre_island = len(strip_island_production(canon))
+    assert (pre_island + base["gb_membership_rows"]
+            + base["ie_membership_rows"]) == base["canonical_rows_after"]
 
 
 def test_british_isles_production_survives(canon):
