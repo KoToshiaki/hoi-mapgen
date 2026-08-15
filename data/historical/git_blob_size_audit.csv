@@ -1,0 +1,13 @@
+path,bytes,mb,state,over_50mb,over_25mb,allowlisted,note
+data/historical/historical_boundary_features.parquet,24575912,23.44,TRACKED_WORKING_TREE,NO,NO,ALLOWLISTED_SINGLE_CANONICAL_GEOMETRY_STORE,"The only place geometry is stored. Every alternative - WKT in CSV, per-stage copies - duplicates it, which MAPGEN-022/023 explicitly forbid. Reviewed and permitted above 25 MB."
+data/scenarios/seven_years_war_1756_08_01/territorial_control_provenance.csv,15723440,15.0,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-023/territorial_control_provenance.csv,15723440,15.0,TRACKED_WORKING_TREE,NO,NO,,
+data/scenarios/seven_years_war_1756_08_01/territorial_control.csv,9749213,9.3,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-023/territorial_control.csv,9749213,9.3,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-022/territorial_control_provenance.csv,9679084,9.23,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-021/staged_territorial_control_mapgen021.csv,9120970,8.7,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-021/territorial_control_provenance.csv,8818742,8.41,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-023/staged_territorial_control_mapgen023.csv,6558252,6.25,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-022/territorial_control.csv,6222509,5.93,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-021/territorial_control.csv,5720519,5.46,TRACKED_WORKING_TREE,NO,NO,,
+reviews/MAPGEN-023/historical_snapshot_features_1756_08_01.csv,58710900,55.99,LEGACY_HISTORY_DEBT_COMMIT_c12ee10,YES,YES,LEGACY_NO_REWRITE,"Present only in commit c12ee10 and fixed in 83a6b68. NOT rewritten: main is pushed, the review chain cites commit SHAs, and a rewrite would invalidate every base-commit audit in MAPGEN-019..023. Recorded as debt; the gate below prevents a repeat."

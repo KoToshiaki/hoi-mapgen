@@ -1,0 +1,9 @@
+aspect,island_component_case,coastal_fragment_case,same
+what is being represented,a whole connected land component that is too small to win any hex,the seaward remainder of a component that already owns many hexes,NO
+underlying hex physical class,"OCEAN, and deliberately kept OCEAN","OCEAN, and must also stay OCEAN",YES
+is the land visible to the political layer,yes - via an ISLAND_COMPONENT target,no - no target type can address it,NO
+detection flag in the existing schema,is_subhex_lost = True,none: is_subhex_lost is False because the component IS represented somewhere,NO
+double-count protection,no_duplicate_overlay_for_large_islands forbids overlaying a component that has a terrestrial hex,that same rule forbids reusing the mechanism here,NO
+granularity of the political target,one target per component,"would need per-hex granularity, since different coastal hexes of one landmass can face different neighbours",NO
+mixed controllers on one hex,possible in principle and already separated by component id,possible: one hex can hold land of two landmasses (456 such hexes measured),PARTIALLY
+canonical precedent in this scenario,"1 row: Izu-Toshima, isl_c_1859af1e4767",0 rows,NO

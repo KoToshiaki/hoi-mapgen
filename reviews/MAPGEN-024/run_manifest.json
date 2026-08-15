@@ -1,0 +1,340 @@
+{
+  "run_id": "coastal_audit_1756_20260815",
+  "stage": "MAPGEN-024",
+  "outcome": "FULL_AUDIT_NO_PRODUCTION",
+  "generated_utc": "2026-08-15T09:09:21.185316+00:00",
+  "base_commit_mapgen023": "83a6b689695c8653c06ec0404ba5394187a7fe85",
+  "baseline_from_committed_summary": {
+    "canonical_rows_after": 50565,
+    "canonical_controlled_after": 49496,
+    "canonical_unresolved_after": 1069,
+    "gb_controlled": 20310,
+    "ie_controlled": 7520,
+    "sicily_controlled": 1305,
+    "sardinia_controlled": 1308,
+    "iceland_controlled": 18341,
+    "malta_controlled": 12,
+    "gozo_controlled": 3,
+    "saxony_controlled": 695,
+    "brandenburg_controlled": 0,
+    "not_produced_non_terrestrial_hexes": 1104
+  },
+  "stage_conclusion": "C_ARCHITECTURAL_GAP",
+  "recommended_model": "C_LAND_BEARING_HEX_NEW_TARGET_TYPE",
+  "landmass_summary": [
+    {
+      "landmass": "Great Britain",
+      "hexes_with_any_land": 23821,
+      "hexes_with_authorised_land": 21490,
+      "produced_controlled": 20310,
+      "produced_unresolved": 86,
+      "withheld_non_terrestrial": 1094,
+      "no_authorised_land": 2331,
+      "authorised_km2_total": 218685.04,
+      "authorised_km2_in_terrestrial_hexes": 216416.866,
+      "authorised_km2_withheld": 2268.174,
+      "withheld_share_of_authorised_pct": 1.037,
+      "mixed_unaudited_hexes": 251,
+      "max_withheld_land_fraction": 0.4993,
+      "median_withheld_land_fraction": 0.1803
+    },
+    {
+      "landmass": "Ireland",
+      "hexes_with_any_land": 8407,
+      "hexes_with_authorised_land": 8126,
+      "produced_controlled": 7520,
+      "produced_unresolved": 48,
+      "withheld_non_terrestrial": 558,
+      "no_authorised_land": 281,
+      "authorised_km2_total": 83552.497,
+      "authorised_km2_in_terrestrial_hexes": 82336.155,
+      "authorised_km2_withheld": 1216.342,
+      "withheld_share_of_authorised_pct": 1.456,
+      "mixed_unaudited_hexes": 184,
+      "max_withheld_land_fraction": 0.4992,
+      "median_withheld_land_fraction": 0.1924
+    },
+    {
+      "landmass": "Sicily",
+      "hexes_with_any_land": 1485,
+      "hexes_with_authorised_land": 1433,
+      "produced_controlled": 1305,
+      "produced_unresolved": 0,
+      "withheld_non_terrestrial": 128,
+      "no_authorised_land": 52,
+      "authorised_km2_total": 25436.978,
+      "authorised_km2_in_terrestrial_hexes": 24983.767,
+      "authorised_km2_withheld": 453.211,
+      "withheld_share_of_authorised_pct": 1.782,
+      "mixed_unaudited_hexes": 7,
+      "max_withheld_land_fraction": 0.4932,
+      "median_withheld_land_fraction": 0.1543
+    },
+    {
+      "landmass": "Sardinia",
+      "hexes_with_any_land": 1501,
+      "hexes_with_authorised_land": 1440,
+      "produced_controlled": 1308,
+      "produced_unresolved": 2,
+      "withheld_non_terrestrial": 130,
+      "no_authorised_land": 61,
+      "authorised_km2_total": 23833.062,
+      "authorised_km2_in_terrestrial_hexes": 23369.553,
+      "authorised_km2_withheld": 463.509,
+      "withheld_share_of_authorised_pct": 1.945,
+      "mixed_unaudited_hexes": 22,
+      "max_withheld_land_fraction": 0.4831,
+      "median_withheld_land_fraction": 0.1917
+    },
+    {
+      "landmass": "Iceland",
+      "hexes_with_any_land": 19723,
+      "hexes_with_authorised_land": 19446,
+      "produced_controlled": 18341,
+      "produced_unresolved": 16,
+      "withheld_non_terrestrial": 1089,
+      "no_authorised_land": 277,
+      "authorised_km2_total": 102663.093,
+      "authorised_km2_in_terrestrial_hexes": 101476.066,
+      "authorised_km2_withheld": 1187.027,
+      "withheld_share_of_authorised_pct": 1.156,
+      "mixed_unaudited_hexes": 145,
+      "max_withheld_land_fraction": 0.4996,
+      "median_withheld_land_fraction": 0.1779
+    },
+    {
+      "landmass": "Malta",
+      "hexes_with_any_land": 31,
+      "hexes_with_authorised_land": 21,
+      "produced_controlled": 12,
+      "produced_unresolved": 0,
+      "withheld_non_terrestrial": 9,
+      "no_authorised_land": 10,
+      "authorised_km2_total": 246.606,
+      "authorised_km2_in_terrestrial_hexes": 210.182,
+      "authorised_km2_withheld": 36.424,
+      "withheld_share_of_authorised_pct": 14.77,
+      "mixed_unaudited_hexes": 2,
+      "max_withheld_land_fraction": 0.4885,
+      "median_withheld_land_fraction": 0.1498
+    },
+    {
+      "landmass": "Gozo",
+      "hexes_with_any_land": 19,
+      "hexes_with_authorised_land": 9,
+      "produced_controlled": 3,
+      "produced_unresolved": 0,
+      "withheld_non_terrestrial": 6,
+      "no_authorised_land": 10,
+      "authorised_km2_total": 66.029,
+      "authorised_km2_in_terrestrial_hexes": 46.44,
+      "authorised_km2_withheld": 19.589,
+      "withheld_share_of_authorised_pct": 29.667,
+      "mixed_unaudited_hexes": 1,
+      "max_withheld_land_fraction": 0.3429,
+      "median_withheld_land_fraction": 0.2283
+    }
+  ],
+  "land_fraction_distribution": [
+    {
+      "landmass": "ALL",
+      "bucket": "0-5%",
+      "bucket_lo": 0.0,
+      "bucket_hi": 0.05,
+      "hexes": 674,
+      "share_of_landmass_withheld_pct": 22.36,
+      "authorised_km2": 109.044
+    },
+    {
+      "landmass": "ALL",
+      "bucket": "5-10%",
+      "bucket_lo": 0.05,
+      "bucket_hi": 0.1,
+      "hexes": 349,
+      "share_of_landmass_withheld_pct": 11.58,
+      "authorised_km2": 230.118
+    },
+    {
+      "landmass": "ALL",
+      "bucket": "10-20%",
+      "bucket_lo": 0.1,
+      "bucket_hi": 0.2,
+      "hexes": 583,
+      "share_of_landmass_withheld_pct": 19.34,
+      "authorised_km2": 785.283
+    },
+    {
+      "landmass": "ALL",
+      "bucket": "20-30%",
+      "bucket_lo": 0.2,
+      "bucket_hi": 0.3,
+      "hexes": 492,
+      "share_of_landmass_withheld_pct": 16.32,
+      "authorised_km2": 1155.19
+    },
+    {
+      "landmass": "ALL",
+      "bucket": "30-40%",
+      "bucket_lo": 0.3,
+      "bucket_hi": 0.4,
+      "hexes": 453,
+      "share_of_landmass_withheld_pct": 15.03,
+      "authorised_km2": 1447.293
+    },
+    {
+      "landmass": "ALL",
+      "bucket": "40-50%",
+      "bucket_lo": 0.4,
+      "bucket_hi": 0.5,
+      "hexes": 463,
+      "share_of_landmass_withheld_pct": 15.36,
+      "authorised_km2": 1917.349
+    }
+  ],
+  "is_terrestrial_hex_usage": [
+    {
+      "site": "src/mapgen/europe_coverage.py:114-122",
+      "layer": "PHYSICAL_CLASSIFICATION",
+      "is_political": "NO"
+    },
+    {
+      "site": "src/mapgen/land.py:80-97",
+      "layer": "PHYSICAL_CLASSIFICATION",
+      "is_political": "NO"
+    },
+    {
+      "site": "src/mapgen/pipeline.py:332,346",
+      "layer": "PHYSICAL_CLASSIFICATION",
+      "is_political": "NO"
+    },
+    {
+      "site": "src/mapgen/islands_pipeline.py:65",
+      "layer": "PHYSICAL_CLASSIFICATION",
+      "is_political": "NO"
+    },
+    {
+      "site": "src/mapgen/terrain_layers.py:219",
+      "layer": "TERRAIN",
+      "is_political": "NO"
+    },
+    {
+      "site": "src/mapgen/hex_edges.py (whole module)",
+      "layer": "MOVEMENT",
+      "is_political": "NO"
+    },
+    {
+      "site": "src/mapgen/scenario.py:23-26",
+      "layer": "POLITICAL_TARGETING",
+      "is_political": "YES"
+    },
+    {
+      "site": "src/mapgen/scenario.py:68",
+      "layer": "POLITICAL_TARGETING",
+      "is_political": "YES"
+    },
+    {
+      "site": "src/mapgen/scenario_pipeline.py:934-...",
+      "layer": "POLITICAL_TARGETING",
+      "is_political": "YES"
+    },
+    {
+      "site": "src/mapgen/islands.py:174-189",
+      "layer": "POLITICAL_TARGETING",
+      "is_political": "YES"
+    },
+    {
+      "site": "src/mapgen/islands_pipeline.py:1346",
+      "layer": "POLITICAL_TARGETING",
+      "is_political": "YES"
+    },
+    {
+      "site": "src/mapgen/islands_pipeline.py:1370-1377",
+      "layer": "POLITICAL_TARGETING",
+      "is_political": "YES"
+    }
+  ],
+  "models": [
+    {
+      "model": "A",
+      "name": "Status quo: only TERRESTRIAL_HEX is a political land target",
+      "verdict": "Keep as the default only if the scale-dependence is accepted and documented in the scenario contract."
+    },
+    {
+      "model": "B",
+      "name": "Any hex with land_area > 0 becomes a political land target; physical water class unchanged",
+      "verdict": "Historically ideal, architecturally the most expensive. Not recommended without a deliberate revision of the target contract."
+    },
+    {
+      "model": "C",
+      "name": "A new LAND_BEARING_HEX / COASTAL_LAND_FRAGMENT target type, distinct from TERRESTRIAL_HEX",
+      "verdict": "RECOMMENDED. It is the same architectural move the project already made once, it keeps every existing count intact, and it makes the fragment visible rather than silently owned."
+    },
+    {
+      "model": "D",
+      "name": "Reuse the existing ISLAND_COMPONENT / overlay target",
+      "verdict": "REJECTED on the evidence of the project's own anti-double-count rule."
+    }
+  ],
+  "blob_gate": {
+    "max_tracked_bytes": 52428800,
+    "warn_tracked_bytes": 26214400,
+    "over_50mb": 0,
+    "over_25mb": 0,
+    "allowlist": [
+      "data/historical/historical_boundary_features.parquet"
+    ],
+    "legacy_debt": "reviews/MAPGEN-023/historical_snapshot_features_1756_08_01.csv"
+  },
+  "preview": {
+    "scenario_id": "seven_years_war_1756_08_01",
+    "generated_utc": "2026-08-15T09:09:19.890416+00:00",
+    "authoritative": false,
+    "purpose": "QA_AND_PRESENTATION_ONLY",
+    "stats": {
+      "controlled": 49494,
+      "unresolved": 1068,
+      "gap": 3014,
+      "polities": 7,
+      "terrestrial_hexes": 862795,
+      "unknown_terrestrial": 812233,
+      "controlled_share_pct": 5.736,
+      "canonical_controlled": 49496,
+      "canonical_unresolved": 1069,
+      "island_component_rows": 1,
+      "off_europe_grid_rows": 2
+    },
+    "closeup_gap_hexes": {
+      "british_isles": 1587,
+      "iceland": 877,
+      "mediterranean": 268,
+      "malta_gozo": 15,
+      "saxony_brandenburg": 0
+    },
+    "colour_rule": "sha1(polity_id)[0] % len(PALETTE); personal unions and composite membership never share a colour"
+  },
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68",
+    "D:\\VScode\\hoi\\mapgen\\data\\scenarios\\seven_years_war_1756_08_01\\territorial_control.csv": "208f4be2ede109542cb370dcf063f11dc87318586e6457a565ef214c9a159138"
+  },
+  "timings_s": {
+    "load_s": 0.4,
+    "preview_s": 41.3,
+    "render_s": 0.5,
+    "total_s": 43.1
+  },
+  "peak_memory_mb": 2470.9,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

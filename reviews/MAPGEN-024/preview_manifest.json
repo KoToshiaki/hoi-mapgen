@@ -1,0 +1,27 @@
+{
+  "scenario_id": "seven_years_war_1756_08_01",
+  "generated_utc": "2026-08-15T09:09:19.890416+00:00",
+  "authoritative": false,
+  "purpose": "QA_AND_PRESENTATION_ONLY",
+  "stats": {
+    "controlled": 49494,
+    "unresolved": 1068,
+    "gap": 3014,
+    "polities": 7,
+    "terrestrial_hexes": 862795,
+    "unknown_terrestrial": 812233,
+    "controlled_share_pct": 5.736,
+    "canonical_controlled": 49496,
+    "canonical_unresolved": 1069,
+    "island_component_rows": 1,
+    "off_europe_grid_rows": 2
+  },
+  "closeup_gap_hexes": {
+    "british_isles": 1587,
+    "iceland": 877,
+    "mediterranean": 268,
+    "malta_gozo": 15,
+    "saxony_brandenburg": 0
+  },
+  "colour_rule": "sha1(polity_id)[0] % len(PALETTE); personal unions and composite membership never share a colour"
+}

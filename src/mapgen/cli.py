@@ -68,6 +68,10 @@ def main(argv: list[str] | None = None) -> int:
                        "territorial production"),
         ("batchislands", "MAPGEN-023: Iceland and Malta/Gozo coast-bounded "
                          "production, plus the MAPGEN-022 provenance repair"),
+        ("scenario-preview", "render the current scenario political map "
+                             "preview (QA only, never authoritative)"),
+        ("coastalaudit", "MAPGEN-024: coastal hex representability audit "
+                         "and scenario political map preview"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -125,6 +129,19 @@ def main(argv: list[str] | None = None) -> int:
         from .europe_pipeline import run_europe_foundation
 
         run_europe_foundation(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "scenario-preview":
+        from .scenario_preview import render_scenario_preview
+
+        render_scenario_preview(cfg)
+        return 0
+
+    if args.command == "coastalaudit":
+        from .historical_coastal_audit_pipeline import (
+            run_historical_coastal_audit)
+
+        run_historical_coastal_audit(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "batchislands":

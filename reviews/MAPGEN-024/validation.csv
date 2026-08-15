@@ -1,0 +1,43 @@
+run_id,check_id,pass,detail
+coastal_audit_1756_20260815,M24-01_mapgen023_committed_baseline,True,"baseline read from the COMMITTED reviews/MAPGEN-023/summary.csv - 50,565 rows, 49,496 CONTROLLED, 1,069 UNRESOLVED"
+coastal_audit_1756_20260815,M24-02_canonical_unchanged,True,"this stage produced nothing: rows, CONTROLLED, UNRESOLVED and every per-polity count are identical to MAPGEN-023"
+coastal_audit_1756_20260815,M24-03_all_seven_landmasses_audited,True,"all seven landmasses audited over 54,987 land-carrying hexes"
+coastal_audit_1756_20260815,M24-04_gb_retroactive_gap_measured,True,"Great Britain: 1,094 hexes and 2,268.2 km2 of authorised land withheld - never measured before this stage"
+coastal_audit_1756_20260815,M24-05_ireland_gap_measured,True,"Ireland: 558 hexes and 1,216.3 km2 of authorised land withheld - never measured before this stage"
+coastal_audit_1756_20260815,M24-06_sicily_gap_measured,True,Sicily: 128 hexes and 453.2 km2 of authorised land withheld - never measured before this stage
+coastal_audit_1756_20260815,M24-07_sardinia_gap_measured,True,Sardinia: 130 hexes and 463.5 km2 of authorised land withheld - never measured before this stage
+coastal_audit_1756_20260815,M24-08_iceland_gap_reproduced,True,"Iceland reproduces MAPGEN-023's 1,089 exactly by an independent measurement path"
+coastal_audit_1756_20260815,M24-09_malta_gozo_gap_reproduced,True,"Malta 9 + Gozo 6 = 15, reproducing MAPGEN-023; together with Iceland that is 1,104, the figure MAPGEN-023 reported"
+coastal_audit_1756_20260815,M24-10_exact_land_measurement,True,"every figure is an exact hex INTERSECT land measurement, unioned inside each hex so overlapping cache tiles cannot double count; no centroid test anywhere"
+coastal_audit_1756_20260815,M24-11_mixed_components_separated,True,456 of the withheld hexes also carry unaudited land and carry a distinct reason code; the two causes are never merged
+coastal_audit_1756_20260815,M24-12_land_fraction_distribution_produced,True,"six buckets, and every withheld hex falls in exactly one"
+coastal_audit_1756_20260815,M24-13_physical_classification_is_not_political_representability,True,"6 physical and 6 political call sites separated. land.py already NAMES the discarded quantity classification_error_area_m2, explicitly including the land part of a water hex"
+coastal_audit_1756_20260815,M24-14_is_terrestrial_hex_code_usage_audited,True,"usage traced through physical classification, terrain, movement, political targeting and the binder. Movement reads neither flag - there is no movement layer yet"
+coastal_audit_1756_20260815,M24-15_island_component_semantics_compared,True,"the ISLAND_COMPONENT overlay contract is compared aspect by aspect and is NOT assumed to be the same problem: a coastal fragment is not is_subhex_lost, because its component is represented"
+coastal_audit_1756_20260815,M24-16_model_a_evaluated,True,model A evaluated on all ten axes: Keep as the default only if the scale-dependence is accepted and documented in the scena
+coastal_audit_1756_20260815,M24-17_model_b_evaluated,True,"model B evaluated on all ten axes: Historically ideal, architecturally the most expensive. Not recommended without a delibe"
+coastal_audit_1756_20260815,M24-18_model_c_evaluated,True,"model C evaluated on all ten axes: RECOMMENDED. It is the same architectural move the project already made once, it keeps e"
+coastal_audit_1756_20260815,M24-19_model_d_evaluated,True,model D evaluated on all ten axes: REJECTED on the evidence of the project's own anti-double-count rule.
+coastal_audit_1756_20260815,M24-20_no_arbitrary_threshold_tuning,True,land_threshold is still 0.5 and the recommendation states explicitly that no threshold was tuned; the distribution has no natural break that would justify one
+coastal_audit_1756_20260815,M24-21_europe_political_preview_produced,True,Europe overview rendered at 4000x3800 px
+coastal_audit_1756_20260815,M24-22_deterministic_polity_colours,True,"8 active controllers, 8 distinct colours, keyed on the polity id alone - Great Britain, Ireland and Hanover differ, and so do Sicily and Naples"
+coastal_audit_1756_20260815,M24-23_unknown_is_not_unresolved,True,"three distinct categories drawn in three distinct colours: UNKNOWN ~812,233 terrestrial hexes, UNRESOLVED 1,068, authorised-but-unrepresentable 3,014"
+coastal_audit_1756_20260815,M24-24_coastal_gap_layer_rendered,True,"the gap layer is drawn on every closeup; Malta and Gozo show 15 controlled hexes against 15 withheld ones, which is the clearest statement of the finding this project has"
+coastal_audit_1756_20260815,M24-25_regional_closeups_produced,True,"7 preview figures: overview, legend and 5 regional closeups"
+coastal_audit_1756_20260815,M24-26_renderer_non_authoritative,True,the preview manifest declares itself non-authoritative and canonical control is byte-identical after rendering
+coastal_audit_1756_20260815,M24-27_no_new_tracked_blob_over_50mb,True,largest tracked file is 23.44 MB (data/historical/historical_boundary_features.parquet); nothing over 50 MB
+coastal_audit_1756_20260815,M24-28_over_25mb_tracked_files_allowlisted,True,0 tracked files exceed 25 MB and all are allowlisted with a reason; allowlist holds 1 entry
+coastal_audit_1756_20260815,M24-29_review_geometry_wkt_duplication_zero,True,no CSV in this stage carries a geometry column; the snapshot-features table is still free of the WKT duplication that cost 58 MB in MAPGEN-023
+coastal_audit_1756_20260815,M24-30_legacy_history_debt_documented_no_rewrite,True,"the 56 MB blob is recorded as LEGACY_HISTORY_DEBT with the reason it is not being rewritten, and commit c12ee10 still resolves - the review chain's base-commit audits stay valid"
+coastal_audit_1756_20260815,M24-31_british_isles_regression,True,"Great Britain 20,310 and Ireland 7,520 CONTROLLED"
+coastal_audit_1756_20260815,M24-32_mediterranean_regression,True,"Sicily 1,305, Sardinia 1,308, Corsica still assigned to nobody"
+coastal_audit_1756_20260815,M24-33_iceland_regression,True,"Iceland 18,341 CONTROLLED under Denmark-Norway"
+coastal_audit_1756_20260815,M24-34_malta_regression,True,Order of Saint John 15 CONTROLLED (12 Malta + 3 Gozo)
+coastal_audit_1756_20260815,M24-35_brandenburg_regression,True,Brandenburg still holds nothing and its MAPGEN-020 artifacts are intact
+coastal_audit_1756_20260815,M24-36_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+coastal_audit_1756_20260815,M24-37_low_countries_regression,True,Low Countries still SOURCE_GAP
+coastal_audit_1756_20260815,M24-38_schwarzburg_regression,True,Schwarzburg wash unchanged and still not production-convertible
+coastal_audit_1756_20260815,M24-39_europe_grid_regression,True,"Europe canonical grid intact (1,885,422 hexes)"
+coastal_audit_1756_20260815,M24-40_toshima_regression,True,Toshima hex still OCEAN - the precedent this stage compares against is intact
+coastal_audit_1756_20260815,M24-41_claims_regression,True,claims table still holds its single MAPGEN-008 row
+coastal_audit_1756_20260815,M24-42_determinism_and_integrity,True,"canonical integrity clean, upstream byte-identical INCLUDING territorial_control.csv, empty promotion inserts 0, no schema added, forbidden-reference scan clean"

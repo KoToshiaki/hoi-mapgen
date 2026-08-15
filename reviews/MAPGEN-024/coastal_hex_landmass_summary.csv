@@ -1,0 +1,8 @@
+landmass,hexes_with_any_land,hexes_with_authorised_land,produced_controlled,produced_unresolved,withheld_non_terrestrial,no_authorised_land,authorised_km2_total,authorised_km2_in_terrestrial_hexes,authorised_km2_withheld,withheld_share_of_authorised_pct,mixed_unaudited_hexes,max_withheld_land_fraction,median_withheld_land_fraction
+Great Britain,23821,21490,20310,86,1094,2331,218685.04,216416.866,2268.174,1.037,251,0.4993,0.1803
+Ireland,8407,8126,7520,48,558,281,83552.497,82336.155,1216.342,1.456,184,0.4992,0.1924
+Sicily,1485,1433,1305,0,128,52,25436.978,24983.767,453.211,1.782,7,0.4932,0.1543
+Sardinia,1501,1440,1308,2,130,61,23833.062,23369.553,463.509,1.945,22,0.4831,0.1917
+Iceland,19723,19446,18341,16,1089,277,102663.093,101476.066,1187.027,1.156,145,0.4996,0.1779
+Malta,31,21,12,0,9,10,246.606,210.182,36.424,14.77,2,0.4885,0.1498
+Gozo,19,9,3,0,6,10,66.029,46.44,19.589,29.667,1,0.3429,0.2283
