@@ -662,7 +662,7 @@ def run_historical_precision(cfg: MapgenConfig,
            f"{len(upstream)} upstream artifacts byte-identical")
     _check("M15-32_versions_unchanged",
            HPG_SCHEMA_VERSION == "1.4.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0",
+           and SCENARIO_SCHEMA_VERSION == "1.5.0",
            f"hpg {HPG_SCHEMA_VERSION}/{HPG_ALGORITHM_VERSION}, scenario "
            f"{SCENARIO_SCHEMA_VERSION} — this stage adds data and audits, "
            "not schema")

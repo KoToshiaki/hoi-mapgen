@@ -134,11 +134,15 @@ def test_sicily_and_sardinia_sources_are_hardened(hard):
 def test_the_repair_changed_no_control_rows(hard, canon):
     """A provenance repair that moves a boundary is not a repair."""
     assert (hard["control_rows_changed"].astype(int) == 0).all()
+    from _production_baseline import hex_control
     from mapgen.historical_batch_islands_pipeline import committed_baseline
     base = committed_baseline()
+    # hex totals, not fragment totals: MAPGEN-025 added LAND_FRAGMENT rows
+    # for the same polities, which are additional territory of another kind
+    hx = hex_control(canon)
     for sp, key in (("sp_14ee92dede27", "sicily_controlled"),
                     ("sp_5f0f4d8d4788", "sardinia_controlled")):
-        assert int((canon["controller_scenario_polity_id"]
+        assert int((hx["controller_scenario_polity_id"]
                     == sp).sum()) == base[key]
 
 
@@ -249,7 +253,9 @@ def test_no_name_inference_and_no_modern_administration(ice_ev, mlt_ev):
 # scope discipline
 # ---------------------------------------------------------------------------
 def test_denmark_norway_inherits_only_iceland(canon, mix):
-    dk = canon[canon["controller_scenario_polity_id"] == DK_SP]
+    from _production_baseline import hex_control
+    dk = hex_control(canon)
+    dk = dk[dk["controller_scenario_polity_id"] == DK_SP]
     assert len(dk) == int((mix["winner"] == "iceland").sum())
     sp = pd.read_csv(SD / "scenario_polities.csv",
                      keep_default_na=False, na_values=[])
@@ -274,10 +280,12 @@ def test_the_faroes_are_excluded_despite_the_shared_crown():
 
 
 def test_malta_and_gozo_map_only_to_the_order(canon, mix):
+    from _production_baseline import hex_control
     mp = pd.read_csv(H / "historical_subject_scenario_mapping.csv")
     assert set(mp.loc[mp.historical_subject_id.isin([SUBJ_MLT, SUBJ_GOZ]),
                       "scenario_polity_id"]) == {OSJ_SP}
-    osj = canon[canon["controller_scenario_polity_id"] == OSJ_SP]
+    osj = hex_control(canon)
+    osj = osj[osj["controller_scenario_polity_id"] == OSJ_SP]
     assert len(osj) == int(mix["winner"].isin(["malta", "gozo"]).sum())
     assert int((mix["winner"] == "gozo").sum()) > 0
 

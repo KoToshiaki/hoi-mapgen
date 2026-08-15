@@ -20,10 +20,13 @@ Concepts (kept strictly separate):
   (gameplay-authoritative, per scenario).
 - TERRITORIAL CLAIM : who asserts rights over a target (many-to-many,
   ALWAYS a separate table from control).
-- Territorial targets are TERRESTRIAL_HEX (hex_id) or ISLAND_COMPONENT
-  (component_id). An overlay unit is NEVER a political unit
-  (MAPGEN-006R: OVERLAY UNIT != GAMEPLAY LAND ENTITY), and an OCEAN hex
-  is never itself a land-control target.
+- Territorial targets are TERRESTRIAL_HEX (hex_id), ISLAND_COMPONENT
+  (component_id) or LAND_FRAGMENT (hex_id + land subject). An overlay
+  unit is NEVER a political unit (MAPGEN-006R: OVERLAY UNIT != GAMEPLAY
+  LAND ENTITY), and an OCEAN hex is never itself a land-control target.
+  That last rule is unchanged by LAND_FRAGMENT: a fragment is the LAND
+  INSIDE a hex, not the hex, so an ocean-majority hex still cannot be
+  owned while the authorised land within it can (MAPGEN-025).
 """
 from __future__ import annotations
 
@@ -51,7 +54,7 @@ import pandas as pd
 # "verified no controller". A missing control row under incomplete
 # coverage means UNKNOWN, NEVER unowned/neutral (enforced by
 # resolve_control_status + tests). No existing semantics changed.
-SCENARIO_SCHEMA_VERSION = "1.4.0"
+SCENARIO_SCHEMA_VERSION = "1.5.0"
 # 1.0.1: symmetric relationship id canonicalisation.
 # 1.0.2 (MAPGEN-009R): representability audit is now anchored to the
 # machine-computed 6 km hex area (HEX_PLANE_AREA_KM2 + per-latitude
@@ -65,7 +68,8 @@ COMPLETION_STATES = ["FOUNDATION_ONLY", "POLITIES_DEFINED",
                      "VALIDATED", "PLAYABLE"]
 CONTROL_STATUSES = ["CONTROLLED", "DISPUTED_CONTROL", "UNCONTROLLED",
                     "UNRESOLVED"]
-TARGET_TYPES = ["TERRESTRIAL_HEX", "ISLAND_COMPONENT"]
+TARGET_TYPES = ["TERRESTRIAL_HEX", "ISLAND_COMPONENT",
+                "LAND_FRAGMENT"]
 SUBJECT_STATUSES = ["INDEPENDENT", "PERSONAL_UNION_MEMBER", "VASSAL",
                     "COLONIAL_DEPENDENCY", "COMPOSITE_MONARCHY_MEMBER",
                     "CONFEDERATION_MEMBER", "UNEVALUATED"]

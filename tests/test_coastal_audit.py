@@ -72,10 +72,14 @@ def test_the_renderer_cannot_alter_canonical_data(tmp_path):
 def test_audit_stage_produced_no_territory(canon):
     from mapgen.historical_coastal_audit_pipeline import committed_baseline
     base = committed_baseline()
-    assert len(canon) == base["canonical_rows_after"] == 50565
-    assert int((canon["control_status"] == "CONTROLLED").sum()) \
+    # MAPGEN-024 itself produced nothing. MAPGEN-025 later added
+    # LAND_FRAGMENT rows, so the audit stage's claim is checked against
+    # the target types that existed when it ran.
+    old = canon[canon["territorial_target_type"] != "LAND_FRAGMENT"]
+    assert len(old) == base["canonical_rows_after"] == 50565
+    assert int((old["control_status"] == "CONTROLLED").sum()) \
         == base["canonical_controlled_after"]
-    assert int((canon["control_status"] == "UNRESOLVED").sum()) \
+    assert int((old["control_status"] == "UNRESOLVED").sum()) \
         == base["canonical_unresolved_after"]
 
 
@@ -193,7 +197,10 @@ def test_the_documented_invariant_still_exists_in_the_code():
     src = Path("src/mapgen/scenario.py").read_text(encoding="utf-8")
     assert "an OCEAN hex" in src and "never itself a land-control target" \
         in src
-    assert 'TARGET_TYPES = ["TERRESTRIAL_HEX", "ISLAND_COMPONENT"]' in src
+    # MAPGEN-025 added a third value additively. What this test protects
+    # is the OCEAN-hex invariant quoted above, not the list's length.
+    assert "TERRESTRIAL_HEX" in src and "ISLAND_COMPONENT" in src
+    assert "LAND_FRAGMENT" in src
     pipe = Path("src/mapgen/scenario_pipeline.py").read_text(encoding="utf-8")
     assert 'geo.loc[geo["is_terrestrial_hex"], "hex_id"]' in pipe
 

@@ -986,10 +986,10 @@ def run_historical_georef_rebuild(cfg: MapgenConfig,
                scenario_id, STAGE, sha256_of_frame(empty))
            and up_after == upstream
            and HPG_SCHEMA_VERSION == "1.4.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0"
+           and SCENARIO_SCHEMA_VERSION == "1.5.0"
            and not scan_forbidden_reference_code(Path(__file__)),
            "promotion idempotent with an empty candidate, upstream artifacts "
-           "byte-identical, no schema added, forbidden-reference scan clean")
+           "byte-identical, scenario schema at the pinned 1.5.0, forbidden-reference scan clean")
 
     # ---- persist ---------------------------------------------------------
     t0 = time.perf_counter()

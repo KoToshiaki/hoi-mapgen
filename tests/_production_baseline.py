@@ -34,6 +34,26 @@ def island_production_hex_ids() -> set[str]:
 
 
 def strip_island_production(control: pd.DataFrame) -> pd.DataFrame:
-    """Canonical control with the island stages' rows removed."""
-    return control[~control["territorial_target_id"].isin(
+    """Canonical control with the island stages' rows removed.
+
+    MAPGEN-025 added LAND_FRAGMENT rows, which are island production too
+    but are keyed by fragment id rather than hex id, so the membership
+    audits above cannot see them. They are dropped by target type.
+    """
+    out = control[~control["territorial_target_id"].isin(
         island_production_hex_ids())]
+    if "territorial_target_type" in out.columns:
+        out = out[out["territorial_target_type"] != "LAND_FRAGMENT"]
+    return out
+
+
+def hex_control(control: pd.DataFrame) -> pd.DataFrame:
+    """Only the whole-hex rows.
+
+    A regression test that says "this polity still holds N hexes" means
+    TERRESTRIAL_HEX rows. Fragments are additional territory of a
+    different kind and must not be counted into a hex total.
+    """
+    if "territorial_target_type" not in control.columns:
+        return control
+    return control[control["territorial_target_type"] == "TERRESTRIAL_HEX"]

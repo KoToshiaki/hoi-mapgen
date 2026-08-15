@@ -1,0 +1,45 @@
+run_id,check_id,pass,detail
+land_fragment_1756_20260815,M25-01_mapgen024_baseline,True,"baseline read from the COMMITTED reviews/MAPGEN-024/summary.csv - 50,565 rows, 3,014 gap hexes, 5,644.3 km2, conclusion C_ARCHITECTURAL_GAP"
+land_fragment_1756_20260815,M25-02_existing_canonical_rows_immutable,True,"TERRESTRIAL_HEX 50,564 and ISLAND_COMPONENT 1 are exactly what MAPGEN-024 left; canonical grew by 3,014 and by nothing else"
+land_fragment_1756_20260815,M25-03_land_fragment_type_added,True,"TARGET_TYPES grew to three values additively; scenario schema 1.5.0, geometry schema 1.4.0 untouched"
+land_fragment_1756_20260815,M25-04_ocean_parent_allowed_only_for_fragment,True,"all 3,014 fragments sit on OCEAN parents - that is the point of the type - and every fragment control row names a registered fragment"
+land_fragment_1756_20260815,M25-05_ocean_terrestrial_hex_still_forbidden,True,"all 50,564 TERRESTRIAL_HEX rows target a terrestrial hex on one of the two grids, and no fragment id collides with a hex id: the MAPGEN-006R invariant is intact"
+land_fragment_1756_20260815,M25-06_physical_water_class_unchanged,True,europe_hex_coverage.parquet is byte-identical: no hex changed water_type or is_terrestrial_hex
+land_fragment_1756_20260815,M25-07_terrain_unchanged,True,geography_hexes.parquet byte-identical - terrain faces and water types untouched
+land_fragment_1756_20260815,M25-08_land_threshold_unchanged,True,"land_threshold is still 0.5; the gap was solved by adding a target type, not by moving physical geography"
+land_fragment_1756_20260815,M25-09_stable_fragment_identity,True,"identity audited on five criteria and keyed on (hex_id, historical_subject_id): scenario-independent, disjoint subjects, one connected component each"
+land_fragment_1756_20260815,M25-10_fragment_identity_not_polity_based,True,"no polity id appears in a fragment id or its subject key; Malta and Gozo prove the point - two subjects, one polity, and a polity-keyed scheme could not tell them apart"
+land_fragment_1756_20260815,M25-11_fragment_geometry_inside_parent_hex,True,"400 sampled fragments are geometrically covered by their parent hex, and every fragment has positive area"
+land_fragment_1756_20260815,M25-12_fragment_area_exact,True,"fragments carry 5,644.3 km2 against the 5,644.3 km2 MAPGEN-024 measured independently - the same ground, measured twice by different code"
+land_fragment_1756_20260815,M25-13_cache_overlap_safe_union_helper,True,"land_in_hexes() is the single safe path from cache tiles to a political area, and it matches the union exactly on a hex where the naive sum does not"
+land_fragment_1756_20260815,M25-14_unsafe_tile_summation_audited,True,"8 consumer sites classified; 2 unsafe summations found, none of which changed a production decision (they drove ratios, where a common factor cancels)"
+land_fragment_1756_20260815,M25-15_no_duplicate_ground_measurement,True,the fixture reproduces the defect - naive SUM is 2.00x the union on a real hex - and every fixture passes; no fragment exceeds a hex's own area
+land_fragment_1756_20260815,M25-16_all_seven_landmasses_processed,True,every one of the seven landmasses produced fragments
+land_fragment_1756_20260815,M25-17_mapgen024_candidate_pool_accounted,True,"3,015 candidates -> 3,014 produced; every one of the 3,014 MAPGEN-024 gap hexes is accounted for, and the 1 dropped candidate is a 0.086 m2 sliver recorded with its reason"
+land_fragment_1756_20260815,M25-18_mixed_unaudited_fragments_separated,True,"456 fragments share their hex with unaudited land; area is conserved on every one, no whole hex was assigned, and the smallest owned share is 0.0002 of the hex's land"
+land_fragment_1756_20260815,M25-19_no_whole_hex_inheritance,True,a fragment is never a hex id and never carries a whole hex's area; the sea in an ocean hex is owned by nobody
+land_fragment_1756_20260815,M25-20_fragment_collisions_explicit,True,"no fragment target is claimed twice; 0 hexes hold more than one fragment in this scope (the seven subjects are disjoint and far apart), and the key allows it when they do"
+land_fragment_1756_20260815,M25-21_historical_provenance_complete,True,"all 3,014 fragment rows carry the evidence bundle, sources and boundary feature of the landmass they belong to - the same authority as the hex next door, not a new one"
+land_fragment_1756_20260815,M25-22_no_adjacency_ownership_inference,True,"every controller comes from the subject -> scenario polity mapping, the same route the parent landmass used; not one row was decided by what is next to it"
+land_fragment_1756_20260815,M25-23_promotion_idempotent,True,re-running promotion with an empty candidate inserts 0 rows
+land_fragment_1756_20260815,M25-24_no_silent_overwrite,True,"the promotion log records 3,014 rows inserted by this stage and no rejection; no pre-existing row was touched"
+land_fragment_1756_20260815,M25-25_target_type_counts_reported,True,"canonical now reports three target types: {'TERRESTRIAL_HEX': 50564, 'LAND_FRAGMENT': 3014, 'ISLAND_COMPONENT': 1}"
+land_fragment_1756_20260815,M25-26_coverage_stays_honest,True,no coverage unit was promoted to COMPLETE: recovering the coast does not research the offshore islands
+land_fragment_1756_20260815,M25-27_viewer_renders_actual_fragment_geometry,True,"the preview draws 3,014 fragments as their own land geometry, never as the parent hex"
+land_fragment_1756_20260815,M25-28_unrecovered_gaps_remain_distinct,True,"0 gap hexes remain unrecovered, so no magenta is left to draw - and the layer still exists so the next landmass's gap will show"
+land_fragment_1756_20260815,M25-29_malta_gozo_visual_qa,True,"Malta and Gozo: 15 fragments produced, 0 magenta left, and a before/after figure rendered from the same data with the fragment layer switched off"
+land_fragment_1756_20260815,M25-30_mixed_gb_visual_qa,True,161 Great Britain hexes hold both a mainland fragment and unaudited island land; the smallest owned share is 0.0002 and no hex was painted whole
+land_fragment_1756_20260815,M25-31_toshima_island_component_regression,True,Izu-Toshima is still an ISLAND_COMPONENT and was not migrated: a whole sub-hex island and a coastal fragment are different things and now have different types
+land_fragment_1756_20260815,M25-32_british_isles_regression,True,"Great Britain 20,310 and Ireland 7,520 TERRESTRIAL_HEX rows unchanged; their fragments are additional"
+land_fragment_1756_20260815,M25-33_mediterranean_regression,True,"Sicily 1,305, Sardinia 1,308; Corsica still assigned to nobody"
+land_fragment_1756_20260815,M25-34_iceland_regression,True,"Iceland 18,341 TERRESTRIAL_HEX rows unchanged"
+land_fragment_1756_20260815,M25-35_malta_existing_row_regression,True,"the Order still holds 15 terrestrial hexes; the 15 fragments are new rows, not edits"
+land_fragment_1756_20260815,M25-36_brandenburg_regression,True,Brandenburg still holds nothing and its MAPGEN-020 artifacts are intact
+land_fragment_1756_20260815,M25-37_saxony_regression,True,"Saxony {'CONTROLLED': 695, 'UNRESOLVED': 731}, Saxe-Weimar {'CONTROLLED': 0, 'UNRESOLVED': 96} unchanged"
+land_fragment_1756_20260815,M25-38_low_countries_regression,True,Low Countries still SOURCE_GAP
+land_fragment_1756_20260815,M25-39_schwarzburg_regression,True,Schwarzburg wash unchanged and still not production-convertible
+land_fragment_1756_20260815,M25-40_europe_physical_grid_regression,True,"Europe canonical grid intact (1,885,422 hexes) and the Toshima hex is still OCEAN"
+land_fragment_1756_20260815,M25-41_claims_regression,True,claims table still holds its single MAPGEN-008 row
+land_fragment_1756_20260815,M25-42_no_tracked_blob_over_50mb,True,largest tracked file is 23.44 MB (data/historical/historical_boundary_features.parquet); the new fragment registry is 9.89 MB
+land_fragment_1756_20260815,M25-43_no_review_wkt_duplication,True,fragment geometry is stored once as WKB in parquet; the CSV twin carries every column except geometry
+land_fragment_1756_20260815,M25-44_determinism_and_integrity,True,"canonical integrity clean with the fragment registry supplied, and correctly NOT clean without it (backward-compatible callers are warned, not fooled); all four upstream artifacts byte-identical; forbidden-reference scan clean"

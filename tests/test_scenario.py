@@ -202,8 +202,12 @@ def test_control_and_claims_are_separate_tables():
 def test_target_types_are_hex_or_component_never_overlay():
     s = load_scenario(DATA, SC)
     for df in (s.territorial_control, s.territorial_claims):
+        # MAPGEN-025 added LAND_FRAGMENT additively. What this test
+        # protects is that an OVERLAY UNIT never becomes a political
+        # target, which the isl_u_ check below is the real guard for.
         assert df["territorial_target_type"].isin(
-            ["TERRESTRIAL_HEX", "ISLAND_COMPONENT"]).all()
+            ["TERRESTRIAL_HEX", "ISLAND_COMPONENT",
+             "LAND_FRAGMENT"]).all()
         assert not df["territorial_target_id"].str.startswith(
             "isl_u_").any()
         assert "overlay_unit_id" not in df.columns
@@ -285,7 +289,7 @@ def test_deterministic_ids_reproduce():
         assert make_evidence_id(SC, t.source_id, t.evidence_type,
                                 t.target_type, t.target_id) \
             == t.evidence_id
-    assert SCENARIO_SCHEMA_VERSION == "1.4.0"
+    assert SCENARIO_SCHEMA_VERSION == "1.5.0"
     assert SCENARIO_ALGORITHM_VERSION == "1.0.2"  # unchanged since 009R
 
 

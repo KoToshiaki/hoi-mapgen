@@ -599,11 +599,11 @@ def run_historical_coastal_audit(cfg: MapgenConfig,
            and rep["promotion_id"] == make_promotion_id(
                scenario_id, STAGE, sha256_of_frame(empty))
            and HPG_SCHEMA_VERSION == "1.4.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0"
+           and SCENARIO_SCHEMA_VERSION == "1.5.0"
            and not scan_forbidden_reference_code(Path(__file__)),
            f"canonical integrity {integ or 'clean'}, upstream "
            "byte-identical INCLUDING territorial_control.csv, empty "
-           "promotion inserts 0, no schema added, forbidden-reference scan "
+           "promotion inserts 0, scenario schema at the pinned 1.5.0, forbidden-reference scan "
            "clean")
 
     # ---- figures ---------------------------------------------------------

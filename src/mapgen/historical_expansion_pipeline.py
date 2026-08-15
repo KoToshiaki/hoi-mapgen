@@ -567,7 +567,7 @@ def run_historical_expansion(cfg: MapgenConfig,
            f"{len(upstream)} upstream artifacts byte-identical")
     _check("M16-28_no_new_schema",
            HPG_SCHEMA_VERSION == "1.4.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0",
+           and SCENARIO_SCHEMA_VERSION == "1.5.0",
            f"hpg {HPG_SCHEMA_VERSION}/{HPG_ALGORITHM_VERSION} and "
            f"scenario {SCENARIO_SCHEMA_VERSION} unchanged: this stage "
            "added audits and data, not framework")

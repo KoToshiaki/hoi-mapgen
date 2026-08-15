@@ -1,0 +1,8 @@
+item,before,after,change,note
+TARGET_TYPES,"TERRESTRIAL_HEX, ISLAND_COMPONENT","TERRESTRIAL_HEX, ISLAND_COMPONENT, LAND_FRAGMENT",ADDITIVE,a new permitted value; no existing value changed meaning
+SCENARIO_SCHEMA_VERSION,1.4.0,1.5.0,MINOR_BUMP,"additive vocabulary growth, so a minor bump; 13 pipeline pins and 1 test pin advanced with it"
+HPG_SCHEMA_VERSION,1.4.0,1.4.0,NONE,the historical geometry schema is untouched: a fragment is derived from existing feature geometry
+territorial_control.csv columns,8 columns,8 columns,NONE,a fragment is just another target id in the same table
+land_fragment_registry.parquet,absent,present,NEW_ARTIFACT,geometry stored ONCE as WKB; the CSV twin carries every column EXCEPT geometry
+validate_canonical_control signature,7 positional args,7 positional args + optional land_fragments,BACKWARD_COMPATIBLE,every existing caller keeps working; omitting the set reports fragment rows rather than silently accepting
+old scenario rows,50564 TERRESTRIAL_HEX + 1 ISLAND_COMPONENT,50564 TERRESTRIAL_HEX + 1 ISLAND_COMPONENT,NONE,load-compatible: a reader that ignores LAND_FRAGMENT sees exactly the MAPGEN-024 scenario

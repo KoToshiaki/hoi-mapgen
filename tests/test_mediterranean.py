@@ -119,7 +119,9 @@ def test_sardinia_mainland_is_not_inherited(canon, mix):
     assert "Savoy-Piedmont" in basis
     assert "NOT_PRODUCED" in basis
     assert "legally IS the island" not in basis
-    sar = canon[canon["controller_scenario_polity_id"] == SAR_SP]
+    from _production_baseline import hex_control
+    sar = hex_control(canon)
+    sar = sar[sar["controller_scenario_polity_id"] == SAR_SP]
     assert len(sar) == int((mix["winner"] == "sardinia").sum())
 
 
@@ -333,9 +335,11 @@ def test_completion_summary_matches_committed_output():
 
 
 def test_british_isles_production_survives(canon):
-    gb = int((canon["controller_scenario_polity_id"]
+    from _production_baseline import hex_control
+    hx = hex_control(canon)
+    gb = int((hx["controller_scenario_polity_id"]
               == "sp_6b03622fc98a").sum())
-    ie = int((canon["controller_scenario_polity_id"]
+    ie = int((hx["controller_scenario_polity_id"]
               == "sp_c8f0dcb42a96").sum())
     assert gb == 20310
     assert ie == 7520

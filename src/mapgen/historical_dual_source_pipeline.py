@@ -690,10 +690,10 @@ def run_historical_dual_source(cfg: MapgenConfig,
     _check("M20-39_determinism_and_integrity",
            integ == [] and up_after == upstream
            and HPG_SCHEMA_VERSION == "1.4.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0"
+           and SCENARIO_SCHEMA_VERSION == "1.5.0"
            and not scan_forbidden_reference_code(Path(__file__)),
            f"canonical integrity {integ or 'clean'}, upstream byte-identical, "
-           "no schema added, forbidden-reference scan clean")
+           "scenario schema at the pinned 1.5.0, forbidden-reference scan clean")
 
     # ---- figures ---------------------------------------------------------
     t0 = time.perf_counter()

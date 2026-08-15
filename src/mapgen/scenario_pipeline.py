@@ -942,9 +942,16 @@ def run_scenario(cfg: MapgenConfig, run_id: str | None = None) -> Path:
     broken += int((~claims["source_id"].dropna().isin(src_ids)).sum())
     broken += int((~ev["source_id"].isin(src_ids)).sum())
     broken += int((~audit["source_id"].isin(src_ids)).sum())
+    frag_ids = set()
+    frp = Path("data/historical/land_fragment_registry.csv")
+    if frp.exists():
+        frag_ids = set(pd.read_csv(frp)["land_fragment_id"])
     for t in ctrl.itertuples():
         if t.territorial_target_type == "TERRESTRIAL_HEX":
             broken += t.territorial_target_id not in terr_hex
+        elif t.territorial_target_type == "LAND_FRAGMENT":
+            # the land inside a hex, not the hex: an OCEAN parent is legal
+            broken += t.territorial_target_id not in frag_ids
         else:
             broken += t.territorial_target_id not in comp_ids
     for t in ev.itertuples():

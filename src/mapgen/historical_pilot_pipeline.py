@@ -950,7 +950,7 @@ def run_historical_pilot(cfg: MapgenConfig,
            and geo.loc[geo["hex_id"] == "h6000_q+002190_r+000789",
                        "water_type"].iloc[0] == "OCEAN"
            and up_after == upstream
-           and SCENARIO_SCHEMA_VERSION == "1.4.0"
+           and SCENARIO_SCHEMA_VERSION == "1.5.0"
            and HPG_SCHEMA_VERSION == "1.4.0",
            "Low Countries still SOURCE_GAP, Europe grid still 1,885,422 "
            "hexes, Toshima hex still OCEAN, all upstream artifacts "

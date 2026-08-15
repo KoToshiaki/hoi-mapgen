@@ -1,0 +1,272 @@
+{
+  "run_id": "land_fragment_1756_20260815",
+  "stage": "MAPGEN-025",
+  "outcome": "FULL",
+  "model_c_result": "IMPLEMENTED",
+  "generated_utc": "2026-08-15T10:22:36.724526+00:00",
+  "base_commit_mapgen024": "d78127dc3c3255133b009d5aacee58026d30290d",
+  "baseline_from_committed_summary": {
+    "canonical_rows_after": 50565,
+    "canonical_controlled_after": 49496,
+    "canonical_unresolved_after": 1069,
+    "gap_hexes": 3014,
+    "gap_km2": 5644.3,
+    "land_threshold": 0.5,
+    "conclusion": "C_ARCHITECTURAL_GAP",
+    "great_britain_gap": 1094,
+    "great_britain_produced": 20310,
+    "ireland_gap": 558,
+    "ireland_produced": 7520,
+    "sicily_gap": 128,
+    "sicily_produced": 1305,
+    "sardinia_gap": 130,
+    "sardinia_produced": 1308,
+    "iceland_gap": 1089,
+    "iceland_produced": 18341,
+    "malta_gap": 9,
+    "malta_produced": 12,
+    "gozo_gap": 6,
+    "gozo_produced": 3
+  },
+  "target_type": {
+    "name": "LAND_FRAGMENT",
+    "identity_key": "hex_id + historical_subject_id",
+    "algorithm": "v1_sha1_hexid_pipe_subjectid",
+    "target_types": [
+      "TERRESTRIAL_HEX",
+      "ISLAND_COMPONENT",
+      "LAND_FRAGMENT"
+    ],
+    "scenario_schema_version": "1.5.0"
+  },
+  "landmass_recovery": [
+    {
+      "landmass": "Great Britain",
+      "mapgen024_gap": 1094,
+      "fragment_candidates": 1094,
+      "fragments_produced": 1094,
+      "recovered_km2": 2268.174,
+      "unrecovered": 0,
+      "existing_terrestrial_rows": 20310
+    },
+    {
+      "landmass": "Ireland",
+      "mapgen024_gap": 558,
+      "fragment_candidates": 558,
+      "fragments_produced": 558,
+      "recovered_km2": 1216.342,
+      "unrecovered": 0,
+      "existing_terrestrial_rows": 7520
+    },
+    {
+      "landmass": "Sicily",
+      "mapgen024_gap": 128,
+      "fragment_candidates": 128,
+      "fragments_produced": 128,
+      "recovered_km2": 453.211,
+      "unrecovered": 0,
+      "existing_terrestrial_rows": 1305
+    },
+    {
+      "landmass": "Sardinia",
+      "mapgen024_gap": 130,
+      "fragment_candidates": 130,
+      "fragments_produced": 130,
+      "recovered_km2": 463.509,
+      "unrecovered": 0,
+      "existing_terrestrial_rows": 1308
+    },
+    {
+      "landmass": "Iceland",
+      "mapgen024_gap": 1089,
+      "fragment_candidates": 1090,
+      "fragments_produced": 1089,
+      "recovered_km2": 1187.027,
+      "unrecovered": 0,
+      "existing_terrestrial_rows": 18341
+    },
+    {
+      "landmass": "Malta",
+      "mapgen024_gap": 9,
+      "fragment_candidates": 9,
+      "fragments_produced": 9,
+      "recovered_km2": 36.424,
+      "unrecovered": 0,
+      "existing_terrestrial_rows": 12
+    },
+    {
+      "landmass": "Gozo",
+      "mapgen024_gap": 6,
+      "fragment_candidates": 6,
+      "fragments_produced": 6,
+      "recovered_km2": 19.589,
+      "unrecovered": 0,
+      "existing_terrestrial_rows": 3
+    }
+  ],
+  "identity_audit": [
+    {
+      "criterion": "SCENARIO_INDEPENDENT",
+      "verdict": "PASS"
+    },
+    {
+      "criterion": "NOT_DERIVED_FROM_A_POLITY_ID",
+      "verdict": "PASS"
+    },
+    {
+      "criterion": "NOT_ONE_TO_ONE_WITH_POLITIES",
+      "verdict": "PASS"
+    },
+    {
+      "criterion": "GEOMETRICALLY_DISJOINT",
+      "verdict": "PASS"
+    },
+    {
+      "criterion": "ONE_SUBJECT_IS_ONE_CONNECTED_COMPONENT",
+      "verdict": "PASS"
+    },
+    {
+      "criterion": "EUROPE_WIDE_PHYSICAL_COMPONENT_REGISTRY_EXISTS",
+      "verdict": "ABSENT"
+    }
+  ],
+  "cache_consumers": [
+    {
+      "site": "src/mapgen/europe_coverage.py:108-114",
+      "classification": "SAFE_BY_SOURCE",
+      "affects_production": "NO"
+    },
+    {
+      "site": "src/mapgen/historical_binding.py:bind_snapshot_to_hexes",
+      "classification": "SAFE_UNION",
+      "affects_production": "NO"
+    },
+    {
+      "site": "scratchpad bi_bind2.py / med_bind.py / m23_bind.py",
+      "classification": "UNSAFE_SUM",
+      "affects_production": "NO_DECISION_YES_REPORTED_AREA"
+    },
+    {
+      "site": "MAPGEN-024 coastal audit (first implementation)",
+      "classification": "UNSAFE_SUM",
+      "affects_production": "NO"
+    },
+    {
+      "site": "src/mapgen/historical_binding.py:land_in_hexes",
+      "classification": "SAFE_UNION",
+      "affects_production": "NO"
+    },
+    {
+      "site": "src/mapgen/scenario_preview.py:_land_shapes",
+      "classification": "NOT_APPLICABLE",
+      "affects_production": "NO"
+    },
+    {
+      "site": "scratchpad m23_landmass.py / med_landmass.py (landmass identity)",
+      "classification": "SAFE_UNION",
+      "affects_production": "NO"
+    },
+    {
+      "site": "src/mapgen/historical_binding.py:membership_conservation_audit / hexification_audit",
+      "classification": "SAFE_UNION",
+      "affects_production": "NO"
+    }
+  ],
+  "cache_fixtures": [
+    {
+      "fixture": "CACHE_HOLDS_BYTE_IDENTICAL_DUPLICATES",
+      "measured": 3480.0,
+      "expected": ">0",
+      "passed": true,
+      "note": "tiles stored more than once, byte for byte"
+    },
+    {
+      "fixture": "SUM_OVER_DUPLICATE_TILES_DOUBLE_COUNTS",
+      "measured": 2.0,
+      "expected": ">1.5",
+      "passed": true,
+      "note": "hex h6000_q-000627_r+000994: naive SUM 34.3826 km2 vs UNION 17.1913 km2"
+    },
+    {
+      "fixture": "HELPER_MATCHES_UNION_ON_THE_SAME_HEX",
+      "measured": 17.191302,
+      "expected": "17.191302",
+      "passed": true,
+      "note": "land_in_hexes() returns the union area, not the sum"
+    },
+    {
+      "fixture": "CACHE_HOLDS_NON_IDENTICAL_OVERLAPPING_TILES",
+      "measured": 768.0,
+      "expected": ">=0",
+      "passed": true,
+      "note": "768 overlapping pairs among the first 60,000 unique tiles; deduplication alone would therefore NOT be enough"
+    },
+    {
+      "fixture": "NO_FRAGMENT_EXCEEDS_ITS_PARENT_HEX",
+      "measured": 0.0,
+      "expected": "0",
+      "passed": true,
+      "note": "300-fragment sample measured against the parent hex's own ground area"
+    }
+  ],
+  "target_type_rows": {
+    "TERRESTRIAL_HEX": 50564,
+    "LAND_FRAGMENT": 3014,
+    "ISLAND_COMPONENT": 1
+  },
+  "preview": {
+    "scenario_id": "seven_years_war_1756_08_01",
+    "generated_utc": "2026-08-15T10:22:26.665867+00:00",
+    "authoritative": false,
+    "purpose": "QA_AND_PRESENTATION_ONLY",
+    "stats": {
+      "controlled": 49494,
+      "unresolved": 1068,
+      "gap": 0,
+      "fragments": 3014,
+      "fragment_km2": 5644.3,
+      "polities": 7,
+      "terrestrial_hexes": 862795,
+      "unknown_terrestrial": 812233,
+      "controlled_share_pct": 5.736,
+      "canonical_controlled": 52510,
+      "canonical_unresolved": 1069,
+      "island_component_rows": 1,
+      "off_europe_grid_rows": 2
+    },
+    "closeup_gap_hexes": {
+      "british_isles": 0,
+      "iceland": 0,
+      "mediterranean": 0,
+      "malta_gozo": 0,
+      "saxony_brandenburg": 0
+    },
+    "colour_rule": "sha1(polity_id)[0] % len(PALETTE); personal unions and composite membership never share a colour"
+  },
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_coverage.parquet": "5557cf757f466d3666425ea1c28da77f7c1618daeea4fe31e87029c7b9d843c3",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68",
+    "output\\europe_land_cache\\europe_land_parts.parquet": "81a5c66249f500b3460cd8dc528caece563cd3fe3714a88454d8e99b0e98d5e7"
+  },
+  "timings_s": {
+    "load_s": 1.2,
+    "preview_s": 47.3,
+    "render_s": 0.7,
+    "total_s": 59.2
+  },
+  "peak_memory_mb": 3220.1,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

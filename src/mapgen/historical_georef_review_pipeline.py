@@ -481,9 +481,9 @@ def run_historical_georef_review(cfg: MapgenConfig,
            f"{len(upstream)} upstream artifacts byte-identical")
     _check("R18-27_no_new_schema",
            HPG_SCHEMA_VERSION == "1.4.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0"
+           and SCENARIO_SCHEMA_VERSION == "1.5.0"
            and not scan_forbidden_reference_code(Path(__file__)),
-           "no schema added; module passes the forbidden-reference scan")
+           "scenario schema at the pinned 1.5.0; module passes the forbidden-reference scan")
 
     # ---- outputs ---------------------------------------------------------
     t0 = time.perf_counter()

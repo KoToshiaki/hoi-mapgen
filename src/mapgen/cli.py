@@ -72,6 +72,8 @@ def main(argv: list[str] | None = None) -> int:
                              "preview (QA only, never authoritative)"),
         ("coastalaudit", "MAPGEN-024: coastal hex representability audit "
                          "and scenario political map preview"),
+        ("landfragment", "MAPGEN-025: LAND_FRAGMENT political target and "
+                         "coastal control recovery"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -135,6 +137,13 @@ def main(argv: list[str] | None = None) -> int:
         from .scenario_preview import render_scenario_preview
 
         render_scenario_preview(cfg)
+        return 0
+
+    if args.command == "landfragment":
+        from .historical_land_fragment_pipeline import (
+            run_historical_land_fragment)
+
+        run_historical_land_fragment(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "coastalaudit":

@@ -340,8 +340,15 @@ def validate_canonical_control(canonical: pd.DataFrame,
                                scenario_sources: pd.DataFrame,
                                terrestrial_hexes: set,
                                island_components: set,
-                               structural_polities: set) -> list[str]:
-    """Integrity of the canonical table after promotion (spec 32)."""
+                               structural_polities: set,
+                               land_fragments: set | None = None
+                               ) -> list[str]:
+    """Integrity of the canonical table after promotion (spec 32).
+
+    ``land_fragments`` is optional so every existing caller keeps working
+    unchanged; when it is omitted a scenario that contains LAND_FRAGMENT
+    rows is reported rather than silently accepted.
+    """
     v = []
     if canonical.duplicated(subset=CONTROL_KEY).any():
         v.append("duplicate canonical target key")
@@ -369,6 +376,15 @@ def validate_canonical_control(canonical: pd.DataFrame,
         elif t.territorial_target_type == "ISLAND_COMPONENT":
             if t.territorial_target_id not in island_components:
                 v.append(f"unknown island component "
+                         f"{t.territorial_target_id}")
+                break
+        elif t.territorial_target_type == "LAND_FRAGMENT":
+            # A fragment is the LAND INSIDE a hex, so its parent hex may be
+            # OCEAN — that is the whole point. What must hold is that the
+            # fragment is a registered one; the registry is what guarantees
+            # positive area and containment in its parent.
+            if t.territorial_target_id not in (land_fragments or set()):
+                v.append(f"unknown land fragment "
                          f"{t.territorial_target_id}")
                 break
         else:

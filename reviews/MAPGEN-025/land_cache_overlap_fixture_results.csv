@@ -1,0 +1,6 @@
+fixture,measured,expected,passed,note
+CACHE_HOLDS_BYTE_IDENTICAL_DUPLICATES,3480.0,>0,True,"tiles stored more than once, byte for byte"
+SUM_OVER_DUPLICATE_TILES_DOUBLE_COUNTS,2.0,>1.5,True,hex h6000_q-000627_r+000994: naive SUM 34.3826 km2 vs UNION 17.1913 km2
+HELPER_MATCHES_UNION_ON_THE_SAME_HEX,17.191302,17.191302,True,"land_in_hexes() returns the union area, not the sum"
+CACHE_HOLDS_NON_IDENTICAL_OVERLAPPING_TILES,768.0,>=0,True,"768 overlapping pairs among the first 60,000 unique tiles; deduplication alone would therefore NOT be enough"
+NO_FRAGMENT_EXCEEDS_ITS_PARENT_HEX,0.0,0,True,300-fragment sample measured against the parent hex's own ground area

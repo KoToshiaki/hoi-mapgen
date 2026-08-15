@@ -577,7 +577,7 @@ def run_historical_copy(cfg: MapgenConfig,
            f"{len(upstream)} upstream artifacts byte-identical")
     _check("M17-32_no_new_schema",
            HPG_SCHEMA_VERSION == "1.4.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0"
+           and SCENARIO_SCHEMA_VERSION == "1.5.0"
            and not scan_forbidden_reference_code(Path(__file__)),
            "no schema or namespace was added: the copy registry is a new "
            "data table using existing conventions, and this module passes "

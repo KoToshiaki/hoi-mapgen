@@ -675,7 +675,7 @@ def run_europe_foundation(cfg: MapgenConfig,
     _check("E20_namespace_versions",
            HPG_SCHEMA_VERSION == "1.0.0"
            and HPG_ALGORITHM_VERSION == "1.0.0"
-           and SCENARIO_SCHEMA_VERSION == "1.4.0"
+           and SCENARIO_SCHEMA_VERSION == "1.5.0"
            and EUROPE_COVERAGE_SCHEMA_VERSION == "1.0.0",
            f"historical_political_geometry {HPG_SCHEMA_VERSION}/"
            f"{HPG_ALGORITHM_VERSION}; scenario schema "

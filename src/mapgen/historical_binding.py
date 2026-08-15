@@ -69,6 +69,72 @@ def _joined(values) -> str:
 
 
 # --------------------------------------------------------------------------
+# Overlap-safe land measurement: the ONLY admissible path from tiles to area
+# --------------------------------------------------------------------------
+def land_in_hexes(hex_polys, land_tiles, tile_labels=None,
+                  labels=None):
+    """Exact canonical land inside each hex — by UNION, never by sum.
+
+    The canonical land cache is a tiled store, and MAPGEN-024 established
+    that the tiling is not a partition: 3,480 tiles are stored twice
+    byte-for-byte, and further tiles overlap without being identical. So
+    ``sum(area(hex ∩ tile))`` counts shared ground more than once — it was
+    measured at exactly 2× a hex's own area on real Great Britain and
+    Iceland hexes. Unioning the pieces inside each hex is exact whatever
+    the tiling does.
+
+    This function is the single safe path. Anything that needs a
+    political area from the land cache goes through it, so the fix cannot
+    be forgotten in one caller and remembered in another.
+
+    Returns ``(land_geoms, per_label)`` where ``land_geoms[i]`` is the
+    exact land geometry of hex i (or None) and ``per_label[label][i]`` is
+    the part of it belonging to that label. Labels are supplied per TILE,
+    which is how a landmass claims its tiles; a tile with label None
+    contributes to the total but to no label.
+    """
+    hex_polys = np.asarray(hex_polys, dtype=object)
+    land_tiles = np.asarray(land_tiles, dtype=object)
+    n = len(hex_polys)
+    land_geoms = np.empty(n, dtype=object)
+    labels = sorted({x for x in (tile_labels if tile_labels is not None
+                                 else []) if x is not None}) \
+        if labels is None else list(labels)
+    per_label = {lb: np.empty(n, dtype=object) for lb in labels}
+    if not n or not len(land_tiles):
+        return land_geoms, per_label
+    tree = shapely.STRtree(land_tiles)
+    hi, ti = tree.query(hex_polys, predicate="intersects")
+    if not len(hi):
+        return land_geoms, per_label
+    inter = shapely.intersection(hex_polys[hi], land_tiles[ti])
+    keep = ~shapely.is_empty(inter)
+    hi, ti, inter = hi[keep], ti[keep], inter[keep]
+    order = np.argsort(hi, kind="stable")
+    hi, ti, inter = hi[order], ti[order], inter[order]
+    lab = (np.asarray(tile_labels, dtype=object)[ti]
+           if tile_labels is not None else None)
+    starts = np.flatnonzero(np.r_[True, np.diff(hi) != 0])
+    ends = np.r_[starts[1:], len(hi)]
+    for st, en in zip(starts, ends):
+        h = int(hi[st])
+        land_geoms[h] = shapely.union_all(inter[st:en])
+        if lab is None:
+            continue
+        block = lab[st:en]
+        for lb in labels:
+            m = block == lb
+            if m.any():
+                per_label[lb][h] = shapely.union_all(inter[st:en][m])
+    return land_geoms, per_label
+
+
+def land_area_km2(geoms) -> np.ndarray:
+    """Ground area of an array of geometries, empty-safe."""
+    return np.array([_g_km2(g) for g in geoms])
+
+
+# --------------------------------------------------------------------------
 # Land mask: single source of truth
 # --------------------------------------------------------------------------
 def land_union_from(hex_land, explicit=None):

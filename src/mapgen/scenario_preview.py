@@ -46,6 +46,7 @@ LAND_UNKNOWN = "#e8e4dc"
 COAST = "#7f8c8d"
 UNRESOLVED_C = "#f0a30a"
 GAP_C = "#d81b8f"
+RECOVERED_C = "#00897b"
 
 def polity_colour(polity_id: str) -> str:
     """Deterministic per-polity colour.
@@ -124,6 +125,21 @@ def _collect(cfg: MapgenConfig, scenario_id: str):
     gap = pd.read_csv(H / "coastal_hex_representability_audit.csv")
     gap = gap[gap.representability_class
               == "AUTHORISED_LAND_NON_TERRESTRIAL"]
+    # MAPGEN-025: a gap hex whose land is now held as a LAND_FRAGMENT is
+    # RECOVERED, not missing. Only what is still unowned stays magenta.
+    frag = pd.DataFrame()
+    fp = H / "land_fragment_registry.parquet"
+    if fp.exists():
+        import geopandas as _gpd
+        frag = _gpd.read_parquet(fp)
+        held = set(ctrl.loc[ctrl.territorial_target_type == "LAND_FRAGMENT",
+                            "territorial_target_id"])
+        own = dict(zip(ctrl["territorial_target_id"],
+                       ctrl["controller_scenario_polity_id"]))
+        frag = frag[frag["land_fragment_id"].isin(held)].copy()
+        frag["controller_scenario_polity_id"] = frag[
+            "land_fragment_id"].map(own)
+        gap = gap[~gap["hex_id"].isin(set(frag["parent_hex_id"]))]
     name = dict(zip(sp["scenario_polity_id"], sp["short_name"]))
     pid = dict(zip(sp["scenario_polity_id"], sp["polity_id"]))
     canon = dict(controlled=int((ctrl.control_status == "CONTROLLED").sum()),
@@ -138,8 +154,10 @@ def _collect(cfg: MapgenConfig, scenario_id: str):
     # preview does not cover. Counted, not quietly dropped.
     canon["off_europe_grid"] = before - len(ctrl)
     gap = gap.join(pos, on="hex_id", how="inner")
-    return dict(hx=hx, ctrl=ctrl, gap=gap, sp=sp, name=name, pid=pid,
-                sdir=sdir, canon=canon)
+    if len(frag):
+        frag = frag.join(pos, on="parent_hex_id", how="inner")
+    return dict(hx=hx, ctrl=ctrl, gap=gap, frag=frag, sp=sp, name=name,
+                pid=pid, sdir=sdir, canon=canon)
 
 
 def _polys(grid, q, r):
@@ -187,6 +205,41 @@ def _render_hexes(ax, grid, df, colours, zorder, edge=None, lw=0.0,
         zorder=zorder, alpha=alpha))
 
 
+def _render_fragments(ax, d, bbox, zorder=8, edge_lw=0.0):
+    """Draw fragments as the LAND THEY ARE, never as their parent hex.
+
+    Filling the hex would assert that an ocean-majority hex is owned,
+    which is exactly the claim MAPGEN-025 was careful not to make.
+    """
+    from matplotlib.collections import PolyCollection
+
+    fr = d["frag"]
+    if not len(fr):
+        return 0
+    if bbox is not None:
+        fr = fr[(fr.centre_x_m > bbox[0] - 9000)
+                & (fr.centre_x_m < bbox[2] + 9000)
+                & (fr.centre_y_m > bbox[1] - 9000)
+                & (fr.centre_y_m < bbox[3] + 9000)]
+    if not len(fr):
+        return 0
+    verts, cols = [], []
+    for g, spid in zip(fr.geometry, fr["controller_scenario_polity_id"]):
+        col = polity_colour(d["pid"].get(spid, spid))
+        for part in shapely.get_parts(g):
+            ring = shapely.get_exterior_ring(part)
+            if ring is None:
+                continue
+            verts.append(shapely.get_coordinates(ring))
+            cols.append(col)
+    if verts:
+        ax.add_collection(PolyCollection(
+            verts, facecolors=cols,
+            edgecolors=RECOVERED_C if edge_lw else "none",
+            linewidths=edge_lw, zorder=zorder))
+    return len(fr)
+
+
 def _stats(d):
     ctrl = d["ctrl"]
     c = ctrl[ctrl.control_status == "CONTROLLED"]
@@ -194,6 +247,9 @@ def _stats(d):
     terr = int(d["hx"]["is_terrestrial_hex"].sum())
     return dict(
         controlled=len(c), unresolved=len(u), gap=len(d["gap"]),
+        fragments=len(d["frag"]),
+        fragment_km2=round(float(d["frag"]["land_area_km2"].sum()), 1)
+        if len(d["frag"]) else 0.0,
         polities=int(c["controller_scenario_polity_id"].nunique()),
         terrestrial_hexes=terr,
         unknown_terrestrial=terr - len(ctrl),
@@ -222,6 +278,7 @@ def render_overview(path, cfg, d, grid, stats, width_px=4000):
     _render_hexes(ax, grid, ctrl[ctrl.control_status == "UNRESOLVED"],
                   UNRESOLVED_C, zorder=4)
     _render_hexes(ax, grid, d["gap"], GAP_C, zorder=5, alpha=0.95)
+    _render_fragments(ax, d, None, zorder=6)
     for spid, g in c.groupby("controller_scenario_polity_id"):
         nm = d["name"].get(spid, spid)
         ax.text(g["centre_x_m"].mean(), g["centre_y_m"].mean(), str(nm),
@@ -239,7 +296,9 @@ def render_overview(path, cfg, d, grid, stats, width_px=4000):
             f"{stats['polities']} polities "
             f"({stats['off_europe_grid_rows']} rows sit on the Kanto grid "
             f"and {stats['island_component_rows']} is an ISLAND_COMPONENT)"
-            f"  |  authorised-but-unrepresentable {stats['gap']:,}",
+            f"  |  LAND_FRAGMENT {stats['fragments']:,} "
+            f"({stats['fragment_km2']:,.0f} km2)  |  unrecovered gap "
+            f"{stats['gap']:,}",
             transform=ax.transAxes, va="top", ha="left", fontsize=15,
             family="monospace", zorder=10,
             bbox=dict(fc="#ffffff", ec="#bdc3c7", alpha=0.92, pad=6))
@@ -333,6 +392,8 @@ def render_closeup(path, key, cfg, d, grid, stats):
     lw = 1.6 if (bbox[2] - bbox[0]) < 400000 else 0.7
     _render_hexes(ax, grid, gp, GAP_C, zorder=5, alpha=0.38)
     _render_hexes(ax, grid, gp, "none", zorder=6, edge=GAP_C, lw=lw)
+    nfrag = _render_fragments(ax, d, bbox, zorder=8,
+                              edge_lw=0.6 if lw > 1 else 0.0)
     # coastline redrawn ON TOP: the whole point of a closeup is to see how
     # much land each hex actually holds, and an opaque fill hides it
     from matplotlib.collections import PolyCollection
@@ -349,14 +410,78 @@ def render_closeup(path, key, cfg, d, grid, stats):
                     for s, n in c["controller_scenario_polity_id"]
                     .value_counts().items())
     ax.text(0.006, 0.994,
-            f"{r['title']}  |  {lab or 'no control here'}  |  coastal gap "
-            f"{len(gp):,} hexes outlined in magenta",
+            f"{r['title']}  |  {lab or 'no control here'}  |  "
+            f"{nfrag:,} LAND_FRAGMENT drawn as real land  |  unrecovered "
+            f"gap {len(gp):,}"
+            + ("" if len(gp) else " (none left)"),
             transform=ax.transAxes, va="top", ha="left", fontsize=12,
             family="monospace", zorder=10,
             bbox=dict(fc="#ffffff", ec="#bdc3c7", alpha=0.92, pad=5))
     fig.savefig(path, dpi=150, facecolor=WATER)
     plt.close(fig)
     return len(gp)
+
+
+def render_before_after(path, key, cfg, d, grid, title):
+    """One figure, two states, same data.
+
+    The BEFORE panel is not a saved screenshot - it is this same data with
+    the fragment layer switched off and the gap list restored, so the
+    comparison cannot drift from what the code actually does now.
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.collections import PolyCollection
+
+    r = REGIONS[key]
+    bbox = r["bbox"]
+    ar = (bbox[3] - bbox[1]) / (bbox[2] - bbox[0])
+    fig, axes = plt.subplots(1, 2, figsize=(20, max(6.0, 10 * ar)), dpi=150)
+    all_gap = pd.read_csv(H / "coastal_hex_representability_audit.csv")
+    all_gap = all_gap[all_gap.representability_class
+                      == "AUTHORISED_LAND_NON_TERRESTRIAL"]
+    pos = d["hx"].set_index("hex_id")[["q", "r", "centre_x_m", "centre_y_m"]]
+    all_gap = all_gap.join(pos, on="hex_id", how="inner")
+
+    def clip(df):
+        return df[(df.centre_x_m > bbox[0] - 9000)
+                  & (df.centre_x_m < bbox[2] + 9000)
+                  & (df.centre_y_m > bbox[1] - 9000)
+                  & (df.centre_y_m < bbox[3] + 9000)]
+
+    ctrl = clip(d["ctrl"])
+    c = ctrl[ctrl.control_status == "CONTROLLED"]
+    for ax, after in zip(axes, (False, True)):
+        _draw_base(ax, bbox, 120.0)
+        for spid, g in c.groupby("controller_scenario_polity_id"):
+            _render_hexes(ax, grid, g,
+                          polity_colour(d["pid"].get(spid, spid)),
+                          zorder=3, edge="#ffffff", lw=0.35)
+        if after:
+            n = _render_fragments(ax, d, bbox, zorder=8, edge_lw=0.6)
+            gp = clip(d["gap"])
+            lab = (f"AFTER - {n} LAND_FRAGMENT, unrecovered gap "
+                   f"{len(gp)}")
+        else:
+            gp = clip(all_gap)
+            lab = f"BEFORE - {len(gp)} hexes of authorised land unowned"
+        _render_hexes(ax, grid, gp, GAP_C, zorder=5, alpha=0.38)
+        _render_hexes(ax, grid, gp, "none", zorder=6, edge=GAP_C, lw=1.6)
+        top = [shapely.get_coordinates(shapely.get_exterior_ring(g))
+               for g in shapely.get_parts(_land_shapes(120.0, bbox))
+               if shapely.get_exterior_ring(g) is not None]
+        ax.add_collection(PolyCollection(top, facecolors="none",
+                                         edgecolors="#1b2631",
+                                         linewidths=0.8, zorder=9))
+        ax.set_xlim(bbox[0], bbox[2])
+        ax.set_ylim(bbox[1], bbox[3])
+        ax.set_axis_off()
+        ax.set_title(lab, fontsize=12, family="monospace")
+    fig.suptitle(title, fontsize=13)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150, facecolor=WATER)
+    plt.close(fig)
 
 
 def render_scenario_preview(cfg: MapgenConfig, out_dir: Path | None = None,
@@ -372,6 +497,10 @@ def render_scenario_preview(cfg: MapgenConfig, out_dir: Path | None = None,
                     grid, stats)
     render_legend(out_dir / "scenario_1756_political_map_legend.png", d,
                   stats)
+    render_before_after(
+        out_dir / "malta_gozo_fragment_before_after.png", "malta_gozo",
+        cfg, d, grid,
+        "Malta and Gozo: the coastal land the model could not own, and can")
     close = {}
     for key in REGIONS:
         close[key] = render_closeup(
