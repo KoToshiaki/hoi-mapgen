@@ -2,7 +2,7 @@
   "run_id": "batch_islands_1756_20260815",
   "stage": "MAPGEN-023",
   "outcome": "FULL",
-  "generated_utc": "2026-08-15T07:54:07.909735+00:00",
+  "generated_utc": "2026-08-15T07:59:21.658090+00:00",
   "base_commit_mapgen022": "3f2208221c1005151f9fe4c215b6bc8d94d52fd9",
   "baseline_from_committed_summary": {
     "canonical_rows_after": 32193,
@@ -500,11 +500,11 @@
     "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_chunk_manifest.csv": "28c7be6883176d2522da9409fae43f35e23ef5e82d086de2b322225cf83cca68"
   },
   "timings_s": {
-    "load_s": 0.6,
-    "render_s": 1.5,
-    "total_s": 2.8
+    "load_s": 0.4,
+    "render_s": 1.6,
+    "total_s": 2.6
   },
-  "peak_memory_mb": 1056.0,
+  "peak_memory_mb": 1006.5,
   "package_versions": {
     "numpy": "2.5.1",
     "pandas": "3.0.5",
