@@ -1,0 +1,10 @@
+cell_a,cell_b,gap_km,corridor_km2,other_crown_cell_overlap_km2,settlements_read,decision,reason
+13,14,42.2,3621.5,0.0,"Portalegre, Crato, Arronches, Abrantes, Castelo Branco, Monsanto",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+13,19,31.6,2118.6,0.0,"Lamego, Pinhel, Viseu, Guarda, S. Paya",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+13,23,42.4,3655.2,0.0,"Amarante, Lamego, Villa Real, Pinhel, Viseu, Aveiro",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+13,26,29.7,1888.1,0.0,"Amarante, Lamego, Miranda, Pinhel, Viseu",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+14,18,41.8,3561.2,0.0,"Beja, Ourique, Mertola, Tavira, Faro, Estombar, and the ROY. DE ALGARVE legend",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+14,20,22.5,1144.6,0.0,"the word PORTUGAL, Setubal, Evora, Almada, Alcacer do Sal",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+19,23,19.2,868.6,0.0,"Lamego, Miranda, Moncorvo",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+19,26,4.0,82.2,0.0,"Lamego, Pinhel, Miranda, Moncorvo",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese
+23,26,21.0,1014.5,0.0,"Amarante, Lamego, Miranda, Moncorvo",BRIDGED,no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese

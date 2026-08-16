@@ -1,0 +1,2 @@
+boundary_feature_id,historical_subject_id,version,stage,v1_area_km2_3857,v2_area_km2_3857,v1_fully_contained_in_v2,overlap_with_spain_safe_km2,change_1_algarve,change_2_corridors,uncertainty_km,spain_feature_area_unchanged
+hbf_7ed17b927930,hsub_portugal_crown_iberian_mainland,v2,MAPGEN-027,1642.6,5479.5,True,0.0,cell 18 owned by Portugal on institutional evidence; no new polity created,"9 corridors between Portugal's own cells examined, 9 bridged, each because no cell of another crown lies inside it",34.61,True

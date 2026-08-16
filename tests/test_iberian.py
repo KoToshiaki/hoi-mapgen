@@ -120,13 +120,24 @@ def test_no_cell_with_two_crowns_was_ever_owned(cells):
     assert (leaks.crown == "").all()
 
 
-def test_the_algarve_is_deferred_not_annexed(cells):
-    """The plate calls it a kingdom; MAPGEN-009 split Naples from Sicily
-    for exactly that. Tidiness is not evidence."""
-    alg = cells[cells.reason == "SEPARATE_KINGDOM_TITLE_UNEVALUATED"]
+def test_the_algarve_deferral_was_superseded_by_evidence(cells):
+    """MAPGEN-026 deferred the Algarve rather than annexing it on a map
+    title. That was right, and MAPGEN-027 ended the deferral the only way
+    it could be ended: with institutional evidence, recorded per axis.
+
+    The assertion here is not that the Algarve is still withheld - it is
+    that it stopped being withheld because of an audit, and that the audit
+    is on the record.
+    """
+    alg = cells[cells.cell == 18]
     assert len(alg) == 1
-    assert alg.iloc[0].outcome == "UNRESOLVED"
-    assert alg.iloc[0].crown == ""
+    assert alg.iloc[0].crown == "PORTUGAL"
+    assert alg.iloc[0].decided_by_stage == "MAPGEN-027"
+    audit = pd.read_csv(H / "algarve_constitutional_audit.csv",
+                        keep_default_na=False, na_values=[])
+    assert len(audit) >= 7
+    assert "TITLE_IS_NOT_ACTOR_EVIDENCE" in set(audit.verdict)
+    assert "SEPARATE_ACTOR" not in set(audit.verdict)
 
 
 def test_france_was_identified_only_to_be_kept_out(canon, cells):

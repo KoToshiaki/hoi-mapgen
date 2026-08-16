@@ -1,0 +1,6 @@
+gap,mapgen026_state,mapgen027_action,resolved
+Iberian LAND_FRAGMENT production was zero,318 hexes carried mainland land and received no row of any kind,all 345 such hexes audited and their land produced as fragments,YES
+the Algarve was withheld on a map title,"SEPARATE_KINGDOM_TITLE_UNEVALUATED, on the strength of the plate's lettering",constitutional audit on seven institutional axes; PART_OF_POL_PORTUGAL,YES
+individual political evidence post-dated the snapshot,"Gaceta of 3 Aug 1756 and the Douro alvara of 10 Sep 1756, both after 1 Aug",a dated pre-snapshot record added for each crown; both earlier assertions retained,YES
+'blind' was used for the model-selection holdout,the README quoted 'every point the fit never saw' alongside the blind figure,four metric sets separated; the holdout is marked NOT statistically blind,YES
+no larger-scale Portugal source,one pocket-atlas plate for the whole peninsula,"Sanson/Vaugondy 1762 acquired, rights and lineage audited, georeference deferred with its reason",PARTIAL

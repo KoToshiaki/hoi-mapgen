@@ -185,7 +185,9 @@ def test_production_saxony_counts_are_polity_specific():
     assert sax == {"CONTROLLED": 695, "UNRESOLVED": 731}
     assert wei["CONTROLLED"] == 0 and wei["UNRESOLVED"] > 0
     rv = pd.read_csv(SD / "territorial_control_revision_log.csv")
-    assert len(rv) == 1096 - sax["CONTROLLED"] == 401
+    m14 = rv[~rv["reason"].str.contains("Portugal safe interior v2",
+                                        na=False)]
+    assert len(m14) == 1096 - sax["CONTROLLED"] == 401
 
 
 @prod

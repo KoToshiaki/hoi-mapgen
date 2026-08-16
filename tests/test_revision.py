@@ -238,9 +238,16 @@ def test_revision_log_only_moved_rows_out_of_controlled():
         pytest.skip("revision not run")
     rv = pd.read_csv(p)
     assert len(rv) > 0
-    assert not ((rv["old_status"] == "UNRESOLVED")
-                & (rv["new_status"] == "CONTROLLED")).any()
-    assert (rv["new_uncertainty_km"] > rv["old_uncertainty_km"]).all()
+    # MAPGEN-014 moved rows OUT of CONTROLLED after re-measuring, and this
+    # is the test of that. MAPGEN-027 moves rows the other way, on new
+    # evidence rather than a new measurement, so it is scoped out by its
+    # own reason rather than by weakening the assertion.
+    m14 = rv[~rv["reason"].str.contains("Portugal safe interior v2",
+                                        na=False)]
+    assert len(m14) > 0
+    assert not ((m14["old_status"] == "UNRESOLVED")
+                & (m14["new_status"] == "CONTROLLED")).any()
+    assert (m14["new_uncertainty_km"] > m14["old_uncertainty_km"]).all()
 
 
 @pytest.mark.skipif(not PROD, reason="no production data")
@@ -252,7 +259,9 @@ def test_no_stale_uncertainty_left_in_canonical_authority():
     c = pd.read_csv(SD / "territorial_control.csv")
     revised = set(rv["territorial_target_id"])
     assert revised <= set(c["territorial_target_id"])
-    assert float(rv["old_uncertainty_km"].max()) == 2.975
+    m14 = rv[~rv["reason"].str.contains("Portugal safe interior v2",
+                                        na=False)]
+    assert float(m14["old_uncertainty_km"].max()) == 2.975
 
 
 def test_unchanged_rows_keep_their_original_provenance():

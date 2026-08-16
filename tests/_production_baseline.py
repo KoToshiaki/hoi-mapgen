@@ -23,7 +23,10 @@ MEMBERSHIP_AUDITS = ("british_isles_hex_membership_audit.csv",
                      # MAPGEN-026 is the first MAINLAND batch, so the name
                      # "island production" is now too narrow; the mechanism
                      # is the same and the list is what it strips.
-                     "iberia_hex_membership_audit.csv")
+                     "iberia_hex_membership_audit.csv",
+                     # MAPGEN-027 widened Portugal's region, bringing a few
+                     # hundred more hexes into the Iberian scope.
+                     "iberia_hex_membership_audit_v2.csv")
 
 
 def island_production_hex_ids() -> set[str]:
@@ -51,26 +54,40 @@ def strip_island_production(control: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-IBERIA_AUDIT = "iberia_hex_membership_audit.csv"
+IBERIA_AUDITS = ("iberia_hex_membership_audit.csv",
+                 "iberia_hex_membership_audit_v2.csv")
+IBERIA_FRAGMENTS = "iberia_land_fragment_production.csv"
 
 
 def iberia_production_hex_ids() -> set[str]:
-    """Hex ids MAPGEN-026 wrote for the Iberian mainland.
+    """Hex ids MAPGEN-026 and MAPGEN-027 wrote for the Iberian mainland.
 
     Separate from the island set because a test that pins the row count a
     2024-era stage left behind must subtract only what came AFTER it, not
     everything coast-bounded that came before.
     """
-    p = H / IBERIA_AUDIT
-    if not p.exists():
-        return set()
-    return set(pd.read_csv(p, keep_default_na=False,
-                           na_values=[])["hex_id"])
+    ids: set[str] = set()
+    for name in IBERIA_AUDITS:
+        p = H / name
+        if p.exists():
+            ids |= set(pd.read_csv(p, keep_default_na=False,
+                                   na_values=[])["hex_id"])
+    return ids
+
+
+def iberia_production_target_ids() -> set[str]:
+    """Hexes AND coastal fragments produced for the Iberian mainland."""
+    ids = iberia_production_hex_ids()
+    p = H / IBERIA_FRAGMENTS
+    if p.exists():
+        ids |= set(pd.read_csv(p, keep_default_na=False,
+                               na_values=[])["land_fragment_id"])
+    return ids
 
 
 def strip_iberia_production(control: pd.DataFrame) -> pd.DataFrame:
     return control[~control["territorial_target_id"].isin(
-        iberia_production_hex_ids())]
+        iberia_production_target_ids())]
 
 
 def hex_control(control: pd.DataFrame) -> pd.DataFrame:

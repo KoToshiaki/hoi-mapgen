@@ -1,0 +1,480 @@
+{
+  "run_id": "portugal_recovery_1756_20260816",
+  "stage": "MAPGEN-027",
+  "outcome": "ACCEPTABLE",
+  "generated_utc": "2026-08-16T07:29:19.989143+00:00",
+  "base_commit_mapgen026": "87fe418bbb1a4ad66c6bdc0d2dc7e645dfd12435",
+  "baseline_from_committed_summary": {
+    "canonical_rows_after": 75629,
+    "canonical_controlled_after": 57967,
+    "canonical_unresolved_after": 17662,
+    "terrestrial_hex_rows": 72614,
+    "land_fragment_rows": 3014,
+    "spain_controlled": 5431,
+    "portugal_controlled": 26,
+    "not_produced_hexes": 318,
+    "positional_uncertainty_km": 34.61,
+    "outcome_as_declared": "FULL"
+  },
+  "mapgen026_outcome_restated": "ACCEPTABLE_PRODUCTION_WITH_FOLLOWUP_GAPS",
+  "fragments": {
+    "audited_hexes": 345,
+    "produced": 345,
+    "controlled": 9,
+    "unresolved": 336,
+    "subject": "hsub_european_mainland",
+    "mixed_component_hexes": 139,
+    "max_components_in_one_hex": 103
+  },
+  "algarve": [
+    {
+      "question": "Is the Kingdom of the Algarve a distinct territorial actor at 1756-08-01, or part of pol_portugal?",
+      "decision": "PART_OF_POL_PORTUGAL",
+      "axes_examined": 8,
+      "axes_supporting_separate_actor": 0,
+      "map_title_used_as_evidence": "NO",
+      "auto_merged_for_convenience": "NO",
+      "comparison_case": "MAPGEN-009 kept Naples and Sicily apart because each had its own parliament, its own council and its own viceroy. The Algarve has none of the three, and its ground is run by corregedores of two ordinary comarcas under the same Ordenações as Beira or Alentejo.",
+      "consequence": "hsub_portugal_crown_iberian_mainland's scope now includes the Algarve; no new polity is created; the Algarve is removed from the withheld special-case list.",
+      "primary_sources": "colleccao_leis_decretos_alvaras_jose_i_tomo_i|arquivo_municipal_tavira_corregedoria_comarca_tavira",
+      "scholarly_sources": "oliveira_leitao_segundo_reino_coroa_portugal_2008"
+    }
+  ],
+  "algarve_axes": [
+    {
+      "axis": "ROYAL_TITULATURE",
+      "verdict": "NOT_A_SEPARATE_ACTOR"
+    },
+    {
+      "axis": "CROWN_IDENTITY",
+      "verdict": "NOT_A_SEPARATE_ACTOR"
+    },
+    {
+      "axis": "LEGISLATIVE_AUTHORITY",
+      "verdict": "NOT_A_SEPARATE_ACTOR"
+    },
+    {
+      "axis": "ADMINISTRATION",
+      "verdict": "NOT_A_SEPARATE_ACTOR"
+    },
+    {
+      "axis": "JUDICIAL_STRUCTURE",
+      "verdict": "NOT_A_SEPARATE_ACTOR"
+    },
+    {
+      "axis": "TAXATION",
+      "verdict": "NOT_A_SEPARATE_ACTOR"
+    },
+    {
+      "axis": "REPRESENTATION",
+      "verdict": "NOT_A_SEPARATE_ACTOR"
+    },
+    {
+      "axis": "CARTOGRAPHIC_TITLE_ONLY",
+      "verdict": "TITLE_IS_NOT_ACTOR_EVIDENCE"
+    }
+  ],
+  "evidence_hardening": {
+    "spain": [
+      {
+        "subject": "hsub_spain_crown_iberian_mainland",
+        "mapgen026_individual_evidence": "gaceta_de_madrid_1756_08_03_num31",
+        "mapgen026_evidence_date": "1756-08-03",
+        "relation_to_snapshot": "AFTER_SNAPSHOT",
+        "mapgen027_added_evidence": "gaceta_de_madrid_1756_07_27_num30",
+        "mapgen027_evidence_date": "1756-07-27",
+        "relation_to_snapshot_new": "BEFORE_SNAPSHOT",
+        "days_before_snapshot": 5,
+        "earlier_evidence_retained": "YES",
+        "acts_on_the_ground": "royal appointments to the Chancillería de Granada and the Consejo de Navarra",
+        "exact_locator": "Gaceta de Madrid, núm. 30, martes 27 de julio de 1756, pp. 233-240. p. 239, Madrid dateline: 'Madrid 27. de Julio de 1756. LOS Reyes nuestros Señores experimentan perfecta salud en su Real Palacio del Buen-Retiro, de cuya felicidad logran igualmente en el de San Ildephonso la Reyna Viuda nuestra Señora, y el Señor Infante.' p. 240, royal appointments: 'El Rey se ha servido nombrar para una Plaza de Oidor de la Chancillería de Granada á D. Antonio Espinosa; y para la Fiscalía del Consejo de Navarra á D. Joseph Bueno', with further commissions to the Regimiento de Infantería Fixo de Ceuta and the Milicias de Guadix"
+      }
+    ],
+    "portugal": [
+      {
+        "subject": "hsub_portugal_crown_iberian_mainland",
+        "mapgen026_individual_evidence": "bnd_alvara_1756_09_10_companhia_alto_douro",
+        "mapgen026_evidence_date": "1756-09-10",
+        "relation_to_snapshot": "AFTER_SNAPSHOT",
+        "mapgen027_added_evidence": "colleccao_leis_decretos_alvaras_jose_i_tomo_i",
+        "mapgen027_evidence_date": "1756-06-15",
+        "relation_to_snapshot_new": "BEFORE_SNAPSHOT",
+        "days_before_snapshot": 47,
+        "earlier_evidence_retained": "YES",
+        "acts_on_the_ground": "the Desembargo do Paço ordered to publish by edict in every town of the Province of Alentejo",
+        "exact_locator": "Collecçaõ das leis, decretos, e alvarás ... do feliz reinado del Rei Fidelíssimo D. José o I, Tomo I, 'Desde o anno de 1750 até o de 1760', Lisboa, Officina de António Rodrigues Galhardo, 1797. Acts of 1756 dated BEFORE the snapshot: (a) Lei de 19 de Janeiro de 1756, given at Belém, declaring 'o modo, e forma certa, e invariável, que os Corregedores, e Ouvidores das Comarcas devem praticar nas Audiências das Chancellarias', published in the Chancellaria mór da Corte e Reino at Lisbon on 5 February 1756 and registered 'no livro das Leys a fol. 87 verso'; (b) Alvará em forma de Lei de 20 de Março de 1756 creating the Juiz Executor das Alfândegas do Assucar e Tabaco of Lisbon, published in the same Chancellaria on 6 April 1756, livro das Leys fol. 90; (c) Decreto de 15 de Junho de 1756, given at Belém, ordering the Mesa do Desembargo do Paço to send its orders 'a todas as terras da Provincia de Alemtejo, com a copia deste Decreto impressa, para que em todas se publique por edictaes', complied with at Lisbon on 22 June 1756; (d) Decreto de 13 de Julho de 1756, given at Belém, putting the Conselho da Fazenda to take the accounts of the crown's treasury officers with coercive jurisdiction"
+      }
+    ]
+  },
+  "larger_scale_source": {
+    "registry": [
+      {
+        "institution": "Universidade de Coimbra, Biblioteca Geral (Biblioteca Geral Digital / Alma Mater), collection Mapas Nabais Conde",
+        "item_url": "https://am.uc.pt/bib-geral/item/44829",
+        "title": "Carte du Royaume de Portugal : dressee d'apres les Cartes du Pays",
+        "authors": "Nicolas Sanson; Gilles Robert de Vaugondy",
+        "imprint": "A Paris chez l'Auteur Quai de l'Horloge du Palais pres le Pont neuf, avec privilege, 1762",
+        "date": 1762,
+        "sheet_cm": "41 x 52",
+        "scale": NaN,
+        "shelfmarks": "NC-913|NC-914",
+        "file": "UCBG-NC-0913.pdf",
+        "bytes": 5027515,
+        "raster_pixels": "4170x3285",
+        "rights": "Creative Commons Attribution 4.0 International (CC BY 4.0), open access - commercial reuse permitted with attribution",
+        "download_method": "HTTPS GET of the Alma Mater / Biblioteca Geral Digital public download links published on each item page",
+        "acquired_utc": "2026-08-16T06:19:00Z",
+        "gitignored": "YES"
+      },
+      {
+        "institution": "Universidade de Coimbra, Biblioteca Geral (Biblioteca Geral Digital / Alma Mater), collection Mapas Nabais Conde",
+        "item_url": "https://am.uc.pt/bib-geral/item/44829",
+        "title": "Carte du Royaume de Portugal : dressee d'apres les Cartes du Pays",
+        "authors": "Nicolas Sanson; Gilles Robert de Vaugondy",
+        "imprint": "A Paris chez l'Auteur Quai de l'Horloge du Palais pres le Pont neuf, avec privilege, 1762",
+        "date": 1762,
+        "sheet_cm": "41 x 52",
+        "scale": NaN,
+        "shelfmarks": "NC-913|NC-914",
+        "file": "UCBG-NC-0914.pdf",
+        "bytes": 5433775,
+        "raster_pixels": "4157x3188",
+        "rights": "Creative Commons Attribution 4.0 International (CC BY 4.0), open access - commercial reuse permitted with attribution",
+        "download_method": "HTTPS GET of the Alma Mater / Biblioteca Geral Digital public download links published on each item page",
+        "acquired_utc": "2026-08-16T06:19:00Z",
+        "gitignored": "YES"
+      },
+      {
+        "institution": "Universidade de Coimbra, Biblioteca Geral (Biblioteca Geral Digital / Alma Mater), collection Mapas Nabais Conde",
+        "item_url": "https://am.uc.pt/bib-geral/item/46805",
+        "title": "Carta geografica del Regno di Portogallo",
+        "authors": "Guillaume Delisle; published by Giovanni Battista Albrizzi",
+        "imprint": "Venezia, 1750",
+        "date": 1750,
+        "sheet_cm": "39 x 33",
+        "scale": "ca. 1:1 700 000",
+        "shelfmarks": "NC-5|NC-700",
+        "file": "UCBG-NC-0005.pdf",
+        "bytes": 2220778,
+        "raster_pixels": NaN,
+        "rights": "Creative Commons Attribution 4.0 International (CC BY 4.0), open access - commercial reuse permitted with attribution",
+        "download_method": "HTTPS GET of the Alma Mater / Biblioteca Geral Digital public download links published on each item page",
+        "acquired_utc": "2026-08-16T06:19:00Z",
+        "gitignored": "YES"
+      }
+    ],
+    "lineage": [
+      {
+        "global_source_id": "hsrc_3be565a085e6",
+        "cartographer": "Nicolas Sanson (base) and Gilles Robert de Vaugondy (correction)",
+        "engraver": NaN,
+        "publisher": "Robert de Vaugondy, Paris",
+        "plate_family": "FRENCH_SANSON_JAILLOT_VAUGONDY",
+        "source_survey_or_base_map": "Sanson's Portugal material, stated on the cartouche to be 'dressee d'apres les Cartes du Pays' and 'corrigee et assujettie aux observations astronomiques'",
+        "derived_from_source_id": NaN,
+        "shared_cartographic_lineage": "UNRESOLVED_AGAINST_LE_ROUGE_1756",
+        "lineage_confidence": "MEDIUM",
+        "independence_status": "UNRESOLVED",
+        "independence_reason": "This project already registers the Sanson/Jaillot/Vaugondy family as PARTIALLY_INDEPENDENT (MAPGEN-012). Le Rouge's own lineage is NOT ESTABLISHED, so the relation between the two cannot be resolved in either direction: not SAME_PLATE, not DERIVED, and not demonstrably INDEPENDENT. It therefore does NOT count toward independent corroboration, and any frontier comparison between them measures disagreement, not confirmation.",
+        "corroboration_eligible": "NO"
+      },
+      {
+        "global_source_id": "hsrc_6c4e77ef3081",
+        "cartographer": "Guillaume Delisle",
+        "engraver": NaN,
+        "publisher": "Giovanni Battista Albrizzi, Venice",
+        "plate_family": "FRENCH_DELISLE_VIA_VENETIAN_REENGRAVING",
+        "source_survey_or_base_map": "a Delisle plate re-engraved in Venice; Delisle died in 1726, so the geography is of the first quarter of the century",
+        "derived_from_source_id": NaN,
+        "shared_cartographic_lineage": "UNRESOLVED_AGAINST_LE_ROUGE_1756",
+        "lineage_confidence": "MEDIUM",
+        "independence_status": "UNRESOLVED",
+        "independence_reason": "A third house, but a re-engraving whose geography predates the snapshot by thirty years. Used only to bracket the frontier in time, never as boundary authority.",
+        "corroboration_eligible": "NO"
+      }
+    ],
+    "continuity": [
+      {
+        "source": "vaugondy_1762_carte_du_royaume_de_portugal_uc",
+        "question": "Does the 1762 sheet's frontier apply to 1756-08-01?",
+        "finding": "The Spanish-Portuguese de jure frontier did not change between 1756 and 1762. The line had been settled since the Treaty of Alcanices in 1297; the three places where it was disputed or later moved - Olivenza (to Spain in 1801), the Couto Misto (partitioned in 1864) and the Pyrenean exclave of Llivia - are each withheld by name in this production.",
+        "war_risk": "The Spanish invasion of Portugal ran May to November 1762, so a Paris sheet of 1762 could in principle show a campaign line. This sheet does not: it is titled a geographic map 'dressee d'apres les Cartes du Pays', carries no order of battle, no siege plans and no dated military annotation, and its provincial washes are the civil comarcas.",
+        "verdict": "CONTINUITY_ARGUABLE_BUT_NOT_EXERCISED",
+        "note": "Recorded so a later stage does not have to rediscover it. Since no geometry from this sheet enters production here, the continuity argument is not relied on by anything."
+      }
+    ],
+    "graticule": [
+      {
+        "sheet": "N (NC-913)",
+        "axis": "longitude",
+        "ticks": "8 deg at x=1023.5, 9 at 1613.5, 10 at 2200.4, 11 at 2789.5, 12 at 3376.6",
+        "px_per_degree": 588.3,
+        "method": "darkness profile of the graduated margin strip, rows 479-506",
+        "numerals_checked": "8 and 9 read at native resolution"
+      },
+      {
+        "sheet": "N (NC-913)",
+        "axis": "latitude",
+        "ticks": "42 deg at y=616.0, 41 at 1415.5, 40 at 2212.5",
+        "px_per_degree": 798.3,
+        "method": "the sheet's own drawn parallels, found as horizontal dark rows spanning the engraved face",
+        "numerals_checked": "42, 41 and 40 read in the left margin"
+      },
+      {
+        "sheet": "S (NC-914)",
+        "axis": "longitude",
+        "ticks": "8 deg at x=640.0, 9 at 1288.0, 10 at 1936.4, 11 at 2581.6, 12 at 3226.0",
+        "px_per_degree": 646.5,
+        "method": "darkness profile of the graduated margin strip",
+        "numerals_checked": "8, 9 and 10 (Midi) read at native resolution"
+      },
+      {
+        "sheet": "S (NC-914)",
+        "axis": "latitude",
+        "ticks": "39 deg at y=719.5, 38 at 1519.5, 37 at 2318.0",
+        "px_per_degree": 799.3,
+        "method": "the sheet's own drawn parallels",
+        "numerals_checked": "39, 38 and 37 read in the left margin"
+      }
+    ],
+    "preliminary_check": [
+      {
+        "points": 3,
+        "meridian_offset_mean": -17.8083,
+        "meridian_offset_sd": 0.0642,
+        "lat_difference_mean": 0.0427,
+        "lat_difference_sd": 0.0763,
+        "approx_km_sd_lon": 5.4,
+        "approx_km_sd_lat": 8.5,
+        "status": "PRELIMINARY_NOT_A_GEOREFERENCE",
+        "why_no_production_georeference": "the plate draws every town of consequence as a pictorial vignette rather than a circle, and a vignette has no defensible single point - the same reason MAPGEN-026 rejected Cuenca and Cordoba. Producing 24 correspondences would have required inventing an anchor rule for vignettes.",
+        "handed_to": "MAPGEN-028"
+      }
+    ]
+  },
+  "metric_separation": [
+    {
+      "metric_set": "FIT",
+      "n": 21,
+      "rms_km": 16.71,
+      "p95_km": 26.91,
+      "max_km": 29.85,
+      "statistically_blind": "NO",
+      "used_for_production_uncertainty": "NO",
+      "note": "the coefficients were solved on these points, so their residuals are optimistic by construction"
+    },
+    {
+      "metric_set": "MODEL_SELECTION_HOLDOUT",
+      "n": 8,
+      "rms_km": 24.67,
+      "p95_km": 34.66,
+      "max_km": 34.74,
+      "statistically_blind": "NO",
+      "used_for_production_uncertainty": "NO",
+      "note": "NOT statistically blind. These points chose the model: POLYNOMIAL_2 won because its holdout rms was best on exactly this set, so quoting them as blind would overstate what was tested."
+    },
+    {
+      "metric_set": "BLIND_VALIDATION",
+      "n": 5,
+      "rms_km": 15.6,
+      "p95_km": 23.3,
+      "max_km": 23.95,
+      "statistically_blind": "YES",
+      "used_for_production_uncertainty": "NO",
+      "note": "the only statistically blind set: never fitted, never used to choose a model. Only 5 points, in 2 of the 4 quadrants."
+    },
+    {
+      "metric_set": "ALL_NONFIT",
+      "n": 13,
+      "rms_km": 21.64,
+      "p95_km": 34.61,
+      "max_km": 34.74,
+      "statistically_blind": "PARTLY",
+      "used_for_production_uncertainty": "YES",
+      "note": "MODEL_SELECTION_HOLDOUT + BLIND_VALIDATION. Adopted for the production erosion because 5 blind points in 2 quadrants is too thin a sample to set a threshold on a 6 km grid, and because it is the more conservative of the two (34.61 km against 23.30 km)."
+    }
+  ],
+  "portugal_v2": [
+    {
+      "boundary_feature_id": "hbf_7ed17b927930",
+      "historical_subject_id": "hsub_portugal_crown_iberian_mainland",
+      "version": "v2",
+      "stage": "MAPGEN-027",
+      "v1_area_km2_3857": 1642.6,
+      "v2_area_km2_3857": 5479.5,
+      "v1_fully_contained_in_v2": true,
+      "overlap_with_spain_safe_km2": 0.0,
+      "change_1_algarve": "cell 18 owned by Portugal on institutional evidence; no new polity created",
+      "change_2_corridors": "9 corridors between Portugal's own cells examined, 9 bridged, each because no cell of another crown lies inside it",
+      "uncertainty_km": 34.61,
+      "spain_feature_area_unchanged": true
+    }
+  ],
+  "corridors": [
+    {
+      "cell_a": 13,
+      "cell_b": 14,
+      "gap_km": 42.2,
+      "corridor_km2": 3621.5,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Portalegre, Crato, Arronches, Abrantes, Castelo Branco, Monsanto",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 13,
+      "cell_b": 19,
+      "gap_km": 31.6,
+      "corridor_km2": 2118.6,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Lamego, Pinhel, Viseu, Guarda, S. Paya",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 13,
+      "cell_b": 23,
+      "gap_km": 42.4,
+      "corridor_km2": 3655.2,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Amarante, Lamego, Villa Real, Pinhel, Viseu, Aveiro",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 13,
+      "cell_b": 26,
+      "gap_km": 29.7,
+      "corridor_km2": 1888.1,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Amarante, Lamego, Miranda, Pinhel, Viseu",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 14,
+      "cell_b": 18,
+      "gap_km": 41.8,
+      "corridor_km2": 3561.2,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Beja, Ourique, Mertola, Tavira, Faro, Estombar, and the ROY. DE ALGARVE legend",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 14,
+      "cell_b": 20,
+      "gap_km": 22.5,
+      "corridor_km2": 1144.6,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "the word PORTUGAL, Setubal, Evora, Almada, Alcacer do Sal",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 19,
+      "cell_b": 23,
+      "gap_km": 19.2,
+      "corridor_km2": 868.6,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Lamego, Miranda, Moncorvo",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 19,
+      "cell_b": 26,
+      "gap_km": 4.0,
+      "corridor_km2": 82.2,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Lamego, Pinhel, Miranda, Moncorvo",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    },
+    {
+      "cell_a": 23,
+      "cell_b": 26,
+      "gap_km": 21.0,
+      "corridor_km2": 1014.5,
+      "other_crown_cell_overlap_km2": 0.0,
+      "settlements_read": "Amarante, Lamego, Miranda, Moncorvo",
+      "decision": "BRIDGED",
+      "reason": "no cell of another crown lies in the corridor; the plate was read inside it and every settlement engraved there is Portuguese"
+    }
+  ],
+  "production": {
+    "spain": 5431,
+    "portugal": 124,
+    "inserted": 947,
+    "revised": 68
+  },
+  "target_types": [
+    "TERRESTRIAL_HEX",
+    "ISLAND_COMPONENT",
+    "LAND_FRAGMENT"
+  ],
+  "scenario_schema_version": "1.5.0",
+  "hpg_schema_version": "1.4.0",
+  "preview": {
+    "scenario_id": "seven_years_war_1756_08_01",
+    "generated_utc": "2026-08-16T07:29:15.202165+00:00",
+    "authoritative": false,
+    "purpose": "QA_AND_PRESENTATION_ONLY",
+    "stats": {
+      "controlled": 55048,
+      "unresolved": 18166,
+      "gap": 0,
+      "fragments": 3359,
+      "fragment_km2": 6910.6,
+      "polities": 9,
+      "terrestrial_hexes": 862795,
+      "unknown_terrestrial": 789581,
+      "controlled_share_pct": 6.38,
+      "canonical_controlled": 58073,
+      "canonical_unresolved": 18503,
+      "island_component_rows": 1,
+      "off_europe_grid_rows": 2
+    },
+    "closeup_gap_hexes": {
+      "british_isles": 0,
+      "iceland": 0,
+      "mediterranean": 0,
+      "malta_gozo": 0,
+      "saxony_brandenburg": 0,
+      "iberian": 0
+    },
+    "colour_rule": "sha1(polity_id)[0] % len(PALETTE); personal unions and composite membership never share a colour"
+  },
+  "upstream_sha256": {
+    "D:\\VScode\\hoi\\mapgen\\output\\geography_v1_3_islands_006r_20260809\\geography_hexes.parquet": "f8971b048045600a36c951695433a1a6dbc8e414bfea23dc401b385735ca3d39",
+    "D:\\VScode\\hoi\\mapgen\\output\\europe_foundation_20260811\\europe_hex_coverage.parquet": "5557cf757f466d3666425ea1c28da77f7c1618daeea4fe31e87029c7b9d843c3",
+    "output\\europe_land_cache\\europe_land_parts.parquet": "81a5c66249f500b3460cd8dc528caece563cd3fe3714a88454d8e99b0e98d5e7"
+  },
+  "image_aspects": {
+    "portugal_recovery_before_after.png": 3.263,
+    "iberian_land_fragment_completion.png": 2.907,
+    "iberian_political_closeup.png": 1.133,
+    "scenario_1756_political_map.png": 1.053,
+    "scenario_1756_political_map_legend.png": 1.222
+  },
+  "timings_s": {
+    "load_s": 0.8,
+    "preview_s": 45.0,
+    "gates_s": 4.0,
+    "total_s": 51.2
+  },
+  "peak_memory_mb": 2904.3,
+  "package_versions": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "pyproj": "3.7.2",
+    "shapely": "2.1.2",
+    "geopandas": "1.1.4",
+    "pyogrio": "0.13.0",
+    "pyarrow": "25.0.0",
+    "matplotlib": "3.11.1",
+    "PyYAML": "6.0.3",
+    "psutil": "7.2.2"
+  },
+  "warnings": []
+}

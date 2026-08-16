@@ -1,0 +1,2 @@
+points,meridian_offset_mean,meridian_offset_sd,lat_difference_mean,lat_difference_sd,approx_km_sd_lon,approx_km_sd_lat,status,why_no_production_georeference,handed_to
+3,-17.8083,0.0642,0.0427,0.0763,5.4,8.5,PRELIMINARY_NOT_A_GEOREFERENCE,"the plate draws every town of consequence as a pictorial vignette rather than a circle, and a vignette has no defensible single point - the same reason MAPGEN-026 rejected Cuenca and Cordoba. Producing 24 correspondences would have required inventing an anchor rule for vignettes.",MAPGEN-028

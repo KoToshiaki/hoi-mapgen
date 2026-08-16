@@ -1,0 +1,4 @@
+sheet,place,ref_lon,ref_lat,plate_lon,plate_lat,meridian_offset_deg,lat_difference_deg,eligible_as_gcp,reason
+N,Ponte de Lima,-8.583,41.767,9.206,41.652,-17.789,0.115,NO,identified by eye on a reduced composite to calibrate a SEARCH window; a georeference control point must be a detector measurement on a defensible anchor
+N,Barcelos,-8.618,41.539,9.138,41.489,-17.756,0.05,NO,identified by eye on a reduced composite to calibrate a SEARCH window; a georeference control point must be a detector measurement on a defensible anchor
+N,Porto,-8.611,41.15,9.269,41.187,-17.88,-0.037,NO,identified by eye on a reduced composite to calibrate a SEARCH window; a georeference control point must be a detector measurement on a defensible anchor

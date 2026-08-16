@@ -1,0 +1,5 @@
+metric_set,n,rms_km,p95_km,max_km,statistically_blind,used_for_production_uncertainty,note
+FIT,21,16.71,26.91,29.85,NO,NO,"the coefficients were solved on these points, so their residuals are optimistic by construction"
+MODEL_SELECTION_HOLDOUT,8,24.67,34.66,34.74,NO,NO,"NOT statistically blind. These points chose the model: POLYNOMIAL_2 won because its holdout rms was best on exactly this set, so quoting them as blind would overstate what was tested."
+BLIND_VALIDATION,5,15.6,23.3,23.95,YES,NO,"the only statistically blind set: never fitted, never used to choose a model. Only 5 points, in 2 of the 4 quadrants."
+ALL_NONFIT,13,21.64,34.61,34.74,PARTLY,YES,"MODEL_SELECTION_HOLDOUT + BLIND_VALIDATION. Adopted for the production erosion because 5 blind points in 2 quadrants is too thin a sample to set a threshold on a 6 km grid, and because it is the more conservative of the two (34.61 km against 23.30 km)."

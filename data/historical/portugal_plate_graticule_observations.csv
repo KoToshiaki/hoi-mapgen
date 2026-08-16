@@ -1,0 +1,5 @@
+sheet,axis,ticks,px_per_degree,method,numerals_checked
+N (NC-913),longitude,"8 deg at x=1023.5, 9 at 1613.5, 10 at 2200.4, 11 at 2789.5, 12 at 3376.6",588.3,"darkness profile of the graduated margin strip, rows 479-506",8 and 9 read at native resolution
+N (NC-913),latitude,"42 deg at y=616.0, 41 at 1415.5, 40 at 2212.5",798.3,"the sheet's own drawn parallels, found as horizontal dark rows spanning the engraved face","42, 41 and 40 read in the left margin"
+S (NC-914),longitude,"8 deg at x=640.0, 9 at 1288.0, 10 at 1936.4, 11 at 2581.6, 12 at 3226.0",646.5,darkness profile of the graduated margin strip,"8, 9 and 10 (Midi) read at native resolution"
+S (NC-914),latitude,"39 deg at y=719.5, 38 at 1519.5, 37 at 2318.0",799.3,the sheet's own drawn parallels,"39, 38 and 37 read in the left margin"

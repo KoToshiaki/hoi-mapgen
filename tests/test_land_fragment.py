@@ -279,15 +279,38 @@ def test_no_fragment_controller_collision(canon):
 
 
 def test_controller_comes_from_the_subject_mapping_not_adjacency(canon):
+    """A fragment's controller comes from evidence, never from proximity.
+
+    MAPGEN-025's seven subjects each map 1:1 to a polity, so the mapping
+    IS the answer there. MAPGEN-027 keys its fragments on a physical
+    component - the European mainland - which spans two crowns and
+    therefore has no mapping at all; its controller comes from the
+    political subject of the boundary feature the row was promoted with,
+    which is the same evidence path the whole-hex rows use.
+    """
     reg = pd.read_csv(H / "land_fragment_registry.csv")
     mp = pd.read_csv(H / "historical_subject_scenario_mapping.csv")
     want = dict(zip(mp["historical_subject_id"], mp["scenario_polity_id"]))
     subj = dict(zip(reg["land_fragment_id"],
                     reg["land_subject_or_component_id"]))
+    prov = pd.read_csv(SD / "territorial_control_provenance.csv",
+                       keep_default_na=False, na_values=[""])
+    pol = dict(zip(prov["territorial_target_id"],
+                   prov["historical_subject_ids"]))
     f = canon[canon.territorial_target_type == "LAND_FRAGMENT"]
+    checked_mapped = checked_physical = 0
     for r in f.itertuples():
-        assert (r.controller_scenario_polity_id
-                == want[subj[r.territorial_target_id]])
+        sid = subj[r.territorial_target_id]
+        if sid in want:
+            assert r.controller_scenario_polity_id == want[sid]
+            checked_mapped += 1
+        else:
+            political = pol[r.territorial_target_id]
+            assert political in want, political
+            if r.control_status == "CONTROLLED":
+                assert r.controller_scenario_polity_id == want[political]
+            checked_physical += 1
+    assert checked_mapped == 3014 and checked_physical > 0
 
 
 def test_every_fragment_row_has_full_provenance(canon):
@@ -295,7 +318,7 @@ def test_every_fragment_row_has_full_provenance(canon):
     prov = pd.read_csv(SD / "territorial_control_provenance.csv",
                        keep_default_na=False, na_values=[""])
     p = prov[prov.territorial_target_id.isin(f["territorial_target_id"])]
-    assert len(p) == len(f) == 3014
+    assert len(p) == len(f) >= 3014
     for col in ("historical_evidence_ids", "boundary_feature_ids",
                 "historical_subject_ids", "global_source_ids"):
         assert p[col].astype(str).str.len().gt(0).all()
