@@ -23,6 +23,8 @@ H = Path("data/historical")
 SD = Path("data/scenarios/seven_years_war_1756_08_01")
 EU = Path("output/europe_foundation_20260811/europe_hex_coverage.parquet")
 SPAIN_SP, PORTUGAL_SP = "sp_b622a2799f94", "sp_fef06587fead"
+# the two features this stage produced, by id; later stages add their own
+M26_FEATURES = ("hbf_4da53367f9a0", "hbf_7ed17b927930")
 
 
 @pytest.fixture(scope="module")
@@ -65,7 +67,11 @@ def test_the_feature_is_a_subset_not_a_boundary():
     """
     import geopandas as gpd
     f = gpd.read_parquet(H / "historical_boundary_features.parquet")
-    ib = f[f.historical_subject_id.str.contains("iberian_mainland")]
+    # MAPGEN-028 added a THIRD Iberian feature - Portugal measured again on
+    # the 1751 plate - so this stage's pair is named rather than counted.
+    # What it guards is unchanged: a safe interior must never be filed as a
+    # country outline.
+    ib = f[f.boundary_feature_id.isin(M26_FEATURES)]
     assert len(ib) == 2
     assert set(ib.feature_role) == {"DE_FACTO_CONTROL_BOUNDARY"}
     assert (ib.geometry_status
@@ -83,7 +89,7 @@ def test_the_erosion_distance_is_measured(obs, transform):
     # and it is the number the features actually carry
     import geopandas as gpd
     f = gpd.read_parquet(H / "historical_boundary_features.parquet")
-    ib = f[f.historical_subject_id.str.contains("iberian_mainland")]
+    ib = f[f.boundary_feature_id.isin(M26_FEATURES)]
     assert (abs(ib.positional_uncertainty_km - p95 / 1000) < 0.01).all()
 
 

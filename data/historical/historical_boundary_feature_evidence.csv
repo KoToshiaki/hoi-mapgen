@@ -49,3 +49,13 @@ hbf_7ed17b927930,hev_cd7a75fb1330,TEMPORAL_CONTINUITY,NO,"Algarve scope carried 
 hbf_7ed17b927930,hev_814ad2abede7,POLITICAL_STATUS,NO,"Algarve administration: two ordinary comarcas under crown corregedores, the Ordenacoes, the decima"
 hbf_7ed17b927930,hev_6f7b18950ca3,SUPPORTING,NO,"scholarship: the kingdom title is honorific, and the two-shields convention on foreign 18th-century maps is an engraving habit rather than a constitutional fact"
 hbf_4da53367f9a0,hev_0af093378ef8,POLITICAL_STATUS,YES,dated five days before the snapshot; the King appoints to the Chancilleria de Granada and the Consejo de Navarra
+hbf_60dcae454432,hev_34239005a8d2,GEOMETRY_SHAPE,YES,the 1751 plate's own drawn frontier
+hbf_60dcae454432,hev_48efaa2f6eed,TEMPORAL_CONTINUITY,NO,the same extent asserted in 1749 by the same house
+hbf_60dcae454432,hev_2deb7271ec44,GEOMETRY_SHAPE,NO,coastline substrate (carried from MAPGEN-027)
+hbf_60dcae454432,hev_8f705a7b8b3d,POLITICAL_STATUS,YES,the crown's own act at the snapshot (carried from MAPGEN-027)
+hbf_60dcae454432,hev_9bf4c3c3345b,POLITICAL_STATUS,NO,scholarship on the same reign (carried from MAPGEN-027)
+hbf_60dcae454432,hev_9836b0a3cb4e,TEMPORAL_CONTINUITY,YES,coastline carried from the modern survey to 1756 (carried from MAPGEN-027)
+hbf_60dcae454432,hev_cff27a799d7a,POLITICAL_STATUS,YES,four acts of 1756 dated BEFORE the snapshot (carried from MAPGEN-027)
+hbf_60dcae454432,hev_cd7a75fb1330,TEMPORAL_CONTINUITY,NO,Algarve scope carried across the reign (carried from MAPGEN-027)
+hbf_60dcae454432,hev_814ad2abede7,POLITICAL_STATUS,NO,Algarve administration (carried from MAPGEN-027)
+hbf_60dcae454432,hev_6f7b18950ca3,SUPPORTING,NO,scholarship on the kingdom title (carried from MAPGEN-027)

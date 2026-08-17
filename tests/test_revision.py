@@ -242,7 +242,7 @@ def test_revision_log_only_moved_rows_out_of_controlled():
     # is the test of that. MAPGEN-027 moves rows the other way, on new
     # evidence rather than a new measurement, so it is scoped out by its
     # own reason rather than by weakening the assertion.
-    m14 = rv[~rv["reason"].str.contains("Portugal safe interior v2",
+    m14 = rv[~rv["reason"].str.contains("Portugal safe interior v",
                                         na=False)]
     assert len(m14) > 0
     assert not ((m14["old_status"] == "UNRESOLVED")
@@ -259,7 +259,7 @@ def test_no_stale_uncertainty_left_in_canonical_authority():
     c = pd.read_csv(SD / "territorial_control.csv")
     revised = set(rv["territorial_target_id"])
     assert revised <= set(c["territorial_target_id"])
-    m14 = rv[~rv["reason"].str.contains("Portugal safe interior v2",
+    m14 = rv[~rv["reason"].str.contains("Portugal safe interior v",
                                         na=False)]
     assert float(m14["old_uncertainty_km"].max()) == 2.975
 

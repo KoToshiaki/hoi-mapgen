@@ -1,0 +1,2 @@
+stage,sheet,compartment,area_km2_3857,finding,portuguese_places,spanish_places,action,trimmed_to_fit,averaged_line_drawn,note
+MAPGEN-028,N,0,41921.0,WASH_DOES_NOT_CLOSE,Alcobaca|Leiria|Nisa|Pombal|Portalegre|Tomar,Alburquerque|Valencia de Alcantara,COMPARTMENT_REFUSED,NO,NO,"the compartment spans the frontier, so the plate's own wash cannot be closed along it on this sheet. It is not claimed for either crown and no boundary is interpolated through it. Most of the ground under it is recovered from the other sheet, which resolves the same country into separate compartments."

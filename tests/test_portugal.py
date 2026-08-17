@@ -208,7 +208,10 @@ def test_the_bundle_actually_carries_the_new_evidence():
                         keep_default_na=False, na_values=[])
     snap = pd.read_csv(H / "historical_snapshot_features_1756_08_01.csv",
                        keep_default_na=False, na_values=[])
-    ib = snap[snap.historical_subject_id.str.contains("iberian_mainland")]
+    # MAPGEN-028 added a third Iberian snapshot row; this test is about the
+    # two MAPGEN-027 authorised, so it names them.
+    ib = snap[snap.boundary_feature_id.isin(
+        ("hbf_4da53367f9a0", "hbf_7ed17b927930"))]
     assert len(ib) == 2
     for r in ib.itertuples():
         ids = set(str(r.bundle_evidence_ids).split("|"))

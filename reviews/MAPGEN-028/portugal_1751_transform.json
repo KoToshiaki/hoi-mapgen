@@ -1,0 +1,93 @@
+{
+ "stage": "MAPGEN-028",
+ "map_source_id": "hsrc_c61726597ef3",
+ "sheets_georeferenced_separately": true,
+ "sheets_ever_fitted_to_each_other": false,
+ "images_ever_merged_before_fitting": false,
+ "selection_rule": "simplest model within 10 per cent of the best MODEL_SELECTION_HOLDOUT rms, after any folding or scale-ratio>3 model is disqualified",
+ "split_rule": "rank of sha256 of the place-name within the sheet; first 60 per cent FIT_CONSTRAINT, next 20 per cent MODEL_SELECTION_HOLDOUT, remainder BLIND_VALIDATION",
+ "n_true_2d_points": 42,
+ "n_longitude_1d_constraints": 56,
+ "n_latitude_1d_constraints": 48,
+ "synthetic_graticule_intersections": 0,
+ "positional_uncertainty_rule": "p95 of the residuals at every point the fit never saw (MODEL_SELECTION_HOLDOUT + BLIND_VALIDATION), pooled over both sheets",
+ "positional_uncertainty_m": 12330.7,
+ "positional_uncertainty_km": 12.33,
+ "prime_meridian_role": "DIAGNOSTIC_ONLY: the transform maps pixels straight to Greenwich degrees from observed features; the plate meridian is audited, not applied",
+ "sheets": {
+  "N": {
+   "copy_id": "copy_ucbg_nc_0681",
+   "model": "AFFINE",
+   "params": {
+    "model": "AFFINE",
+    "lon": [
+     -11.287603185197684,
+     0.0012968399377223307,
+     -4.924058463352258e-05
+    ],
+    "lat": [
+     42.18449524477143,
+     1.7490911452135812e-05,
+     -0.0010202583106261249
+    ]
+   },
+   "n_true_2d": 22,
+   "n_fit": 13,
+   "n_model_selection": 4,
+   "n_blind": 5,
+   "jacobian": {
+    "mpp_x_min": 107.35616815103656,
+    "mpp_x_max": 112.11596587942438,
+    "mpp_y_min": 113.34737221513652,
+    "mpp_y_max": 113.39793847688834,
+    "scale_ratio": 1.0443365091206627,
+    "folding": false,
+    "mean_pixel_scale_m": 111.56609146409266
+   },
+   "design_condition": 18266.60219561694,
+   "face_px": [
+    824,
+    185,
+    3829,
+    2986
+   ]
+  },
+  "S": {
+   "copy_id": "copy_ucbg_nc_0682",
+   "model": "PROJECTIVE",
+   "params": {
+    "model": "PROJECTIVE",
+    "h": [
+     0.0015648362372846815,
+     -0.0001507463513223415,
+     -10.830495979459366,
+     -0.0021460629767710805,
+     0.00014427057260221721,
+     39.87729627260155,
+     -5.497037107703792e-05,
+     2.9810410664822315e-05
+    ]
+   },
+   "n_true_2d": 20,
+   "n_fit": 12,
+   "n_model_selection": 4,
+   "n_blind": 4,
+   "jacobian": {
+    "mpp_x_min": 89.03231996779655,
+    "mpp_x_max": 132.32694746611796,
+    "mpp_y_min": 101.79643233558164,
+    "mpp_y_max": 145.2526888849163,
+    "scale_ratio": 1.4862798982884113,
+    "folding": false,
+    "mean_pixel_scale_m": 114.02120916592531
+   },
+   "design_condition": 2101541.2348095514,
+   "face_px": [
+    773,
+    242,
+    3835,
+    3039
+   ]
+  }
+ }
+}

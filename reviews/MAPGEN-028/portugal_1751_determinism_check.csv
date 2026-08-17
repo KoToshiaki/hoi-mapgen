@@ -1,0 +1,4 @@
+stage,artifact,first_run_sha256,second_run_sha256,identical_ignoring_run_id,note
+MAPGEN-028,validation.csv,948843107d1f91c62d75e8077ad64f2b92b188156d8f9891cc48ae6c7dfa7cf6,948843107d1f91c62d75e8077ad64f2b92b188156d8f9891cc48ae6c7dfa7cf6,YES,the stage was run twice end to end and the two review artefacts compare equal once the run identifier is dropped
+MAPGEN-028,summary.csv,bb9c54cc885d2e895ca6abb61827af84e3179cde36c5adab1959782918e86272,bb9c54cc885d2e895ca6abb61827af84e3179cde36c5adab1959782918e86272,YES,the stage was run twice end to end and the two review artefacts compare equal once the run identifier is dropped
+MAPGEN-028,promotion,promo_b68466ea22a9,promo_b68466ea22a9,YES,"re-running the promotion reported 0 inserted, 0 revised and 2726 unchanged: the same candidate hashes to the same promotion id and writes nothing a second time"

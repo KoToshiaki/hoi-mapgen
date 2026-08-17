@@ -1,0 +1,50 @@
+run_id,check_id,pass,detail
+vaugondy_portugal_1756_20260817,M28-01_source_acquired_and_hashed,True,"4 sheets acquired from Coimbra with sha256 and byte counts: NC-681, NC-682 (1751) and NC-824, NC-825 (1749)"
+vaugondy_portugal_1756_20260817,M28-02_licence_permits_commercial_reuse,True,every sheet is CC BY 4.0 from the Universidade de Coimbra; no David Rumsey and no commercial-reuse-blocking host
+vaugondy_portugal_1756_20260817,M28-03_raw_raster_is_gitignored,True,"all four rasters are under data/raw, which git ignores; no tracked file lives there"
+vaugondy_portugal_1756_20260817,M28-04_state_audit_examines_six_axes,True,"6 axes compared between the 1751 and 1749 works, including the printed plate size, the scale and the atlas numbering"
+vaugondy_portugal_1756_20260817,M28-05_1749_is_not_another_state_of_the_same_plate,True,"the printed image differs by about 2.7 in each direction; a copper plate cannot be rescaled, so the two are not states of one plate"
+vaugondy_portugal_1756_20260817,M28-06_independent_source_count_is_not_inflated,True,the 1749 reduction is by the same author and counts as zero additional independent sources
+vaugondy_portugal_1756_20260817,M28-07_1762_sheet_is_demoted_not_used,True,"MAPGEN-027's 1762 sheet supplies no control point, no frontier and no uncertainty; its vignette finding stands"
+vaugondy_portugal_1756_20260817,M28-08_registered_in_the_evidence_framework,True,"registry, lineage, assessment and two copy rows for the 1751 pair"
+vaugondy_portugal_1756_20260817,M28-09_anchor_rule_written_before_it_was_used,True,"exactly two symbol classes may carry a control point, and both are the engraved position circle"
+vaugondy_portugal_1756_20260817,M28-10_vignettes_remain_ineligible,True,a pictorial vignette and a bastioned plan have no defensible centre and are refused; Castelo Branco yields no anchor even though its name is legible
+vaugondy_portugal_1756_20260817,M28-11_no_vignette_rule_was_invented,True,not one observation rests on a symbol the rule excludes
+vaugondy_portugal_1756_20260817,M28-12_city_sign_is_the_circle_not_the_cross,True,the walled block and the cross are attributes drawn AROUND the same position circle; verified at eight times magnification before any of the six city signs was used
+vaugondy_portugal_1756_20260817,M28-13_graduation_is_one_dimensional_only,True,a stroke enters as one scalar equation at its own pixel; no stroke is crossed with another
+vaugondy_portugal_1756_20260817,M28-14_true_2d_observations_meet_the_target,True,"42 true two-dimensional observations, against a target of 16 and a preferred 24"
+vaugondy_portugal_1756_20260817,M28-15_counts_are_reported_separately,True,"true 2D 42, longitude-only 56, latitude-only 48, each counted on its own"
+vaugondy_portugal_1756_20260817,M28-16_no_synthetic_graticule_intersection,True,no pixel was manufactured by crossing a longitude tick with a latitude tick; MAPGEN-018R's disqualification stands
+vaugondy_portugal_1756_20260817,M28-17_both_sheets_carry_observations,True,"sheet N 22, sheet S 20"
+vaugondy_portugal_1756_20260817,M28-18_observations_of_both_crowns_were_sought,True,"7 Spanish places anchored, on both sheets; a compartment that runs across the frontier can only be caught by one of them turning up inside it"
+vaugondy_portugal_1756_20260817,M28-19_every_observation_resolves_in_the_gazetteer,True,every observation carries a distinct GeoNames id
+vaugondy_portugal_1756_20260817,M28-20_graduation_lattices_are_tight,True,worst border lattice rms 2.97 px against a ten-minute spacing of 113 to 165 px
+vaugondy_portugal_1756_20260817,M28-21_sheets_are_georeferenced_separately,True,"each sheet has its own control points, its own split, its own model and its own residuals; the images were never merged"
+vaugondy_portugal_1756_20260817,M28-22_split_is_frozen_and_declared,True,"the split is by rank of a hash of the place-name, fixed before any model was fitted"
+vaugondy_portugal_1756_20260817,M28-23_affine_and_projective_were_both_fitted,True,"10 model fits over two sheets, including the graticule-constrained variants"
+vaugondy_portugal_1756_20260817,M28-24_selection_used_the_holdout_not_the_fit,True,"one model selected per sheet, on holdout rms with a 10 per cent tolerance, simplest first"
+vaugondy_portugal_1756_20260817,M28-25_no_selected_model_folds_or_explodes,True,neither selected model folds; worst scale ratio 1.486
+vaugondy_portugal_1756_20260817,M28-26_design_is_not_ill_conditioned,True,worst design condition 2.1e+06
+vaugondy_portugal_1756_20260817,M28-27_metric_sets_are_kept_apart,True,"the model-selection holdout chose the model, so it is not blind and is not called blind"
+vaugondy_portugal_1756_20260817,M28-28_production_uncertainty_is_the_conservative_one,True,"12.33 km is the p95 over every point the fit never saw, pooled across both sheets"
+vaugondy_portugal_1756_20260817,M28-29_uncertainty_improves_on_mapgen026,True,"12.33 km against 34.61 km, a factor of 2.81"
+vaugondy_portugal_1756_20260817,M28-30_prime_meridian_derived_from_the_graduations,True,"four estimators over two sheets, all from the engraved strokes; the transform maps pixels straight to Greenwich and the meridian is diagnostic"
+vaugondy_portugal_1756_20260817,M28-31_plate_meridian_agrees_with_ferro,True,"the plate's meridian is 17.681961 deg west, against 17.662771 for Ferro at 20 degrees west of Paris: 1.66 km at 39 N"
+vaugondy_portugal_1756_20260817,M28-32_seam_measured_without_fitting_across_it,True,"4 places engraved on BOTH sheets, each carried through its own sheet's transform"
+vaugondy_portugal_1756_20260817,M28-33_seam_disagreement_is_within_the_uncertainty,True,worst seam disagreement 8.14 km against a 12.33 km uncertainty
+vaugondy_portugal_1756_20260817,M28-34_1751_to_1756_continuity_is_argued,True,the peninsular frontier was fixed by Alcanices in 1297 and confirmed at Lisbon in 1668; the treaty of Madrid of 1750 settled the AMERICAN limits
+vaugondy_portugal_1756_20260817,M28-35_olivenza_and_couto_misto_stay_withheld,True,Olivenca is Portuguese until 1801 and the Couto Misto belonged to neither crown until 1864; both are cut out of the interior by name
+vaugondy_portugal_1756_20260817,M28-36_algarve_decision_is_carried_not_reopened,True,MAPGEN-027 settled it on institutions; the 1751 plate letters it ROYAUME D'ALGARVE and that lettering is still not evidence
+vaugondy_portugal_1756_20260817,M28-37_the_1762_war_is_not_relied_on,True,"the Spanish invasion begins in May 1762, five years after the snapshot"
+vaugondy_portugal_1756_20260817,M28-38_a_compartment_is_claimed_only_on_evidence_inside_it,True,"20 compartments claimed, every one holding at least one identified Portuguese place and no Spanish one"
+vaugondy_portugal_1756_20260817,M28-39_a_compartment_that_spans_the_frontier_is_refused,True,"1 compartment holds places of both crowns; it is refused entire rather than trimmed, and no boundary is interpolated through it"
+vaugondy_portugal_1756_20260817,M28-40_no_averaged_line_at_the_seam_or_the_gap,True,neither the sheet seam nor the source disagreement is resolved by splitting the difference
+vaugondy_portugal_1756_20260817,M28-41_cross_source_comparison_was_performed,True,the 1751 plate is compared against the Le Rouge plate MAPGEN-026 used; MAPGEN-027 recorded this as NOT_PERFORMED and handed it here
+vaugondy_portugal_1756_20260817,M28-42_no_overlap_with_spains_safe_interior,True,the Portuguese interior and the Spanish one do not intersect
+vaugondy_portugal_1756_20260817,M28-43_spain_is_frozen,True,"Spain holds 5,431 terrestrial hexes, exactly what MAPGEN-026 left; this stage's revisions touch none of them"
+vaugondy_portugal_1756_20260817,M28-44_portugal_grew_past_the_success_condition,True,Portugal 124 -> 2727 CONTROLLED targets
+vaugondy_portugal_1756_20260817,M28-45_nothing_was_taken_from_another_polity,True,"1720 revisions, every one from an UNRESOLVED row or from Portugal itself"
+vaugondy_portugal_1756_20260817,M28-46_no_ocean_hex_is_owned_and_fragments_carry_the_rest,True,every Portuguese hex row is a canonical terrestrial hex; the coastal land of OCEAN hexes is carried as fragments and the parent hexes stay unowned
+vaugondy_portugal_1756_20260817,M28-47_review_package_references_canonical_it_does_not_copy_it,True,"5 canonical tables referenced by path, sha256 and row count; the package carries all 2603 rows this stage touched (883 inserted, 1720 revised) and no full copy"
+vaugondy_portugal_1756_20260817,M28-48_canonical_control_gains_no_new_defect,True,"the validator reports 1 issue(s), all of them the MAPGEN-008 foundation rows that predate the Europe grid; this stage adds 0"
+vaugondy_portugal_1756_20260817,M28-49_repository_carries_no_oversized_tracked_file,True,largest tracked file 25.5 MB; the stage module contains no contemporary reference-layer import or identifier

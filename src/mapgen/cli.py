@@ -79,6 +79,8 @@ def main(argv: list[str] | None = None) -> int:
         ("portugal", "MAPGEN-027: Portugal mainland recovery, Iberian "
                      "LAND_FRAGMENT completion, Algarve constitutional "
                      "audit"),
+        ("vaugondy", "MAPGEN-028: Portugal re-measured on the 1751 "
+                     "Vaugondy two-sheet plate, safe interior v3"),
     ):
         p = sub.add_parser(name, help=help_text)
         _add_common(p)
@@ -155,6 +157,12 @@ def main(argv: list[str] | None = None) -> int:
         from .historical_portugal_pipeline import run_historical_portugal
 
         run_historical_portugal(cfg, run_id=args.run_id)
+        return 0
+
+    if args.command == "vaugondy":
+        from .historical_vaugondy_pipeline import run_historical_vaugondy
+
+        run_historical_vaugondy(cfg, run_id=args.run_id)
         return 0
 
     if args.command == "iberian":

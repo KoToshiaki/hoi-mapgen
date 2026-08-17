@@ -1,0 +1,42 @@
+stage,map_source_id,sheet,compartment,area_km2_3857,verdict,portuguese_places,spanish_places,claimed,rule
+MAPGEN-028,hsrc_c61726597ef3,N,0,41921.0,MIXED_EVIDENCE,Alcobaca|Leiria|Nisa|Pombal|Portalegre|Tomar,Alburquerque|Valencia de Alcantara,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,1,10745.4,PORTUGAL,Mirandela,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,2,5955.8,PORTUGAL,Amarante|Chaves,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,3,5391.4,PORTUGAL,Braganca,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,4,4315.2,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,5,3550.4,PORTUGAL,Lamego,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,6,3489.0,PORTUGAL,Viseu,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,7,3065.0,PORTUGAL,Coimbra|Figueira da Foz,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,8,2742.1,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,9,2650.1,PORTUGAL,Penafiel|Porto,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,10,2427.8,PORTUGAL,Barcelos,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,11,2300.2,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,12,2109.1,PORTUGAL,Braga|Guimaraes,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,13,1838.1,PORTUGAL,Aveiro,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,14,1148.3,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,15,1000.5,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,16,575.4,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,17,48.8,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,N,18,48.5,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,0,44234.7,SPAIN,,Alburquerque|Jerez de los Caballeros|Valencia de Alcantara,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,1,14698.1,PORTUGAL,Beja|Moura|Serpa,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,2,13884.2,PORTUGAL,Abrantes|Alcacer do Sal|Grandola|Palmela|Setubal|Tomar,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,3,7689.8,PORTUGAL,Evora,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,4,5333.8,PORTUGAL,Nisa|Portalegre,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,5,4796.2,PORTUGAL,Elvas,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,6,3690.4,PORTUGAL,Faro,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,7,3224.3,PORTUGAL,Estremoz,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,8,2828.8,PORTUGAL,Silves,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,9,2169.6,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,10,1924.2,PORTUGAL,Alcobaca,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,11,1410.9,SPAIN,,Ayamonte|Huelva,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,12,1245.4,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,13,675.8,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,14,445.8,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,15,360.2,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,16,318.9,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,17,215.2,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,18,102.4,PORTUGAL,Sines,,YES,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,19,72.5,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,20,69.9,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain
+MAPGEN-028,hsrc_c61726597ef3,S,21,52.5,NO_IDENTIFIED_PLACE,,,NO,claimed only if at least one identified place inside it resolves to Portugal and none resolves to Spain

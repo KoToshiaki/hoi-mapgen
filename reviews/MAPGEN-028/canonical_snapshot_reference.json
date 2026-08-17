@@ -1,0 +1,38 @@
+{
+  "stage": "MAPGEN-028",
+  "run_id": "vaugondy_portugal_1756_20260817",
+  "promotion_id": "promo_b68466ea22a9",
+  "rule": "the review package references the canonical tables by path, sha256 and row count, and carries ONLY the rows this stage inserted or revised",
+  "tables": {
+    "territorial_control.csv": {
+      "path": "D:/VScode/hoi/mapgen/data/scenarios/seven_years_war_1756_08_01/territorial_control.csv",
+      "bytes": 16484974,
+      "sha256": "c72930134ae18805c31bf11d47ef11fe0e3010b7313cf487d21ad5d53675f7bb",
+      "rows": 77459
+    },
+    "territorial_control_provenance.csv": {
+      "path": "D:/VScode/hoi/mapgen/data/scenarios/seven_years_war_1756_08_01/territorial_control_provenance.csv",
+      "bytes": 25457750,
+      "sha256": "937108f99c3e2a360cb9f38170292da06a8ca5f45bafb653a4269e84fea380e6",
+      "rows": 77456
+    },
+    "territorial_control_revision_log.csv": {
+      "path": "D:/VScode/hoi/mapgen/data/scenarios/seven_years_war_1756_08_01/territorial_control_revision_log.csv",
+      "bytes": 733665,
+      "sha256": "d8d231469eb0c81fa53dcc2a3ebc153df25e067ca79b2280043f29dc8dc1dc56",
+      "rows": 2189
+    },
+    "scenario_control_promotion_log.csv": {
+      "path": "D:/VScode/hoi/mapgen/data/scenarios/seven_years_war_1756_08_01/scenario_control_promotion_log.csv",
+      "bytes": 5473,
+      "sha256": "6e350f4d729a71ee5c87756928e3bcf29fd2d082c743ac464f3168b99ab0e8ee",
+      "rows": 10
+    },
+    "political_coverage.csv": {
+      "path": "D:/VScode/hoi/mapgen/data/scenarios/seven_years_war_1756_08_01/political_coverage.csv",
+      "bytes": 16847,
+      "sha256": "e50896ed4bea4fbd98ddec14291934cd520bdfc14e5e57d4baa73913cc81cc4e",
+      "rows": 64
+    }
+  }
+}

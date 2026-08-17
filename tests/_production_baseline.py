@@ -26,7 +26,12 @@ MEMBERSHIP_AUDITS = ("british_isles_hex_membership_audit.csv",
                      "iberia_hex_membership_audit.csv",
                      # MAPGEN-027 widened Portugal's region, bringing a few
                      # hundred more hexes into the Iberian scope.
-                     "iberia_hex_membership_audit_v2.csv")
+                     "iberia_hex_membership_audit_v2.csv",
+                     # MAPGEN-028 measured the Portuguese frontier again on
+                     # a five-times-larger plate and the uncertainty fell
+                     # from 34.61 km to 12.33, so the interior that
+                     # survives erosion is twenty times bigger.
+                     "iberia_hex_membership_audit_v3.csv")
 
 
 def island_production_hex_ids() -> set[str]:
@@ -55,7 +60,8 @@ def strip_island_production(control: pd.DataFrame) -> pd.DataFrame:
 
 
 IBERIA_AUDITS = ("iberia_hex_membership_audit.csv",
-                 "iberia_hex_membership_audit_v2.csv")
+                 "iberia_hex_membership_audit_v2.csv",
+                 "iberia_hex_membership_audit_v3.csv")
 IBERIA_FRAGMENTS = "iberia_land_fragment_production.csv"
 
 

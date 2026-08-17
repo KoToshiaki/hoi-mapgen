@@ -1,0 +1,6 @@
+stage,sheet,estimator,plate_meridian_west_of_greenwich_deg,ferro_20w_of_paris_deg,difference_deg,difference_km_at_39N,derived_from,applied_to_production
+MAPGEN-028,N,AFFINE_GRATICULE,17.659311,17.662771,-0.00346,-0.3,"the engraved graduation strokes alone, as one-dimensional constraints beside the control points; no printed meridian statement on either sheet",NO
+MAPGEN-028,N,POLYNOMIAL_2_GRATICULE,17.805769,17.662771,0.142998,12.37,"the engraved graduation strokes alone, as one-dimensional constraints beside the control points; no printed meridian statement on either sheet",NO
+MAPGEN-028,S,AFFINE_GRATICULE,17.604988,17.662771,-0.057783,-5.0,"the engraved graduation strokes alone, as one-dimensional constraints beside the control points; no printed meridian statement on either sheet",NO
+MAPGEN-028,S,POLYNOMIAL_2_GRATICULE,17.657777,17.662771,-0.004994,-0.43,"the engraved graduation strokes alone, as one-dimensional constraints beside the control points; no printed meridian statement on either sheet",NO
+MAPGEN-028,BOTH,MEAN_OF_FOUR,17.681961,17.662771,0.01919,1.66,"the engraved graduation strokes alone, as one-dimensional constraints beside the control points; no printed meridian statement on either sheet",NO

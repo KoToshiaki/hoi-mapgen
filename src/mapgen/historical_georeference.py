@@ -104,6 +104,70 @@ def fit_transform(model, px, py, lon, lat):
     raise ValueError(model)
 
 
+SEPARABLE_MODELS = ["AFFINE", "POLYNOMIAL_2"]
+
+
+def fit_transform_mixed(model, px, py, lon, lat, constraints=None):
+    """Fit with the map's own graduations beside its control points.
+
+    A graduation stroke on a border is a ONE-dimensional observation: the
+    tick engraved at the top edge says the longitude there is 9 degrees and
+    says nothing whatever about the latitude at that pixel. MAPGEN-018R
+    disqualified crossing such a tick with a tick on the side border to
+    manufacture a pixel, and nothing here does that. Each stroke enters as
+    a single scalar equation in whichever of the two systems it belongs to,
+    at its own measured pixel.
+
+    That only works for models whose longitude and latitude functions are
+    independent, which is why PROJECTIVE - whose shared denominator ties
+    them together - is refused rather than approximated.
+
+    `constraints` is a frame with columns x, y, axis ("lon"/"lat"), value
+    and frame ("GREENWICH"/"PLATE"). PLATE longitudes are counted from the
+    plate's own prime meridian, which is unknown; it is carried as one
+    extra unknown in the longitude system and returned, so the meridian is
+    solved for rather than assumed.
+    """
+    if model not in SEPARABLE_MODELS:
+        raise ValueError(
+            f"{model} couples longitude and latitude through a shared "
+            "denominator; a one-dimensional constraint cannot be applied "
+            "to one of them alone")
+    px = np.asarray(px, float)
+    py = np.asarray(py, float)
+    A = _design(model, px, py)
+    k = A.shape[1]
+    c = (constraints if constraints is not None
+         else pd.DataFrame(columns=["x", "y", "axis", "value", "frame"]))
+    out = {"model": model, "n_gcp": int(len(px)),
+           "n_lon_constraints": 0, "n_lat_constraints": 0}
+    for axis, target in (("lon", np.asarray(lon, float)),
+                         ("lat", np.asarray(lat, float))):
+        sub = c[c["axis"] == axis]
+        Ac = _design(model, sub["x"], sub["y"]) if len(sub) else \
+            np.zeros((0, k))
+        plate = (sub["frame"].astype(str) == "PLATE").to_numpy() \
+            if len(sub) else np.zeros(0, bool)
+        use_m = axis == "lon" and bool(plate.any())
+        cols = k + (1 if use_m else 0)
+        M = np.zeros((len(A) + len(Ac), cols))
+        M[:len(A), :k] = A
+        M[len(A):, :k] = Ac
+        if use_m:
+            # +1 on a plate-frame row: plate longitude = Greenwich + offset
+            M[len(A):, k] = plate.astype(float)
+        b = np.concatenate([target, sub["value"].to_numpy(float)
+                            if len(sub) else np.zeros(0)])
+        if M.shape[0] < cols:
+            raise ValueError(f"{model} mixed fit is underdetermined")
+        p, *_ = np.linalg.lstsq(M, b, rcond=None)
+        out[axis] = p[:k].tolist()
+        out[f"n_{axis}_constraints"] = int(len(sub))
+        if use_m:
+            out["plate_meridian_offset_deg"] = float(p[k])
+    return out
+
+
 def apply_transform(t, px, py):
     px = np.asarray(px, float)
     py = np.asarray(py, float)

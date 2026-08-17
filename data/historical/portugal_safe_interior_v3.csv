@@ -1,0 +1,2 @@
+stage,version,raw_area_km2_3857,raw_area_km2_ground,v3_area_km2_3857,v3_area_km2_ground,v2_area_km2_3857,v2_fully_contained_in_v3,v2_area_lost_km2_3857,overlap_with_spain_safe_km2_3857,uncertainty_km,erosion_crs,withheld_by_name,silent_overwrite,previous_version,previous_version_retained
+MAPGEN-028,v3,114412.1,67798.2,76604.3,45427.2,5479.5,False,1321.1,0.0,12.33,EPSG:3763,COUTO_MISTO|OLIVENZA,NO,"v2 (MAPGEN-027, hbf_7ed17b927930)",YES
